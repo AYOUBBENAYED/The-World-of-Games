@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Good Pizza, Great Pizza | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           الأساس
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Tahoma", "Arial", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, #fff0d2 0, transparent 25%),
+                radial-gradient(circle at 90% 20%, #ffd7c9 0, transparent 28%),
+                #f7efe2;
+            color: #29221e;
+            line-height: 1.9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================================
+           شريط علوي
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(45, 28, 23, 0.92);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+            padding: 12px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: white;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background: #e84c32;
+
+            box-shadow:
+                0 7px 20px rgba(232, 76, 50, 0.35);
+        }
+
+        .world-link {
+            position: relative;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 10px 18px;
+
+            border-radius: 100px;
+
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,.13),
+                rgba(255,255,255,.04)
+            );
+
+            border: 1px solid rgba(255,255,255,.16);
+
+            transition: .3s;
+        }
+
+        .world-link:hover {
+            transform: translateY(-3px);
+            background: #e84c32;
+            box-shadow: 0 10px 25px rgba(232,76,50,.35);
+        }
+
+        /* =========================================================
+           Hero
+        ========================================================= */
+
+        .hero {
+            min-height: 650px;
+
+            padding: 70px 7% 80px;
+
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+
+            align-items: center;
+            gap: 55px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🍕";
+            position: absolute;
+
+            font-size: 260px;
+
+            left: -60px;
+            top: 40px;
+
+            opacity: .06;
+
+            transform: rotate(-25deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            background: #fff;
+            color: #c83c26;
+
+            padding: 7px 15px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            box-shadow: 0 8px 25px rgba(80,40,20,.08);
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 82px);
+
+            line-height: 1.05;
+
+            color: #38251f;
+
+            margin-bottom: 22px;
+
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #e2492e;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: #6d5a50;
+
+            font-size: 18px;
+
+            margin-bottom: 28px;
+        }
+
+        /* =========================================================
+           التقييم
+        ========================================================= */
+
+        .rating-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .rating-number {
+            font-size: 46px;
+            font-weight: 900;
+
+            color: #30221d;
+        }
+
+        .stars {
+            color: #f2a928;
+
+            font-size: 24px;
+
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            color: #806e65;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           أزرار Hero
+        ========================================================= */
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .main-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 15px 25px;
+
+            border-radius: 16px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .download-btn {
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #ed5738,
+                #c92e24
+            );
+
+            box-shadow:
+                0 12px 30px rgba(201,46,36,.25);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 18px 40px rgba(201,46,36,.35);
+        }
+
+        .ghost-btn {
+            background: white;
+            color: #4d3930;
+
+            border: 1px solid #ead9cc;
+        }
+
+        .ghost-btn:hover {
+            transform: translateY(-4px);
+            border-color: #e84c32;
+            color: #d63e29;
+        }
+
+        /* =========================================================
+           صورة اللعبة
+        ========================================================= */
+
+        .hero-art {
+            position: relative;
+            min-height: 500px;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .pizza-card {
+            width: min(500px, 100%);
+
+            position: relative;
+
+            transform: rotate(2deg);
+
+            border-radius: 32px;
+
+            padding: 12px;
+
+            background: white;
+
+            box-shadow:
+                0 30px 70px rgba(73,40,25,.22);
+
+            transition: .5s;
+        }
+
+        .pizza-card:hover {
+            transform: rotate(0deg) translateY(-10px);
+        }
+
+        .pizza-card img {
+            width: 100%;
+
+            display: block;
+
+            aspect-ratio: 4 / 3;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+        }
+
+        .floating-tag {
+            position: absolute;
+
+            padding: 12px 17px;
+
+            background: white;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 15px 35px rgba(60,35,20,.15);
+
+            font-weight: bold;
+
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .tag-one {
+            top: 25px;
+            right: -25px;
+        }
+
+        .tag-two {
+            bottom: 25px;
+            left: -25px;
+
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+        /* =========================================================
+           شريط الإحصائيات
+        ========================================================= */
+
+        .stats {
+            margin: -25px auto 70px;
+
+            width: 86%;
+            max-width: 1200px;
+
+            position: relative;
+            z-index: 5;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            background: #33241f;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 45px rgba(54,31,22,.18);
+        }
+
+        .stat {
+            padding: 25px;
+
+            color: white;
+
+            text-align: center;
+
+            border-left: 1px solid rgba(255,255,255,.08);
+        }
+
+        .stat:last-child {
+            border-left: none;
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 27px;
+
+            color: #ffb347;
+        }
+
+        .stat span {
+            color: #d9c9c1;
+
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           المحتوى
+        ========================================================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .section-title small {
+            color: #e84c32;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+
+            color: #32231e;
+
+            margin-top: 5px;
+        }
+
+        .section-title p {
+            color: #77665e;
+
+            max-width: 700px;
+        }
+
+        /* =========================================================
+           بطاقة القصة
+        ========================================================= */
+
+        .story {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+
+            gap: 25px;
+        }
+
+        .story-highlight {
+            background:
+                linear-gradient(
+                    145deg,
+                    #d9412c,
+                    #9f241b
+                );
+
+            color: white;
+
+            padding: 35px;
+
+            border-radius: 28px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-highlight::after {
+            content: "🍕";
+
+            position: absolute;
+
+            font-size: 150px;
+
+            bottom: -50px;
+            left: -20px;
+
+            opacity: .12;
+        }
+
+        .story-highlight h3 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .story-highlight p {
+            color: #ffe8e0;
+        }
+
+        .story-main {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 28px;
+
+            border: 1px solid #eadbd0;
+
+            box-shadow: 0 12px 35px rgba(80,50,30,.06);
+        }
+
+        .story-main p {
+            color: #67564d;
+            font-size: 17px;
+        }
+
+        /* =========================================================
+           المميزات
+        ========================================================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,.8);
+
+            border: 1px solid #eadbd0;
+
+            padding: 28px;
+
+            border-radius: 24px;
+
+            transition: .3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+
+            border-color: #ed927f;
+
+            box-shadow:
+                0 18px 40px rgba(80,40,20,.1);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+            place-items: center;
+
+            background: #fff0eb;
+
+            border-radius: 16px;
+
+            font-size: 25px;
+
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #382820;
+
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #76645b;
+
+            font-size: 14px;
+        }
+
+        /* =========================================================
+           التقييم التفصيلي
+        ========================================================= */
+
+        .score-panel {
+            background: #fff;
+
+            border-radius: 30px;
+
+            padding: 35px;
+
+            border: 1px solid #eadbd0;
+
+            display: grid;
+
+            grid-template-columns: .65fr 1.35fr;
+
+            gap: 45px;
+
+            box-shadow: 0 15px 40px rgba(80,50,30,.07);
+        }
+
+        .score-big {
+            text-align: center;
+
+            padding: 20px;
+        }
+
+        .score-big strong {
+            font-size: 80px;
+
+            line-height: 1;
+
+            color: #e54830;
+        }
+
+        .score-big .stars {
+            margin: 12px 0;
+        }
+
+        .score-big p {
+            color: #806e65;
+        }
+
+        .bars {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 17px;
+
+            justify-content: center;
+        }
+
+        .bar-row {
+            display: grid;
+
+            grid-template-columns: 120px 1fr 45px;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .bar-row span {
+            font-size: 14px;
+            color: #58473f;
+        }
+
+        .bar {
+            height: 10px;
+
+            background: #eee2da;
+
+            border-radius: 100px;
+
+            overflow: hidden;
+        }
+
+        .bar i {
+            display: block;
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffb13b,
+                    #e84b31
+                );
+        }
+
+        /* =========================================================
+           إيجابيات / سلبيات
+        ========================================================= */
+
+        .pros-cons {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .pc-card {
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            border: 1px solid #eadbd0;
+        }
+
+        .pc-card.good {
+            border-top: 5px solid #4caf70;
+        }
+
+        .pc-card.bad {
+            border-top: 5px solid #e55b45;
+        }
+
+        .pc-card h3 {
+            margin-bottom: 20px;
+        }
+
+        .pc-card ul {
+            list-style: none;
+        }
+
+        .pc-card li {
+            padding: 10px 0;
+
+            border-bottom: 1px dashed #e7d9d0;
+
+            color: #695850;
+        }
+
+        .pc-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* =========================================================
+           قسم التحميل
+        ========================================================= */
+
+        .download-section {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 55px;
+
+            border-radius: 35px;
+
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(255,255,255,.16),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #35231e,
+                    #5a3027
+                );
+
+            color: white;
+
+            text-align: center;
+        }
+
+        .download-section::before {
+            content: "🍕";
+
+            position: absolute;
+
+            font-size: 220px;
+
+            opacity: .05;
+
+            left: -20px;
+            bottom: -80px;
+        }
+
+        .download-section h2 {
+            font-size: 40px;
+
+            margin-bottom: 10px;
+        }
+
+        .download-section p {
+            color: #dfcbc3;
+
+            margin-bottom: 30px;
+        }
+
+        .store-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .store {
+            min-width: 220px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            padding: 15px 22px;
+
+            border-radius: 16px;
+
+            background: #fff;
+
+            color: #34251f;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .store:hover {
+            transform: translateY(-5px) scale(1.02);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,.2);
+        }
+
+        .store.android {
+            color: #168c51;
+        }
+
+        .store.apple {
+            color: #222;
+        }
+
+        /* =========================================================
+           الخاتمة
+        ========================================================= */
+
+        .verdict {
+            text-align: center;
+
+            padding: 20px 0 90px;
+        }
+
+        .verdict-badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: #fff1df;
+
+            color: #b66a20;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .verdict h2 {
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        .verdict p {
+            max-width: 750px;
+
+            margin: auto;
+
+            color: #6e5c53;
+        }
+
+        /* =========================================================
+           الفوتر
+        ========================================================= */
+
+        footer {
+            background: #281c18;
+
+            color: #cbb9b0;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================================================
+           التجاوب
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions,
+            .rating-box {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story,
+            .score-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                padding: 10px 5%;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-art {
+                min-height: 360px;
+            }
+
+            .floating-tag {
+                font-size: 12px;
+            }
+
+            .tag-one {
+                right: 0;
+            }
+
+            .tag-two {
+                left: 0;
+            }
+
+            .stats {
+                width: 90%;
+            }
+
+            .stat {
+                padding: 18px 10px;
+            }
+
+            .features,
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .download-section {
+                padding: 40px 20px;
+            }
+
+            .download-section h2,
+            .verdict h2 {
+                font-size: 30px;
+            }
+
+            .bar-row {
+                grid-template-columns: 85px 1fr 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body id="top">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🍕
+            </div>
+
+            <span>
+                عالم الألعاب
+            </span>
+
+        </div>
+
+
+        <!-- هذا ليس زرًا تقليديًا؛ جزء من هوية الموقع -->
+
+        <a href="index.html" class="world-link">
+
+            <span>◈</span>
+
+            العودة إلى عالم الألعاب
+
+            <span>←</span>
+
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    🔥 لعبة تستحق التجربة
+                </div>
+
+
+                <h1>
+                    Good Pizza,
+                    <br>
+                    <span>Great Pizza.</span>
+                </h1>
+
+
+                <p class="hero-description">
+
+                    افتح مطعم البيتزا الخاص بك، افهم طلبات الزبائن،
+                    اصنع البيتزا المثالية، وطوّر مطعمك خطوة بخطوة
+                    في واحدة من ألطف ألعاب المحاكاة وإدارة المطاعم.
+
+                </p>
+
+
+                <div class="rating-box">
+
+                    <div class="rating-number">
+                        4.7
+                    </div>
+
+                    <div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="rating-text">
+                            تقييم المتجر • أكثر من 100 مليون تنزيل على Google Play
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-actions">
+
+                    <a href="https://play.google.com/store/apps/details?id=com.tapblaze.pizzabusiness"
+                       target="_blank"
+                       class="main-btn download-btn">
+
+                        🤖 تحميل Android
+
+                    </a>
+
+
+                    <a href="https://apps.apple.com/qa/app/good-pizza-great-pizza/id911121200"
+                       target="_blank"
+                       class="main-btn ghost-btn">
+
+                         App Store
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 صورة اللعبة
+            ================================================== -->
+
+            <div class="hero-art">
+
+                <div class="pizza-card">
+
+                    <img
+                        src="https://play-lh.googleusercontent.com/7M0QxYpLh7G7vW1Y9Kj5xX9w3eK8JxV7Q9KQ6jQ7W7Q2X2xKQxJfJfY2mQx9Yx8Q=w1200-h630-rw"
+                        alt="Good Pizza Great Pizza">
+
+                </div>
+
+
+                <div class="floating-tag tag-one">
+                    🍅 مطعمك • قصتك
+                </div>
+
+
+                <div class="floating-tag tag-two">
+                    ⭐ 4.7 / 5
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================================
+             الإحصائيات
+        ========================================================== -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <strong>100M+</strong>
+                <span>تنزيل على Google Play</span>
+            </div>
+
+            <div class="stat">
+                <strong>4.7/5</strong>
+                <span>تقييم Google Play</span>
+            </div>
+
+            <div class="stat">
+                <strong>100+</strong>
+                <span>زبائن وشخصيات</span>
+            </div>
+
+            <div class="stat">
+                <strong>🍕</strong>
+                <span>محاكاة وإدارة مطعم</span>
+            </div>
+
+        </section>
+
+
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 القصة
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-title">
+
+                    <small>THE PIZZA JOURNEY</small>
+
+                    <h2>
+                        أكثر من مجرد لعبة طبخ
+                    </h2>
+
+                    <p>
+                        هنا تبدأ رحلتك من مطعم صغير إلى مشروع بيتزا
+                        قادر على منافسة أشهر المطاعم.
+                    </p>
+
+                </div>
+
+
+                <div class="story">
+
+                    <div class="story-highlight">
+
+                        <h3>
+                            👨‍🍳 أنت صاحب المطعم
+                        </h3>
+
+                        <p>
+                            كل طلب يصل إلى شباكك هو تحدٍ جديد.
+                            افهم الزبون، اصنع البيتزا، حافظ على
+                            أرباحك، ثم استثمرها في تطوير مطعمك.
+                        </p>
+
+                    </div>
+
+
+                    <div class="story-main">
+
+                        <p>
+
+                            تقدم Good Pizza, Great Pizza تجربة
+                            محاكاة خفيفة تجمع بين إعداد الطعام
+                            وإدارة المطعم والعناصر القصصية.
+                            ستتعامل مع زبائن مختلفين، ولكل منهم
+                            شخصيته وطلباته الخاصة، بينما تعمل
+                            على تطوير معدات مطعمك وإضافة المزيد
+                            من الإضافات والديكور.
+
+                            <br><br>
+
+                            ومن التفاصيل المميزة وجود
+                            <strong>Pizza News Network</strong>
+                            التي تضيف لمسة قصصية وكوميدية إلى عالم
+                            اللعبة.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 المميزات
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-title">
+
+                    <small>WHY PLAY?</small>
+
+                    <h2>
+                        لماذا تستحق التجربة؟
+                    </h2>
+
+                </div>
+
+
+                <div class="features">
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🍕
+                        </div>
+
+                        <h3>
+                            صناعة البيتزا
+                        </h3>
+
+                        <p>
+                            حضّر الطلبات واستخدم المكونات المختلفة
+                            لتقديم البيتزا التي يريدها الزبون.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            👥
+                        </div>
+
+                        <h3>
+                            شخصيات متنوعة
+                        </h3>
+
+                        <p>
+                            أكثر من 100 زبون بطلبات وشخصيات
+                            مختلفة تضيف تنوعًا إلى التجربة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🔧
+                        </div>
+
+                        <h3>
+                            تطوير المطعم
+                        </h3>
+
+                        <p>
+                            طوّر المعدات والديكور والتجهيزات
+                            لتحسين مطعمك والتقدم في الرحلة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            📺
+                        </div>
+
+                        <h3>
+                            Pizza News Network
+                        </h3>
+
+                        <p>
+                            أخبار ومواقف داخل عالم اللعبة تضيف
+                            لمسة قصصية مختلفة عن ألعاب الطبخ التقليدية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            💰
+                        </div>
+
+                        <h3>
+                            إدارة الأرباح
+                        </h3>
+
+                        <p>
+                            اكسب المال من الطلبات واستخدمه بذكاء
+                            لتطوير مشروعك.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🎨
+                        </div>
+
+                        <h3>
+                            هوية فنية مميزة
+                        </h3>
+
+                        <p>
+                            أسلوب بصري مرسوم وشخصيات لطيفة تجعل
+                            اللعبة مختلفة بصريًا عن المحاكيات الواقعية.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 التقييم التفصيلي
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-title">
+
+                    <small>OUR SCORE</small>
+
+                    <h2>
+                        تقييمنا للعبة
+                    </h2>
+
+                </div>
+
+
+                <div class="score-panel">
+
+
+                    <div class="score-big">
+
+                        <strong>
+                            9.1
+                        </strong>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            تقييمنا النهائي
+                        </p>
+
+                    </div>
+
+
+                    <div class="bars">
+
+
+                        <div class="bar-row">
+
+                            <span>
+                                المتعة
+                            </span>
+
+                            <div class="bar">
+                                <i style="width:94%"></i>
+                            </div>
+
+                            <b>9.4</b>
+
+                        </div>
+
+
+                        <div class="bar-row">
+
+                            <span>
+                                أسلوب اللعب
+                            </span>
+
+                            <div class="bar">
+                                <i style="width:92%"></i>
+                            </div>
+
+                            <b>9.2</b>
+
+                        </div>
+
+
+                        <div class="bar-row">
+
+                            <span>
+                                التصميم
+                            </span>
+
+                            <div class="bar">
+                                <i style="width:96%"></i>
+                            </div>
+
+                            <b>9.6</b>
+
+                        </div>
+
+
+                        <div class="bar-row">
+
+                            <span>
+                                التنوع
+                            </span>
+
+                            <div class="bar">
+                                <i style="width:90%"></i>
+                            </div>
+
+                            <b>9.0</b>
+
+                        </div>
+
+
+                        <div class="bar-row">
+
+                            <span>
+                                القيمة
+                            </span>
+
+                            <div class="bar">
+                                <i style="width:88%"></i>
+                            </div>
+
+                            <b>8.8</b>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 الإيجابيات والسلبيات
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-title">
+
+                    <small>THE VERDICT</small>
+
+                    <h2>
+                        الصورة الكاملة
+                    </h2>
+
+                </div>
+
+
+                <div class="pros-cons">
+
+
+                    <div class="pc-card good">
+
+                        <h3>
+                            🟢 نقاط القوة
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                ✓ أسلوب فني لطيف ومميز
+                            </li>
+
+                            <li>
+                                ✓ تجربة إدارة مطعم ممتعة
+                            </li>
+
+                            <li>
+                                ✓ شخصيات وطلبات متنوعة
+                            </li>
+
+                            <li>
+                                ✓ تطوير مستمر للمطعم
+                            </li>
+
+                            <li>
+                                ✓ مناسبة للجلسات القصيرة والطويلة
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="pc-card bad">
+
+                        <h3>
+                            🔴 نقاط يجب معرفتها
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                ! تحتوي على إعلانات
+                            </li>
+
+                            <li>
+                                ! تتضمن مشتريات داخل التطبيق
+                            </li>
+
+                            <li>
+                                ! بعض التقدم يحتاج إلى الصبر وإدارة الموارد
+                            </li>
+
+                            <li>
+                                ! قد لا تناسب من يبحث عن ألعاب طبخ سريعة فقط
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 التحميل
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="download-section">
+
+                    <h2>
+                        حان وقت فتح مطعمك 🍕
+                    </h2>
+
+                    <p>
+                        اختر جهازك وانتقل مباشرة إلى المتجر الرسمي.
+                    </p>
+
+
+                    <div class="store-buttons">
+
+
+                        <a
+                            class="store android"
+                            href="https://play.google.com/store/apps/details?id=com.tapblaze.pizzabusiness"
+                            target="_blank"
+                        >
+
+                            🤖
+
+                            <span>
+                                Google Play
+                                <small>Android</small>
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            class="store apple"
+                            href="https://apps.apple.com/qa/app/good-pizza-great-pizza/id911121200"
+                            target="_blank"
+                        >
+
+                            
+
+                            <span>
+                                App Store
+                                <small>iPhone / iPad</small>
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 الحكم النهائي
+            ================================================== -->
+
+            <section class="verdict">
+
+                <div class="verdict-badge">
+                    🏆 اختيارنا
+                </div>
+
+                <h2>
+                    بيتزا جيدة؟ بل لعبة رائعة.
+                </h2>
+
+                <p>
+
+                    Good Pizza, Great Pizza ليست مجرد لعبة تضغط
+                    فيها على المكونات وتنتظر انتهاء الطبخ؛
+                    قوتها الحقيقية في المزج بين إدارة المطعم،
+                    فهم الزبائن، تطوير المشروع، والقصة الخفيفة
+                    داخل عالم مليء بالشخصيات والمواقف.
+
+                    <br><br>
+
+                    <strong>
+                        إذا كنت تريد لعبة هادئة، جميلة ومليئة
+                        بالتفاصيل الصغيرة، فهذه واحدة من أقوى
+                        الاختيارات في فئتها.
+
+                    </strong>
+
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <p>
+            🍕 <strong>عالم الألعاب</strong>
+            — حيث لكل لعبة قصة.
+        </p>
+
+        <p>
+            © 2026 جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

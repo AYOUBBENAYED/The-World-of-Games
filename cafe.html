@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Cafe — لعبة المقاهي</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0d0c0b;
+            color: #eee7dc;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            line-height: 1.9;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --black: #0d0c0b;
+            --black-soft: #151311;
+
+            --cream: #eee7dc;
+            --muted: #958d83;
+
+            --coffee: #b7794e;
+            --coffee-light: #d8a276;
+            --gold: #e2b98d;
+
+            --line: rgba(238,231,220,.12);
+            --glass: rgba(255,255,255,.045);
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        .nav {
+            width: min(1320px, calc(100% - 50px));
+
+            margin: 25px auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: relative;
+            z-index: 20;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-mark {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--line);
+
+            border-radius: 50%;
+
+            color: var(--gold);
+
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #d9d0c5;
+        }
+
+        /*
+            العودة لعالم الألعاب ليست Button.
+            هي جزء من Navigation.
+        */
+
+        .back-world {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+
+            color: #c9c0b5;
+
+            font-size: 12px;
+
+            transition: .35s ease;
+        }
+
+        .back-world-line {
+            width: 55px;
+            height: 1px;
+
+            background: var(--coffee);
+
+            transition: .35s ease;
+        }
+
+        .back-world:hover {
+            color: white;
+        }
+
+        .back-world:hover .back-world-line {
+            width: 80px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            width: min(1320px, calc(100% - 50px));
+
+            min-height: 720px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            display: flex;
+            align-items: flex-end;
+
+            overflow: hidden;
+
+            border-radius: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(13,12,11,.98) 0%,
+                    rgba(13,12,11,.78) 35%,
+                    rgba(13,12,11,.15) 85%
+                ),
+                url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd9W3QfEVcWJXrMgqxtbT1orWkuWHbAQgCAoGBdopSg&s")
+                center / cover no-repeat;
+
+            box-shadow:
+                0 40px 120px rgba(0,0,0,.55);
+        }
+
+        /*
+            ضوء سينمائي خفيف
+        */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    rgba(216,162,118,.20),
+                    transparent 28%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    0deg,
+                    #0d0c0b 0%,
+                    transparent 30%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 90px 75px;
+        }
+
+        .category {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--gold);
+
+            font-size: 11px;
+            letter-spacing: 2px;
+
+            margin-bottom: 25px;
+        }
+
+        .category::before {
+            content: "";
+
+            width: 32px;
+            height: 1px;
+
+            background: var(--gold);
+        }
+
+        .hero-title {
+            font-size: clamp(65px, 9vw, 125px);
+
+            line-height: .9;
+
+            letter-spacing: -7px;
+
+            font-weight: 800;
+
+            max-width: 750px;
+
+            color: #f5eee5;
+        }
+
+        .hero-title span {
+            color: var(--coffee-light);
+        }
+
+        .hero-subtitle {
+            max-width: 550px;
+
+            margin-top: 28px;
+
+            color: #bcb3a8;
+
+            font-size: 16px;
+
+            line-height: 2;
+        }
+
+
+        /* =========================================================
+           SCORE
+        ========================================================= */
+
+        .hero-bottom {
+            margin-top: 45px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 35px;
+        }
+
+        .score {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .score-number {
+            font-size: 50px;
+
+            font-weight: 300;
+
+            color: white;
+        }
+
+        .score-max {
+            color: #756e66;
+            font-size: 12px;
+        }
+
+        .stars {
+            color: #dca774;
+
+            letter-spacing: 3px;
+
+            font-size: 14px;
+        }
+
+        .score-label {
+            color: #817970;
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           INTRO STRIP
+        ========================================================= */
+
+        .intro-strip {
+            width: min(1100px, calc(100% - 80px));
+
+            margin: -1px auto 0;
+
+            padding: 30px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+        }
+
+        .fact {
+            padding: 0 25px;
+
+            border-left: 1px solid var(--line);
+        }
+
+        .fact:last-child {
+            border-left: none;
+        }
+
+        .fact small {
+            display: block;
+
+            color: #716b64;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 5px;
+        }
+
+        .fact strong {
+            color: #ddd4c9;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main {
+            width: min(1100px, calc(100% - 80px));
+
+            margin: 130px auto;
+        }
+
+
+        /* =========================================================
+           EDITORIAL SECTION
+        ========================================================= */
+
+        .editorial {
+            display: grid;
+
+            grid-template-columns: 170px 1fr;
+
+            gap: 70px;
+
+            margin-bottom: 150px;
+        }
+
+        .section-number {
+            color: var(--coffee);
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            padding-top: 10px;
+        }
+
+        .section-number span {
+            display: block;
+
+            width: 40px;
+
+            height: 1px;
+
+            margin-top: 12px;
+
+            background: var(--coffee);
+        }
+
+        .section-content h2 {
+            font-size: clamp(38px, 5vw, 64px);
+
+            line-height: 1.1;
+
+            letter-spacing: -2px;
+
+            font-weight: 500;
+
+            margin-bottom: 30px;
+        }
+
+        .section-content h2 em {
+            color: var(--coffee-light);
+
+            font-style: normal;
+        }
+
+        .section-content > p {
+            color: #a59c91;
+
+            font-size: 16px;
+
+            max-width: 720px;
+
+            line-height: 2.1;
+        }
+
+
+        /* =========================================================
+           FEATURE LIST
+        ========================================================= */
+
+        .feature-list {
+            margin-top: 50px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .feature {
+            display: grid;
+
+            grid-template-columns: 70px 1fr 45px;
+
+            align-items: center;
+
+            padding: 25px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            transition: .4s ease;
+        }
+
+        .feature:hover {
+            padding-right: 12px;
+            padding-left: 12px;
+
+            background: rgba(255,255,255,.025);
+        }
+
+        .feature-index {
+            color: #665f58;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+
+            font-weight: 500;
+
+            margin-bottom: 3px;
+        }
+
+        .feature p {
+            color: #756e67;
+
+            font-size: 12px;
+        }
+
+        .feature-arrow {
+            color: var(--coffee);
+
+            font-size: 20px;
+
+            text-align: left;
+        }
+
+
+        /* =========================================================
+           TWO COLUMN — PROS / CONS
+        ========================================================= */
+
+        .columns {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 80px;
+
+            margin-top: 80px;
+        }
+
+        .column-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 30px;
+        }
+
+        .column-title span {
+            width: 35px;
+            height: 35px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--line);
+
+            border-radius: 50%;
+
+            color: var(--gold);
+
+            font-size: 12px;
+        }
+
+        .column-title h3 {
+            font-size: 21px;
+
+            font-weight: 500;
+        }
+
+        .clean-list {
+            list-style: none;
+        }
+
+        .clean-list li {
+            padding: 15px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            color: #9a9187;
+
+            font-size: 13px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .clean-list li::before {
+            content: "—";
+
+            color: var(--coffee);
+        }
+
+
+        /* =========================================================
+           VERDICT
+        ========================================================= */
+
+        .verdict {
+            margin-top: 150px;
+
+            padding: 70px 0;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+
+            display: grid;
+
+            grid-template-columns: 1fr 220px;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .verdict h2 {
+            font-size: clamp(35px, 5vw, 58px);
+
+            font-weight: 400;
+
+            line-height: 1.15;
+
+            margin-bottom: 20px;
+        }
+
+        .verdict h2 span {
+            color: var(--coffee-light);
+        }
+
+        .verdict p {
+            color: #898178;
+
+            font-size: 14px;
+
+            max-width: 650px;
+        }
+
+        .big-rating {
+            text-align: center;
+
+            border-right: 1px solid var(--line);
+        }
+
+        .big-rating strong {
+            display: block;
+
+            font-size: 76px;
+
+            line-height: 1;
+
+            font-weight: 300;
+
+            color: var(--gold);
+        }
+
+        .big-rating small {
+            color: #706960;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download {
+            margin-top: 130px;
+
+            text-align: center;
+        }
+
+        .download-label {
+            color: var(--coffee);
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+        }
+
+        .download h2 {
+            margin-top: 15px;
+
+            font-size: 43px;
+
+            font-weight: 400;
+        }
+
+        .download p {
+            color: #756e67;
+
+            font-size: 13px;
+
+            margin-top: 8px;
+        }
+
+        .stores {
+            margin-top: 35px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .store {
+            min-width: 220px;
+
+            padding: 15px 25px;
+
+            border: 1px solid var(--line);
+
+            display: flex;
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            background: transparent;
+
+            transition: .35s ease;
+        }
+
+        .store:hover {
+            background: #f0e7da;
+
+            color: #111;
+
+            border-color: #f0e7da;
+
+            transform: translateY(-3px);
+        }
+
+        .store-icon {
+            font-size: 20px;
+        }
+
+        .store-text {
+            text-align: right;
+        }
+
+        .store-text small {
+            display: block;
+
+            font-size: 8px;
+
+            opacity: .55;
+        }
+
+        .store-text strong {
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           RETURN TO WORLD
+           ========================================================= */
+
+        .world {
+            margin-top: 130px;
+
+            padding: 35px 0;
+
+            border-top: 1px solid var(--line);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            transition: .4s ease;
+        }
+
+        .world:hover {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .world-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .world-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+
+            place-items: center;
+
+            border: 1px solid var(--line);
+
+            border-radius: 50%;
+
+            font-size: 18px;
+
+            color: var(--gold);
+        }
+
+        .world-info small {
+            display: block;
+
+            color: #706961;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+        }
+
+        .world-info strong {
+            display: block;
+
+            font-size: 15px;
+
+            font-weight: 500;
+        }
+
+        .world-arrow {
+            font-size: 24px;
+
+            color: var(--coffee);
+
+            transition: .35s ease;
+        }
+
+        .world:hover .world-arrow {
+            transform: translateX(-10px);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            width: min(1100px, calc(100% - 80px));
+
+            margin: 0 auto 35px;
+
+            padding-top: 25px;
+
+            color: #514c47;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .nav,
+            .hero {
+                width: calc(100% - 28px);
+            }
+
+            .hero {
+                min-height: 650px;
+
+                background:
+                    linear-gradient(
+                        0deg,
+                        rgba(13,12,11,1) 5%,
+                        rgba(13,12,11,.55) 55%,
+                        rgba(13,12,11,.15)
+                    ),
+                    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd9W3QfEVcWJXrMgqxtbT1orWkuWHbAQgCAoGBdopSg&s")
+                    center / cover;
+            }
+
+            .hero-content {
+                padding: 50px 30px;
+            }
+
+            .hero-title {
+                font-size: 65px;
+                letter-spacing: -4px;
+            }
+
+            .intro-strip {
+                width: calc(100% - 40px);
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .fact {
+                padding: 15px;
+
+                border-bottom: 1px solid var(--line);
+            }
+
+            main {
+                width: calc(100% - 40px);
+
+                margin-top: 90px;
+            }
+
+            .editorial {
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+
+                margin-bottom: 100px;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+
+                gap: 60px;
+            }
+
+            .verdict {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .big-rating {
+                border-right: none;
+                border-top: 1px solid var(--line);
+
+                padding-top: 35px;
+            }
+
+            .world {
+                margin-top: 90px;
+            }
+
+            footer {
+                width: calc(100% - 40px);
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .logo-text {
+                display: none;
+            }
+
+            .back-world-line {
+                width: 25px;
+            }
+
+            .hero-title {
+                font-size: 55px;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+            }
+
+            .intro-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .fact {
+                border-left: none;
+            }
+
+            .feature {
+                grid-template-columns: 45px 1fr 25px;
+            }
+
+            .download h2 {
+                font-size: 34px;
+            }
+
+            .store {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
+    <nav class="nav">
+
+        <a href="../index.html" class="back-world">
+
+            <span class="back-world-line"></span>
+
+            <span>
+                عالم الألعاب
+            </span>
+
+            <span>
+                ←
+            </span>
+
+        </a>
+
+
+        <div class="logo">
+
+            <div class="logo-mark">
+                ☕
+            </div>
+
+            <div class="logo-text">
+                GAME WORLD
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="category">
+                COOKING · MANAGEMENT · STORY
+            </div>
+
+            <h1 class="hero-title">
+                My<br>
+                <span>Cafe.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+
+                اصنع مقهاك، ابتكر وصفاتك، وابنِ عالمًا
+                صغيرًا مليئًا بالقهوة والطعام والقصص.
+                تجربة هادئة لمحبي الإدارة والتصميم
+                والتفاصيل الصغيرة.
+
+            </p>
+
+
+            <div class="hero-bottom">
+
+                <div class="score">
+
+                    <span class="score-number">
+                        8.7
+                    </span>
+
+                    <span class="score-max">
+                        / 10
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="score-label">
+                        تقييم الموقع
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         FACTS
+    ========================================================== -->
+
+    <section class="intro-strip">
+
+        <div class="fact">
+
+            <small>GENRE</small>
+
+            <strong>
+                إدارة ومطاعم
+            </strong>
+
+        </div>
+
+
+        <div class="fact">
+
+            <small>PLATFORM</small>
+
+            <strong>
+                Android · iOS
+            </strong>
+
+        </div>
+
+
+        <div class="fact">
+
+            <small>MODEL</small>
+
+            <strong>
+                مجانية
+            </strong>
+
+        </div>
+
+
+        <div class="fact">
+
+            <small>STYLE</small>
+
+            <strong>
+                طبخ · تصميم · قصة
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <main>
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
+        <section class="editorial">
+
+            <div class="section-number">
+
+                01
+
+                <span></span>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <h2>
+                    مقهى صغير،
+                    <em>عالم كبير.</em>
+                </h2>
+
+                <p>
+
+                    My Cafe — Restaurant Game تمنحك فرصة
+                    إدارة مقهاك الخاص، بدءًا من إعداد الطعام
+                    والمشروبات وصولًا إلى اختيار الأثاث والديكور
+                    والتفاعل مع الزبائن والشخصيات.
+
+                    اللعبة لا تعتمد فقط على إعداد الطلبات،
+                    بل تمزج الإدارة بالتخصيص والقصص والتقدم
+                    التدريجي، لتمنح كل لاعب مساحة لبناء مقهاه
+                    بالطريقة التي يريدها.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section class="editorial">
+
+            <div class="section-number">
+
+                02
+
+                <span></span>
+
+            </div>
+
+
+            <div class="section-content">
+
+                <h2>
+                    التفاصيل التي
+                    <em>تصنع التجربة.</em>
+                </h2>
+
+
+                <div class="feature-list">
+
+
+                    <article class="feature">
+
+                        <div class="feature-index">
+                            01
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                إدارة المقهى
+                            </h3>
+
+                            <p>
+                                طوّر مشروعك وحسّن أداء المقهى
+                                مع تقدمك.
+                            </p>
+
+                        </div>
+
+                        <div class="feature-arrow">
+                            ←
+                        </div>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-index">
+                            02
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                وصفات ومشروبات
+                            </h3>
+
+                            <p>
+                                أضف وصفات ومشروبات جديدة
+                                إلى قائمة المقهى.
+                            </p>
+
+                        </div>
+
+                        <div class="feature-arrow">
+                            ←
+                        </div>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-index">
+                            03
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                تصميم المكان
+                            </h3>
+
+                            <p>
+                                اختر الأثاث والديكور وشكّل
+                                المقهى بأسلوبك.
+                            </p>
+
+                        </div>
+
+                        <div class="feature-arrow">
+                            ←
+                        </div>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-index">
+                            04
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                القصص والشخصيات
+                            </h3>
+
+                            <p>
+                                تفاعل مع الشخصيات واكتشف
+                                الأحداث أثناء تقدمك.
+                            </p>
+
+                        </div>
+
+                        <div class="feature-arrow">
+                            ←
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROS / CONS
+        ====================================================== -->
+
+        <section class="columns">
+
+
+            <div>
+
+                <div class="column-title">
+
+                    <span>
+                        +
+                    </span>
+
+                    <h3>
+                        ما أعجبنا
+                    </h3>
+
+                </div>
+
+
+                <ul class="clean-list">
+
+                    <li>
+                        حرية جيدة في تصميم المقهى
+                    </li>
+
+                    <li>
+                        وصفات ومشروبات متنوعة
+                    </li>
+
+                    <li>
+                        نظام إدارة وتطوير ممتع
+                    </li>
+
+                    <li>
+                        وجود قصص وشخصيات
+                    </li>
+
+                    <li>
+                        مناسبة لجلسات اللعب الهادئة
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div>
+
+                <div class="column-title">
+
+                    <span>
+                        −
+                    </span>
+
+                    <h3>
+                        ما يجب معرفته
+                    </h3>
+
+                </div>
+
+
+                <ul class="clean-list">
+
+                    <li>
+                        مشتريات اختيارية داخل التطبيق
+                    </li>
+
+                    <li>
+                        وجود إعلانات
+                    </li>
+
+                    <li>
+                        تتطلب الاتصال بالإنترنت
+                    </li>
+
+                    <li>
+                        بعض جوانب التقدم تحتاج إلى وقت
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             VERDICT
+        ====================================================== -->
+
+        <section class="verdict">
+
+            <div>
+
+                <h2>
+                    ليست مجرد لعبة
+                    <span>قهوة.</span>
+                </h2>
+
+                <p>
+
+                    إذا كنت تستمتع ببناء الأشياء وتخصيصها
+                    ومشاهدة مشروع صغير يتحول تدريجيًا إلى
+                    مكان نابض بالحياة، فـ My Cafe تقدم
+                    تركيبة جذابة من الإدارة والطبخ والتصميم
+                    والقصة.
+
+                </p>
+
+            </div>
+
+
+            <div class="big-rating">
+
+                <strong>
+                    8.7
+                </strong>
+
+                <small>
+                    التقييم النهائي
+                </small>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ====================================================== -->
+
+        <section class="download">
+
+            <div class="download-label">
+                START YOUR CAFE
+            </div>
+
+            <h2>
+                ابدأ قصتك الآن.
+            </h2>
+
+            <p>
+                حمّل اللعبة من المتاجر الرسمية.
+            </p>
+
+
+            <div class="stores">
+
+
+                <a
+                    class="store"
+                    href="https://play.google.com/store/apps/details?id=com.melesta.coffeeshop"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <div class="store-icon">
+                        ▶
+                    </div>
+
+                    <div class="store-text">
+
+                        <small>
+                            متوفر على
+                        </small>
+
+                        <strong>
+                            Google Play
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    class="store"
+                    href="https://apps.apple.com/qa/app/my-cafe-restaurant-game/id1068204657"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <div class="store-icon">
+                        
+                    </div>
+
+                    <div class="store-text">
+
+                        <small>
+                            متوفر على
+                        </small>
+
+                        <strong>
+                            App Store
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             WORLD NAVIGATION
+        ====================================================== -->
+
+        <a href="../index.html" class="world">
+
+            <div class="world-info">
+
+                <div class="world-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <small>
+                        GAME WORLD
+                    </small>
+
+                    <strong>
+                        العودة إلى عالم الألعاب
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="world-arrow">
+                ←
+            </div>
+
+        </a>
+
+
+    </main>
+
+
+
+    <footer>
+
+        GAME WORLD · 2026 · MY CAFE
+
+    </footer>
+
+
+</body>
+
+</html>

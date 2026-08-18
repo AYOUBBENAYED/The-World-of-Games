@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="صفحة Need for Speed Unbound - مراجعة شاملة، المميزات، العيوب، وطريقة التحميل.">
+    <meta name="theme-color" content="#080808">
+
+    <title>Need for Speed Unbound | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           01 - ROOT
+        ========================================================= */
+
+        :root {
+            --black: #050505;
+            --black-2: #090909;
+            --black-3: #111111;
+            --dark: #151515;
+
+            --white: #ffffff;
+            --white-soft: #d7d7d7;
+            --gray: #9b9b9b;
+
+            --red: #ff1744;
+            --red-dark: #b9002b;
+            --red-light: #ff4d6d;
+
+            --orange: #ff6a00;
+            --yellow: #ffc400;
+
+            --green: #00e676;
+            --blue: #00b8ff;
+
+            --border: rgba(255,255,255,0.09);
+            --glass: rgba(255,255,255,0.045);
+
+            --shadow: 0 25px 80px rgba(0,0,0,0.65);
+
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 28px;
+
+            --container: 1200px;
+        }
+
+
+        /* =========================================================
+           02 - RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(255,23,68,0.09), transparent 30%),
+                radial-gradient(circle at 10% 80%, rgba(255,106,0,0.07), transparent 30%),
+                var(--black);
+            color: var(--white);
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        /* =========================================================
+           03 - ANIMATED BACKGROUND
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .background::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background:
+                repeating-linear-gradient(
+                    115deg,
+                    transparent 0,
+                    transparent 90px,
+                    rgba(255,255,255,0.018) 91px,
+                    transparent 93px
+                );
+            animation: roadMove 14s linear infinite;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            top: -300px;
+            right: -250px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(255,23,68,0.13),
+                transparent 65%
+            );
+            filter: blur(20px);
+            animation: pulseGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes roadMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(180px);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%,100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+
+        /* =========================================================
+           04 - SPEED LINES
+        ========================================================= */
+
+        .speed-lines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -5;
+            overflow: hidden;
+        }
+
+        .speed-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,23,68,0.8),
+                transparent
+            );
+            animation: speed 5s linear infinite;
+            opacity: 0;
+        }
+
+        .speed-line:nth-child(1) {
+            top: 20%;
+            width: 320px;
+            right: -350px;
+            animation-delay: 0s;
+        }
+
+        .speed-line:nth-child(2) {
+            top: 32%;
+            width: 500px;
+            right: -550px;
+            animation-delay: 1.4s;
+        }
+
+        .speed-line:nth-child(3) {
+            top: 55%;
+            width: 250px;
+            right: -300px;
+            animation-delay: 2.5s;
+        }
+
+        .speed-line:nth-child(4) {
+            top: 73%;
+            width: 450px;
+            right: -500px;
+            animation-delay: 3.2s;
+        }
+
+        .speed-line:nth-child(5) {
+            top: 86%;
+            width: 200px;
+            right: -250px;
+            animation-delay: 4s;
+        }
+
+        @keyframes speed {
+            0% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            70% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateX(-1800px);
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           05 - HEADER
+        ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5,5,5,0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .nav {
+            max-width: var(--container);
+            margin: auto;
+            min-height: 76px;
+            padding: 0 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--orange)
+                );
+
+            box-shadow:
+                0 0 30px rgba(255,23,68,0.35);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-text strong {
+            font-size: 15px;
+        }
+
+        .brand-text span {
+            color: var(--gray);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .nav-links a {
+            padding: 9px 13px;
+            border-radius: 10px;
+            color: #c8c8c8;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 11px 17px;
+
+            border: 1px solid rgba(255,23,68,0.45);
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,23,68,0.18),
+                    rgba(255,106,0,0.08)
+                );
+
+            color: white;
+            font-size: 13px;
+            font-weight: 800;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            background: var(--red);
+            box-shadow:
+                0 10px 35px rgba(255,23,68,0.3);
+        }
+
+
+        /* =========================================================
+           06 - MAIN CONTAINER
+        ========================================================= */
+
+        main {
+            max-width: var(--container);
+            margin: auto;
+            padding: 0 22px 100px;
+        }
+
+
+        /* =========================================================
+           07 - HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 670px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 85px 0 70px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(780px, 100%);
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 14px;
+            margin-bottom: 22px;
+
+            border: 1px solid rgba(255,23,68,0.25);
+            border-radius: 999px;
+
+            background: rgba(255,23,68,0.07);
+
+            color: #ff8ca3;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .hero-kicker span {
+            width: 7px;
+            height: 7px;
+            background: var(--red);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--red);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 92px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+            font-weight: 1000;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #ffffff 0%,
+                    #ffffff 35%,
+                    #ff5475 65%,
+                    #ff6a00 100%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            margin-bottom: 25px;
+        }
+
+        .hero-subtitle {
+            max-width: 720px;
+            color: #c8c8c8;
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 2;
+            margin-bottom: 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            min-height: 52px;
+            padding: 0 22px;
+
+            border-radius: 13px;
+            font-weight: 900;
+            font-size: 14px;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .primary-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    #ff3159
+                );
+
+            color: white;
+
+            box-shadow:
+                0 12px 40px rgba(255,23,68,0.25);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 18px 50px rgba(255,23,68,0.4);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hero-decor {
+            position: absolute;
+            left: -160px;
+            bottom: 60px;
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(255,23,68,0.13);
+
+            box-shadow:
+                inset 0 0 80px rgba(255,23,68,0.03),
+                0 0 100px rgba(255,23,68,0.04);
+
+            animation: rotateRing 20s linear infinite;
+        }
+
+        .hero-decor::before,
+        .hero-decor::after {
+            content: "";
+            position: absolute;
+            inset: 55px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,106,0,0.12);
+        }
+
+        .hero-decor::after {
+            inset: 120px;
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =========================================================
+           08 - STAT BAR
+        ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+
+        .stat {
+            position: relative;
+            overflow: hidden;
+
+            padding: 24px 20px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: var(--radius-md);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.025)
+                );
+
+            box-shadow:
+                0 12px 40px rgba(0,0,0,0.25);
+        }
+
+        .stat::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: -45px;
+            bottom: -45px;
+            border-radius: 50%;
+            background: rgba(255,23,68,0.1);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 27px;
+            font-weight: 1000;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .stat span {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           09 - SECTION
+        ========================================================= */
+
+        .section {
+            margin-top: 90px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-label {
+            display: block;
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 43px);
+            line-height: 1.2;
+            font-weight: 1000;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--gray);
+            max-width: 750px;
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           10 - INTRO CARD
+        ========================================================= */
+
+        .intro-card {
+            position: relative;
+            padding: 34px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: var(--radius-lg);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.065),
+                    rgba(255,255,255,0.025)
+                );
+
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--red),
+                    var(--orange),
+                    transparent
+                );
+        }
+
+        .intro-card p {
+            color: #d4d4d4;
+            font-size: 16px;
+            line-height: 2.1;
+        }
+
+
+        /* =========================================================
+           11 - FEATURES GRID
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 28px;
+
+            min-height: 215px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: var(--radius-md);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.018)
+                );
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                background 0.35s ease;
+
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,23,68,0.35);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,23,68,0.08),
+                    rgba(255,255,255,0.025)
+                );
+        }
+
+        .feature-number {
+            position: absolute;
+            left: 20px;
+            top: 8px;
+
+            color: rgba(255,255,255,0.035);
+            font-size: 70px;
+            font-weight: 1000;
+            line-height: 1;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,23,68,0.2),
+                    rgba(255,106,0,0.08)
+                );
+
+            border:
+                1px solid rgba(255,23,68,0.2);
+
+            font-size: 21px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+            margin-bottom: 9px;
+        }
+
+        .feature-card p {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.95;
+        }
+
+
+        /* =========================================================
+           12 - ADVANTAGE SECTION
+        ========================================================= */
+
+        .advantage-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .advantage-column {
+            padding: 28px;
+
+            border-radius: var(--radius-md);
+
+            border:
+                1px solid var(--border);
+
+            background: rgba(255,255,255,0.025);
+        }
+
+        .advantage-column h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 22px;
+
+            font-size: 20px;
+        }
+
+        .positive h3 {
+            color: #00e676;
+        }
+
+        .negative h3 {
+            color: #ff5273;
+        }
+
+        .advantage-list {
+            list-style: none;
+        }
+
+        .advantage-list li {
+            position: relative;
+
+            padding: 13px 0 13px 8px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+
+            color: #c9c9c9;
+            font-size: 14px;
+        }
+
+        .advantage-list li:last-child {
+            border-bottom: none;
+        }
+
+        .positive .advantage-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 1000;
+            margin-left: 9px;
+        }
+
+        .negative .advantage-list li::before {
+            content: "×";
+            color: var(--red);
+            font-size: 20px;
+            font-weight: 1000;
+            margin-left: 9px;
+        }
+
+
+        /* =========================================================
+           13 - REVIEW SCORE
+        ========================================================= */
+
+        .review-panel {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 35px;
+            align-items: center;
+
+            padding: 34px;
+
+            border:
+                1px solid rgba(255,23,68,0.18);
+
+            border-radius: var(--radius-lg);
+
+            background:
+                radial-gradient(
+                    circle at 10% 50%,
+                    rgba(255,23,68,0.12),
+                    transparent 30%
+                ),
+                rgba(255,255,255,0.025);
+        }
+
+        .score {
+            text-align: center;
+        }
+
+        .score-number {
+            font-size: 80px;
+            font-weight: 1000;
+            line-height: 1;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff,
+                    #ff3159
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .score span {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .rating-bars {
+            display: grid;
+            gap: 14px;
+        }
+
+        .rating-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 45px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rating-row span {
+            color: #c4c4c4;
+            font-size: 13px;
+        }
+
+        .bar {
+            height: 7px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .bar div {
+            height: 100%;
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--red),
+                    var(--orange)
+                );
+        }
+
+        .rating-value {
+            color: white !important;
+            text-align: left;
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           14 - DOWNLOAD
+        ========================================================= */
+
+        .download-box {
+            position: relative;
+            overflow: hidden;
+
+            padding: 45px 35px;
+
+            border-radius: var(--radius-lg);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,23,68,0.15),
+                    rgba(255,106,0,0.06) 45%,
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,23,68,0.2);
+
+            text-align: center;
+        }
+
+        .download-box::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: -180px;
+            right: -100px;
+            border-radius: 50%;
+            background: rgba(255,23,68,0.1);
+            filter: blur(30px);
+        }
+
+        .download-box h2 {
+            position: relative;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .download-box > p {
+            position: relative;
+            color: #aaa;
+            margin-bottom: 27px;
+        }
+
+        .download-buttons {
+            position: relative;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            gap: 12px;
+        }
+
+        .store-btn {
+            min-width: 220px;
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            padding: 14px 18px;
+
+            border-radius: 14px;
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            background:
+                rgba(0,0,0,0.35);
+
+            transition:
+                0.3s ease;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,23,68,0.45);
+            background: rgba(255,23,68,0.1);
+        }
+
+        .store-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            font-size: 20px;
+        }
+
+        .store-info {
+            text-align: right;
+        }
+
+        .store-info small {
+            display: block;
+            color: #888;
+            font-size: 10px;
+        }
+
+        .store-info strong {
+            display: block;
+            color: white;
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           15 - CONCLUSION
+        ========================================================= */
+
+        .conclusion {
+            position: relative;
+            padding: 40px;
+
+            border-radius: var(--radius-lg);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.02)
+                );
+
+            border:
+                1px solid var(--border);
+
+            overflow: hidden;
+        }
+
+        .conclusion::before {
+            content: "NFS";
+
+            position: absolute;
+
+            left: -20px;
+            bottom: -70px;
+
+            font-size: 180px;
+            line-height: 1;
+
+            font-weight: 1000;
+
+            color: rgba(255,255,255,0.025);
+
+            pointer-events: none;
+        }
+
+        .conclusion h2 {
+            position: relative;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .conclusion p {
+            position: relative;
+            color: #c9c9c9;
+            line-height: 2.1;
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           16 - IMAGE
+        ========================================================= */
+
+        .game-image-section {
+            margin-top: 70px;
+            text-align: center;
+        }
+
+        .game-image-section .image-label {
+            color: var(--gray);
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .game-image-wrapper {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .game-image-wrapper::before {
+            content: "";
+
+            position: absolute;
+            inset: -8px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,23,68,0.4),
+                    transparent 40%,
+                    rgba(255,106,0,0.25)
+                );
+
+            z-index: -1;
+            filter: blur(12px);
+        }
+
+        .game-image-wrapper img {
+            width: auto;
+            max-width: 100%;
+            max-height: 520px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.65);
+        }
+
+
+        /* =========================================================
+           17 - BACK TO TOP
+        ========================================================= */
+
+        #topButton {
+            position: fixed;
+
+            left: 20px;
+            bottom: 20px;
+
+            width: 48px;
+            height: 48px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+
+            background:
+                rgba(10,10,10,0.85);
+
+            color: white;
+
+            cursor: pointer;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 19px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(15px);
+
+            transition: 0.3s ease;
+
+            z-index: 900;
+        }
+
+        #topButton.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #topButton:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+
+        /* =========================================================
+           18 - FOOTER
+        ========================================================= */
+
+        footer {
+            margin-top: 100px;
+
+            padding:
+                35px 20px
+                45px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            font-weight: 1000;
+            margin-bottom: 6px;
+        }
+
+        .footer-logo span {
+            color: var(--red);
+        }
+
+        footer p {
+            color: #777;
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           19 - SCROLL REVEAL
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           20 - SELECTION
+        ========================================================= */
+
+        ::selection {
+            background: var(--red);
+            color: white;
+        }
+
+
+        /* =========================================================
+           21 - SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--red),
+                    var(--orange)
+                );
+
+            border-radius: 10px;
+        }
+
+
+        /* =========================================================
+           22 - RESPONSIVE TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 580px;
+            }
+
+            .hero-decor {
+                opacity: 0.35;
+                left: -300px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantage-box {
+                grid-template-columns: 1fr;
+            }
+
+            .review-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .score {
+                text-align: right;
+            }
+
+            .rating-row {
+                grid-template-columns: 110px 1fr 40px;
+            }
+        }
+
+
+        /* =========================================================
+           23 - RESPONSIVE MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            .nav {
+                min-height: 66px;
+                padding: 0 15px;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .brand-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .home-button {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            main {
+                padding:
+                    0 15px
+                    70px;
+            }
+
+            .hero {
+                min-height: 620px;
+                padding:
+                    65px 0
+                    50px;
+            }
+
+            .hero h1 {
+                font-size: clamp(46px, 15vw, 72px);
+                letter-spacing: -2px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+                line-height: 2;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+                margin-bottom: 55px;
+            }
+
+            .stat {
+                padding: 18px 14px;
+            }
+
+            .stat strong {
+                font-size: 22px;
+            }
+
+            .section {
+                margin-top: 65px;
+            }
+
+            .intro-card,
+            .feature-card,
+            .advantage-column,
+            .review-panel,
+            .conclusion,
+            .download-box {
+                padding: 22px;
+            }
+
+            .feature-card {
+                min-height: auto;
+            }
+
+            .score-number {
+                font-size: 64px;
+            }
+
+            .rating-row {
+                grid-template-columns: 95px 1fr 35px;
+                gap: 7px;
+            }
+
+            .rating-row span {
+                font-size: 11px;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .store-btn {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .conclusion h2 {
+                font-size: 25px;
+            }
+
+            #topButton {
+                left: 15px;
+                bottom: 15px;
+            }
+        }
+
+
+        /* =========================================================
+           24 - ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body id="top">
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================== -->
+
+    <div class="background"></div>
+
+    <div class="speed-lines">
+        <span class="speed-line"></span>
+        <span class="speed-line"></span>
+        <span class="speed-line"></span>
+        <span class="speed-line"></span>
+        <span class="speed-line"></span>
+    </div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <nav class="nav">
+
+            <a href="index.html" class="brand">
+
+                <div class="brand-icon">
+                    🏁
+                </div>
+
+                <div class="brand-text">
+                    <strong>عالم الألعاب</strong>
+                    <span>GAME WORLD</span>
+                </div>
+
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="#intro">
+                    المقدمة
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#disadvantages">
+                    العيوب
+                </a>
+
+                <a href="#download">
+                    التحميل
+                </a>
+
+            </div>
+
+
+            <a href="index.html" class="home-button">
+                ← العودة إلى عالم الألعاب
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-kicker">
+                    <span></span>
+                    سباقات الشوارع • Need for Speed
+                </div>
+
+
+                <h1>
+                    NEED FOR<br>
+                    SPEED
+                    <span style="color:#ff1744;">.</span>
+                </h1>
+
+
+                <p class="hero-subtitle">
+                    ادخل عالم السرعة والمطاردات، وابنِ سيارتك الخاصة،
+                    وخاطر بكل شيء في سباقات الشوارع من أجل الوصول إلى القمة.
+                    تجربة Need for Speed Unbound تجمع بين السيارات الواقعية
+                    والهوية البصرية الجريئة والسباقات عالية السرعة.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a href="#download" class="primary-btn">
+                        ⚡ ابدأ رحلتك الآن
+                    </a>
+
+                    <a href="#intro" class="secondary-btn">
+                        اكتشف اللعبة ↓
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decor"></div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        <section class="stats reveal">
+
+            <div class="stat">
+                <strong>Racing</strong>
+                <span>سباقات شوارع عالية السرعة</span>
+            </div>
+
+            <div class="stat">
+                <strong>Open</strong>
+                <span>عالم مفتوح للاستكشاف</span>
+            </div>
+
+            <div class="stat">
+                <strong>Custom</strong>
+                <span>تخصيص واسع للسيارات</span>
+            </div>
+
+            <div class="stat">
+                <strong>Online</strong>
+                <span>منافسات جماعية</span>
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             INTRO
+        ====================================================== -->
+
+        <section id="intro" class="section reveal">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    01 / OVERVIEW
+                </span>
+
+                <h2>
+                    عندما تصبح السرعة أسلوب حياة
+                </h2>
+
+                <p>
+                    نظرة شاملة على تجربة Need for Speed Unbound.
+                </p>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p>
+                    إذا كنت تبحث عن الأدرينالين الخالص والمطاردات الشرطية
+                    الشرسة التي تختبر مهارتك في التسلل والهروب، فإن لعبة
+                    نيد فور سبيد أنباوند هي وجهتك المثالية. تعيد شركة
+                    إلكترونيك آرتس إحياء أمجاد السلسلة الشهيرة بأسلوب بصري
+                    ثوري يمزج بين واقعية السيارات الفاخرة ورسومات الفن
+                    الشعبي الشبيهة بالأنمي. تأخذك اللعبة إلى شوارع مدينة
+                    ليكشور الافتراضية، حيث تبدأ من الصفر لبناء سيارة أحلامك،
+                    وخوض سباقات شوارع غير قانونية للفوز بالبطولة الكبرى
+                    وهزيمة منافسيك.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section id="features" class="section reveal">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    02 / FEATURES
+                </span>
+
+                <h2>
+                    لماذا تستحق التجربة؟
+                </h2>
+
+                <p>
+                    مجموعة من أبرز العناصر التي تمنح اللعبة هويتها الخاصة.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        01
+                    </span>
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        أسلوب بصري فريد وعصري
+                    </h3>
+
+                    <p>
+                        تمتاز اللعبة بدمج رسوميات واقعية جداً للسيارات
+                        والمدينة مع تأثيرات بصرية كرتونية مميزة تظهر أثناء
+                        القفز أو الانجراف، مما يمنحها هوية بصرية خاصة
+                        ومختلفة عن أي لعبة أخرى.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        02
+                    </span>
+
+                    <div class="feature-icon">
+                        🔧
+                    </div>
+
+                    <h3>
+                        عمق خارق في تعديل السيارات
+                    </h3>
+
+                    <p>
+                        تتيح لك اللعبة تفكيك وتعديل هيكل السيارة بالكامل،
+                        من إضافة الجناح الخلفي وتغيير العوادم إلى تصميم
+                        ملصقات مخصصة وتعديل صوت المحرك بدقة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        03
+                    </span>
+
+                    <div class="feature-icon">
+                        🚔
+                    </div>
+
+                    <h3>
+                        مطاردات شرطة مثيرة
+                    </h3>
+
+                    <p>
+                        تضيف مطاردات الشرطة مستوى إضافياً من التوتر،
+                        وتجبرك على التفكير في الطريقة التي ستستخدمها
+                        للهروب والحفاظ على أرباحك بعد السباق.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        04
+                    </span>
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        طور قصة ممتع
+                    </h3>
+
+                    <p>
+                        تقدم اللعبة نمط قصة يركز على الصعود من القاع إلى
+                        قمة سباقات الشوارع، مع تحديات ومنافسات تزيد من
+                        عمر التجربة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        05
+                    </span>
+
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        اللعب الجماعي
+                    </h3>
+
+                    <p>
+                        تمنحك تجربة الأونلاين فرصة التسابق والتنافس مع
+                        لاعبين آخرين وخوض سباقات مختلفة بعيداً عن تجربة
+                        القصة الفردية.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        06
+                    </span>
+
+                    <div class="feature-icon">
+                        🏎️
+                    </div>
+
+                    <h3>
+                        عالم السيارات والسرعة
+                    </h3>
+
+                    <p>
+                        تمنحك اللعبة مجموعة متنوعة من السيارات وإمكانيات
+                        واسعة لتغيير المظهر والأداء وبناء سيارة تتناسب
+                        مع أسلوبك في القيادة.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ADVANTAGES / DISADVANTAGES
+        ====================================================== -->
+
+        <section id="disadvantages" class="section reveal">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    03 / VERDICT
+                </span>
+
+                <h2>
+                    الصورة الكاملة
+                </h2>
+
+                <p>
+                    لا توجد لعبة مثالية؛ لذلك هذه نظرة متوازنة على التجربة.
+                </p>
+
+            </div>
+
+
+            <div class="advantage-box">
+
+
+                <div class="advantage-column positive">
+
+                    <h3>
+                        <span>✓</span>
+                        نقاط القوة
+                    </h3>
+
+                    <ul class="advantage-list">
+
+                        <li>
+                            أسلوب بصري فريد وعصري.
+                        </li>
+
+                        <li>
+                            تخصيص واسع وعميق للسيارات.
+                        </li>
+
+                        <li>
+                            مطاردات شرطة تضيف التوتر والحماس.
+                        </li>
+
+                        <li>
+                            عالم مفتوح مناسب للاستكشاف والسباقات.
+                        </li>
+
+                        <li>
+                            تجربة أونلاين تضيف عمقاً إضافياً.
+                        </li>
+
+                        <li>
+                            هوية مختلفة عن العديد من ألعاب السباقات الأخرى.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="advantage-column negative">
+
+                    <h3>
+                        <span>×</span>
+                        نقاط الضعف
+                    </h3>
+
+                    <ul class="advantage-list">
+
+                        <li>
+                            الأسلوب البصري الكرتوني قد لا يناسب جميع اللاعبين.
+                        </li>
+
+                        <li>
+                            قد يظهر بعض التكرار أثناء التقدم في القصة.
+                        </li>
+
+                        <li>
+                            تحتاج إلى جهاز حديث للاستمتاع بالتجربة بالشكل الأمثل.
+                        </li>
+
+                        <li>
+                            الموسيقى التصويرية تميل بشكل واضح إلى الهيب هوب والراب.
+                        </li>
+
+                        <li>
+                            ليست موجهة للأجهزة الضعيفة أو الهواتف الذكية.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             REVIEW SCORE
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    04 / EXPERIENCE
+                </span>
+
+                <h2>
+                    تقييم التجربة
+                </h2>
+
+            </div>
+
+
+            <div class="review-panel">
+
+
+                <div class="score">
+
+                    <div class="score-number">
+                        8.8
+                    </div>
+
+                    <span>
+                        تقييم تقديري للتجربة
+                    </span>
+
+                </div>
+
+
+                <div class="rating-bars">
+
+
+                    <div class="rating-row">
+
+                        <span>
+                            الرسوميات
+                        </span>
+
+                        <div class="bar">
+                            <div style="width:94%;"></div>
+                        </div>
+
+                        <span class="rating-value">
+                            9.4
+                        </span>
+
+                    </div>
+
+
+                    <div class="rating-row">
+
+                        <span>
+                            القيادة
+                        </span>
+
+                        <div class="bar">
+                            <div style="width:91%;"></div>
+                        </div>
+
+                        <span class="rating-value">
+                            9.1
+                        </span>
+
+                    </div>
+
+
+                    <div class="rating-row">
+
+                        <span>
+                            التخصيص
+                        </span>
+
+                        <div class="bar">
+                            <div style="width:93%;"></div>
+                        </div>
+
+                        <span class="rating-value">
+                            9.3
+                        </span>
+
+                    </div>
+
+
+                    <div class="rating-row">
+
+                        <span>
+                            المحتوى
+                        </span>
+
+                        <div class="bar">
+                            <div style="width:84%;"></div>
+                        </div>
+
+                        <span class="rating-value">
+                            8.4
+                        </span>
+
+                    </div>
+
+
+                    <div class="rating-row">
+
+                        <span>
+                            الأونلاين
+                        </span>
+
+                        <div class="bar">
+                            <div style="width:87%;"></div>
+                        </div>
+
+                        <span class="rating-value">
+                            8.7
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONCLUSION
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <div class="conclusion">
+
+                <h2>
+                    الخلاصة
+                </h2>
+
+                <p>
+                    في النهاية، تُمثل نيد فور سبيد أنباوند عودة قوية وجريئة
+                    للسلسلة نحو سباقات الشوارع غير القانونية بلمسة عصرية
+                    مبتكرة. إذا كنت تبحث عن لعبة تمنحك حرية في تعديل مظهر
+                    سيارتك وتجربة مطاردات شرطة حماسية تعيد ذكريات الأجزاء
+                    القديمة، فإن هذه اللعبة تستحق التجربة على جهاز حديث.
+                    أما إذا كنت تبحث عن محاكاة قيادة واقعية تماماً وفيزيائية
+                    دقيقة، فقد تفضل ألعاباً أخرى أكثر واقعية.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ====================================================== -->
+
+        <section id="download" class="section reveal">
+
+            <div class="download-box">
+
+                <h2>
+                    مستعد للانطلاق؟
+                </h2>
+
+                <p>
+                    حمّل أو اشترِ Need for Speed Unbound من المتاجر الرسمية.
+                </p>
+
+
+                <div class="download-buttons">
+
+
+                    <!-- STEAM -->
+
+                    <a
+                        href="https://steampowered.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-btn"
+                    >
+
+                        <div class="store-icon">
+                            💻
+                        </div>
+
+                        <div class="store-info">
+
+                            <small>
+                                COMPUTER
+                            </small>
+
+                            <strong>
+                                Steam
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- PLAYSTATION -->
+
+                    <a
+                        href="https://playstation.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-btn"
+                    >
+
+                        <div class="store-icon">
+                            🎮
+                        </div>
+
+                        <div class="store-info">
+
+                            <small>
+                                PLAYSTATION
+                            </small>
+
+                            <strong>
+                                PlayStation Store
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- XBOX -->
+
+                    <a
+                        href="https://xbox.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-btn"
+                    >
+
+                        <div class="store-icon">
+                            🟢
+                        </div>
+
+                        <div class="store-info">
+
+                            <small>
+                                XBOX
+                            </small>
+
+                            <strong>
+                                Xbox Store
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ORIGINAL IMAGE - ONLY ONCE
+        ====================================================== -->
+
+        <section class="game-image-section reveal">
+
+            <p class="image-label">
+                Need for Speed Unbound
+            </p>
+
+            <div class="game-image-wrapper">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMCGR4CTam0pxc5BtQZpFcou5IVVIU50LEp-e2IQ5rOw&s=10"
+                    alt="صورة لعبة Need for Speed Unbound"
+                    loading="lazy"
+                >
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+
+    <button
+        id="topButton"
+        aria-label="العودة إلى أعلى الصفحة"
+        title="العودة إلى الأعلى"
+    >
+        ↑
+    </button>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            عالم <span>الألعاب</span>
+        </div>
+
+        <p>
+            تجربة ألعاب مصممة بعناية لعشاق الألعاب والسرعة.
+        </p>
+
+        <p style="margin-top:8px;">
+            © 2026 Game World
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =========================================================
+           01 - SCROLL REVEAL
+        ========================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           02 - BACK TO TOP
+        ========================================================== */
+
+        const topButton =
+            document.getElementById(
+                "topButton"
+            );
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 500) {
+
+                    topButton.classList.add(
+                        "show"
+                    );
+
+                } else {
+
+                    topButton.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+        topButton.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo(
+                    {
+                        top: 0,
+                        behavior: "smooth"
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           03 - HEADER SCROLL EFFECT
+        ========================================================== */
+
+        const header =
+            document.querySelector(
+                "header"
+            );
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 20) {
+
+                    header.style.background =
+                        "rgba(3,3,3,0.94)";
+
+                } else {
+
+                    header.style.background =
+                        "rgba(5,5,5,0.82)";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================================
+           04 - BUTTON RIPPLE EFFECT
+        ========================================================== */
+
+        const buttons =
+            document.querySelectorAll(
+                ".primary-btn, .secondary-btn, .home-button, .store-btn"
+            );
+
+
+        buttons.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        button.style.transform =
+                            "scale(0.98)";
+
+                        setTimeout(
+                            () => {
+
+                                button.style.transform =
+                                    "";
+
+                            },
+                            120
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           05 - CURRENT YEAR
+        ========================================================== */
+
+        const year =
+            new Date().getFullYear();
+
+        const footerText =
+            document.querySelector(
+                "footer p:last-child"
+            );
+
+
+        if (footerText) {
+
+            footerText.textContent =
+                "© " +
+                year +
+                " Game World";
+
+        }
+
+    </script>
+
+</body>
+</html>

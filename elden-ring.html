@@ -1,0 +1,2758 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="دليل احترافي شامل للعبة Elden Ring - القصة، العالم، أسلوب اللعب، المميزات والعيوب والمنصات.">
+    <meta name="keywords" content="Elden Ring, إيلدن رينغ, ألعاب, RPG, FromSoftware, ألعاب أكشن">
+    <meta name="author" content="عالم الألعاب">
+
+    <title>إيلدن رينغ | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Tahoma",
+                "Arial",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(184, 145, 61, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050504,
+                    #0b0a08 45%,
+                    #020202
+                );
+
+            color: #eeeeea;
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(183, 144, 60, 0.08),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(90, 73, 34, 0.08),
+                    transparent 30%
+                );
+        }
+
+        .background::before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212, 173, 76, 0.08),
+                    transparent 70%
+                );
+
+            top: -250px;
+            left: -200px;
+
+            animation:
+                floatingLight 12s ease-in-out infinite alternate;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(135, 105, 44, 0.06),
+                    transparent 70%
+                );
+
+            bottom: -250px;
+            right: -200px;
+
+            animation:
+                floatingLight 15s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatingLight {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(80px, 60px) scale(1.2);
+            }
+        }
+
+
+        /* =========================================================
+           PARTICLES
+        ========================================================= */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            background: #d4af55;
+
+            border-radius: 50%;
+
+            opacity: 0.45;
+
+            box-shadow:
+                0 0 8px rgba(212, 175, 85, 0.7);
+
+            animation:
+                particleFloat linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 5%;
+            top: 20%;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(2) {
+            left: 12%;
+            top: 70%;
+            animation-duration: 16s;
+        }
+
+        .particle:nth-child(3) {
+            left: 20%;
+            top: 40%;
+            animation-duration: 19s;
+        }
+
+        .particle:nth-child(4) {
+            left: 28%;
+            top: 80%;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(5) {
+            left: 35%;
+            top: 15%;
+            animation-duration: 21s;
+        }
+
+        .particle:nth-child(6) {
+            left: 43%;
+            top: 60%;
+            animation-duration: 17s;
+        }
+
+        .particle:nth-child(7) {
+            left: 50%;
+            top: 30%;
+            animation-duration: 13s;
+        }
+
+        .particle:nth-child(8) {
+            left: 58%;
+            top: 75%;
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(9) {
+            left: 65%;
+            top: 10%;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(10) {
+            left: 73%;
+            top: 50%;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(11) {
+            left: 80%;
+            top: 25%;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(12) {
+            left: 88%;
+            top: 65%;
+            animation-duration: 22s;
+        }
+
+        .particle:nth-child(13) {
+            left: 94%;
+            top: 35%;
+            animation-duration: 17s;
+        }
+
+        .particle:nth-child(14) {
+            left: 16%;
+            top: 10%;
+            animation-duration: 23s;
+        }
+
+        .particle:nth-child(15) {
+            left: 70%;
+            top: 90%;
+            animation-duration: 16s;
+        }
+
+        @keyframes particleFloat {
+
+            0% {
+                transform:
+                    translateY(0)
+                    translateX(0)
+                    scale(0.7);
+
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.5;
+            }
+
+            50% {
+                transform:
+                    translateY(-180px)
+                    translateX(50px)
+                    scale(1.2);
+            }
+
+            80% {
+                opacity: 0.35;
+            }
+
+            100% {
+                transform:
+                    translateY(-360px)
+                    translateX(-40px)
+                    scale(0.6);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           TOP PROGRESS BAR
+        ========================================================= */
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            right: 0;
+
+            width: 0%;
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #8f6d25,
+                    #f1d27a,
+                    #b9933f
+                );
+
+            z-index: 9999;
+
+            box-shadow:
+                0 0 12px rgba(214, 174, 76, 0.8);
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(5, 5, 4, 0.88);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(210, 171, 77, 0.18);
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            width: min(1250px, 92%);
+            margin: auto;
+
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 1.25rem;
+            font-weight: 900;
+
+            color: #f0d78a;
+
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                1px solid
+                rgba(222, 184, 88, 0.5);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(207, 164, 63, 0.25),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 18px rgba(202, 164, 67, 0.18);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            padding: 10px 14px;
+
+            color: #c7c5bc;
+
+            font-size: 0.92rem;
+
+            border-radius: 10px;
+
+            transition:
+                0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f4d783;
+
+            background:
+                rgba(208, 169, 74, 0.08);
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 17px;
+
+            border:
+                1px solid
+                rgba(219, 178, 73, 0.45);
+
+            border-radius: 12px;
+
+            color: #f2d47d;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(173, 128, 39, 0.18),
+                    rgba(255, 255, 255, 0.02)
+                );
+
+            transition:
+                0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(211, 171, 72, 0.16);
+
+            box-shadow:
+                0 8px 25px rgba(198, 158, 60, 0.12);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            width: min(1250px, 92%);
+
+            margin:
+                60px auto
+                40px;
+
+            min-height: 520px;
+
+            display: flex;
+            align-items: center;
+
+            border:
+                1px solid
+                rgba(213, 175, 78, 0.2);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(9, 9, 7, 0.97),
+                    rgba(20, 18, 13, 0.88),
+                    rgba(8, 8, 7, 0.96)
+                );
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.55),
+                inset 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 75% 50%,
+                    rgba(203, 164, 70, 0.14),
+                    transparent 32%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-glow {
+            position: absolute;
+
+            width: 380px;
+            height: 380px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(211, 174, 82, 0.14);
+
+            right: 7%;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            box-shadow:
+                0 0 100px
+                rgba(211, 174, 82, 0.07);
+
+            animation:
+                ringPulse 5s ease-in-out infinite;
+        }
+
+        .hero-glow::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 35px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(211, 174, 82, 0.12);
+        }
+
+        .hero-glow::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 85px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(211, 174, 82, 0.08);
+        }
+
+        @keyframes ringPulse {
+
+            0%,
+            100% {
+                transform:
+                    translateY(-50%)
+                    scale(1);
+
+                opacity: 0.6;
+            }
+
+            50% {
+                transform:
+                    translateY(-50%)
+                    scale(1.05);
+
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            width: 60%;
+
+            padding: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 13px;
+
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            border:
+                1px solid
+                rgba(211, 174, 82, 0.25);
+
+            color: #d7bd78;
+
+            background:
+                rgba(198, 158, 59, 0.06);
+
+            font-size: 0.82rem;
+        }
+
+        .eyebrow span {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #d4ad52;
+
+            box-shadow:
+                0 0 10px #d4ad52;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(3rem, 7vw, 6.2rem);
+
+            line-height: 1.05;
+
+            color: #f1d98f;
+
+            letter-spacing: -2px;
+
+            text-shadow:
+                0 0 35px rgba(213, 171, 70, 0.15);
+
+            margin-bottom: 14px;
+        }
+
+        .hero-subtitle {
+            color: #c4c1b7;
+
+            font-size:
+                clamp(1rem, 2vw, 1.25rem);
+
+            max-width: 650px;
+
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding:
+                13px 22px;
+
+            border-radius: 13px;
+
+            font-weight: 800;
+
+            transition:
+                0.3s ease;
+        }
+
+        .primary-button {
+            color: #15130e;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f2d57c,
+                    #b78d32
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(202, 162, 65, 0.18);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 16px 35px
+                rgba(202, 162, 65, 0.28);
+        }
+
+        .secondary-button {
+            color: #e0d7bf;
+
+            border:
+                1px solid
+                rgba(219, 179, 80, 0.3);
+
+            background:
+                rgba(255, 255, 255, 0.025);
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(219, 179, 80, 0.55);
+        }
+
+
+        /* =========================================================
+           INFO STRIP
+        ========================================================= */
+
+        .info-strip {
+            width: min(1150px, 90%);
+
+            margin:
+                0 auto
+                50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+        .info-card {
+            padding:
+                22px 18px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(210, 174, 82, 0.13);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            transition:
+                0.3s ease;
+        }
+
+        .info-card:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(210, 174, 82, 0.32);
+
+            background:
+                rgba(207, 169, 72, 0.045);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+
+            margin-bottom: 5px;
+        }
+
+        .info-card strong {
+            display: block;
+
+            color: #ead18a;
+
+            font-size: 0.9rem;
+        }
+
+        .info-card span {
+            display: block;
+
+            color: #a8a69e;
+
+            font-size: 0.8rem;
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        main {
+            width: min(1100px, 92%);
+
+            margin:
+                0 auto
+                100px;
+        }
+
+        .section {
+            margin-bottom: 70px;
+
+            scroll-margin-top: 100px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+        .section-number {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            color: #e8cb7b;
+
+            border:
+                1px solid
+                rgba(216, 177, 78, 0.22);
+
+            background:
+                rgba(205, 164, 65, 0.07);
+
+            font-weight: 900;
+        }
+
+        .section-heading h2 {
+            color: #f0d68a;
+
+            font-size:
+                clamp(1.6rem, 3vw, 2.3rem);
+        }
+
+        .section-heading p {
+            color: #87857e;
+
+            font-size: 0.85rem;
+        }
+
+        .content-card {
+            padding:
+                32px;
+
+            border-radius: 20px;
+
+            border:
+                1px solid
+                rgba(213, 176, 80, 0.13);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.012)
+                );
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.18);
+        }
+
+        .content-card p {
+            color: #c4c2b9;
+
+            font-size: 1.04rem;
+
+            margin-bottom: 17px;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================================
+           FEATURE GRID
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 17px;
+        }
+
+        .feature {
+            position: relative;
+
+            padding: 27px;
+
+            min-height: 210px;
+
+            border:
+                1px solid
+                rgba(210, 173, 77, 0.13);
+
+            border-radius: 19px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.012)
+                );
+
+            overflow: hidden;
+
+            transition:
+                0.35s ease;
+        }
+
+        .feature::before {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(210, 171, 72, 0.06);
+
+            left: -50px;
+            bottom: -60px;
+
+            transition:
+                0.35s ease;
+        }
+
+        .feature:hover {
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(210, 173, 77, 0.32);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,0,0,0.25);
+        }
+
+        .feature:hover::before {
+            transform:
+                scale(1.8);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(210, 170, 70, 0.08);
+
+            border:
+                1px solid
+                rgba(210, 170, 70, 0.18);
+
+            font-size: 1.35rem;
+
+            margin-bottom: 17px;
+        }
+
+        .feature h3 {
+            color: #ead18a;
+
+            margin-bottom: 9px;
+
+            font-size: 1.18rem;
+        }
+
+        .feature p {
+            color: #a9a79f;
+
+            font-size: 0.92rem;
+
+            line-height: 1.85;
+        }
+
+
+        /* =========================================================
+           CONS
+        ========================================================= */
+
+        .negative {
+            border-color:
+                rgba(177, 75, 62, 0.16);
+        }
+
+        .negative:hover {
+            border-color:
+                rgba(177, 75, 62, 0.35);
+        }
+
+        .negative .feature-icon {
+            background:
+                rgba(167, 70, 58, 0.08);
+
+            border-color:
+                rgba(167, 70, 58, 0.2);
+        }
+
+        .negative h3 {
+            color: #d9a39a;
+        }
+
+
+        /* =========================================================
+           RATING
+        ========================================================= */
+
+        .rating-panel {
+            display: grid;
+
+            grid-template-columns:
+                180px 1fr;
+
+            gap: 35px;
+
+            align-items: center;
+
+            padding: 30px;
+
+            border:
+                1px solid
+                rgba(212, 173, 76, 0.17);
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(210, 169, 67, 0.055),
+                    rgba(255,255,255,0.015)
+                );
+        }
+
+        .rating-number {
+            text-align: center;
+        }
+
+        .rating-number strong {
+            display: block;
+
+            font-size: 4rem;
+
+            line-height: 1;
+
+            color: #efd57e;
+        }
+
+        .rating-number span {
+            color: #96938a;
+
+            font-size: 0.8rem;
+        }
+
+        .rating-stars {
+            color: #e6c66d;
+
+            font-size: 1.4rem;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+        }
+
+        .rating-description {
+            color: #b7b4aa;
+
+            font-size: 0.96rem;
+        }
+
+
+        /* =========================================================
+           PLATFORM SECTION
+        ========================================================= */
+
+        .platform-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .platform {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 28px 18px;
+
+            min-height: 170px;
+
+            border:
+                1px solid
+                rgba(210, 173, 76, 0.14);
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            transition:
+                0.3s ease;
+        }
+
+        .platform:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(210, 173, 76, 0.35);
+        }
+
+        .platform .platform-icon {
+            font-size: 2.2rem;
+
+            margin-bottom: 10px;
+        }
+
+        .platform h3 {
+            color: #e8ce83;
+
+            margin-bottom: 4px;
+        }
+
+        .platform p {
+            color: #8f8d86;
+
+            font-size: 0.8rem;
+        }
+
+
+        /* =========================================================
+           DOWNLOAD AREA
+        ========================================================= */
+
+        .download-box {
+            position: relative;
+
+            padding:
+                45px 35px;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(215, 177, 77, 0.25);
+
+            border-radius: 25px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(203, 164, 65, 0.09),
+                    transparent 60%
+                ),
+                rgba(255,255,255,0.018);
+        }
+
+        .download-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(215, 177, 77, 0.1);
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            animation:
+                slowRotate 20s linear infinite;
+        }
+
+        @keyframes slowRotate {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(0deg);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(360deg);
+            }
+        }
+
+        .download-box > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-box h2 {
+            color: #efd482;
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+        }
+
+        .download-box p {
+            color: #a9a69d;
+
+            margin-bottom: 28px;
+        }
+
+        .download-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .download-button {
+            min-width: 210px;
+
+            display: inline-flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                14px 20px;
+
+            border-radius: 13px;
+
+            font-weight: 800;
+
+            color: #17140e;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1d27a,
+                    #a77e2b
+                );
+
+            transition:
+                0.3s ease;
+        }
+
+        .download-button:hover {
+            transform:
+                translateY(-4px)
+                scale(1.02);
+
+            box-shadow:
+                0 15px 35px
+                rgba(208, 166, 66, 0.25);
+        }
+
+
+        /* =========================================================
+           IMAGE
+        ========================================================= */
+
+        .game-image-section {
+            margin-top: 70px;
+
+            text-align: center;
+        }
+
+        .image-label {
+            color: #89877f;
+
+            font-size: 0.85rem;
+
+            margin-bottom: 15px;
+        }
+
+        .game-image {
+            display: block;
+
+            width: 100%;
+            max-width: 850px;
+
+            margin: auto;
+
+            border-radius: 22px;
+
+            border:
+                1px solid
+                rgba(214, 175, 75, 0.2);
+
+            box-shadow:
+                0 30px 70px
+                rgba(0,0,0,0.55);
+
+            transition:
+                0.4s ease;
+        }
+
+        .game-image:hover {
+            transform:
+                scale(1.01);
+
+            border-color:
+                rgba(214, 175, 75, 0.38);
+        }
+
+
+        /* =========================================================
+           QUOTE
+        ========================================================= */
+
+        .quote {
+            position: relative;
+
+            margin:
+                60px 0;
+
+            padding:
+                35px 40px;
+
+            border-right:
+                4px solid
+                #b58b36;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(205, 165, 67, 0.035),
+                    rgba(255,255,255,0.015)
+                );
+
+            border-radius:
+                15px 0 0 15px;
+        }
+
+        .quote p {
+            color: #d1c9b4;
+
+            font-size: 1.15rem;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid
+                rgba(213, 174, 78, 0.12);
+
+            background:
+                rgba(3,3,2,0.8);
+
+            padding:
+                45px 20px;
+        }
+
+        .footer-container {
+            width: min(1100px, 92%);
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .footer-brand {
+            color: #e7cd82;
+
+            font-weight: 900;
+        }
+
+        .footer-text {
+            color: #77756f;
+
+            font-size: 0.82rem;
+        }
+
+        .footer-top {
+            padding:
+                10px 14px;
+
+            border:
+                1px solid
+                rgba(213,174,78,0.18);
+
+            border-radius: 10px;
+
+            color: #c9af6a;
+
+            background:
+                rgba(213,174,78,0.04);
+
+            transition:
+                0.3s ease;
+        }
+
+        .footer-top:hover {
+            background:
+                rgba(213,174,78,0.1);
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        #backToTop {
+            position: fixed;
+
+            bottom: 25px;
+            left: 25px;
+
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(216,177,78,0.28);
+
+            color: #e3ca80;
+
+            background:
+                rgba(8,8,6,0.85);
+
+            backdrop-filter:
+                blur(10px);
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(20px);
+
+            transition:
+                0.3s ease;
+
+            z-index: 900;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translateY(0);
+        }
+
+        #backToTop:hover {
+            background:
+                rgba(214,173,72,0.12);
+
+            transform:
+                translateY(-4px);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content {
+                width: 100%;
+
+                padding: 50px 35px;
+            }
+
+            .hero-glow {
+                opacity: 0.4;
+
+                right: -100px;
+            }
+
+            .info-strip {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .platform-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .rating-panel {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .nav-container {
+                min-height: 64px;
+            }
+
+            .brand {
+                font-size: 1rem;
+            }
+
+            .brand-icon {
+                width: 33px;
+                height: 33px;
+            }
+
+            .home-button {
+                padding:
+                    8px 11px;
+
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                width: 94%;
+
+                margin-top: 25px;
+
+                min-height: 470px;
+
+                border-radius: 20px;
+            }
+
+            .hero-content {
+                padding:
+                    45px 24px;
+            }
+
+            .hero h1 {
+                font-size:
+                    3.3rem;
+            }
+
+            .hero-subtitle {
+                font-size:
+                    0.94rem;
+            }
+
+            .info-strip {
+                width: 94%;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .info-card {
+                padding:
+                    17px 10px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            .content-card {
+                padding:
+                    23px 19px;
+            }
+
+            .feature {
+                padding:
+                    22px;
+            }
+
+            .quote {
+                padding:
+                    25px 20px;
+            }
+
+            .download-box {
+                padding:
+                    35px 20px;
+            }
+
+            .download-button {
+                width: 100%;
+            }
+
+            .footer-container {
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+            }
+
+            #backToTop {
+                left: 15px;
+                bottom: 15px;
+            }
+
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body id="top">
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================== -->
+
+    <div class="background"></div>
+
+    <div class="particles">
+
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+
+    </div>
+
+
+    <!-- =========================================================
+         READING PROGRESS
+    ========================================================== -->
+
+    <div
+        class="reading-progress"
+        id="readingProgress">
+    </div>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="index.html"
+                class="brand">
+
+                <span class="brand-icon">
+                    🎮
+                </span>
+
+                <span>
+                    عالم الألعاب
+                </span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#overview">
+                    نظرة عامة
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#disadvantages">
+                    العيوب
+                </a>
+
+                <a href="#platforms">
+                    المنصات
+                </a>
+
+                <a href="#download">
+                    التحميل
+                </a>
+
+            </nav>
+
+
+            <a
+                href="index.html"
+                class="home-button">
+
+                <span>←</span>
+
+                <span>
+                    عالم الألعاب
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-glow"></div>
+
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span></span>
+
+                لعبة أكشن وتقمص أدوار
+
+            </div>
+
+
+            <h1>
+                Elden Ring
+            </h1>
+
+
+            <p class="hero-subtitle">
+
+                رحلة ملحمية إلى الأراضي البينية،
+                حيث الحرية والاستكشاف والمعارك القاسية
+                تجتمع في واحدة من أكثر تجارب ألعاب الـRPG
+                تميزاً.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#overview"
+                    class="primary-button">
+
+                    اكتشف اللعبة
+                    <span>↓</span>
+
+                </a>
+
+
+                <a
+                    href="#download"
+                    class="secondary-button">
+
+                    خيارات الشراء
+                    <span>↗</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         QUICK INFO
+    ========================================================== -->
+
+    <section class="info-strip">
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🎭
+            </div>
+
+            <strong>
+                النوع
+            </strong>
+
+            <span>
+                Action RPG
+            </span>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🌍
+            </div>
+
+            <strong>
+                العالم
+            </strong>
+
+            <span>
+                عالم مفتوح
+            </span>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                ⚔️
+            </div>
+
+            <strong>
+                أسلوب اللعب
+            </strong>
+
+            <span>
+                فردي + لعب جماعي
+            </span>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🏆
+            </div>
+
+            <strong>
+                التجربة
+            </strong>
+
+            <span>
+                تحدٍ ومغامرة
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main>
+
+
+        <!-- =====================================================
+             OVERVIEW
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="overview">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        ما هي إيلدن رينغ؟
+                    </h2>
+
+                    <p>
+                        نظرة شاملة على التجربة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <p>
+                    إذا كنت مستعداً لاختبار حدود شجاعتك وصبرك
+                    في عالم مليء بالسحر والغموض والمخاطر،
+                    فإن لعبة إيلدن رينغ (Elden Ring) تأخذك
+                    إلى تجربة أكشن وتقمص أدوار واسعة النطاق
+                    داخل الأراضي البينية.
+                </p>
+
+                <p>
+                    اللعبة تجمع بين عالم مفتوح ضخم،
+                    واستكشاف حر، ونظام قتال عميق،
+                    ومواجهات زعماء تتطلب قراءة دقيقة
+                    لتحركات الخصم وإدارة ذكية للموارد.
+                </p>
+
+                <p>
+                    ما يميز التجربة هو أنها لا تجبرك دائماً
+                    على اتباع طريق واحد؛ يمكنك استكشاف المناطق،
+                    تطوير شخصيتك، اكتشاف الأسلحة والقدرات،
+                    ثم العودة لمواجهة التحديات بطريقة تناسب
+                    أسلوب لعبك.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUOTE
+        ====================================================== -->
+
+        <div class="quote">
+
+            <p>
+                ⚔️ ليست الرحلة في الأراضي البينية مجرد طريق
+                إلى النهاية... بل سلسلة من الاكتشافات والمعارك
+                والقرارات التي تصنع تجربتك الخاصة.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="features">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>
+                        لماذا تستحق التجربة؟
+                    </h2>
+
+                    <p>
+                        أبرز نقاط القوة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🌍
+                    </div>
+
+                    <h3>
+                        حرية استكشاف ضخمة
+                    </h3>
+
+                    <p>
+                        تمنحك اللعبة عالماً مفتوحاً واسعاً
+                        يسمح لك بالتنقل والاستكشاف واكتشاف
+                        المناطق المخفية والدهاليز والأسرار
+                        دون أن تشعر بأنك محصور في مسار واحد.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        ⚔️
+                    </div>
+
+                    <h3>
+                        نظام قتال عميق
+                    </h3>
+
+                    <p>
+                        يمكنك بناء شخصية تناسب أسلوبك،
+                        سواء كنت تفضل الأسلحة الثقيلة،
+                        السيوف السريعة، أو السحر والقدرات
+                        الخاصة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        👑
+                    </div>
+
+                    <h3>
+                        زعماء ملحميون
+                    </h3>
+
+                    <p>
+                        المواجهات الكبرى تمثل أحد أهم عناصر
+                        التجربة، إذ تتطلب مراقبة أنماط الهجوم
+                        والصبر واختيار اللحظة المناسبة للهجوم.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🗺️
+                    </div>
+
+                    <h3>
+                        عالم غني بالأسرار
+                    </h3>
+
+                    <p>
+                        الكثير من تفاصيل العالم لا يتم تقديمها
+                        بطريقة مباشرة، وهو ما يجعل الاستكشاف
+                        والملاحظة جزءاً أساسياً من متعة اللعبة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🐎
+                    </div>
+
+                    <h3>
+                        حرية الحركة والتنقل
+                    </h3>
+
+                    <p>
+                        التنقل السريع عبر المساحات الواسعة
+                        يجعل استكشاف العالم أكثر مرونة ويضيف
+                        بعداً مختلفاً إلى المغامرة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🧙
+                    </div>
+
+                    <h3>
+                        تخصيص الشخصية
+                    </h3>
+
+                    <p>
+                        تستطيع تجربة تركيبات مختلفة من الأسلحة
+                        والعتاد والقدرات لتصنع شخصية تناسب
+                        طريقتك الخاصة في اللعب.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DISADVANTAGES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="disadvantages">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h2>
+                        قبل أن تبدأ...
+                    </h2>
+
+                    <p>
+                        أشياء يجب أن تعرفها
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature negative">
+
+                    <div class="feature-icon">
+                        💀
+                    </div>
+
+                    <h3>
+                        صعوبة مرتفعة
+                    </h3>
+
+                    <p>
+                        اللعبة تتطلب الصبر والتعلم من الأخطاء،
+                        وقد يحتاج اللاعب الجديد إلى وقت حتى
+                        يعتاد على نظام القتال والمواجهات.
+                    </p>
+
+                </article>
+
+
+                <article class="feature negative">
+
+                    <div class="feature-icon">
+                        🧭
+                    </div>
+
+                    <h3>
+                        قلة التوجيه المباشر
+                    </h3>
+
+                    <p>
+                        تعتمد اللعبة بدرجة كبيرة على الاستكشاف
+                        والملاحظة، لذلك قد يشعر بعض اللاعبين
+                        بالضياع في البداية.
+                    </p>
+
+                </article>
+
+
+                <article class="feature negative">
+
+                    <div class="feature-icon">
+                        ⏳
+                    </div>
+
+                    <h3>
+                        تحتاج إلى وقت
+                    </h3>
+
+                    <p>
+                        هذه ليست تجربة مصممة للانتهاء منها
+                        بسرعة؛ العالم والمحتوى والتحديات
+                        تحتاج إلى وقت للاستفادة منها بالكامل.
+                    </p>
+
+                </article>
+
+
+                <article class="feature negative">
+
+                    <div class="feature-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        ليست لعبة للهواتف
+                    </h3>
+
+                    <p>
+                        اللعبة الأصلية متوفرة على أجهزة الكمبيوتر
+                        وأجهزة الألعاب المنزلية، وليست هناك نسخة
+                        رسمية أصلية للهواتف الذكية.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RATING
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="rating-panel">
+
+                <div class="rating-number">
+
+                    <strong>
+                        9.5
+                    </strong>
+
+                    <span>
+                        تقييم تحريري
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <div class="rating-stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="rating-description">
+
+                        تجربة مناسبة جداً لمحبي ألعاب الأكشن
+                        وتقمص الأدوار والعوالم المفتوحة،
+                        خصوصاً لمن يبحث عن التحدي والاستكشاف
+                        وبناء الشخصية بطريقة مرنة.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PLATFORMS
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="platforms">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    04
+                </div>
+
+                <div>
+
+                    <h2>
+                        المنصات المتاحة
+                    </h2>
+
+                    <p>
+                        أين يمكنك لعب Elden Ring؟
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="platform-grid">
+
+
+                <div class="platform">
+
+                    <div class="platform-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        PC
+                    </h3>
+
+                    <p>
+                        عبر Steam
+                    </p>
+
+                </div>
+
+
+                <div class="platform">
+
+                    <div class="platform-icon">
+                        🎮
+                    </div>
+
+                    <h3>
+                        PlayStation
+                    </h3>
+
+                    <p>
+                        PS4 / PS5
+                    </p>
+
+                </div>
+
+
+                <div class="platform">
+
+                    <div class="platform-icon">
+                        🟢
+                    </div>
+
+                    <h3>
+                        Xbox
+                    </h3>
+
+                    <p>
+                        Xbox One / Series X|S
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="download">
+
+            <div class="download-box">
+
+                <h2>
+                    جاهز لدخول الأراضي البينية؟
+                </h2>
+
+                <p>
+                    اختر المنصة المناسبة لك وانتقل إلى المتجر الرسمي.
+                </p>
+
+
+                <div class="download-buttons">
+
+
+                    <a
+                        href="https://store.steampowered.com/app/1245620/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="download-button">
+
+                        💻
+                        Steam
+                    </a>
+
+
+                    <a
+                        href="https://www.playstation.com/en-us/games/elden-ring/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="download-button">
+
+                        🎮
+                        PlayStation
+                    </a>
+
+
+                    <a
+                        href="https://www.xbox.com/en-US/games/store/elden-ring/9P3J32CTXLRZ/0010/9SQFBG9183T6"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="download-button">
+
+                        🟢
+                        Xbox
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL SUMMARY
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    05
+                </div>
+
+                <div>
+
+                    <h2>
+                        الخلاصة
+                    </h2>
+
+                    <p>
+                        هل تناسبك اللعبة؟
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <p>
+                    إيلدن رينغ مناسبة جداً إذا كنت تبحث عن تجربة
+                    طويلة وعميقة تجمع بين الاستكشاف والقتال
+                    وتطوير الشخصية، ولا تمانع في التعلم من
+                    الأخطاء ومواجهة تحديات صعبة.
+                </p>
+
+                <p>
+                    أما إذا كنت تفضل الألعاب السريعة التي تقدم
+                    توجيهاً واضحاً ومباشراً منذ اللحظة الأولى،
+                    فقد تحتاج إلى بعض الوقت حتى تتأقلم مع
+                    فلسفة اللعبة وطريقة تقديم عالمها.
+                </p>
+
+                <p>
+                    في النهاية، قوة Elden Ring ليست في تقديم
+                    طريق واحد للاعب، بل في إعطائه مساحة كبيرة
+                    ليصنع طريقه بنفسه.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             IMAGE
+        ====================================================== -->
+
+        <section class="game-image-section">
+
+            <p class="image-label">
+                صورة اللعبة
+            </p>
+
+            <!-- تم الحفاظ على رابط الصورة الذي أرسلته كما هو -->
+            <img
+                class="game-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGj6lhtGrzV7vH8vsojsunNGU5BtBEqxB5jfRcEFUE13u9d6BhCCYDaVge5KTbYinVGnP-9Oldq6rscD6Pa3hGFoh29oKW3FvZX_zlTIqi&s=10"
+                alt="صورة لعبة Elden Ring"
+                loading="lazy">
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+
+    <button
+        id="backToTop"
+        aria-label="العودة إلى الأعلى">
+
+        ↑
+
+    </button>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                🎮 عالم الألعاب
+            </div>
+
+            <div class="footer-text">
+                صفحة Elden Ring — تجربة ألعاب مصممة بعناية.
+            </div>
+
+            <a
+                href="index.html"
+                class="footer-top">
+
+                العودة إلى عالم الألعاب
+
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           READING PROGRESS
+        ====================================================== */
+
+        const progress =
+            document.getElementById("readingProgress");
+
+        function updateProgress() {
+
+            const scrollTop =
+                window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight
+                - window.innerHeight;
+
+            const percentage =
+                (scrollTop / documentHeight) * 100;
+
+            progress.style.width =
+                percentage + "%";
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateProgress
+        );
+
+
+        /* =====================================================
+           BACK TO TOP
+        ====================================================== */
+
+        const backToTop =
+            document.getElementById("backToTop");
+
+        function toggleBackToTop() {
+
+            if (window.scrollY > 500) {
+
+                backToTop.classList.add("show");
+
+            } else {
+
+                backToTop.classList.remove("show");
+
+            }
+        }
+
+        window.addEventListener(
+            "scroll",
+            toggleBackToTop
+        );
+
+
+        backToTop.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           ACTIVE NAVIGATION
+        ====================================================== */
+
+        const sections =
+            document.querySelectorAll(
+                "main section[id]"
+            );
+
+        const navLinks =
+            document.querySelectorAll(
+                ".nav-links a"
+            );
+
+        function updateNavigation() {
+
+            let current = "";
+
+            sections.forEach(
+                section => {
+
+                    const sectionTop =
+                        section.offsetTop - 160;
+
+                    if (
+                        window.scrollY >= sectionTop
+                    ) {
+
+                        current =
+                            section.getAttribute("id");
+
+                    }
+
+                }
+            );
+
+            navLinks.forEach(
+                link => {
+
+                    link.style.color = "";
+
+                    const href =
+                        link.getAttribute("href");
+
+                    if (
+                        href === "#" + current
+                    ) {
+
+                        link.style.color =
+                            "#f1d47e";
+
+                    }
+
+                }
+            );
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateNavigation
+        );
+
+
+        /* =====================================================
+           INITIALIZE
+        ====================================================== */
+
+        updateProgress();
+        toggleBackToTop();
+        updateNavigation();
+
+    </script>
+
+</body>
+
+</html>

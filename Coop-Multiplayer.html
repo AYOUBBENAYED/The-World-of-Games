@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Eyes Horror & Coop Multiplayer | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            color: #eeeeee;
+            background:
+                radial-gradient(circle at 50% 0%, #351313 0%, transparent 38%),
+                radial-gradient(circle at 10% 80%, #180909 0%, transparent 35%),
+                #050505;
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================================
+           BACKGROUND ATMOSPHERE
+        ========================================================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.28),
+                    rgba(0,0,0,.75)
+                ),
+                radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    rgba(0,0,0,.8) 100%
+                );
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 35, 35, .08);
+            filter: blur(100px);
+            top: 10%;
+            left: -150px;
+            animation: floatLight 9s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes floatLight {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(180px, 130px) scale(1.25);
+            }
+        }
+
+
+        /* =========================================================
+           TOP BRAND BAR
+        ========================================================= */
+
+        .top-bar {
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(5,5,5,.72);
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            backdrop-filter: blur(18px);
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+            background:
+                linear-gradient(135deg, #ff3030, #6d0808);
+
+            box-shadow:
+                0 0 25px rgba(255, 30, 30, .3);
+        }
+
+        .brand span {
+            color: #ff4242;
+        }
+
+        .category {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 690px;
+            padding: 75px 7% 90px;
+
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 60px;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5,5,5,.98) 0%,
+                    rgba(5,5,5,.72) 42%,
+                    rgba(5,5,5,.15) 100%
+                );
+
+            z-index: -1;
+        }
+
+        .hero-content {
+            animation: heroIn 1s ease both;
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 7px 14px;
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255,60,60,.25);
+            border-radius: 100px;
+
+            color: #ff5a5a;
+            background: rgba(255,30,30,.07);
+
+            font-size: 13px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: #ff3b3b;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ff3333;
+            animation: pulse 1.4s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .25;
+                transform: scale(.6);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 82px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+            letter-spacing: -3px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #ffb2b2 50%,
+                    #ff3030
+                );
+
+           background-clip: text;
+                -webkit-background-clip: text;
+            color: transparent;
+
+            text-shadow: 0 0 40px rgba(255,0,0,.1);
+        }
+
+        .hero-subtitle {
+            max-width: 650px;
+            color: #bcbcbc;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================================
+           RATING
+        ========================================================= */
+
+        .rating-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .rating-number {
+            font-size: 42px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .stars {
+            color: #ff3c3c;
+            font-size: 22px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(255,40,40,.5);
+        }
+
+        .rating-text {
+            color: #858585;
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           HERO ACTIONS
+        ========================================================= */
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .action {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 14px 22px;
+            border-radius: 14px;
+
+            font-weight: bold;
+            transition: .3s ease;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            top: 0;
+            right: -120px;
+
+            background: rgba(255,255,255,.15);
+            transform: skewX(-20deg);
+            transition: .5s;
+        }
+
+        .action:hover::after {
+            right: 120%;
+        }
+
+        .download {
+            color: #fff;
+            background: linear-gradient(135deg, #ef3030, #8c0c0c);
+            box-shadow: 0 12px 35px rgba(210,20,20,.25);
+        }
+
+        .download:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(255,20,20,.4);
+        }
+
+        .world-link {
+            color: #ddd;
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .world-link:hover {
+            color: #fff;
+            border-color: rgba(255,60,60,.4);
+            transform: translateY(-4px);
+            background: rgba(255,30,30,.08);
+        }
+
+
+        /* =========================================================
+           GAME ART FRAME
+        ========================================================= */
+
+        .hero-art {
+            position: relative;
+            animation: artIn 1.2s ease both;
+        }
+
+        @keyframes artIn {
+            from {
+                opacity: 0;
+                transform: scale(.9) translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateX(0);
+            }
+        }
+
+        .image-frame {
+            position: relative;
+            padding: 10px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,50,50,.5),
+                    rgba(255,255,255,.05),
+                    rgba(255,20,20,.25)
+                );
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.8),
+                0 0 70px rgba(255,0,0,.1);
+        }
+
+        .image-frame img {
+            width: 100%;
+            display: block;
+
+            aspect-ratio: 1.25 / 1;
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            filter:
+                brightness(.72)
+                contrast(1.12)
+                saturate(.9);
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 10px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 45%,
+                    rgba(0,0,0,.85)
+                );
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            left: 30px;
+        }
+
+        .image-caption small {
+            color: #ff5252;
+            font-weight: bold;
+        }
+
+        .image-caption h2 {
+            font-size: 28px;
+            margin-top: 4px;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            width: 86%;
+            margin: -35px auto 80px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 22px;
+
+            backdrop-filter: blur(20px);
+
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .stat {
+            padding: 25px;
+            text-align: center;
+            border-left: 1px solid rgba(255,255,255,.07);
+        }
+
+        .stat:last-child {
+            border-left: none;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            color: #fff;
+        }
+
+        .stat span {
+            color: #777;
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .container {
+            width: 86%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 90px;
+        }
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-title small {
+            color: #ff4242;
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            margin-top: 4px;
+        }
+
+        .section-title p {
+            color: #777;
+            max-width: 650px;
+        }
+
+
+        /* =========================================================
+           INTRO CARD
+        ========================================================= */
+
+        .intro {
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,30,30,.07),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 25px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: "👁";
+            position: absolute;
+            left: 25px;
+            bottom: -35px;
+            font-size: 180px;
+            opacity: .025;
+        }
+
+        .intro p {
+            color: #c4c4c4;
+            font-size: 16px;
+        }
+
+
+        /* =========================================================
+           FEATURE GRID
+        ========================================================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 28px;
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.07);
+
+            border-radius: 20px;
+
+            transition: .35s ease;
+            position: relative;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+            border-color: rgba(255,50,50,.3);
+            background: rgba(255,30,30,.055);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.35);
+        }
+
+        .feature-number {
+            color: #ff3d3d;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .feature h3 {
+            margin: 10px 0;
+            font-size: 21px;
+        }
+
+        .feature p {
+            color: #858585;
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           ADVANTAGES / DISADVANTAGES
+        ========================================================= */
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            padding: 30px;
+            border-radius: 23px;
+            border: 1px solid rgba(255,255,255,.07);
+        }
+
+        .positive {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(40,180,100,.07),
+                    rgba(255,255,255,.025)
+                );
+        }
+
+        .negative {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(220,40,40,.07),
+                    rgba(255,255,255,.025)
+                );
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .panel-title-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: rgba(255,255,255,.06);
+        }
+
+        .point {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+
+        .point:last-child {
+            border-bottom: none;
+        }
+
+        .point h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .point p {
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           SCORE
+        ========================================================= */
+
+        .score-section {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 35px;
+            align-items: center;
+
+            padding: 40px;
+
+            border-radius: 28px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(255,30,30,.13),
+                    transparent 40%
+                ),
+                rgba(255,255,255,.025);
+
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .score {
+            text-align: center;
+        }
+
+        .score-number {
+            font-size: 85px;
+            font-weight: bold;
+            line-height: 1;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fff,
+                    #ff3030
+                );
+
+            background-clip: text;
+                -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .score-label {
+            color: #777;
+        }
+
+        .bars {
+            display: grid;
+            gap: 18px;
+        }
+
+        .bar-row {
+            display: grid;
+            grid-template-columns: 90px 1fr 40px;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .bar {
+            height: 8px;
+            background: rgba(255,255,255,.07);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7d0808,
+                    #ff3939
+                );
+
+            box-shadow: 0 0 12px rgba(255,30,30,.35);
+        }
+
+
+        /* =========================================================
+           DOWNLOAD AREA
+        ========================================================= */
+
+        .download-box {
+            padding: 45px;
+            text-align: center;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #170707,
+                    #080808
+                );
+
+            border: 1px solid rgba(255,40,40,.18);
+
+            box-shadow:
+                inset 0 0 80px rgba(255,0,0,.04),
+                0 30px 80px rgba(0,0,0,.4);
+        }
+
+        .download-box h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .download-box p {
+            color: #777;
+            margin-bottom: 28px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+
+        /* =========================================================
+           FOOTER / WORLD OF GAMES
+        ========================================================= */
+
+        .world {
+            margin-top: 100px;
+            padding: 55px 7%;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,30,30,.08),
+                    transparent 55%
+                );
+        }
+
+        .world-inner {
+            max-width: 1250px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .world-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .world-emblem {
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+
+            font-size: 27px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff3434,
+                    #630606
+                );
+
+            box-shadow:
+                0 0 35px rgba(255,30,30,.25);
+        }
+
+        .world h2 {
+            font-size: 24px;
+        }
+
+        .world p {
+            color: #707070;
+            font-size: 13px;
+        }
+
+        .world-entrance {
+            text-decoration: none;
+            color: #fff;
+
+            padding: 13px 22px;
+
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 100px;
+
+            background: rgba(255,255,255,.035);
+
+            transition: .3s;
+        }
+
+        .world-entrance:hover {
+            border-color: #ff3939;
+            background: rgba(255,40,40,.08);
+            transform: translateX(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #444;
+            font-size: 11px;
+            margin-top: 35px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 55px;
+            }
+
+            .hero-art {
+                max-width: 700px;
+                margin: auto;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-left: none;
+            }
+
+            .score-section {
+                grid-template-columns: 1fr;
+            }
+
+            .world-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .top-bar {
+                padding: 15px 5%;
+            }
+
+            .category {
+                display: none;
+            }
+
+            .hero {
+                padding: 45px 5% 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .stats {
+                width: 90%;
+                margin-top: -25px;
+            }
+
+            .features,
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .actions,
+            .store-buttons {
+                flex-direction: column;
+            }
+
+            .action {
+                justify-content: center;
+            }
+
+            .score-section {
+                padding: 25px;
+            }
+
+            .bar-row {
+                grid-template-columns: 70px 1fr 30px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         BRAND BAR
+    ========================================================== -->
+
+    <header class="top-bar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎮
+            </div>
+
+            <div>
+                GAME<span>VERSE</span>
+            </div>
+
+        </div>
+
+        <div class="category">
+            ألعاب الرعب • مراجعات • عالم الألعاب
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                <span class="live-dot"></span>
+                تجربة رعب تستحق الاكتشاف
+            </div>
+
+            <h1>
+                EYES
+            </h1>
+
+            <p class="hero-subtitle">
+                لا تدخل الظلام وحدك...
+                استكشف الأماكن المهجورة، اجمع ما تحتاجه،
+                وحاول النجاة قبل أن تجدك الأشياء التي
+                تختبئ في الظلام.
+            </p>
+
+
+            <div class="rating-box">
+
+                <div class="rating-number">
+                    8.7
+                </div>
+
+                <div>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="rating-text">
+                        تقييم عالم الألعاب • تجربة الرعب
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <a
+                    class="action download"
+                    href="https://play.google.com/store/apps/details?id=com.eyesthegame.eyes"
+                    target="_blank"
+                >
+                    🤖 Google Play
+                </a>
+
+
+                <a
+                    class="action download"
+                    href="https://apps.apple.com/qa/app/eyes-horror-coop-multiplayer/id631771776"
+                    target="_blank"
+                >
+                    🍎 App Store
+                </a>
+
+
+                <!-- ليس زرًا تقليديًا: هذا مدخل لهوية الموقع -->
+
+                <a
+                    class="action world-link"
+                    href="#world"
+                >
+                    ◈ اكتشف عالم الألعاب
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-art">
+
+            <div class="image-frame">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZfBrh9ZqIRbRaZkGGcIEKW0LL5w_MLLkgrdj-6EquGA&s"
+                    alt="Eyes Horror Game"
+                >
+
+                <div class="image-overlay"></div>
+
+                <div class="image-caption">
+
+                    <small>HORROR / SURVIVAL</small>
+
+                    <h2>
+                        هل تستطيع النجاة؟
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         QUICK STATS
+    ========================================================== -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <strong>8.7</strong>
+            <span>التقييم العام</span>
+        </div>
+
+        <div class="stat">
+            <strong>9.2</strong>
+            <span>الأجواء والرعب</span>
+        </div>
+
+        <div class="stat">
+            <strong>8.5</strong>
+            <span>الاستكشاف</span>
+        </div>
+
+        <div class="stat">
+            <strong>8.4</strong>
+            <span>إعادة اللعب</span>
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CONTENT
+    ========================================================== -->
+
+    <main class="container">
+
+
+        <!-- INTRO -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <small>01 / THE EXPERIENCE</small>
+
+                <h2>
+                    عندما يصبح المكان عدوك
+                </h2>
+
+                <p>
+                    ليست المسألة مجرد العثور على طريق للخروج...
+                    بل معرفة متى تتحرك ومتى تختبئ.
+                </p>
+
+            </div>
+
+
+            <div class="intro">
+
+                <p>
+                    Eyes Horror & Coop Multiplayer هي لعبة رعب
+                    واستكشاف للهواتف الذكية، تضعك في أماكن
+                    مظلمة ومهجورة حيث عليك البحث عن العناصر
+                    المطلوبة ومحاولة النجاة من الكائنات التي
+                    تطاردك. تعتمد التجربة على الاستكشاف،
+                    إدارة الخطر، معرفة الخريطة، والاستماع
+                    إلى البيئة من حولك.
+
+                    <br><br>
+
+                    قوة اللعبة الحقيقية تأتي من شعور عدم الأمان:
+                    أنت لا تعرف دائمًا ما ينتظرك خلف الباب
+                    التالي، ولا تملك رفاهية التحرك بلا حساب.
+                    ومع دعم اللعب الجماعي، يمكن أن يتحول
+                    الخوف إلى تجربة مختلفة تمامًا عندما تصبح
+                    النجاة مسؤولية فريق كامل.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FEATURES -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <small>02 / WHY IT WORKS</small>
+
+                <h2>
+                    ما الذي يجعل Eyes مختلفة؟
+                </h2>
+
+            </div>
+
+
+            <div class="features">
+
+                <article class="feature">
+
+                    <span class="feature-number">
+                        FEATURE 01
+                    </span>
+
+                    <h3>
+                        👁 رعب مبني على التوتر
+                    </h3>
+
+                    <p>
+                        اللعبة لا تعتمد فقط على المفاجآت،
+                        بل تجعل الاستكشاف نفسه مصدرًا للقلق
+                        والترقب.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <span class="feature-number">
+                        FEATURE 02
+                    </span>
+
+                    <h3>
+                        🗺 خرائط للاستكشاف
+                    </h3>
+
+                    <p>
+                        تعطي الخرائط اللاعب فرصة للتخطيط
+                        والتحرك بين المناطق بدل الاعتماد
+                        على مسار واحد مباشر.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <span class="feature-number">
+                        FEATURE 03
+                    </span>
+
+                    <h3>
+                        👥 رعب جماعي
+                    </h3>
+
+                    <p>
+                        وجود اللعب الجماعي يضيف طبقة جديدة
+                        من المتعة، خصوصًا عندما يصبح التعاون
+                        جزءًا من محاولة النجاة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <span class="feature-number">
+                        FEATURE 04
+                    </span>
+
+                    <h3>
+                        🎧 الصوت جزء من التجربة
+                    </h3>
+
+                    <p>
+                        المؤثرات الصوتية والأجواء المظلمة
+                        تساعد على بناء حالة مستمرة من
+                        التوتر أثناء الاستكشاف.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- POSITIVE / NEGATIVE -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <small>03 / THE VERDICT</small>
+
+                <h2>
+                    الحكم النهائي
+                </h2>
+
+            </div>
+
+
+            <div class="comparison">
+
+
+                <div class="panel positive">
+
+                    <div class="panel-title">
+
+                        <div class="panel-title-icon">
+                            ✓
+                        </div>
+
+                        <h2>
+                            نقاط القوة
+                        </h2>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>أجواء رعب قوية</h3>
+
+                        <p>
+                            بيئات مظلمة ومطاردات ومواقف
+                            مفاجئة تحافظ على التوتر.
+                        </p>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>استكشاف متنوع</h3>
+
+                        <p>
+                            أكثر من منطقة تمنح اللاعب
+                            تحديات وطرقًا مختلفة للاستكشاف.
+                        </p>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>اللعب الجماعي</h3>
+
+                        <p>
+                            إمكانية مشاركة تجربة الرعب
+                            مع لاعبين آخرين.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="panel negative">
+
+                    <div class="panel-title">
+
+                        <div class="panel-title-icon">
+                            !
+                        </div>
+
+                        <h2>
+                            ما يجب معرفته
+                        </h2>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>إعلانات</h3>
+
+                        <p>
+                            النسخة المجانية تحتوي على
+                            إعلانات أثناء الاستخدام.
+                        </p>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>مشتريات داخل اللعبة</h3>
+
+                        <p>
+                            توجد عناصر ومحتويات اختيارية
+                            يمكن شراؤها داخل التطبيق.
+                        </p>
+
+                    </div>
+
+
+                    <div class="point">
+
+                        <h3>تحتاج اتصالًا جيدًا</h3>
+
+                        <p>
+                            اللعب الجماعي يحتاج إلى اتصال
+                            مستقر للحصول على تجربة أفضل.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SCORE -->
+
+        <section class="section">
+
+            <div class="score-section">
+
+
+                <div class="score">
+
+                    <div class="score-number">
+                        8.7
+                    </div>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="score-label">
+                        تقييم عالم الألعاب
+                    </div>
+
+                </div>
+
+
+
+                <div class="bars">
+
+
+                    <div class="bar-row">
+
+                        <span>الرعب</span>
+
+                        <div class="bar">
+                            <span style="width:92%;"></span>
+                        </div>
+
+                        <b>9.2</b>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <span>الأجواء</span>
+
+                        <div class="bar">
+                            <span style="width:94%;"></span>
+                        </div>
+
+                        <b>9.4</b>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <span>التنوع</span>
+
+                        <div class="bar">
+                            <span style="width:83%;"></span>
+                        </div>
+
+                        <b>8.3</b>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <span>الجماعي</span>
+
+                        <div class="bar">
+                            <span style="width:88%;"></span>
+                        </div>
+
+                        <b>8.8</b>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <span>الإعادة</span>
+
+                        <div class="bar">
+                            <span style="width:84%;"></span>
+                        </div>
+
+                        <b>8.4</b>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DOWNLOAD -->
+
+        <section class="section">
+
+            <div class="download-box">
+
+                <h2>
+                    هل أنت مستعد لدخول الظلام؟
+                </h2>
+
+                <p>
+                    اختر منصتك وابدأ تجربة Eyes الآن.
+                </p>
+
+
+                <div class="store-buttons">
+
+
+                    <a
+                        class="action download"
+                        href="https://play.google.com/store/apps/details?id=com.eyesthegame.eyes"
+                        target="_blank"
+                    >
+                        🤖 تحميل من Google Play
+                    </a>
+
+
+                    <a
+                        class="action download"
+                        href="https://apps.apple.com/qa/app/eyes-horror-coop-multiplayer/id631771776"
+                        target="_blank"
+                    >
+                        🍎 تحميل من App Store
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         WORLD OF GAMES
+    ========================================================== -->
+
+    <footer class="world" id="world">
+
+        <div class="world-inner">
+
+
+            <div class="world-title">
+
+                <div class="world-emblem">
+                    🎮
+                </div>
+
+                <div>
+
+                    <h2>
+                        عالم الألعاب
+                    </h2>
+
+                    <p>
+                        مكانك لاكتشاف المزيد من الألعاب
+                        والمغامرات والتجارب.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- غيّر الرابط إلى صفحة عالم الألعاب الخاصة بك -->
+
+            <a
+                class="world-entrance"
+                href="index.html"
+            >
+                دخول إلى عالم الألعاب ←
+            </a>
+
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 GAMEVERSE — عالم الألعاب
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

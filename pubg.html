@@ -1,0 +1,3212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="معلومات مفيدة عن لعبة PUBG: BATTLEGROUNDS، مميزاتها وعيوبها وتجربتها">
+
+    <meta name="theme-color"
+          content="#080b09">
+
+    <title>PUBG | عالم الألعاب</title>
+
+
+    <style>
+
+        /* =========================================================
+           01 — ROOT / GLOBAL
+        ========================================================= */
+
+        :root {
+
+            --bg: #050706;
+            --bg-soft: #0a0d0b;
+            --panel: rgba(15, 19, 16, .82);
+
+            --white: #ffffff;
+            --text: #edf2eb;
+            --muted: #98a399;
+
+            --pubg: #f2b705;
+            --pubg-light: #ffd95a;
+            --green: #91c83e;
+            --red: #ef4444;
+
+            --border: rgba(255,255,255,.09);
+
+            --shadow:
+                0 30px 100px rgba(0,0,0,.60);
+
+            --radius: 28px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            color: var(--text);
+
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            line-height: 1.9;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(242,183,5,.13),
+                    transparent 32%
+                ),
+
+                radial-gradient(
+                    circle at 0% 40%,
+                    rgba(145,200,62,.07),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 100% 70%,
+                    rgba(239,68,68,.055),
+                    transparent 28%
+                ),
+
+                var(--bg);
+        }
+
+
+        ::selection {
+
+            background:
+                var(--pubg);
+
+            color:
+                #050505;
+        }
+
+
+        /* =========================================================
+           02 — CINEMATIC BACKGROUND
+        ========================================================= */
+
+        .background {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -20;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .background-grid {
+
+            position: absolute;
+
+            inset: -20%;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.018) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.018) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                65px 65px;
+
+            transform:
+                perspective(700px)
+                rotateX(58deg)
+                scale(1.7);
+
+            transform-origin:
+                center bottom;
+
+            opacity:
+                .55;
+        }
+
+
+        .fog {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            filter:
+                blur(100px);
+
+            opacity:
+                .18;
+        }
+
+
+        .fog.one {
+
+            width: 500px;
+            height: 500px;
+
+            top: -180px;
+            right: -120px;
+
+            background:
+                #f2b705;
+
+            animation:
+                fogOne 14s ease-in-out infinite alternate;
+        }
+
+
+        .fog.two {
+
+            width: 420px;
+            height: 420px;
+
+            left: -180px;
+            top: 35%;
+
+            background:
+                #5f8f24;
+
+            animation:
+                fogTwo 17s ease-in-out infinite alternate;
+        }
+
+
+        .fog.three {
+
+            width: 360px;
+            height: 360px;
+
+            right: -130px;
+            bottom: 5%;
+
+            background:
+                #d97706;
+
+            animation:
+                fogThree 15s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes fogOne {
+
+            from {
+                transform:
+                    translate(0,0)
+                    scale(1);
+            }
+
+            to {
+                transform:
+                    translate(-160px,140px)
+                    scale(1.25);
+            }
+        }
+
+
+        @keyframes fogTwo {
+
+            from {
+                transform:
+                    translate(0,0);
+            }
+
+            to {
+                transform:
+                    translate(140px,-100px);
+            }
+        }
+
+
+        @keyframes fogThree {
+
+            from {
+                transform:
+                    translate(0,0);
+            }
+
+            to {
+                transform:
+                    translate(-100px,-100px)
+                    scale(1.2);
+            }
+        }
+
+
+        /* =========================================================
+           03 — FLOATING PARTICLES
+        ========================================================= */
+
+        #particles {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -10;
+
+            pointer-events: none;
+        }
+
+
+        .particle {
+
+            position: absolute;
+
+            width: 2px;
+            height: 2px;
+
+            border-radius: 50%;
+
+            background:
+                var(--pubg);
+
+            box-shadow:
+                0 0 9px
+                rgba(242,183,5,.8);
+
+            opacity:
+                .45;
+
+            animation:
+                particleFloat linear infinite;
+        }
+
+
+        @keyframes particleFloat {
+
+            from {
+
+                transform:
+                    translateY(110vh)
+                    translateX(0)
+                    scale(.3);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .55;
+            }
+
+            85% {
+                opacity: .4;
+            }
+
+            to {
+
+                transform:
+                    translateY(-15vh)
+                    translateX(80px)
+                    scale(1);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           04 — LOADER
+        ========================================================= */
+
+        #loader {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                #050706;
+
+            transition:
+                opacity .8s ease,
+                visibility .8s ease;
+        }
+
+
+        #loader.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+        }
+
+
+        .loader-content {
+
+            text-align: center;
+        }
+
+
+        .loader-logo {
+
+            width: 92px;
+            height: 92px;
+
+            margin: auto;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 25px;
+
+            color:
+                #111;
+
+            font-size: 34px;
+
+            font-weight: 1000;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    var(--pubg-light),
+                    var(--pubg)
+                );
+
+            box-shadow:
+
+                0 0 35px
+                rgba(242,183,5,.25),
+
+                0 0 90px
+                rgba(242,183,5,.12);
+
+            animation:
+                loaderPulse 1.5s ease-in-out infinite;
+        }
+
+
+        .loader-text {
+
+            margin-top: 20px;
+
+            color:
+                #aab1a7;
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing:
+                2px;
+        }
+
+
+        .loader-line {
+
+            width: 220px;
+
+            height: 3px;
+
+            margin:
+                15px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.07);
+        }
+
+
+        .loader-line::after {
+
+            content: "";
+
+            display: block;
+
+            width: 40%;
+
+            height: 100%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #8da92e,
+                    var(--pubg-light),
+                    var(--pubg)
+                );
+
+            box-shadow:
+                0 0 15px
+                var(--pubg);
+
+            animation:
+                loading 1.1s infinite;
+        }
+
+
+        @keyframes loading {
+
+            from {
+                transform:
+                    translateX(-250%);
+            }
+
+            to {
+                transform:
+                    translateX(350%);
+            }
+        }
+
+
+        @keyframes loaderPulse {
+
+            50% {
+                transform:
+                    scale(1.08);
+            }
+        }
+
+
+        /* =========================================================
+           05 — NAVBAR
+        ========================================================= */
+
+        .navbar {
+
+            position: fixed;
+
+            top: 18px;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width:
+                min(
+                    1250px,
+                    calc(100% - 30px)
+                );
+
+            z-index: 5000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding:
+                11px 15px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius:
+                21px;
+
+            background:
+                rgba(5,8,6,.72);
+
+            backdrop-filter:
+                blur(25px);
+
+            -webkit-backdrop-filter:
+                blur(25px);
+
+            box-shadow:
+
+                0 15px 60px
+                rgba(0,0,0,.42),
+
+                inset 0 1px
+                rgba(255,255,255,.07);
+
+            transition:
+                .35s ease;
+        }
+
+
+        .navbar.scrolled {
+
+            top: 9px;
+
+            background:
+                rgba(4,6,5,.93);
+
+            box-shadow:
+                0 20px 70px
+                rgba(0,0,0,.7);
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color:
+                white;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: 1000;
+
+            white-space: nowrap;
+        }
+
+
+        .logo-icon {
+
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            color: #111;
+
+            font-weight: 1000;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--pubg-light),
+                    var(--pubg)
+                );
+
+            box-shadow:
+                0 0 20px
+                rgba(242,183,5,.20);
+        }
+
+
+        .nav-back {
+
+            color:
+                #9ca69c;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            padding:
+                8px 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            transition:
+                .3s ease;
+        }
+
+
+        .nav-back:hover {
+
+            color:
+                var(--pubg-light);
+
+            border-color:
+                rgba(242,183,5,.4);
+
+            background:
+                rgba(242,183,5,.07);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================================
+           06 — MAIN
+        ========================================================= */
+
+        main {
+
+            width:
+                min(
+                    1160px,
+                    calc(100% - 30px)
+                );
+
+            margin:
+                auto;
+
+            padding-top:
+                105px;
+        }
+
+
+        /* =========================================================
+           07 — HERO
+        ========================================================= */
+
+        .hero {
+
+            position: relative;
+
+            min-height:
+                570px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            padding:
+                75px 30px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius:
+                38px;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(242,183,5,.15),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    rgba(17,22,18,.96),
+                    rgba(4,7,5,.98)
+                );
+
+            box-shadow:
+                0 40px 120px
+                rgba(0,0,0,.65),
+
+                inset 0 1px
+                rgba(255,255,255,.08);
+        }
+
+
+        /* cinematic scanning line */
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            top: 0;
+
+            height: 1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--pubg),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 25px
+                rgba(242,183,5,.7);
+
+            animation:
+                scanLine 5s linear infinite;
+        }
+
+
+        @keyframes scanLine {
+
+            from {
+                transform:
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    translateY(570px);
+            }
+        }
+
+
+        .hero::after {
+
+            content:
+                "BATTLEGROUNDS";
+
+            position: absolute;
+
+            bottom:
+                -38px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            white-space: nowrap;
+
+            color:
+                rgba(255,255,255,.025);
+
+            font-size:
+                clamp(
+                    70px,
+                    14vw,
+                    160px
+                );
+
+            font-weight:
+                1000;
+
+            letter-spacing:
+                7px;
+
+            pointer-events:
+                none;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width:
+                900px;
+        }
+
+
+        .game-tag {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap: 9px;
+
+            padding:
+                8px 17px;
+
+            margin-bottom:
+                23px;
+
+            color:
+                #ffe99a;
+
+            border:
+                1px solid
+                rgba(242,183,5,.30);
+
+            border-radius:
+                100px;
+
+            background:
+                rgba(242,183,5,.055);
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+
+            box-shadow:
+                0 0 30px
+                rgba(242,183,5,.06);
+        }
+
+
+        .tag-dot {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background:
+                var(--pubg);
+
+            box-shadow:
+                0 0 14px
+                var(--pubg);
+
+            animation:
+                tagPulse 1.5s infinite;
+        }
+
+
+        @keyframes tagPulse {
+
+            50% {
+                opacity: .35;
+                transform:
+                    scale(.65);
+            }
+        }
+
+
+        h1 {
+
+            font-size:
+                clamp(
+                    48px,
+                    9vw,
+                    92px
+                );
+
+            line-height:
+                1.05;
+
+            font-weight:
+                1000;
+
+            letter-spacing:
+                -4px;
+
+            color:
+                transparent;
+
+            background:
+
+                linear-gradient(
+                    110deg,
+                    #ffffff 10%,
+                    #ffe58a 35%,
+                    var(--pubg) 60%,
+                    #ffffff 90%
+                );
+
+            background-size:
+                220% auto;
+
+            -webkit-background-clip:
+                text;
+
+            background-clip:
+                text;
+
+            animation:
+                titleShine 5s linear infinite;
+
+            filter:
+                drop-shadow(
+                    0 0 30px
+                    rgba(242,183,5,.18)
+                );
+        }
+
+
+        @keyframes titleShine {
+
+            to {
+                background-position:
+                    220% center;
+            }
+        }
+
+
+        .hero-subtitle {
+
+            margin:
+                25px auto 0;
+
+            color:
+                #aab3a8;
+
+            font-size:
+                clamp(
+                    15px,
+                    2vw,
+                    18px
+                );
+
+            line-height:
+                2.15;
+
+            max-width:
+                750px;
+        }
+
+
+        .hero-line {
+
+            width:
+                170px;
+
+            height:
+                3px;
+
+            margin:
+                30px auto 0;
+
+            border-radius:
+                20px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--green),
+                    var(--pubg),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 25px
+                rgba(242,183,5,.55);
+        }
+
+
+        /* =========================================================
+           08 — HERO DATA
+        ========================================================= */
+
+        .hero-data {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                10px;
+
+            width:
+                min(
+                    650px,
+                    100%
+                );
+
+            margin:
+                42px auto 0;
+        }
+
+
+        .data-box {
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.075);
+
+            border-radius:
+                17px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+
+        .data-box strong {
+
+            display:
+                block;
+
+            color:
+                white;
+
+            font-size:
+                22px;
+
+            font-weight:
+                1000;
+        }
+
+
+        .data-box span {
+
+            color:
+                #707b71;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =========================================================
+           09 — CONTENT CARD
+        ========================================================= */
+
+        .content-card {
+
+            position:
+                relative;
+
+            margin:
+                35px 0;
+
+            padding:
+                38px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.052),
+                    rgba(255,255,255,.015)
+                );
+
+            box-shadow:
+                var(--shadow);
+
+            overflow:
+                hidden;
+        }
+
+
+        .content-card::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: 0;
+            right: 45px;
+
+            width:
+                150px;
+
+            height:
+                3px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    var(--pubg)
+                );
+
+            box-shadow:
+                0 0 20px
+                rgba(242,183,5,.6);
+        }
+
+
+        .section-title {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                14px;
+
+            margin-bottom:
+                22px;
+
+            color:
+                white;
+
+            font-size:
+                clamp(
+                    22px,
+                    3vw,
+                    31px
+                );
+
+            font-weight:
+                1000;
+        }
+
+
+        .section-title::before {
+
+            content: "";
+
+            flex-shrink: 0;
+
+            width:
+                6px;
+
+            height:
+                40px;
+
+            border-radius:
+                20px;
+
+            background:
+                var(--pubg);
+
+            box-shadow:
+                0 0 20px
+                rgba(242,183,5,.6);
+        }
+
+
+        .content-card p {
+
+            color:
+                #a0aaa1;
+
+            font-size:
+                16px;
+
+            line-height:
+                2.25;
+
+            margin-bottom:
+                16px;
+        }
+
+
+        /* =========================================================
+           10 — FEATURE / DRAWBACK
+        ========================================================= */
+
+        .feature {
+
+            position:
+                relative;
+
+            margin:
+                18px 0;
+
+            padding:
+                22px 23px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.065);
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            transition:
+                .35s ease;
+
+            overflow:
+                hidden;
+        }
+
+
+        .feature::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: 0;
+            right: 0;
+
+            width:
+                3px;
+
+            height:
+                100%;
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 18px
+                rgba(145,200,62,.4);
+        }
+
+
+        .feature:hover {
+
+            transform:
+                translateX(-6px);
+
+            border-color:
+                rgba(242,183,5,.22);
+
+            background:
+                rgba(242,183,5,.035);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.25);
+        }
+
+
+        .feature h3 {
+
+            margin-bottom:
+                7px;
+
+            color:
+                #f5f7f4;
+
+            font-size:
+                18px;
+
+            font-weight:
+                1000;
+        }
+
+
+        .feature h3::before {
+
+            content:
+                "◆";
+
+            display:
+                inline-block;
+
+            margin-left:
+                9px;
+
+            color:
+                var(--pubg);
+
+            font-size:
+                9px;
+        }
+
+
+        .feature p {
+
+            margin:
+                0;
+
+            color:
+                #909a91;
+
+            font-size:
+                14px;
+
+            line-height:
+                2.05;
+        }
+
+
+        /* =========================================================
+           11 — NEGATIVE SECTION
+        ========================================================= */
+
+        .negative {
+
+            --negative:
+                #ef4444;
+        }
+
+
+        .negative .section-title::before {
+
+            background:
+                var(--negative);
+
+            box-shadow:
+                0 0 20px
+                rgba(239,68,68,.5);
+        }
+
+
+        .negative .feature::before {
+
+            background:
+                var(--negative);
+
+            box-shadow:
+                0 0 18px
+                rgba(239,68,68,.35);
+        }
+
+
+        .negative .feature h3::before {
+
+            color:
+                var(--negative);
+        }
+
+
+        .negative .content-card::before {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #ef4444,
+                    #f97316
+                );
+
+            box-shadow:
+                0 0 20px
+                rgba(239,68,68,.45);
+        }
+
+
+        /* =========================================================
+           12 — VERDICT
+        ========================================================= */
+
+        .verdict {
+
+            position:
+                relative;
+
+            margin:
+                50px 0;
+
+            padding:
+                50px 38px;
+
+            overflow:
+                hidden;
+
+            text-align:
+                center;
+
+            border:
+                1px solid
+                rgba(242,183,5,.16);
+
+            border-radius:
+                32px;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(242,183,5,.12),
+                    transparent 38%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    rgba(17,22,18,.96),
+                    rgba(4,7,5,.96)
+                );
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,.5);
+        }
+
+
+        .verdict::before {
+
+            content:
+                "BATTLEGROUNDS";
+
+            position:
+                absolute;
+
+            top:
+                -30px;
+
+            left:
+                50%;
+
+            transform:
+                translateX(-50%);
+
+            color:
+                rgba(255,255,255,.025);
+
+            font-size:
+                clamp(
+                    60px,
+                    12vw,
+                    140px
+                );
+
+            font-weight:
+                1000;
+
+            white-space:
+                nowrap;
+
+            pointer-events:
+                none;
+        }
+
+
+        .verdict h2 {
+
+            position:
+                relative;
+
+            color:
+                white;
+
+            font-size:
+                clamp(
+                    25px,
+                    4vw,
+                    38px
+                );
+
+            font-weight:
+                1000;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        .verdict p {
+
+            position:
+                relative;
+
+            max-width:
+                900px;
+
+            margin:
+                auto;
+
+            color:
+                #9da79e;
+
+            font-size:
+                15px;
+
+            line-height:
+                2.25;
+        }
+
+
+        /* =========================================================
+           13 — DOWNLOAD
+        ========================================================= */
+
+        .download {
+
+            position:
+                relative;
+
+            margin:
+                30px 0 65px;
+
+            padding:
+                42px 30px;
+
+            text-align:
+                center;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                rgba(242,183,5,.18);
+
+            border-radius:
+                30px;
+
+            background:
+
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(145,200,62,.08),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 80% 50%,
+                    rgba(242,183,5,.10),
+                    transparent 30%
+                ),
+
+                rgba(9,12,10,.88);
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,.42);
+        }
+
+
+        .download h2 {
+
+            color:
+                white;
+
+            font-size:
+                27px;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .download p {
+
+            color:
+                #8f998f;
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .download-buttons {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                14px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        .download-btn {
+
+            position:
+                relative;
+
+            min-width:
+                250px;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                14px 24px;
+
+            overflow:
+                hidden;
+
+            color:
+                #111;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                1000;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius:
+                15px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--pubg-light),
+                    var(--pubg)
+                );
+
+            box-shadow:
+                0 15px 40px
+                rgba(242,183,5,.16);
+
+            transition:
+                .3s ease;
+        }
+
+
+        .download-btn::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: 0;
+            left: -100%;
+
+            width:
+                70%;
+
+            height:
+                100%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.45),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left .7s ease;
+        }
+
+
+        .download-btn:hover {
+
+            transform:
+                translateY(-6px);
+
+            filter:
+                brightness(1.08);
+
+            box-shadow:
+                0 20px 55px
+                rgba(242,183,5,.28);
+        }
+
+
+        .download-btn:hover::before {
+
+            left:
+                130%;
+        }
+
+
+        .download-btn.apple {
+
+            color:
+                white;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #252b27,
+                    #121613
+                );
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.25);
+        }
+
+
+        .download-btn.apple:hover {
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,.45);
+        }
+
+
+        /* =========================================================
+           14 — IMAGE
+        ========================================================= */
+
+        .game-image-box {
+
+            position:
+                relative;
+
+            margin:
+                45px auto 20px;
+
+            max-width:
+                850px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius:
+                25px;
+
+            background:
+                #090c0a;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,.55);
+        }
+
+
+        .game-image-box::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            z-index:
+                2;
+
+            pointer-events:
+                none;
+
+            background:
+
+                linear-gradient(
+                    180deg,
+                    transparent 60%,
+                    rgba(0,0,0,.45)
+                );
+        }
+
+
+        .game-image-box img {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                auto;
+
+            max-height:
+                600px;
+
+            object-fit:
+                cover;
+
+            transition:
+                transform .8s ease,
+                filter .8s ease;
+        }
+
+
+        .game-image-box:hover img {
+
+            transform:
+                scale(1.035);
+
+            filter:
+                brightness(1.06);
+        }
+
+
+        /* =========================================================
+           15 — BACK TO TOP
+        ========================================================= */
+
+        #topButton {
+
+            position:
+                fixed;
+
+            bottom:
+                25px;
+
+            left:
+                25px;
+
+            width:
+                47px;
+
+            height:
+                47px;
+
+            z-index:
+                4000;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius:
+                14px;
+
+            color:
+                white;
+
+            background:
+                rgba(8,11,9,.78);
+
+            backdrop-filter:
+                blur(15px);
+
+            cursor:
+                pointer;
+
+            opacity:
+                0;
+
+            visibility:
+                hidden;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                .3s ease;
+        }
+
+
+        #topButton.show {
+
+            opacity:
+                1;
+
+            visibility:
+                visible;
+
+            transform:
+                translateY(0);
+        }
+
+
+        #topButton:hover {
+
+            color:
+                var(--pubg);
+
+            border-color:
+                var(--pubg);
+
+            box-shadow:
+                0 0 25px
+                rgba(242,183,5,.18);
+        }
+
+
+        /* =========================================================
+           16 — CURSOR LIGHT
+        ========================================================= */
+
+        .cursor-light {
+
+            position:
+                fixed;
+
+            width:
+                300px;
+
+            height:
+                300px;
+
+            border-radius:
+                50%;
+
+            pointer-events:
+                none;
+
+            z-index:
+                -1;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(242,183,5,.055),
+                    transparent 70%
+                );
+
+            transform:
+                translate(-50%,-50%);
+        }
+
+
+        /* =========================================================
+           17 — REVEAL
+        ========================================================= */
+
+        .reveal {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(45px)
+                scale(.98);
+
+            transition:
+                opacity .8s ease,
+                transform .8s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        .reveal.show {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+
+        /* =========================================================
+           18 — FOOTER
+        ========================================================= */
+
+        footer {
+
+            padding:
+                30px 15px 45px;
+
+            text-align:
+                center;
+
+            color:
+                #59625a;
+
+            font-size:
+                12px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+        }
+
+
+        footer strong {
+
+            color:
+                #89948a;
+        }
+
+
+        /* =========================================================
+           19 — SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+
+            width:
+                9px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background:
+                #050706;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            border:
+                2px solid
+                #050706;
+
+            border-radius:
+                30px;
+
+            background:
+
+                linear-gradient(
+                    var(--pubg),
+                    var(--green)
+                );
+        }
+
+
+        /* =========================================================
+           20 — TABLET
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                width:
+                    calc(100% - 20px);
+            }
+
+
+            .hero {
+
+                min-height:
+                    540px;
+            }
+
+
+            .content-card {
+
+                padding:
+                    30px;
+            }
+        }
+
+
+        /* =========================================================
+           21 — MOBILE
+        ========================================================= */
+
+        @media (max-width: 650px) {
+
+            main {
+
+                width:
+                    calc(100% - 14px);
+
+                padding-top:
+                    92px;
+            }
+
+
+            .navbar {
+
+                width:
+                    calc(100% - 14px);
+
+                top:
+                    7px;
+
+                padding:
+                    8px 10px;
+
+                border-radius:
+                    17px;
+            }
+
+
+            .logo {
+
+                font-size:
+                    14px;
+            }
+
+
+            .logo-icon {
+
+                width:
+                    34px;
+
+                height:
+                    34px;
+            }
+
+
+            .nav-back {
+
+                font-size:
+                    10px;
+
+                padding:
+                    6px 9px;
+            }
+
+
+            .hero {
+
+                min-height:
+                    550px;
+
+                padding:
+                    55px 17px;
+
+                border-radius:
+                    26px;
+            }
+
+
+            h1 {
+
+                font-size:
+                    clamp(
+                        42px,
+                        14vw,
+                        62px
+                    );
+
+                letter-spacing:
+                    -2px;
+            }
+
+
+            .hero-subtitle {
+
+                font-size:
+                    14px;
+            }
+
+
+            .hero-data {
+
+                gap:
+                    7px;
+
+                margin-top:
+                    32px;
+            }
+
+
+            .data-box {
+
+                padding:
+                    12px 5px;
+            }
+
+
+            .data-box strong {
+
+                font-size:
+                    19px;
+            }
+
+
+            .data-box span {
+
+                font-size:
+                    9px;
+            }
+
+
+            .content-card,
+            .verdict,
+            .download {
+
+                padding:
+                    27px 17px;
+
+                border-radius:
+                    22px;
+            }
+
+
+            .section-title {
+
+                font-size:
+                    20px;
+            }
+
+
+            .section-title::before {
+
+                width:
+                    5px;
+
+                height:
+                    32px;
+            }
+
+
+            .content-card p {
+
+                font-size:
+                    14px;
+            }
+
+
+            .feature {
+
+                padding:
+                    18px;
+            }
+
+
+            .feature h3 {
+
+                font-size:
+                    16px;
+            }
+
+
+            .feature p {
+
+                font-size:
+                    13px;
+            }
+
+
+            .download-buttons {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .download-btn {
+
+                width:
+                    100%;
+
+                min-width:
+                    0;
+            }
+
+
+            .game-image-box {
+
+                border-radius:
+                    19px;
+            }
+
+
+            #topButton {
+
+                bottom:
+                    15px;
+
+                left:
+                    15px;
+            }
+
+
+            .cursor-light {
+
+                display:
+                    none;
+            }
+        }
+
+
+        /* =========================================================
+           22 — ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                scroll-behavior:
+                    auto !important;
+
+                transition-duration:
+                    .01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
+
+    <div class="background">
+
+        <div class="background-grid"></div>
+
+        <div class="fog one"></div>
+
+        <div class="fog two"></div>
+
+        <div class="fog three"></div>
+
+    </div>
+
+
+    <div id="particles"></div>
+
+    <div class="cursor-light"
+         id="cursorLight"></div>
+
+
+    <!-- =========================================================
+         LOADER
+    ========================================================= -->
+
+    <div id="loader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                PUBG
+            </div>
+
+            <div class="loader-text">
+                PREPARING BATTLEGROUNDS
+            </div>
+
+            <div class="loader-line"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
+
+    <header class="navbar"
+            id="navbar">
+
+        <a href="index.html"
+           class="logo">
+
+            <div class="logo-icon">
+                🎮
+            </div>
+
+            <span>
+                عالم الألعاب
+            </span>
+
+        </a>
+
+
+        <a href="index.html"
+           class="nav-back">
+
+            ← العودة إلى عالم الألعاب
+
+        </a>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================= -->
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="hero reveal">
+
+            <div class="hero-content">
+
+                <div class="game-tag">
+
+                    <span class="tag-dot"></span>
+
+                    BATTLEGROUNDS • GAME PROFILE
+
+                </div>
+
+
+                <h1>
+                    ببجي
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    PUBG: BATTLEGROUNDS —
+                    تجربة باتل رويال تكتيكية تجمع
+                    الواقعية العسكرية، التخطيط،
+                    المنافسة، والعمل الجماعي.
+
+                </p>
+
+
+                <div class="hero-line"></div>
+
+
+                <div class="hero-data">
+
+                    <div class="data-box">
+
+                        <strong>
+                            100
+                        </strong>
+
+                        <span>
+                            لاعب في المعركة
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-box">
+
+                        <strong>
+                            🎯
+                        </strong>
+
+                        <span>
+                            تكتيك وواقعية
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-box">
+
+                        <strong>
+                            🏆
+                        </strong>
+
+                        <span>
+                            الهدف: البقاء
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INTRODUCTION
+        ====================================================== -->
+
+        <section class="content-card reveal">
+
+            <h2 class="section-title">
+                مقدمة عن لعبة ببجي
+            </h2>
+
+
+            <p>
+                تُعد PUBG: BATTLEGROUNDS اللعبة التأسيسية لنمط الباتل رويال، حيث تمزج بين الواقعية العسكرية الشديدة، والخرائط المتنوعة، والعمق التكتيكي لتوفير تجربة بقاء مكثفة لـ 100 لاعب. رغم توفيرها كنموذج مجاني (Free-to-Play) وتحديثاتها المستمرة، يواجه اللاعبون تحديات تتعلق بمنحنى التعلم الصعب، ومتطلبات الأجهزة العالية، ومواجهة برامج الغش. تعتبر اللعبة الخيار الأمثل لعشاق التخطيط والواقعية التكتيكية.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             ADVANTAGES
+        ====================================================== -->
+
+        <section class="content-card reveal">
+
+            <h2 class="section-title">
+                إليك أبرز إيجابيات ومميزات لعبة ببجي
+            </h2>
+
+
+            <div class="feature">
+
+                <h3>
+                    الواقعية العسكرية الشديدة
+                </h3>
+
+                <p>
+                    تتميز اللعبة بفيزيائية قتالية دقيقة جداً، حيث تحاكي الأسلحة الحقيقية من حيث الارتداد، ومدى الرصاص، وسرعة المقذوفات، مما يمنح تجربة إطلاق نار حقيقية.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    العمق التكتيكي والإستراتيجي
+                </h3>
+
+                <p>
+                    لا تعتمد اللعبة على مهارة التصويب فحسب، بل تتطلب تخطيطاً ذكياً، واختياراً دقيقاً لأماكن الهبوط، واستخدام التضاريس والمباني للاحتماء والمباغتة.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    تنوع الخرائط وبيئات اللعب
+                </h3>
+
+                <p>
+                    توفر اللعبة مجموعة واسعة من الخرائط الضخمة والمتنوعة (مثل الخرائط الصحراوية، الثلجية، والغابات)، وكل خريطة تفرض أسلوب لعب وإستراتيجية مواجهة مختلفة تماماً.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    العمل الجماعي واللعب التعاوني
+                </h3>
+
+                <p>
+                    تدعم اللعبة بقوة نظام الفرق (Squads)، مما يتيح لك التنسيق الصوتي المباشر مع أصدقائك، وتبادل الذخيرة والعلاج، ووضع خطط هجومية ودفاعية مشتركة.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    ترسانة ضخمة وتعديل كامل للأسلحة
+                </h3>
+
+                <p>
+                    تتيح لك اللعبة العثور على عشرات الأسلحة الواقعية وتطويرها داخل المعركة عبر تركيب المناظير (Scopes)، ومخازن الذخيرة الموسعة، والمثبتات لتناسب أسلوب قتالك.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    نموذج مجاني ومتاح للجميع
+                </h3>
+
+                <p>
+                    أصبحت اللعبة مجانية بالكامل للعب (Free-to-Play) على جميع المنصات، مما يسهل على أي شخص تحميلها والاستمتاع بها دون حواجز مادية.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DISADVANTAGES
+        ====================================================== -->
+
+        <section class="content-card negative reveal">
+
+            <h2 class="section-title">
+                سلبيات وعيوب لعبة ببجي التي يجب عليك معرفتها
+            </h2>
+
+
+            <div class="feature">
+
+                <h3>
+                    منحنى تعلم صعب وقاسٍ
+                </h3>
+
+                <p>
+                    تعتبر اللعبة معقدة جداً للمبتدئين، حيث يتطلب إتقان التحكم في ارتداد الأسلحة وفهم الإستراتيجيات وقتاً طويلاً، مما قد يسبب الإحباط في البداية.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    متطلبات تشغيل عالية (للكمبيوتر والمنصات)
+                </h3>
+
+                <p>
+                    تحتاج اللعبة إلى أجهزة ذات مواصفات قوية (خاصة معالج كارت شاشة قوي ورامات عالية) لتعمل بسلاسة وبدون تقطيع (Lag) وبأعلى دقة رسومية.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    مشكلة الغشاشين (Hackers)
+                </h3>
+
+                <p>
+                    رغم الجهود الكبيرة وأنظمة الحماية التي توفرها الشركة، لا يزال مجتمع اللعبة يعاني من وجود بعض الغشاشين الذين يخربون متعة المنافسة العادلة.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    المباريات الطويلة أحياناً
+                </h3>
+
+                <p>
+                    قد تستمر المباراة الواحدة لأكثر من 30 دقيقة، وهو ما يراه بعض اللاعبين وقتاً طويلاً ومملاً إذا قضوا معظم الوقت في البحث عن العتاد دون مواجهات مباشرة.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    مشاكل برمجية وثغرات (Bugs)
+                </h3>
+
+                <p>
+                    يشتكي اللاعبون من وقت لآخر من وجود ثغرات برمجية مفاجئة أو هبوط غير مبرر في معدل الإطارات (FPS)، خاصة بعد التحديثات الكبيرة.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    حجم اللعبة الضخم
+                </h3>
+
+                <p>
+                    تستهلك اللعبة مساحة تخزينية كبيرة جداً على الأقراص الصلبة، وتتطلب سرعة إنترنت عالية لتحميل التحديثات الدورية الضخمة.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERDICT
+        ====================================================== -->
+
+        <section class="verdict reveal">
+
+            <h2>
+                الخلاصة
+            </h2>
+
+
+            <p>
+                في النهاية، تظل لعبة PUBG: BATTLEGROUNDS الأسطورة الحية وعرّابة ألعاب الباتل رويال التي غيرت وجه صناعة الألعاب عالمياً. إذا كنت من عشاق التحدي الحقيقي، وتميل إلى المعارك العسكرية الواقعية التي تتطلب تخطيطاً ذكياً وصبراً وتنسيقاً عالي المستوى مع فريقك، فإن هذه اللعبة هي مكانك المثالي بلا منازع. ورغم عيوبها المتعلقة بصعوبة البداية ومتطلبات التشغيل، إلا أن متعة تحقيق لقب "إيجيكت" والانتصار في المنعطف الأخير تمنح شعوراً لا يمكن لأي لعبة أكشن أخرى تعويضه.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ====================================================== -->
+
+        <section class="download reveal">
+
+            <h2>
+                حمل لعبة ببجي PUBG الآن 🎮
+            </h2>
+
+
+            <p>
+                اختر المنصة المناسبة وابدأ معركتك.
+            </p>
+
+
+            <div class="download-buttons">
+
+
+                <!-- Android -->
+
+                <a
+                    href="https://google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-btn">
+
+                    تحميل للأندرويد
+                    (Google Play) 🤖
+
+                </a>
+
+
+                <!-- iPhone -->
+
+                <a
+                    href="https://apple.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-btn apple">
+
+                    تحميل للآيفون
+                    (App Store) 🍏
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             GAME IMAGE
+        ====================================================== -->
+
+        <section class="game-image-box reveal">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKagswujSiaSnN0R8jcgzm9a-x2Mq19_n6FttNwSfMeQ&s=10"
+                alt="صورة لعبة PUBG"
+                loading="lazy">
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        🎮 عالم الألعاب —
+
+        <strong>
+            ببجي | PUBG
+        </strong>
+
+        — المتعة تبدأ من هنا ✨
+
+    </footer>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================= -->
+
+    <button
+        id="topButton"
+        aria-label="العودة إلى الأعلى">
+
+        ↑
+
+    </button>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+
+        /* =====================================================
+           LOADER
+        ====================================================== */
+
+        window.addEventListener("load", () => {
+
+            const loader =
+                document.getElementById("loader");
+
+            setTimeout(() => {
+
+                loader.classList.add("hidden");
+
+            }, 700);
+
+        });
+
+
+        /* =====================================================
+           PARTICLES
+        ====================================================== */
+
+        const particleContainer =
+            document.getElementById("particles");
+
+
+        const particleCount =
+            window.innerWidth < 700
+                ? 22
+                : 48;
+
+
+        for (
+            let i = 0;
+            i < particleCount;
+            i++
+        ) {
+
+            const particle =
+                document.createElement("span");
+
+
+            particle.className =
+                "particle";
+
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+
+            particle.style.animationDuration =
+                (8 + Math.random() * 13) + "s";
+
+
+            particle.style.animationDelay =
+                (Math.random() * 10) + "s";
+
+
+            particle.style.opacity =
+                .2 + Math.random() * .5;
+
+
+            particleContainer.appendChild(
+                particle
+            );
+
+        }
+
+
+        /* =====================================================
+           NAVBAR SCROLL
+        ====================================================== */
+
+        const navbar =
+            document.getElementById("navbar");
+
+
+        const topButton =
+            document.getElementById("topButton");
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (
+                    window.scrollY > 80
+                ) {
+
+                    navbar.classList.add(
+                        "scrolled"
+                    );
+
+
+                    topButton.classList.add(
+                        "show"
+                    );
+
+                } else {
+
+                    navbar.classList.remove(
+                        "scrolled"
+                    );
+
+
+                    topButton.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =====================================================
+           BACK TO TOP
+        ====================================================== */
+
+        topButton.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior:
+                        "smooth"
+
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "show"
+                                );
+
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: .10
+                }
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CURSOR LIGHT
+        ====================================================== */
+
+        const cursorLight =
+            document.getElementById(
+                "cursorLight"
+            );
+
+
+        if (
+            window.matchMedia(
+                "(pointer:fine)"
+            ).matches
+        ) {
+
+            window.addEventListener(
+                "mousemove",
+                event => {
+
+                    cursorLight.style.left =
+                        event.clientX + "px";
+
+
+                    cursorLight.style.top =
+                        event.clientY + "px";
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           SUBTLE CARD TILT
+        ====================================================== */
+
+        if (
+            window.matchMedia(
+                "(pointer:fine)"
+            ).matches
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".content-card"
+                )
+                .forEach(card => {
+
+                    card.addEventListener(
+                        "mousemove",
+                        event => {
+
+                            const rect =
+                                card.getBoundingClientRect();
+
+
+                            const x =
+                                event.clientX -
+                                rect.left;
+
+
+                            const y =
+                                event.clientY -
+                                rect.top;
+
+
+                            const centerX =
+                                rect.width / 2;
+
+
+                            const centerY =
+                                rect.height / 2;
+
+
+                            const rotateY =
+                                (x - centerX) /
+                                centerX *
+                                .55;
+
+
+                            const rotateX =
+                                (centerY - y) /
+                                centerY *
+                                .55;
+
+
+                            card.style.transform =
+                                `perspective(1200px)
+                                 rotateX(${rotateX}deg)
+                                 rotateY(${rotateY}deg)`;
+
+                        }
+                    );
+
+
+                    card.addEventListener(
+                        "mouseleave",
+                        () => {
+
+                            card.style.transform =
+                                "perspective(1200px) rotateX(0) rotateY(0)";
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           KEYBOARD HOME
+        ====================================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Home"
+                ) {
+
+                    window.scrollTo({
+
+                        top: 0,
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

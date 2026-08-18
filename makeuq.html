@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Makeup Master | عالم الألعاب</title>
+
+    <meta name="description"
+        content="Makeup Master - Fashion Girl | تجربة تجميل وأزياء تجمع بين العناية بالبشرة والمكياج وتسريحات الشعر والإكسسوارات.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Cairo", sans-serif;
+            color: #fff;
+            background:
+                radial-gradient(circle at 85% 8%, rgba(255, 92, 164, .17), transparent 28%),
+                radial-gradient(circle at 12% 45%, rgba(180, 92, 255, .12), transparent 28%),
+                #09070c;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: .035;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+        }
+
+        ::selection {
+            background: #ff4fa3;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================================
+           AMBIENT LIGHT
+        ========================================================= */
+
+        .orb {
+            position: fixed;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            filter: blur(110px);
+            pointer-events: none;
+            opacity: .12;
+            z-index: -1;
+        }
+
+        .orb.one {
+            background: #ff3f91;
+            top: -150px;
+            right: -100px;
+        }
+
+        .orb.two {
+            background: #8e44ff;
+            bottom: -180px;
+            left: -120px;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .topbar {
+            width: min(1240px, calc(100% - 36px));
+            margin: 20px auto 0;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 0 18px;
+
+            background: rgba(18, 14, 23, .72);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 24px;
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+
+            position: relative;
+            z-index: 20;
+
+            box-shadow:
+                0 20px 70px rgba(0, 0, 0, .28),
+                inset 0 1px rgba(255, 255, 255, .06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(145deg, #ff72b6, #9c42ff);
+
+            box-shadow:
+                0 8px 25px rgba(255, 65, 155, .28);
+        }
+
+        .brand-mark span {
+            font-size: 21px;
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 15px;
+            letter-spacing: .5px;
+        }
+
+        .brand-text small {
+            color: #9d94a6;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        /* زر روح الموقع */
+
+        .games-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 12px 18px;
+
+            border-radius: 15px;
+
+            color: #f7edf4;
+
+            background: rgba(255, 255, 255, .045);
+            border: 1px solid rgba(255, 255, 255, .09);
+
+            transition: .35s ease;
+        }
+
+        .games-link .arrow {
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background: linear-gradient(135deg, #ff62ad, #8f4aff);
+
+            font-size: 15px;
+
+            transition: .35s ease;
+        }
+
+        .games-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 92, 171, .4);
+
+            box-shadow:
+                0 10px 35px rgba(220, 52, 143, .18);
+        }
+
+        .games-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            width: min(1240px, calc(100% - 36px));
+            min-height: 680px;
+            margin: 22px auto 0;
+
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 30px;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 13px;
+
+            border: 1px solid rgba(255, 104, 177, .22);
+            border-radius: 999px;
+
+            color: #ffacd0;
+            background: rgba(255, 86, 165, .055);
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .eyebrow i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ff5baa;
+            box-shadow: 0 0 15px #ff5baa;
+        }
+
+        .hero h1 {
+            margin-top: 22px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(52px, 7vw, 94px);
+            line-height: .92;
+            letter-spacing: -3px;
+
+            max-width: 700px;
+        }
+
+        .hero h1 .pink {
+            color: #ff6ab3;
+        }
+
+        .hero h1 .gradient {
+            background:
+                linear-gradient(
+                    110deg,
+                    #fff,
+                    #ffb3d5 45%,
+                    #a46aff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            margin-top: 27px;
+
+            max-width: 620px;
+
+            color: #b8afbd;
+
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 32px;
+
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            min-height: 54px;
+            padding: 0 23px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(135deg, #ff62ad, #b25aff);
+
+            color: #fff;
+
+            font-weight: 800;
+            font-size: 13px;
+
+            box-shadow:
+                0 15px 40px rgba(215, 64, 151, .25);
+
+            transition: .35s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 20px 50px rgba(215, 64, 151, .38);
+        }
+
+        .secondary-btn {
+            min-height: 54px;
+            padding: 0 21px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .04);
+
+            color: #ddd5df;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: .35s ease;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, .08);
+            transform: translateY(-3px);
+        }
+
+        /* =========================================================
+           HERO VISUAL
+        ========================================================= */
+
+        .hero-visual {
+            position: relative;
+            min-height: 600px;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .visual-glow {
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 89, 168, .27),
+                    rgba(153, 75, 255, .12) 45%,
+                    transparent 70%
+                );
+
+            filter: blur(8px);
+        }
+
+        .poster {
+            width: min(390px, 75%);
+            aspect-ratio: 4 / 5;
+
+            position: relative;
+            z-index: 2;
+
+            border-radius: 38px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, .15);
+
+            background: #211824;
+
+            box-shadow:
+                0 50px 100px rgba(0, 0, 0, .5),
+                0 0 80px rgba(255, 72, 163, .15);
+
+            transform:
+                perspective(1000px)
+                rotateY(-8deg)
+                rotateX(3deg);
+
+            transition: transform .5s ease;
+        }
+
+        .poster:hover {
+            transform:
+                perspective(1000px)
+                rotateY(-2deg)
+                rotateX(1deg)
+                translateY(-8px);
+        }
+
+        .poster img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            filter: saturate(1.05) contrast(1.02);
+        }
+
+        .poster::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 45%,
+                    rgba(7, 5, 10, .78)
+                );
+
+            pointer-events: none;
+        }
+
+        .poster-caption {
+            position: absolute;
+            z-index: 4;
+
+            bottom: 25px;
+            right: 25px;
+            left: 25px;
+        }
+
+        .poster-caption small {
+            color: #eeb0ce;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .poster-caption strong {
+            display: block;
+            margin-top: 4px;
+
+            font-family: "Playfair Display", serif;
+            font-size: 29px;
+        }
+
+        .floating-rating {
+            position: absolute;
+            z-index: 5;
+
+            left: 0;
+            top: 80px;
+
+            width: 150px;
+
+            padding: 17px;
+
+            border-radius: 22px;
+
+            background: rgba(19, 15, 25, .78);
+            border: 1px solid rgba(255, 255, 255, .1);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
+
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .floating-rating .stars {
+            color: #ffc04f;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .floating-rating strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 27px;
+        }
+
+        .floating-rating small {
+            color: #8f8794;
+            font-size: 9px;
+        }
+
+        .floating-badge {
+            position: absolute;
+            z-index: 5;
+
+            right: -10px;
+            bottom: 65px;
+
+            padding: 12px 15px;
+
+            border-radius: 15px;
+
+            background: #f7e9f0;
+            color: #241723;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            width: min(1240px, calc(100% - 36px));
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border-top: 1px solid rgba(255,255,255,.07);
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .stat {
+            min-height: 120px;
+
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            border-left: 1px solid rgba(255,255,255,.07);
+        }
+
+        .stat:first-child {
+            border-left: none;
+        }
+
+        .stat strong {
+            font-family: "Playfair Display", serif;
+            font-size: 31px;
+            color: #fff;
+        }
+
+        .stat span {
+            margin-top: 3px;
+            color: #8f8795;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .section {
+            width: min(1120px, calc(100% - 36px));
+            margin: 125px auto 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+
+            margin-bottom: 42px;
+        }
+
+        .section-kicker {
+            color: #ff76b8;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .section h2 {
+            margin-top: 9px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(36px, 5vw, 57px);
+            line-height: 1;
+        }
+
+        .section-head p {
+            max-width: 400px;
+
+            color: #8f8795;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        /* =========================================================
+           GAMEPLAY FLOW
+        ========================================================= */
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .flow-card {
+            min-height: 190px;
+
+            padding: 22px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.018)
+                );
+
+            border: 1px solid rgba(255,255,255,.07);
+
+            position: relative;
+            overflow: hidden;
+
+            transition: .35s ease;
+        }
+
+        .flow-card::before {
+            content: attr(data-step);
+
+            position: absolute;
+            top: 13px;
+            left: 17px;
+
+            color: rgba(255,255,255,.07);
+
+            font-size: 42px;
+            font-weight: 900;
+        }
+
+        .flow-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,93,171,.3);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,90,169,.1),
+                    rgba(255,255,255,.025)
+                );
+        }
+
+        .flow-icon {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background: rgba(255, 89, 169, .09);
+            border: 1px solid rgba(255, 89, 169, .15);
+
+            font-size: 19px;
+        }
+
+        .flow-card h3 {
+            margin-top: 28px;
+            font-size: 14px;
+        }
+
+        .flow-card p {
+            margin-top: 8px;
+
+            color: #817886;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           FEATURE SPLIT
+        ========================================================= */
+
+        .feature-layout {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 18px;
+        }
+
+        .feature-card {
+            border-radius: 28px;
+
+            padding: 32px;
+
+            border: 1px solid rgba(255,255,255,.07);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.015)
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card.large {
+            min-height: 390px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(255, 83, 165, .18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.06),
+                    rgba(255,255,255,.015)
+                );
+        }
+
+        .feature-card.large::after {
+            content: "BEAUTY";
+
+            position: absolute;
+            bottom: -25px;
+            left: -10px;
+
+            font-family: "Playfair Display", serif;
+            font-size: 120px;
+            font-weight: 800;
+
+            color: rgba(255,255,255,.025);
+        }
+
+        .feature-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+        }
+
+        .feature-card p {
+            margin-top: 14px;
+
+            color: #918896;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .mini-card {
+            min-height: 186px;
+
+            padding: 25px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.07);
+
+            transition: .3s ease;
+        }
+
+        .mini-card:hover {
+            border-color: rgba(255,95,174,.28);
+            transform: translateY(-5px);
+        }
+
+        .mini-card .emoji {
+            font-size: 25px;
+        }
+
+        .mini-card h3 {
+            margin-top: 17px;
+            font-size: 14px;
+        }
+
+        .mini-card p {
+            margin-top: 7px;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           RATING
+        ========================================================= */
+
+        .rating-section {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 20px;
+        }
+
+        .score-box {
+            padding: 40px;
+
+            min-height: 350px;
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(255, 89, 169, .15),
+                    transparent 45%
+                ),
+                rgba(255,255,255,.035);
+
+            border: 1px solid rgba(255,255,255,.07);
+
+            text-align: center;
+        }
+
+        .score-ring {
+            width: 180px;
+            height: 180px;
+
+            margin: 0 auto;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #110d14 57%,
+                    transparent 58%
+                ),
+                conic-gradient(
+                    #ff64ad 0deg 324deg,
+                    rgba(255,255,255,.07) 324deg 360deg
+                );
+
+            box-shadow:
+                0 0 70px rgba(255, 79, 165, .12);
+        }
+
+        .score-number {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+        }
+
+        .score-number small {
+            font-family: "Cairo", sans-serif;
+            font-size: 13px;
+            color: #8e8793;
+        }
+
+        .score-box h3 {
+            margin-top: 20px;
+        }
+
+        .score-box p {
+            margin-top: 5px;
+            color: #837b88;
+            font-size: 11px;
+        }
+
+        .rating-bars {
+            padding: 32px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.07);
+        }
+
+        .bar-row {
+            margin-bottom: 24px;
+        }
+
+        .bar-info {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            font-size: 11px;
+            color: #bdb4c1;
+        }
+
+        .bar {
+            height: 7px;
+
+            background: rgba(255,255,255,.06);
+            border-radius: 999px;
+
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+
+            width: var(--value);
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(90deg, #ff5fae, #a968ff);
+
+            box-shadow: 0 0 15px rgba(255,88,168,.25);
+        }
+
+        /* =========================================================
+           PROS / CONS
+        ========================================================= */
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .pc-card {
+            padding: 30px;
+
+            border-radius: 28px;
+
+            border: 1px solid rgba(255,255,255,.07);
+        }
+
+        .pc-card.pros {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(87, 210, 161, .08),
+                    rgba(255,255,255,.02)
+                );
+        }
+
+        .pc-card.cons {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 93, 113, .07),
+                    rgba(255,255,255,.02)
+                );
+        }
+
+        .pc-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-weight: 800;
+        }
+
+        .pc-icon {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: rgba(255,255,255,.06);
+        }
+
+        .pc-card ul {
+            list-style: none;
+            margin-top: 23px;
+        }
+
+        .pc-card li {
+            padding: 12px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,.05);
+
+            color: #a49ba8;
+
+            font-size: 12px;
+        }
+
+        .pc-card li:last-child {
+            border-bottom: none;
+        }
+
+        .pc-card li::before {
+            content: "✦";
+            margin-left: 9px;
+            color: #ff68b1;
+        }
+
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download {
+            margin-top: 125px;
+            margin-bottom: 90px;
+
+            padding: 55px;
+
+            border-radius: 36px;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(255, 94, 171, .23),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    rgba(139, 80, 255, .2),
+                    transparent 30%
+                ),
+                #17111c;
+
+            border: 1px solid rgba(255,255,255,.09);
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.28);
+        }
+
+        .download::before {
+            content: "MAKEUP MASTER";
+
+            position: absolute;
+            left: -20px;
+            bottom: -55px;
+
+            font-family: "Playfair Display", serif;
+            font-size: 115px;
+            font-weight: 800;
+
+            color: rgba(255,255,255,.025);
+            white-space: nowrap;
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 62px);
+            max-width: 700px;
+        }
+
+        .download p {
+            max-width: 650px;
+
+            margin-top: 14px;
+
+            color: #a89eac;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .store-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            min-width: 205px;
+
+            min-height: 62px;
+
+            padding: 10px 17px;
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            border-radius: 17px;
+
+            background: #fff;
+            color: #120d13;
+
+            transition: .35s ease;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 18px 40px rgba(0,0,0,.3);
+        }
+
+        .store-icon {
+            font-size: 27px;
+        }
+
+        .store-btn small {
+            display: block;
+            font-size: 9px;
+            opacity: .6;
+        }
+
+        .store-btn strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .store-btn.disabled {
+            opacity: .42;
+            cursor: not-allowed;
+            background: #2b2530;
+            color: #fff;
+        }
+
+        .store-btn.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            width: min(1120px, calc(100% - 36px));
+
+            margin: 0 auto 35px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(255,255,255,.06);
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            color: #625a67;
+            font-size: 10px;
+        }
+
+        footer strong {
+            color: #a59ba8;
+        }
+
+        /* =========================================================
+           REVEAL
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 45px;
+            }
+
+            .hero-copy {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-visual {
+                min-height: 560px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(3) {
+                border-left: none;
+            }
+
+            .flow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-layout,
+            .rating-section {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 620px) {
+
+            .topbar {
+                height: 68px;
+                border-radius: 20px;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .games-link {
+                padding: 9px 11px;
+                font-size: 10px;
+            }
+
+            .hero {
+                width: min(100% - 26px, 1240px);
+            }
+
+            .hero h1 {
+                font-size: 52px;
+                letter-spacing: -2px;
+            }
+
+            .hero-desc {
+                font-size: 13px;
+            }
+
+            .hero-visual {
+                min-height: 470px;
+            }
+
+            .poster {
+                width: 76%;
+                border-radius: 28px;
+            }
+
+            .floating-rating {
+                left: 0;
+                top: 55px;
+                width: 125px;
+            }
+
+            .floating-badge {
+                right: 0;
+                bottom: 40px;
+            }
+
+            .stats {
+                width: calc(100% - 26px);
+            }
+
+            .stat {
+                padding: 20px 14px;
+                min-height: 100px;
+            }
+
+            .stat strong {
+                font-size: 24px;
+            }
+
+            .section {
+                width: calc(100% - 26px);
+                margin-top: 85px;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-head p {
+                margin-top: 17px;
+            }
+
+            .flow {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .download {
+                margin-top: 85px;
+                padding: 32px 23px;
+                border-radius: 28px;
+            }
+
+            .download::before {
+                font-size: 70px;
+            }
+
+            .store-btn {
+                width: 100%;
+            }
+
+            footer {
+                display: block;
+                line-height: 2;
+            }
+
+            footer span {
+                display: block;
+                margin-top: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="topbar">
+
+        <a href="games.html" class="brand">
+
+            <div class="brand-mark">
+                <span>✦</span>
+            </div>
+
+            <div class="brand-text">
+                <strong>عالم الألعاب</strong>
+                <small>GAMEVERSE</small>
+            </div>
+
+        </a>
+
+        <!-- هذا هو زر العودة إلى عالم الألعاب بروح الموقع -->
+
+        <a href="games.html" class="games-link">
+
+            <span>استكشف عالم الألعاب</span>
+
+            <span class="arrow">←</span>
+
+        </a>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-copy reveal">
+
+                <span class="eyebrow">
+                    <i></i>
+                    BEAUTY • STYLE • MAKEOVER
+                </span>
+
+                <h1>
+                    اصنعي
+                    <span class="pink">الإطلالة.</span>
+                    <br>
+                    <span class="gradient">اصنعي القصة.</span>
+                </h1>
+
+                <p class="hero-desc">
+                    ادخلي إلى عالم
+                    <strong>Makeup Master - Fashion Girl</strong>،
+                    حيث تبدأ كل إطلالة من العناية بالبشرة
+                    وتنتهي بالمكياج وتسريحة الشعر والإكسسوارات.
+                    تجربة تجميل خفيفة تجمع الإبداع والتنسيق
+                    واختيار اللوك المناسب لكل شخصية.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#download" class="primary-btn">
+                        ✦ ابدئي التجربة
+                    </a>
+
+                    <a href="#rating" class="secondary-btn">
+                        اكتشفي التقييم
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual reveal">
+
+                <div class="visual-glow"></div>
+
+                <!-- صورة فعلية من صور اللعبة -->
+
+                <div class="poster">
+
+                    <img
+                        src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/bc/76/73/bc767332-bf7d-aa49-eeb7-288c30b30ef4/8675065e-c801-42ba-9e9f-da3d540bec2a_1.png/2048x2732.png"
+                        alt="لقطة شاشة من لعبة Makeup Master - Fashion Girl"
+                        loading="eager"
+                    >
+
+                    <div class="poster-caption">
+
+                        <small>Tap Q Games</small>
+
+                        <strong>Makeup Master</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-rating">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <strong>4.5</strong>
+
+                    <small>من 5 • App Store</small>
+
+                </div>
+
+
+                <div class="floating-badge">
+                    💄 BEAUTY STUDIO
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATS
+        ===================================================== -->
+
+        <section class="stats reveal">
+
+            <div class="stat">
+                <strong>4.5/5</strong>
+                <span>تقييم App Store</span>
+            </div>
+
+            <div class="stat">
+                <strong>33K+</strong>
+                <span>تقييمًا على المتجر</span>
+            </div>
+
+            <div class="stat">
+                <strong>183.5 MB</strong>
+                <span>حجم التطبيق على App Store</span>
+            </div>
+
+            <div class="stat">
+                <strong>4+</strong>
+                <span>التصنيف العمري</span>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPERIENCE
+        ===================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-head">
+
+                <div>
+                    <div class="section-kicker">
+                        THE MAKEOVER FLOW
+                    </div>
+
+                    <h2>رحلة الإطلالة</h2>
+                </div>
+
+                <p>
+                    ليست مجرد اختيار لون أحمر شفاه؛
+                    اللعبة تبني جلسة تجميل متكاملة تبدأ
+                    بالعناية وتنتهي بالتفاصيل النهائية.
+                </p>
+
+            </div>
+
+
+            <div class="flow">
+
+                <article class="flow-card" data-step="01">
+
+                    <div class="flow-icon">🫧</div>
+
+                    <h3>تنظيف البشرة</h3>
+
+                    <p>
+                        ابدئي بالعناية وتنظيف الوجه قبل
+                        الانتقال إلى خطوات المكياج.
+                    </p>
+
+                </article>
+
+
+                <article class="flow-card" data-step="02">
+
+                    <div class="flow-icon">✨</div>
+
+                    <h3>العناية والـ SPA</h3>
+
+                    <p>
+                        أضيفي لمسات العناية والماسكات
+                        لتحضير الإطلالة.
+                    </p>
+
+                </article>
+
+
+                <article class="flow-card" data-step="03">
+
+                    <div class="flow-icon">🎨</div>
+
+                    <h3>المكياج</h3>
+
+                    <p>
+                        اختاري الأساس، الآيلاينر، ظلال
+                        العيون، أحمر الخدود والشفاه.
+                    </p>
+
+                </article>
+
+
+                <article class="flow-card" data-step="04">
+
+                    <div class="flow-icon">💇</div>
+
+                    <h3>تسريحة الشعر</h3>
+
+                    <p>
+                        نسقي الشعر مع اللوك العام
+                        والمناسبة المطلوبة.
+                    </p>
+
+                </article>
+
+
+                <article class="flow-card" data-step="05">
+
+                    <div class="flow-icon">💎</div>
+
+                    <h3>التفاصيل النهائية</h3>
+
+                    <p>
+                        أكملي اللوك بالمجوهرات والإكسسوارات
+                        والاختيارات النهائية.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURES
+        ===================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-head">
+
+                <div>
+                    <div class="section-kicker">
+                        WHY IT STANDS OUT
+                    </div>
+
+                    <h2>مختبر الستايل</h2>
+                </div>
+
+            </div>
+
+
+            <div class="feature-layout">
+
+                <article class="feature-card large">
+
+                    <h3>إبداع بلا وصفة واحدة.</h3>
+
+                    <p>
+                        اللعبة تمنحك مجموعة من أدوات المكياج
+                        والفرش وتسريحات الشعر والإكسسوارات،
+                        ثم تترك لك مساحة لتنسيق الإطلالة
+                        بالشكل المناسب للشخصية والمناسبة.
+                    </p>
+
+                    <p>
+                        كما تتضمن مهامًا ومستويات ونظام تقدم،
+                        مع إمكانية تجربة الإطلالات وإعادة
+                        المحاولة للوصول إلى النتيجة الأفضل.
+                    </p>
+
+                </article>
+
+
+                <div class="mini-grid">
+
+                    <article class="mini-card">
+
+                        <div class="emoji">💄</div>
+
+                        <h3>أدوات مكياج متعددة</h3>
+
+                        <p>
+                            فرش وألوان وخيارات متعددة
+                            لصناعة اللوك.
+                        </p>
+
+                    </article>
+
+
+                    <article class="mini-card">
+
+                        <div class="emoji">👗</div>
+
+                        <h3>تنسيق الأزياء</h3>
+
+                        <p>
+                            اختاري الملابس التي تكمل
+                            الشخصية والإطلالة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="mini-card">
+
+                        <div class="emoji">💇‍♀️</div>
+
+                        <h3>تسريحات متنوعة</h3>
+
+                        <p>
+                            الشعر جزء أساسي من الصورة
+                            النهائية للستايل.
+                        </p>
+
+                    </article>
+
+
+                    <article class="mini-card">
+
+                        <div class="emoji">🏆</div>
+
+                        <h3>مهام وتقدم</h3>
+
+                        <p>
+                            مهام ومستويات وتطور تدريجي
+                            لتجربة اللعب.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RATING
+        ===================================================== -->
+
+        <section class="section reveal" id="rating">
+
+            <div class="section-head">
+
+                <div>
+                    <div class="section-kicker">
+                        COMMUNITY SCORE
+                    </div>
+
+                    <h2>هل تستحق التجربة؟</h2>
+                </div>
+
+                <p>
+                    التقييم هنا مبني على بيانات المتجر،
+                    بينما درجات التفاصيل أدناه هي
+                    تقييم تحريري للتجربة وليست تقييمات
+                    رسمية من Apple.
+                </p>
+
+            </div>
+
+
+            <div class="rating-section">
+
+                <div class="score-box">
+
+                    <div class="score-ring">
+
+                        <div class="score-number">
+                            4.5
+                            <small>/5</small>
+                        </div>
+
+                    </div>
+
+                    <h3>تقييم المستخدمين</h3>
+
+                    <p>
+                        حوالي 33 ألف تقييم على App Store
+                    </p>
+
+                </div>
+
+
+                <div class="rating-bars">
+
+                    <div class="bar-row">
+
+                        <div class="bar-info">
+                            <span>تنوع المكياج</span>
+                            <strong>92%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <span style="--value:92%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <div class="bar-info">
+                            <span>التخصيص والستايل</span>
+                            <strong>90%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <span style="--value:90%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <div class="bar-info">
+                            <span>سهولة اللعب</span>
+                            <strong>94%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <span style="--value:94%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <div class="bar-info">
+                            <span>الترفيه</span>
+                            <strong>88%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <span style="--value:88%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-row">
+
+                        <div class="bar-info">
+                            <span>الإعلانات / المشتريات</span>
+                            <strong>65%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <span style="--value:65%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROS & CONS
+        ===================================================== -->
+
+        <section class="section reveal">
+
+            <div class="section-head">
+
+                <div>
+                    <div class="section-kicker">
+                        THE VERDICT
+                    </div>
+
+                    <h2>الصورة الكاملة</h2>
+                </div>
+
+            </div>
+
+
+            <div class="pros-cons">
+
+                <article class="pc-card pros">
+
+                    <div class="pc-title">
+
+                        <div class="pc-icon">✓</div>
+
+                        نقاط القوة
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            تجربة تجميل متدرجة من العناية إلى اللوك النهائي.
+                        </li>
+
+                        <li>
+                            تنوع في المكياج وتسريحات الشعر والإكسسوارات.
+                        </li>
+
+                        <li>
+                            وجود مهام ونظام مستويات وتقدم.
+                        </li>
+
+                        <li>
+                            مناسبة لمن يحب ألعاب الـ Makeover والموضة.
+                        </li>
+
+                        <li>
+                            مجانية للتحميل على App Store.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <article class="pc-card cons">
+
+                    <div class="pc-title">
+
+                        <div class="pc-icon">!</div>
+
+                        نقاط يجب معرفتها
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            تحتوي اللعبة على مشتريات داخل التطبيق.
+                        </li>
+
+                        <li>
+                            يتوفر خيار لإزالة الإعلانات مقابل شراء داخل التطبيق.
+                        </li>
+
+                        <li>
+                            بعض عناصر التجربة قد تعتمد على الإعلانات وفق مراجعات المستخدمين.
+                        </li>
+
+                        <li>
+                            النسخة التي تم التحقق منها هنا هي نسخة iPhone وiPad.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ===================================================== -->
+
+        <section class="download reveal" id="download">
+
+            <div class="download-content">
+
+                <div class="section-kicker">
+                    OFFICIAL DOWNLOAD
+                </div>
+
+                <h2>
+                    جاهزة لصناعة
+                    <span class="gradient">الإطلالة؟</span>
+                </h2>
+
+                <p>
+                    حمّلي النسخة الرسمية من المتجر.
+                    رابط App Store أدناه هو الرابط الرسمي
+                    للعبة Makeup Master - Fashion Girl.
+                    لم أضع رابط Android غير موثوق للعبة نفسها.
+                </p>
+
+
+                <div class="store-row">
+
+                    <!-- الرابط الرسمي المؤكد -->
+
+                    <a
+                        class="store-btn"
+                        href="https://apps.apple.com/us/app/makeup-master-fashion-girl/id1590125383"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <span class="store-icon"></span>
+
+                        <span>
+                            <small>DOWNLOAD ON THE</small>
+                            <strong>App Store</strong>
+                        </span>
+
+                    </a>
+
+
+                    <!-- لا يوجد رابط Google Play موثوق للنسخة نفسها -->
+
+                    <span class="store-btn disabled">
+
+                        <span class="store-icon">🤖</span>
+
+                        <span>
+                            <small>OFFICIAL LINK</small>
+                            <strong>Android — غير متوفر مؤكدًا</strong>
+                        </span>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <strong>
+            GAMEVERSE • Makeup Master
+        </strong>
+
+        <span>
+            معلومات المتجر والتقييمات قابلة للتغير حسب المنطقة والوقت.
+        </span>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* ظهور العناصر أثناء التمرير */
+
+        const observer = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        document.querySelectorAll(".reveal").forEach(element => {
+            observer.observe(element);
+        });
+
+
+        /* تأثير حركة خفيف على صورة اللعبة */
+
+        const poster = document.querySelector(".poster");
+
+        document.addEventListener("mousemove", event => {
+
+            if (window.innerWidth < 900) return;
+
+            const x = (event.clientX / window.innerWidth - .5);
+            const y = (event.clientY / window.innerHeight - .5);
+
+            poster.style.transform =
+                `perspective(1000px)
+                 rotateY(${x * -7}deg)
+                 rotateX(${y * 4}deg)
+                 translateY(-2px)`;
+
+        });
+
+
+        document.addEventListener("mouseleave", () => {
+
+            poster.style.transform =
+                "perspective(1000px) rotateY(-8deg) rotateX(3deg)";
+
+        });
+
+    </script>
+
+</body>
+</html>

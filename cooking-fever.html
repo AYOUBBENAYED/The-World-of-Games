@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cooking Fever | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            color: #fff;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 122, 24, .20), transparent 30%),
+                radial-gradient(circle at 85% 10%, rgba(255, 205, 70, .13), transparent 28%),
+                linear-gradient(135deg, #100806, #241008 45%, #080505);
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           خلفية زخرفية حية
+        ========================= */
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            opacity: .35;
+            animation: floatLight 10s infinite alternate ease-in-out;
+        }
+
+        body::before {
+            background: #ff5a1f;
+            top: 10%;
+            right: -120px;
+        }
+
+        body::after {
+            background: #ffb300;
+            bottom: 5%;
+            left: -120px;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatLight {
+            from {
+                transform: translateY(-30px) scale(1);
+            }
+
+            to {
+                transform: translateY(40px) scale(1.15);
+            }
+        }
+
+        /* =========================
+           شريط الموقع
+        ========================= */
+
+        .topbar {
+            width: min(1180px, 92%);
+            margin: 22px auto 0;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(18, 10, 7, .65);
+            backdrop-filter: blur(18px);
+            border-radius: 22px;
+            box-shadow: 0 15px 50px rgba(0,0,0,.3);
+            position: relative;
+            z-index: 5;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            letter-spacing: .5px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ff7a18, #ffb000);
+            box-shadow: 0 8px 25px rgba(255,115,20,.3);
+            font-size: 21px;
+        }
+
+        .brand span {
+            color: #ffd48c;
+        }
+
+        .back-world {
+            text-decoration: none;
+            color: #fff;
+            padding: 9px 17px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            transition: .3s;
+        }
+
+        .back-world:hover {
+            background: #ff7418;
+            border-color: #ff7418;
+            transform: translateX(4px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            width: min(1180px, 92%);
+            min-height: 600px;
+            margin: 28px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 38px;
+            display: flex;
+            align-items: flex-end;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(7,4,3,.97) 4%,
+                    rgba(7,4,3,.65) 42%,
+                    rgba(7,4,3,.10) 85%
+                ),
+                url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8f-NOwPIQYa2qiXLajzKwBJ3WaCY60rih6Yi-fOc-sQ&s")
+                center/cover;
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.55),
+                inset 0 0 80px rgba(255,92,0,.12);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(120deg, transparent 30%, rgba(255,150,40,.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 55px;
+        }
+
+        .category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 50px;
+            background: rgba(255,126,24,.15);
+            border: 1px solid rgba(255,150,60,.3);
+            color: #ffc477;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            line-height: 1.05;
+            margin-bottom: 18px;
+            letter-spacing: -3px;
+            text-shadow: 0 8px 30px rgba(0,0,0,.7);
+        }
+
+        .hero h1 span {
+            color: #ff8b22;
+        }
+
+        .hero-description {
+            max-width: 720px;
+            color: #e5dcd7;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           تقييم
+        ========================= */
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+
+        .score {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .reviews {
+            color: #a99e98;
+            font-size: 14px;
+        }
+
+        /* =========================
+           الإحصائيات
+        ========================= */
+
+        .stats {
+            width: min(1100px, 88%);
+            margin: -55px auto 70px;
+            position: relative;
+            z-index: 4;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 22px 15px;
+            text-align: center;
+            border-radius: 22px;
+            background: rgba(25,15,11,.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,.3);
+        }
+
+        .stat strong {
+            display: block;
+            color: #ff9a3c;
+            font-size: 25px;
+            margin-bottom: 3px;
+        }
+
+        .stat small {
+            color: #a99d96;
+        }
+
+        /* =========================
+           المحتوى
+        ========================= */
+
+        .container {
+            width: min(1050px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-title .line {
+            width: 45px;
+            height: 4px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #ff7518, #ffc04a);
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+        }
+
+        .section-title p {
+            color: #8e817b;
+            font-size: 13px;
+            margin-right: auto;
+        }
+
+        /* =========================
+           بطاقة المقدمة
+        ========================= */
+
+        .intro {
+            padding: 35px;
+            border-radius: 28px;
+            background:
+                linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+            border: 1px solid rgba(255,255,255,.09);
+            box-shadow: 0 25px 70px rgba(0,0,0,.22);
+            color: #d9d0cc;
+            font-size: 17px;
+        }
+
+        .intro::first-letter {
+            color: #ff8b20;
+            font-size: 50px;
+            font-weight: bold;
+            float: right;
+            line-height: .9;
+            padding-left: 8px;
+        }
+
+        /* =========================
+           شبكة المميزات
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .feature {
+            position: relative;
+            padding: 25px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #21130e, #140b08);
+            border: 1px solid rgba(255,255,255,.07);
+            overflow: hidden;
+            transition: .35s;
+        }
+
+        .feature::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #ff7218;
+            filter: blur(70px);
+            opacity: 0;
+            top: -30px;
+            left: -30px;
+            transition: .35s;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+            border-color: rgba(255,135,40,.35);
+            box-shadow: 0 18px 45px rgba(0,0,0,.35);
+        }
+
+        .feature:hover::before {
+            opacity: .3;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: rgba(255,119,26,.12);
+            border: 1px solid rgba(255,150,70,.18);
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .feature p {
+            color: #a99e99;
+            font-size: 14px;
+        }
+
+        /* =========================
+           السلبيات
+        ========================= */
+
+        .cons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .con {
+            padding: 23px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.07);
+        }
+
+        .con b {
+            color: #ff705e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .con p {
+            color: #9d918b;
+            font-size: 14px;
+        }
+
+        /* =========================
+           الخلاصة
+        ========================= */
+
+        .verdict {
+            position: relative;
+            padding: 42px;
+            border-radius: 30px;
+            overflow: hidden;
+            background:
+                linear-gradient(120deg, #32170c, #170b08);
+            border: 1px solid rgba(255,147,65,.22);
+        }
+
+        .verdict::before {
+            content: "★";
+            position: absolute;
+            font-size: 180px;
+            color: rgba(255,170,70,.04);
+            left: 25px;
+            bottom: -55px;
+        }
+
+        .verdict h2 {
+            color: #ffb24f;
+            margin-bottom: 12px;
+        }
+
+        .verdict p {
+            color: #d0c4bd;
+            max-width: 800px;
+        }
+
+        /* =========================
+           التحميل
+        ========================= */
+
+        .download-box {
+            text-align: center;
+            padding: 45px 25px;
+            border-radius: 32px;
+            background:
+                radial-gradient(circle at center, rgba(255,120,20,.13), transparent 60%),
+                rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .download-box h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .download-box p {
+            color: #938780;
+            margin-bottom: 25px;
+        }
+
+        .stores {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .store {
+            min-width: 230px;
+            padding: 16px 24px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .android {
+            background: linear-gradient(135deg, #45b649, #159957);
+            box-shadow: 0 12px 30px rgba(30,180,90,.18);
+        }
+
+        .ios {
+            background: linear-gradient(135deg, #292929, #111);
+            border: 1px solid rgba(255,255,255,.13);
+        }
+
+        .store:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .store-icon {
+            font-size: 23px;
+        }
+
+        /* =========================
+           الفوتر
+        ========================= */
+
+        footer {
+            width: min(1180px, 92%);
+            margin: 70px auto 25px;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #70655f;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #ff8c28;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .hero {
+                min-height: 550px;
+                border-radius: 25px;
+            }
+
+            .hero-content {
+                padding: 30px 25px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: -30px;
+            }
+
+            .features,
+            .cons {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title p {
+                display: none;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .topbar {
+                padding: 10px;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .stats {
+                width: 92%;
+            }
+
+            .stat {
+                padding: 17px 8px;
+            }
+
+            .stat strong {
+                font-size: 20px;
+            }
+
+            .intro,
+            .verdict {
+                padding: 25px;
+            }
+
+            .store {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =========================
+         شريط الموقع
+    ========================= -->
+
+    <nav class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">🎮</div>
+            <div>عالم الألعاب <span>• GAMEVERSE</span></div>
+        </div>
+
+        <!-- غيّر games.html إلى صفحة عالم الألعاب الخاصة بك -->
+        <a href="games.html" class="back-world">
+            ← عالم الألعاب
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="category">
+                🍳 محاكاة • طبخ • إدارة
+            </div>
+
+            <h1>
+                Cooking <span>Fever</span>
+            </h1>
+
+            <p class="hero-description">
+                أشعل الموقد، افتح مطعمك، أسرع قبل أن ينفد صبر
+                الزبائن، وابنِ إمبراطورية مطاعم كاملة في واحدة
+                من أشهر تجارب الطبخ السريع على الهواتف.
+            </p>
+
+            <div class="rating-row">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="score">
+                    4.6 / 5
+                </div>
+
+                <div class="reviews">
+                    تقييم مجتمع اللاعبين
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         الإحصائيات
+    ========================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <strong>1000+</strong>
+            <small>مستوى</small>
+        </div>
+
+        <div class="stat">
+            <strong>50+</strong>
+            <small>مطعم</small>
+        </div>
+
+        <div class="stat">
+            <strong>آلاف</strong>
+            <small>الأطباق</small>
+        </div>
+
+        <div class="stat">
+            <strong>مجانية</strong>
+            <small>للتحميل</small>
+        </div>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <!-- =========================
+             المقدمة
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="line"></div>
+
+                <div>
+                    <h2>عن اللعبة</h2>
+                    <p>المطبخ يبدأ من هنا</p>
+                </div>
+
+            </div>
+
+            <div class="intro">
+
+                Cooking Fever: Restaurant Game هي لعبة طبخ
+                وإدارة مطاعم للهواتف الذكية. يستطيع اللاعب
+                إعداد العديد من الأطباق والحلويات من مطابخ
+                مختلفة حول العالم، وتطوير معدات المطبخ
+                والمطاعم أثناء التقدم في اللعبة.
+
+                <br><br>
+
+                الفكرة بسيطة في البداية: اطبخ، قدّم، اكسب،
+                وطوّر. لكن مع ارتفاع مستوى المطاعم تصبح
+                السرعة وإدارة الوقت واتخاذ القرار هي مفتاح
+                النجاح.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             المميزات
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="line"></div>
+
+                <div>
+                    <h2>لماذا تستحق التجربة؟</h2>
+                    <p>نقاط القوة</p>
+                </div>
+
+            </div>
+
+            <div class="features">
+
+                <article class="feature">
+
+                    <div class="feature-icon">🍔</div>
+
+                    <h3>تنوع هائل في الأطباق</h3>
+
+                    <p>
+                        آلاف الأطباق والمكونات تمنح كل مطبخ
+                        شخصية مختلفة وتبقي التجربة متجددة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">🏪</div>
+
+                    <h3>إمبراطورية مطاعم</h3>
+
+                    <p>
+                        انتقل بين مطاعم ومطابخ متنوعة وطوّر
+                        معداتك وديكوراتك لتحسين الأداء.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">⚡</div>
+
+                    <h3>سرعة وردة فعل</h3>
+
+                    <p>
+                        الطلبات تتراكم والوقت يضغط عليك؛
+                        السرعة والتنظيم هما طريقك لتحقيق
+                        أفضل النتائج.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">📈</div>
+
+                    <h3>تطور مستمر</h3>
+
+                    <p>
+                        أكثر من 1000 مستوى تمنح اللاعب
+                        تحديات متصاعدة وتقدمًا طويل المدى.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             السلبيات
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="line"></div>
+
+                <div>
+                    <h2>قبل أن تبدأ...</h2>
+                    <p>أشياء يجب معرفتها</p>
+                </div>
+
+            </div>
+
+            <div class="cons">
+
+                <article class="con">
+
+                    <b>⚠ الإعلانات والمشتريات</b>
+
+                    <p>
+                        تحتوي اللعبة على إعلانات ومشتريات
+                        اختيارية داخل التطبيق.
+                    </p>
+
+                </article>
+
+
+                <article class="con">
+
+                    <b>⚠ التقدم يحتاج وقتًا</b>
+
+                    <p>
+                        بعض عمليات التطوير تتطلب جمع الموارد
+                        والتقدم عبر المراحل.
+                    </p>
+
+                </article>
+
+
+                <article class="con">
+
+                    <b>⚠ اتصال بالإنترنت</b>
+
+                    <p>
+                        تحتاج اللعبة إلى الإنترنت للاستفادة
+                        من مختلف ميزاتها.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             الحكم النهائي
+        ========================= -->
+
+        <section class="section">
+
+            <div class="verdict">
+
+                <h2>🔥 حكم عالم الألعاب</h2>
+
+                <p>
+                    Cooking Fever ليست مجرد لعبة طبخ؛ إنها
+                    اختبار للسرعة والتنظيم وإدارة الموارد.
+                    تبدأ بتقديم طبق واحد، ثم تجد نفسك بعد
+                    فترة تدير مطاعم متعددة وتحاول تحقيق
+                    أعلى نتيجة ممكنة.
+
+                    <br><br>
+
+                    <strong>
+                        ⭐ اختيار ممتاز لمحبي ألعاب الطبخ
+                        والإدارة السريعة.
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             التحميل
+        ========================= -->
+
+        <section class="section">
+
+            <div class="download-box">
+
+                <h2>جاهز لدخول المطبخ؟ 🍳</h2>
+
+                <p>
+                    حمّل Cooking Fever من المتاجر الرسمية
+                    وابدأ رحلتك في عالم المطاعم.
+                </p>
+
+                <div class="stores">
+
+                    <a
+                        class="store android"
+                        href="https://play.google.com/store/apps/details?id=com.nordcurrent.canteenhd"
+                        target="_blank"
+                    >
+
+                        <span class="store-icon">🤖</span>
+
+                        <span>
+                            Google Play<br>
+                            <small>تحميل للأندرويد</small>
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        class="store ios"
+                        href="https://apps.apple.com/us/app/cooking-fever-restaurant-game/id714796093"
+                        target="_blank"
+                    >
+
+                        <span class="store-icon"></span>
+
+                        <span>
+                            App Store<br>
+                            <small>تحميل للآيفون والآيباد</small>
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div>
+            © 2026 <strong>GAMEVERSE</strong>
+        </div>
+
+        <div>
+            Cooking Fever • مراجعة الألعاب
+        </div>
+
+    </footer>
+
+</body>
+</html>

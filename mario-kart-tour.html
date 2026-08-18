@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mario Kart Tour | عالم الألعاب</title>
+
+    <meta name="description"
+        content="صفحة Mario Kart Tour ضمن عالم الألعاب - مراجعة شاملة للمميزات والعيوب وتجربة اللعب.">
+
+    <meta name="theme-color" content="#10131f">
+
+    <style>
+
+        /* =========================================================
+           01 - المتغيرات الأساسية
+        ========================================================= */
+
+        :root {
+            --bg-main: #070912;
+            --bg-secondary: #0d1120;
+            --bg-card: rgba(20, 25, 43, 0.78);
+            --bg-card-strong: #151a2d;
+
+            --text-main: #f7f8ff;
+            --text-secondary: #b7bdd3;
+            --text-muted: #8189a3;
+
+            --primary: #ff3d71;
+            --primary-dark: #d51f52;
+
+            --secondary: #ffd43b;
+            --secondary-dark: #e9b800;
+
+            --blue: #4da3ff;
+            --green: #35d39a;
+            --red: #ff5c68;
+
+            --border: rgba(255,255,255,0.09);
+            --shadow: 0 25px 70px rgba(0,0,0,0.45);
+
+            --radius-small: 12px;
+            --radius-medium: 20px;
+            --radius-large: 30px;
+
+            --max-width: 1180px;
+        }
+
+
+        /* =========================================================
+           02 - إعادة ضبط الصفحة
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            color: var(--text-main);
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(255,61,113,0.13),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(77,163,255,0.11),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #070912 0%,
+                    #0a0e1a 45%,
+                    #080b15 100%
+                );
+
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           03 - خلفية زخرفية
+        ========================================================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                radial-gradient(
+                    rgba(255,255,255,0.09) 1px,
+                    transparent 1px
+                );
+
+            background-size: 38px 38px;
+            opacity: 0.18;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            top: -250px;
+            left: -200px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,61,113,0.14),
+                    transparent 70%
+                );
+
+            filter: blur(30px);
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =========================================================
+           04 - الشريط العلوي
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(7,9,18,0.82);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .topbar-inner {
+            width: min(
+                calc(100% - 32px),
+                var(--max-width)
+            );
+
+            min-height: 74px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        /* =========================================================
+           05 - الشعار
+        ========================================================= */
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 900;
+
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    #ff7849
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(255,61,113,0.28);
+
+            font-size: 20px;
+        }
+
+        .brand-text {
+            font-size: 18px;
+        }
+
+        .brand-text span {
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           06 - زر الصفحة الرئيسية
+        ========================================================= */
+
+        .home-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                10px
+                17px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            color: var(--text-main);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                0.25s ease;
+        }
+
+        .home-button:hover {
+            background:
+                var(--primary);
+
+            border-color:
+                var(--primary);
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(255,61,113,0.25);
+        }
+
+
+        /* =========================================================
+           07 - الحاوية الرئيسية
+        ========================================================= */
+
+        .container {
+            width: min(
+                calc(100% - 32px),
+                var(--max-width)
+            );
+
+            margin:
+                0 auto;
+        }
+
+
+        /* =========================================================
+           08 - Hero
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            margin-top: 42px;
+
+            padding:
+                54px 50px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius-large);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,61,113,0.12),
+                    rgba(77,163,255,0.06) 50%,
+                    rgba(255,255,255,0.025)
+                );
+
+            box-shadow:
+                var(--shadow);
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            left: -120px;
+            top: -120px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,61,113,0.22),
+                    transparent 70%
+                );
+
+            filter: blur(12px);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            right: -100px;
+            bottom: -120px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(77,163,255,0.18),
+                    transparent 70%
+                );
+
+            filter: blur(15px);
+        }
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                7px
+                13px;
+
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,61,113,0.11);
+
+            border:
+                1px solid
+                rgba(255,61,113,0.25);
+
+            color:
+                #ff7799;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(
+                    42px,
+                    7vw,
+                    78px
+                );
+
+            line-height: 1.05;
+
+            margin-bottom: 18px;
+
+            letter-spacing: -2px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #ff7d9d
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            color:
+                var(--text-secondary);
+
+            font-size:
+                clamp(
+                    16px,
+                    2vw,
+                    19px
+                );
+
+            max-width: 760px;
+        }
+
+
+        /* =========================================================
+           09 - معلومات اللعبة
+        ========================================================= */
+
+        .game-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 28px;
+        }
+
+        .meta-item {
+            padding:
+                8px
+                13px;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255,255,255,0.04);
+
+            border-radius:
+                10px;
+
+            color:
+                var(--text-secondary);
+
+            font-size: 13px;
+        }
+
+        .meta-item strong {
+            color:
+                var(--text-main);
+        }
+
+
+        /* =========================================================
+           10 - شريط التنقل الداخلي
+        ========================================================= */
+
+        .quick-nav {
+            margin-top: 24px;
+
+            display: flex;
+
+            gap: 10px;
+
+            overflow-x: auto;
+
+            padding-bottom: 4px;
+
+            scrollbar-width: none;
+        }
+
+        .quick-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .quick-nav a {
+            flex:
+                0 0 auto;
+
+            padding:
+                9px
+                15px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                999px;
+
+            color:
+                var(--text-secondary);
+
+            background:
+                rgba(255,255,255,0.035);
+
+            font-size: 13px;
+
+            transition:
+                0.25s ease;
+        }
+
+        .quick-nav a:hover {
+            color:
+                white;
+
+            border-color:
+                rgba(255,61,113,0.45);
+
+            background:
+                rgba(255,61,113,0.1);
+        }
+
+
+        /* =========================================================
+           11 - الأقسام
+        ========================================================= */
+
+        .section {
+            margin-top: 55px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            position: relative;
+
+            padding-right: 18px;
+
+            font-size:
+                clamp(
+                    25px,
+                    4vw,
+                    35px
+                );
+
+            line-height: 1.3;
+        }
+
+        .section-title::before {
+            content: "";
+
+            position: absolute;
+
+            right: 0;
+
+            top: 6px;
+
+            width: 5px;
+
+            height: calc(100% - 12px);
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    var(--primary),
+                    var(--secondary)
+                );
+        }
+
+        .section-description {
+            color:
+                var(--text-muted);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           12 - بطاقة المقدمة
+        ========================================================= */
+
+        .intro-card {
+            padding:
+                30px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius-medium);
+
+            background:
+                var(--bg-card);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,0.22);
+        }
+
+        .intro-card p {
+            color:
+                var(--text-secondary);
+
+            font-size:
+                16px;
+        }
+
+
+        /* =========================================================
+           13 - شبكة المميزات
+        ========================================================= */
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap: 18px;
+        }
+
+        .feature-card {
+            position: relative;
+
+            padding:
+                27px;
+
+            min-height: 210px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius-medium);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.018)
+                );
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(255,61,113,0.35);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,0,0,0.3);
+        }
+
+        .feature-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            left: -60px;
+            bottom: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,61,113,0.12);
+
+            filter: blur(10px);
+        }
+
+        .feature-number {
+            color:
+                rgba(255,255,255,0.18);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .feature-card h3 {
+            margin:
+                10px 0
+                8px;
+
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            color:
+                var(--text-secondary);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           14 - قسم العيوب
+        ========================================================= */
+
+        .cons-card {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap: 16px;
+        }
+
+        .con-item {
+            padding:
+                23px;
+
+            border-radius:
+                18px;
+
+            border:
+                1px solid
+                rgba(255,92,104,0.13);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,92,104,0.08),
+                    rgba(255,255,255,0.02)
+                );
+        }
+
+        .con-icon {
+            display: inline-grid;
+
+            place-items: center;
+
+            width: 38px;
+            height: 38px;
+
+            margin-bottom: 10px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,92,104,0.13);
+
+            color:
+                #ff7881;
+        }
+
+        .con-item h3 {
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+        .con-item p {
+            color:
+                var(--text-secondary);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           15 - قسم الحالة
+        ========================================================= */
+
+        .status-box {
+            position: relative;
+
+            padding:
+                28px;
+
+            border-radius:
+                var(--radius-medium);
+
+            border:
+                1px solid
+                rgba(255,212,59,0.22);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,212,59,0.09),
+                    rgba(255,255,255,0.025)
+                );
+
+            overflow: hidden;
+        }
+
+        .status-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            left: -80px;
+            top: -80px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,212,59,0.13),
+                    transparent 70%
+                );
+        }
+
+        .status-label {
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+            padding:
+                7px
+                12px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,212,59,0.11);
+
+            color:
+                var(--secondary);
+
+            font-size: 13px;
+
+            font-weight: 900;
+        }
+
+        .status-box p {
+            position: relative;
+
+            color:
+                var(--text-secondary);
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           16 - الخلاصة
+        ========================================================= */
+
+        .conclusion {
+            position: relative;
+
+            padding:
+                38px;
+
+            border-radius:
+                var(--radius-large);
+
+            border:
+                1px solid
+                rgba(255,61,113,0.18);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,61,113,0.10),
+                    rgba(77,163,255,0.06)
+                );
+
+            overflow: hidden;
+        }
+
+        .conclusion h2 {
+            margin-bottom:
+                14px;
+
+            font-size:
+                28px;
+        }
+
+        .conclusion p {
+            position: relative;
+
+            color:
+                var(--text-secondary);
+
+            font-size:
+                16px;
+        }
+
+
+        /* =========================================================
+           17 - منطقة التحميل
+        ========================================================= */
+
+        .download-section {
+            margin-top: 60px;
+
+            padding:
+                38px;
+
+            border-radius:
+                var(--radius-large);
+
+            background:
+                #0d1220;
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .download-header {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin:
+                0 auto 28px;
+        }
+
+        .download-header h2 {
+            font-size:
+                clamp(
+                    27px,
+                    4vw,
+                    38px
+                );
+
+            margin-bottom:
+                8px;
+        }
+
+        .download-header p {
+            color:
+                var(--text-secondary);
+        }
+
+        .download-buttons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap: 14px;
+
+            max-width: 760px;
+
+            margin:
+                0 auto;
+        }
+
+        .download-button {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            min-height: 58px;
+
+            padding:
+                12px
+                18px;
+
+            border-radius:
+                15px;
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+            transition:
+                0.25s ease;
+
+            border:
+                1px solid
+                transparent;
+        }
+
+        .download-button:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(0,0,0,0.28);
+        }
+
+        .android {
+            background:
+                linear-gradient(
+                    135deg,
+                    #35d39a,
+                    #159f70
+                );
+
+            color:
+                #04140e;
+        }
+
+        .ios {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f6fa,
+                    #cfd3df
+                );
+
+            color:
+                #10131f;
+        }
+
+
+        /* =========================================================
+           18 - الصورة النهائية
+        ========================================================= */
+
+        .image-section {
+            margin-top: 55px;
+
+            text-align: center;
+        }
+
+        .image-label {
+            color:
+                var(--text-muted);
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .game-image {
+            display: block;
+
+            width: 100%;
+
+            max-width: 900px;
+
+            max-height: 520px;
+
+            object-fit: cover;
+
+            margin:
+                0 auto;
+
+            border-radius:
+                var(--radius-large);
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,0.5);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .game-image:hover {
+            transform:
+                scale(1.01);
+
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,0.6);
+        }
+
+
+        /* =========================================================
+           19 - الفوتر
+        ========================================================= */
+
+        footer {
+            margin-top:
+                70px;
+
+            padding:
+                30px 0 40px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-weight: 900;
+
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+        .footer-brand span {
+            color:
+                var(--primary);
+        }
+
+        footer p {
+            color:
+                var(--text-muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           20 - زر العودة للأعلى
+        ========================================================= */
+
+        .back-top {
+            position: fixed;
+
+            bottom: 22px;
+            left: 22px;
+
+            width: 46px;
+            height: 46px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 50%;
+
+            background:
+                rgba(13,17,32,0.88);
+
+            backdrop-filter:
+                blur(12px);
+
+            color:
+                white;
+
+            font-size: 18px;
+
+            z-index: 900;
+
+            transition:
+                0.25s ease;
+        }
+
+        .back-top:hover {
+            background:
+                var(--primary);
+
+            border-color:
+                var(--primary);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* =========================================================
+           21 - تحسينات الحركة
+        ========================================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+        .hero,
+        .section,
+        .download-section,
+        .image-section {
+            animation:
+                fadeUp 0.65s ease both;
+        }
+
+
+        /* =========================================================
+           22 - الأجهزة اللوحية
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .features-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .cons-card {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .hero {
+                padding:
+                    40px 30px;
+            }
+
+        }
+
+
+        /* =========================================================
+           23 - الهواتف
+        ========================================================= */
+
+        @media (max-width: 620px) {
+
+            .topbar-inner {
+                min-height:
+                    65px;
+            }
+
+            .brand-text {
+                font-size:
+                    15px;
+            }
+
+            .brand-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .home-button {
+                padding:
+                    8px 12px;
+
+                font-size:
+                    12px;
+            }
+
+            .container {
+                width:
+                    min(
+                        calc(100% - 20px),
+                        var(--max-width)
+                    );
+            }
+
+            .hero {
+                margin-top:
+                    25px;
+
+                padding:
+                    32px 22px;
+
+                border-radius:
+                    23px;
+            }
+
+            .hero h1 {
+                font-size:
+                    43px;
+
+                letter-spacing:
+                    -1px;
+            }
+
+            .hero-subtitle {
+                font-size:
+                    14px;
+            }
+
+            .section {
+                margin-top:
+                    42px;
+            }
+
+            .intro-card,
+            .feature-card,
+            .con-item,
+            .status-box,
+            .conclusion {
+                padding:
+                    22px;
+            }
+
+            .download-section {
+                padding:
+                    25px 18px;
+
+                border-radius:
+                    23px;
+            }
+
+            .download-buttons {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .game-image {
+                border-radius:
+                    20px;
+            }
+
+        }
+
+
+        /* =========================================================
+           24 - تقليل الحركة لمن يفضل ذلك
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior:
+                    auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body id="top">
+
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon">
+                    🎮
+                </span>
+
+                <span class="brand-text">
+                    عالم <span>الألعاب</span>
+                </span>
+
+            </a>
+
+
+            <a href="index.html" class="home-button">
+                <span>←</span>
+                العودة إلى عالم الألعاب
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="container">
+
+
+        <!-- =====================================================
+             الواجهة الرئيسية
+        ====================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    🏁 قسم ألعاب السباقات
+                </span>
+
+                <h1>
+                    Mario Kart Tour
+                </h1>
+
+                <p class="hero-subtitle">
+                    عالم من السرعة والمرح والمنافسة الخفيفة،
+                    حيث تلتقي شخصيات Nintendo الشهيرة مع
+                    حلبات مليئة بالمفاجآت والعناصر التنافسية
+                    في تجربة مصممة خصيصاً للهواتف الذكية.
+                </p>
+
+
+                <div class="game-meta">
+
+                    <span class="meta-item">
+                        <strong>النوع:</strong>
+                        سباقات
+                    </span>
+
+                    <span class="meta-item">
+                        <strong>المنصة:</strong>
+                        Android / iOS
+                    </span>
+
+                    <span class="meta-item">
+                        <strong>الأسلوب:</strong>
+                        Arcade
+                    </span>
+
+                    <span class="meta-item">
+                        <strong>التطوير:</strong>
+                        Nintendo
+                    </span>
+
+                </div>
+
+
+                <nav class="quick-nav">
+
+                    <a href="#intro">
+                        المقدمة
+                    </a>
+
+                    <a href="#features">
+                        المميزات
+                    </a>
+
+                    <a href="#cons">
+                        العيوب
+                    </a>
+
+                    <a href="#status">
+                        حالة اللعبة
+                    </a>
+
+                    <a href="#conclusion">
+                        الخلاصة
+                    </a>
+
+                    <a href="#download">
+                        التحميل
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             المقدمة
+        ====================================================== -->
+
+        <section class="section" id="intro">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        مقدمة
+                    </h2>
+
+                    <p class="section-description">
+                        نظرة سريعة على تجربة اللعبة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <article class="intro-card">
+
+                <p>
+                    عالم من المتعة والمغامرة على الهواتف الذكية!
+                    إذا كنت تبحث عن لعبة سباقات تجمع بين المرح
+                    والإثارة والروح التنافسية الخفيفة على هاتفك
+                    المحمول، فإن لعبة ماريو كارت تور
+                    (Mario Kart Tour) تقدم تجربة ممتعة
+                    لعشاق سلسلة ماريو.
+
+                    طورت اللعبة ونشرتها شركة نينتندو
+                    (Nintendo)، وتقدم سباقات مليئة بالمفاجآت
+                    واستخدام الأدوات والتنافس على حلبات مستوحاة
+                    من مدن عالمية وعوالم نينتندو الكلاسيكية.
+                </p>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             المميزات
+        ====================================================== -->
+
+        <section class="section" id="features">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        لماذا Mario Kart Tour؟
+                    </h2>
+
+                    <p class="section-description">
+                        أبرز نقاط القوة في التجربة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="features-grid">
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        01 / CONTROL
+                    </span>
+
+                    <h3>
+                        أسلوب لعب ممتع وسهل التحكم
+                    </h3>
+
+                    <p>
+                        تتميز اللعبة بنظام تحكم مبسط يعتمد على
+                        السحب واللمس، مما يجعلها سهلة التعلم
+                        ومناسبة للهواتف الذكية.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        02 / COLLECTION
+                    </span>
+
+                    <h3>
+                        شخصيات وسيارات متنوعة
+                    </h3>
+
+                    <p>
+                        تتضمن اللعبة مجموعة من شخصيات عالم ماريو،
+                        بالإضافة إلى سيارات الكارت والطائرات الشراعية
+                        التي يمكن جمعها واستخدامها أثناء السباقات.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        03 / TRACKS
+                    </span>
+
+                    <h3>
+                        حلبات سباق متنوعة
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على حلبات مستوحاة من ألعاب
+                        Mario Kart الكلاسيكية، بالإضافة إلى حلبات
+                        مستوحاة من مدن عالمية مثل باريس ونيويورك
+                        وطوكيو.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        04 / ITEMS
+                    </span>
+
+                    <h3>
+                        عناصر ومفاجآت أثناء السباق
+                    </h3>
+
+                    <p>
+                        يمكن للاعب استخدام العديد من العناصر أثناء
+                        السباق، مثل الموز والقذائف والفطر، مما يجعل
+                        السباقات أكثر إثارة وتنوعاً.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        05 / ONLINE
+                    </span>
+
+                    <h3>
+                        اللعب الجماعي والمنافسة
+                    </h3>
+
+                    <p>
+                        تتيح اللعبة اللعب الجماعي عبر الإنترنت
+                        والتنافس مع لاعبين آخرين، بالإضافة إلى
+                        وجود أنظمة تنافسية ولوحات للنتائج.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        06 / FUN
+                    </span>
+
+                    <h3>
+                        هوية مرحة ومميزة
+                    </h3>
+
+                    <p>
+                        تجمع اللعبة بين أجواء السباقات السريعة
+                        وشخصيات Nintendo المعروفة، لتقدم تجربة
+                        مختلفة عن ألعاب السباقات الواقعية التقليدية.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             العيوب
+        ====================================================== -->
+
+        <section class="section" id="cons">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        نقاط يجب معرفتها
+                    </h2>
+
+                    <p class="section-description">
+                        الجوانب التي قد لا تناسب جميع اللاعبين
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cons-card">
+
+
+                <article class="con-item">
+
+                    <span class="con-icon">
+                        🌐
+                    </span>
+
+                    <h3>
+                        الحاجة إلى الإنترنت
+                    </h3>
+
+                    <p>
+                        تحتاج اللعبة إلى اتصال بالإنترنت،
+                        لذلك قد لا تكون مناسبة في الأماكن التي
+                        لا يتوفر فيها اتصال جيد.
+                    </p>
+
+                </article>
+
+
+                <article class="con-item">
+
+                    <span class="con-icon">
+                        💳
+                    </span>
+
+                    <h3>
+                        المشتريات داخل اللعبة
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على عمليات شراء داخل التطبيق،
+                        وقد يحتاج اللاعب إلى إنفاق أموال للحصول
+                        على بعض العناصر أو المزايا.
+                    </p>
+
+                </article>
+
+
+                <article class="con-item">
+
+                    <span class="con-icon">
+                        🔋
+                    </span>
+
+                    <h3>
+                        استهلاك البطارية
+                    </h3>
+
+                    <p>
+                        مثل العديد من ألعاب الهواتف، قد تستهلك
+                        اللعبة قدراً من البطارية أثناء جلسات
+                        اللعب الطويلة.
+                    </p>
+
+                </article>
+
+
+                <article class="con-item">
+
+                    <span class="con-icon">
+                        👆
+                    </span>
+
+                    <h3>
+                        التحكم باللمس
+                    </h3>
+
+                    <p>
+                        قد يحتاج بعض اللاعبين إلى وقت للتعود
+                        على نظام التحكم باللمس، خصوصاً إذا كانوا
+                        معتادين على أزرار التحكم التقليدية.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             حالة اللعبة
+        ====================================================== -->
+
+        <section class="section" id="status">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        حالة اللعبة
+                    </h2>
+
+                    <p class="section-description">
+                        معلومة مرتبطة بمستقبل الخدمة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <article class="status-box">
+
+                <span class="status-label">
+                    ⚠️ تنبيه زمني
+                </span>
+
+                <p>
+                    أعلنت شركة Nintendo أن خدمة Mario Kart Tour
+                    ستتوقف في 29 سبتمبر 2026. لذلك يجب الانتباه
+                    إلى أن اللعبة لن تستمر كخدمة متاحة بعد هذا
+                    التاريخ.
+                </p>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الخلاصة
+        ====================================================== -->
+
+        <section class="section" id="conclusion">
+
+            <article class="conclusion">
+
+                <h2>
+                    الخلاصة
+                </h2>
+
+                <p>
+                    ماريو كارت تور هي لعبة سباقات ممتعة على
+                    الهواتف الذكية، وتتميز بشخصيات ماريو والحلبات
+                    المتنوعة والعناصر التي تجعل السباقات أكثر إثارة.
+
+                    وهي مناسبة لمحبي ألعاب السباقات الخفيفة
+                    وعالم Nintendo.
+
+                    ومع ذلك، يجب الانتباه إلى إعلان Nintendo
+                    عن توقف خدمة اللعبة في سبتمبر 2026.
+                </p>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             التحميل
+        ====================================================== -->
+
+        <section class="download-section" id="download">
+
+            <div class="download-header">
+
+                <h2>
+                    ابدأ تجربتك
+                </h2>
+
+                <p>
+                    حمّل اللعبة من المتاجر الرسمية المتاحة
+                    على جهازك.
+                </p>
+
+            </div>
+
+
+            <div class="download-buttons">
+
+
+                <a
+                    href="https://google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-button android"
+                >
+                    🤖
+                    تحميل للأندرويد
+                </a>
+
+
+                <a
+                    href="https://apple.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-button ios"
+                >
+                    🍏
+                    تحميل للآيفون
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الصورة
+        ====================================================== -->
+
+        <section class="image-section">
+
+            <p class="image-label">
+                صورة اللعبة
+            </p>
+
+            <img
+                class="game-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTszhp1Ih9u15WIvhRxMdGcNHIJD16OYoEoLUk8oi0Ftg&s=10"
+                alt="Mario Kart Tour"
+            >
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         الفوتر
+    ========================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-brand">
+                عالم <span>الألعاب</span>
+            </div>
+
+            <p>
+                استكشف الألعاب، اكتشف التجارب، واختر لعبتك القادمة.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================== -->
+
+    <a
+        href="#top"
+        class="back-top"
+        aria-label="العودة إلى أعلى الصفحة"
+    >
+        ↑
+    </a>
+
+
+</body>
+
+</html>

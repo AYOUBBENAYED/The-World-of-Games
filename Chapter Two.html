@@ -1,0 +1,3010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Granny: Chapter Two - مراجعة احترافية للعبة الرعب والمغامرات مع المميزات والعيوب وروابط التحميل الرسمية."
+    >
+
+    <meta
+        name="theme-color"
+        content="#080609"
+    >
+
+    <title>
+        Granny: Chapter Two | عالم الألعاب
+    </title>
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+
+            --bg-main: #070609;
+
+            --bg-secondary: #0e0b10;
+
+            --bg-card: rgba(24, 18, 25, 0.78);
+
+            --bg-card-solid: #151016;
+
+            --red: #d7193f;
+
+            --red-light: #ff3158;
+
+            --red-dark: #8e102b;
+
+            --purple: #8b4cff;
+
+            --text-main: #f6f2f5;
+
+            --text-secondary: #b8afb8;
+
+            --text-muted: #817781;
+
+            --border: rgba(255,255,255,0.08);
+
+            --shadow:
+                0 25px 80px rgba(0,0,0,0.55);
+
+            --radius-large: 28px;
+
+            --radius-medium: 18px;
+
+            --transition: 0.35s ease;
+
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            color: var(--text-main);
+
+            background:
+
+                radial-gradient(
+                    circle at 80% 5%,
+                    rgba(215,25,63,0.14),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 10% 60%,
+                    rgba(139,76,255,0.08),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050406,
+                    #0b080d 45%,
+                    #050406
+                );
+
+            line-height: 1.9;
+
+            overflow-x: hidden;
+
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.035;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+            z-index: 999;
+
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+
+        button {
+
+            font-family: inherit;
+
+        }
+
+
+        img {
+
+            max-width: 100%;
+
+            display: block;
+
+        }
+
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+
+            width: 10px;
+
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background: #080609;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                linear-gradient(
+                    var(--red),
+                    var(--purple)
+                );
+
+            border-radius: 20px;
+
+        }
+
+
+        /* =========================================================
+           TOP NAVIGATION
+        ========================================================= */
+
+        .topbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            width: 100%;
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            background:
+                rgba(7,6,9,0.78);
+
+            border-bottom:
+                1px solid var(--border);
+
+        }
+
+
+        .nav-container {
+
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            min-height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+        .brand-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 13px;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(215,25,63,0.28);
+
+            font-size: 20px;
+
+        }
+
+
+        .brand span {
+
+            color: #fff;
+
+        }
+
+
+        .nav-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--text-secondary);
+
+            font-size: 14px;
+
+            padding: 10px 16px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 999px;
+
+            transition: var(--transition);
+
+        }
+
+
+        .nav-link:hover {
+
+            color: #fff;
+
+            border-color:
+                rgba(215,25,63,0.45);
+
+            background:
+                rgba(215,25,63,0.08);
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            position: relative;
+
+            width: min(1180px, 92%);
+
+            min-height: 620px;
+
+            margin: 35px auto 0;
+
+            border-radius: 34px;
+
+            overflow: hidden;
+
+            isolation: isolate;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            box-shadow: var(--shadow);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+        }
+
+
+        .hero-image {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: -3;
+
+            filter:
+                brightness(0.48)
+                saturate(1.15)
+                contrast(1.08);
+
+            transform: scale(1.02);
+
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(5,4,6,0.25),
+                    rgba(5,4,6,0.4)
+                ),
+
+                linear-gradient(
+                    0deg,
+                    #070609 0%,
+                    rgba(7,6,9,0.85) 20%,
+                    transparent 65%
+                );
+
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+
+            height: 450px;
+
+            top: -220px;
+
+            left: -180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(215,25,63,0.17);
+
+            filter: blur(80px);
+
+            z-index: -1;
+
+        }
+
+
+        .hero-content {
+
+            width: 100%;
+
+            padding: 65px;
+
+        }
+
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 8px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(0,0,0,0.42);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            color: #ddd;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+
+            backdrop-filter: blur(10px);
+
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--red-light);
+
+            box-shadow:
+                0 0 14px var(--red-light);
+
+            animation:
+                pulse 1.8s infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+
+                opacity: 1;
+
+                transform: scale(1);
+
+            }
+
+            50% {
+
+                opacity: 0.45;
+
+                transform: scale(0.75);
+
+            }
+
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(42px, 7vw, 82px);
+
+            line-height: 1.05;
+
+            font-weight: 950;
+
+            margin-bottom: 18px;
+
+            letter-spacing: -2px;
+
+            text-shadow:
+                0 10px 40px
+                rgba(0,0,0,0.7);
+
+        }
+
+
+        .hero h1 span {
+
+            display: block;
+
+            color: var(--red-light);
+
+            font-size:
+                clamp(17px, 2vw, 24px);
+
+            letter-spacing: 4px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .hero-description {
+
+            max-width: 700px;
+
+            color: #d2ccd2;
+
+            font-size: 17px;
+
+            line-height: 2;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .hero-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+        }
+
+
+        .hero-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            min-height: 50px;
+
+            padding: 0 22px;
+
+            border-radius: 15px;
+
+            font-weight: 800;
+
+            transition: var(--transition);
+
+            cursor: pointer;
+
+        }
+
+
+        .hero-button.primary {
+
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red-light),
+                    var(--red-dark)
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(215,25,63,0.25);
+
+        }
+
+
+        .hero-button.primary:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 18px 45px
+                rgba(215,25,63,0.4);
+
+        }
+
+
+        .hero-button.secondary {
+
+            color: #fff;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.13);
+
+            backdrop-filter: blur(10px);
+
+        }
+
+
+        .hero-button.secondary:hover {
+
+            background:
+                rgba(255,255,255,0.12);
+
+            transform: translateY(-3px);
+
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main {
+
+            width: min(1180px, 92%);
+
+            margin: 60px auto;
+
+        }
+
+
+        .section {
+
+            margin-bottom: 70px;
+
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .section-title {
+
+            position: relative;
+
+            font-size:
+                clamp(27px, 4vw, 40px);
+
+            line-height: 1.2;
+
+            font-weight: 900;
+
+        }
+
+
+        .section-title::after {
+
+            content: "";
+
+            display: block;
+
+            width: 70px;
+
+            height: 4px;
+
+            margin-top: 12px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--red-light),
+                    transparent
+                );
+
+        }
+
+
+        .section-number {
+
+            color: var(--red-light);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        /* =========================================================
+           INTRODUCTION CARD
+        ========================================================= */
+
+        .intro-card {
+
+            position: relative;
+
+            padding: 38px;
+
+            border-radius: var(--radius-large);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.015)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.2);
+
+            overflow: hidden;
+
+        }
+
+
+        .intro-card::before {
+
+            content: "II";
+
+            position: absolute;
+
+            left: 25px;
+
+            bottom: -55px;
+
+            font-size: 180px;
+
+            font-weight: 950;
+
+            color:
+                rgba(215,25,63,0.035);
+
+            pointer-events: none;
+
+        }
+
+
+        .intro-card p {
+
+            position: relative;
+
+            z-index: 2;
+
+            color: #cbc3cb;
+
+            font-size: 17px;
+
+            line-height: 2.1;
+
+        }
+
+
+        .highlight {
+
+            color: #fff;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================================================
+           INFO STRIP
+        ========================================================= */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-top: 22px;
+
+        }
+
+
+        .info-item {
+
+            padding: 22px 18px;
+
+            border-radius: 18px;
+
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid var(--border);
+
+            text-align: center;
+
+            transition: var(--transition);
+
+        }
+
+
+        .info-item:hover {
+
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(215,25,63,0.3);
+
+            background:
+                rgba(215,25,63,0.06);
+
+        }
+
+
+        .info-icon {
+
+            font-size: 25px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .info-label {
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+
+        }
+
+
+        .info-value {
+
+            color: #fff;
+
+            font-weight: 800;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
+
+        .feature-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .feature-card {
+
+            position: relative;
+
+            padding: 28px;
+
+            min-height: 190px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24,18,25,0.95),
+                    rgba(13,10,15,0.95)
+                );
+
+            border:
+                1px solid var(--border);
+
+            overflow: hidden;
+
+            transition:
+                transform var(--transition),
+                border-color var(--transition),
+                box-shadow var(--transition);
+
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(215,25,63,0.35);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,0.35);
+
+        }
+
+
+        .feature-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            left: -35px;
+
+            bottom: -45px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(215,25,63,0.08);
+
+            filter: blur(25px);
+
+        }
+
+
+        .feature-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .feature-icon {
+
+            flex:
+                0 0 52px;
+
+            width: 52px;
+
+            height: 52px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(215,25,63,0.18),
+                    rgba(139,76,255,0.1)
+                );
+
+            border:
+                1px solid
+                rgba(215,25,63,0.18);
+
+            font-size: 24px;
+
+        }
+
+
+        .feature-card h3 {
+
+            font-size: 19px;
+
+            line-height: 1.4;
+
+        }
+
+
+        .feature-card p {
+
+            color: var(--text-secondary);
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+        }
+
+
+        /* =========================================================
+           PROS / CONS
+        ========================================================= */
+
+        .compare-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .compare-card {
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            border: 1px solid var(--border);
+
+            background:
+                var(--bg-card);
+
+        }
+
+
+        .compare-card.pros {
+
+            box-shadow:
+                inset 0 1px 0
+                rgba(67,220,143,0.08);
+
+        }
+
+
+        .compare-card.cons {
+
+            box-shadow:
+                inset 0 1px 0
+                rgba(255,49,88,0.08);
+
+        }
+
+
+        .compare-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+            font-size: 21px;
+
+            font-weight: 900;
+
+        }
+
+
+        .compare-title.pros-title {
+
+            color: #65e6a1;
+
+        }
+
+
+        .compare-title.cons-title {
+
+            color: #ff6682;
+
+        }
+
+
+        .compare-list {
+
+            list-style: none;
+
+            display: grid;
+
+            gap: 14px;
+
+        }
+
+
+        .compare-list li {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            color: #c5bec5;
+
+            font-size: 15px;
+
+        }
+
+
+        .compare-list li span {
+
+            flex:
+                0 0 26px;
+
+            width: 26px;
+
+            height: 26px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+        }
+
+
+        .pros .compare-list li span {
+
+            color: #65e6a1;
+
+            background:
+                rgba(101,230,161,0.1);
+
+        }
+
+
+        .cons .compare-list li span {
+
+            color: #ff6682;
+
+            background:
+                rgba(255,102,130,0.1);
+
+        }
+
+
+        /* =========================================================
+           EXPERIENCE SECTION
+        ========================================================= */
+
+        .experience {
+
+            position: relative;
+
+            padding: 42px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(215,25,63,0.17),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #120c12,
+                    #09070a
+                );
+
+            border:
+                1px solid
+                rgba(215,25,63,0.15);
+
+        }
+
+
+        .experience h2 {
+
+            font-size: 28px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .experience p {
+
+            max-width: 850px;
+
+            color: #c7c0c7;
+
+            line-height: 2;
+
+        }
+
+
+        .quote {
+
+            margin-top: 25px;
+
+            padding-right: 18px;
+
+            border-right:
+                3px solid var(--red);
+
+            color: #fff;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================================================
+           IMAGE SHOWCASE
+        ========================================================= */
+
+        .showcase {
+
+            position: relative;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+
+        .showcase img {
+
+            width: 100%;
+
+            max-height: 600px;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.8s ease;
+
+        }
+
+
+        .showcase:hover img {
+
+            transform: scale(1.035);
+
+        }
+
+
+        .image-caption {
+
+            position: absolute;
+
+            right: 25px;
+
+            bottom: 22px;
+
+            left: 25px;
+
+            padding: 14px 18px;
+
+            border-radius: 15px;
+
+            color: #fff;
+
+            background:
+                rgba(5,4,6,0.72);
+
+            backdrop-filter:
+                blur(12px);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================================
+           DOWNLOAD SECTION
+        ========================================================= */
+
+        .download-box {
+
+            position: relative;
+
+            padding: 42px;
+
+            border-radius: 30px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(215,25,63,0.13),
+                    rgba(139,76,255,0.07)
+                ),
+
+                rgba(16,11,17,0.95);
+
+            border:
+                1px solid
+                rgba(215,25,63,0.2);
+
+            overflow: hidden;
+
+        }
+
+
+        .download-box::before {
+
+            content: "DOWNLOAD";
+
+            position: absolute;
+
+            left: -15px;
+
+            bottom: -55px;
+
+            font-size: 100px;
+
+            font-weight: 950;
+
+            letter-spacing: 4px;
+
+            color:
+                rgba(255,255,255,0.025);
+
+        }
+
+
+        .download-header {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .download-header h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .download-header p {
+
+            color: var(--text-secondary);
+
+        }
+
+
+        .store-grid {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .store-button {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.055);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            transition: var(--transition);
+
+        }
+
+
+        .store-button:hover {
+
+            transform: translateY(-5px);
+
+            background:
+                rgba(255,255,255,0.09);
+
+            border-color:
+                rgba(255,255,255,0.2);
+
+        }
+
+
+        .store-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            flex:
+                0 0 48px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 14px;
+
+            font-size: 24px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        .store-text small {
+
+            display: block;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+        }
+
+
+        .store-text strong {
+
+            color: #fff;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================================================
+           FOOTER NAVIGATION
+        ========================================================= */
+
+        .navigation-area {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 14px;
+
+            margin-top: 55px;
+
+        }
+
+
+        .world-button {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 11px;
+
+            min-width: 250px;
+
+            min-height: 58px;
+
+            padding: 0 25px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #19121c,
+                    #0d0a0f
+                );
+
+            border:
+                1px solid
+                rgba(139,76,255,0.3);
+
+            color: #fff;
+
+            font-weight: 900;
+
+            overflow: hidden;
+
+            transition: var(--transition);
+
+        }
+
+
+        .world-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(139,76,255,0.12),
+                    transparent
+                );
+
+            transform:
+                translateX(-100%);
+
+            transition:
+                transform 0.7s ease;
+
+        }
+
+
+        .world-button:hover::before {
+
+            transform:
+                translateX(100%);
+
+        }
+
+
+        .world-button:hover {
+
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(139,76,255,0.65);
+
+            box-shadow:
+                0 15px 45px
+                rgba(139,76,255,0.14);
+
+        }
+
+
+        .top-button {
+
+            position: fixed;
+
+            left: 24px;
+
+            bottom: 24px;
+
+            z-index: 90;
+
+            width: 54px;
+
+            height: 54px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 17px;
+
+            color: #fff;
+
+            background:
+                rgba(20,15,21,0.84);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(14px);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.4);
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(15px);
+
+            transition: var(--transition);
+
+            font-size: 20px;
+
+        }
+
+
+        .top-button.visible {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .top-button:hover {
+
+            background:
+                var(--red);
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            margin-top: 70px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border-top:
+                1px solid var(--border);
+
+            color: var(--text-muted);
+
+            font-size: 13px;
+
+        }
+
+
+        footer strong {
+
+            color: var(--red-light);
+
+        }
+
+
+        /* =========================================================
+           RESPONSIVE TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .hero {
+
+                min-height: 560px;
+
+            }
+
+
+            .hero-content {
+
+                padding: 45px;
+
+            }
+
+
+            .info-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .feature-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .compare-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           RESPONSIVE MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            .nav-container {
+
+                min-height: 68px;
+
+            }
+
+
+            .brand span {
+
+                display: none;
+
+            }
+
+
+            .nav-link {
+
+                font-size: 12px;
+
+                padding: 8px 12px;
+
+            }
+
+
+            .hero {
+
+                width: 94%;
+
+                min-height: 620px;
+
+                margin-top: 18px;
+
+                border-radius: 24px;
+
+            }
+
+
+            .hero-content {
+
+                padding: 28px 22px;
+
+            }
+
+
+            .hero h1 {
+
+                letter-spacing: -1px;
+
+            }
+
+
+            .hero-description {
+
+                font-size: 14px;
+
+            }
+
+
+            .hero-actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .hero-button {
+
+                width: 100%;
+
+            }
+
+
+            main {
+
+                width: 94%;
+
+                margin-top: 42px;
+
+            }
+
+
+            .section {
+
+                margin-bottom: 48px;
+
+            }
+
+
+            .intro-card {
+
+                padding: 25px;
+
+            }
+
+
+            .intro-card p {
+
+                font-size: 15px;
+
+            }
+
+
+            .info-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .info-item {
+
+                padding: 17px 10px;
+
+            }
+
+
+            .feature-card {
+
+                padding: 23px;
+
+            }
+
+
+            .compare-card {
+
+                padding: 24px;
+
+            }
+
+
+            .experience {
+
+                padding: 27px;
+
+            }
+
+
+            .experience h2 {
+
+                font-size: 24px;
+
+            }
+
+
+            .download-box {
+
+                padding: 27px;
+
+            }
+
+
+            .store-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .navigation-area {
+
+                flex-direction: column;
+
+            }
+
+
+            .world-button {
+
+                width: 100%;
+
+                min-width: 0;
+
+            }
+
+
+            .top-button {
+
+                left: 15px;
+
+                bottom: 15px;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                scroll-behavior: auto !important;
+
+                animation: none !important;
+
+                transition: none !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body id="top">
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
+
+    <header class="topbar">
+
+        <div class="nav-container">
+
+            <a
+                href="#top"
+                class="brand"
+                aria-label="العودة إلى بداية الصفحة"
+            >
+
+                <span class="brand-icon">
+                    👻
+                </span>
+
+                <span>
+                    عالم الألعاب
+                </span>
+
+            </a>
+
+
+            <a
+                href="#download"
+                class="nav-link"
+            >
+                تحميل اللعبة
+                <span>↓</span>
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero">
+
+        <img
+            class="hero-image"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLTPVZt5L-VBKuKr6XLWnHbIQ6PUx4iVy-dhxuV2JFkA&s=10"
+            alt="Granny Chapter Two"
+        >
+
+
+        <div class="hero-content">
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                لعبة رعب ومغامرات
+
+            </div>
+
+
+            <h1>
+
+                <span>
+                    THE HORROR BEGINS AGAIN
+                </span>
+
+                جراني: الفصل الثاني
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                هذه المرة لن يكون الهروب من جراني وحدها كافيًا.
+                منزل أكثر غموضًا، أخطار أكثر، ومساحة أكبر
+                للتخفي والبحث وحل الألغاز قبل انتهاء الوقت.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#download"
+                    class="hero-button primary"
+                >
+                    🎮 ابدأ رحلتك
+                </a>
+
+
+                <a
+                    href="#review"
+                    class="hero-button secondary"
+                >
+                    ↓ اقرأ المراجعة
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main>
+
+
+        <!-- =====================================================
+             QUICK INFORMATION
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    قبل أن تدخل المنزل
+                </h2>
+
+                <span class="section-number">
+                    01 / OVERVIEW
+                </span>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        👻
+                    </div>
+
+                    <div class="info-label">
+                        النوع
+                    </div>
+
+                    <div class="info-value">
+                        رعب ومغامرات
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🧩
+                    </div>
+
+                    <div class="info-label">
+                        أسلوب اللعب
+                    </div>
+
+                    <div class="info-value">
+                        استكشاف وألغاز
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📱
+                    </div>
+
+                    <div class="info-label">
+                        المنصات
+                    </div>
+
+                    <div class="info-value">
+                        Android / iOS
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🎯
+                    </div>
+
+                    <div class="info-label">
+                        التركيز
+                    </div>
+
+                    <div class="info-value">
+                        التخفي والهروب
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             REVIEW
+        ===================================================== -->
+
+        <section
+            class="section"
+            id="review"
+        >
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    داخل التجربة
+                </h2>
+
+                <span class="section-number">
+                    02 / REVIEW
+                </span>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p>
+
+                    <span class="highlight">
+                        Granny: Chapter Two
+                    </span>
+
+                    تأخذ فكرة الجزء الأول إلى مستوى أكثر توترًا،
+                    حيث يجد اللاعب نفسه داخل منزل لا يسمح له
+                    بالكثير من الأخطاء.
+
+                    <br><br>
+
+                    مهمتك ليست مجرد الركض نحو الباب؛ بل عليك
+                    <span class="highlight">
+                        الاستكشاف، جمع الأدوات، مراقبة البيئة،
+                        حل الألغاز، ومعرفة الطريق المناسب للهروب.
+                    </span>
+
+                    <br><br>
+
+                    وجود جراني وجدّو يجعل الحركة أكثر خطورة،
+                    لأن أي صوت أو حركة غير محسوبة يمكن أن تحول
+                    لحظة هدوء إلى مطاردة مفاجئة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FEATURES
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    لماذا تستحق التجربة؟
+                </h2>
+
+                <span class="section-number">
+                    03 / FEATURES
+                </span>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            👁️
+                        </div>
+
+                        <h3>
+                            كل صوت له ثمن
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        لا يمكنك التحرك بعشوائية. البيئة المحيطة
+                        جزء من التحدي، والضوضاء قد تكشف مكانك
+                        وتحول خطة الهروب إلى مطاردة.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            🗝️
+                        </div>
+
+                        <h3>
+                            البحث عن طريق النجاة
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        الأدوات والعناصر المنتشرة في المنزل ليست
+                        للزينة؛ عليك اكتشاف كيفية استخدامها
+                        للوصول إلى الخطوة التالية.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            🧠
+                        </div>
+
+                        <h3>
+                            ألغاز تحتاج للملاحظة
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        بعض التحديات تتطلب منك ربط العناصر
+                        ومراقبة المكان والتفكير قبل اتخاذ القرار
+                        بدل الاعتماد على السرعة فقط.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            🕯️
+                        </div>
+
+                        <h3>
+                            منزل مليء بالأسرار
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        تصميم البيئة يجعل عملية الاستكشاف جزءًا
+                        أساسيًا من التجربة، وكل غرفة قد تخفي
+                        شيئًا يساعدك أو يعرضك للخطر.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            🏃
+                        </div>
+
+                        <h3>
+                            التخفي أهم من المواجهة
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        أفضل طريقة للبقاء هي التفكير والتحرك
+                        بحذر واستخدام البيئة لصالحك بدل الدخول
+                        في مواجهة مباشرة.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon">
+                            🔥
+                        </div>
+
+                        <h3>
+                            ضغط مستمر
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        وجود مدة محدودة للمحاولة يجعل كل قرار
+                        أكثر أهمية ويمنح اللعبة إحساسًا واضحًا
+                        بالاستعجال والتوتر.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROS AND CONS
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    الوجه الآخر
+                </h2>
+
+                <span class="section-number">
+                    04 / VERDICT
+                </span>
+
+            </div>
+
+
+            <div class="compare-grid">
+
+
+                <div class="compare-card pros">
+
+                    <div class="compare-title pros-title">
+
+                        <span>✓</span>
+
+                        نقاط القوة
+
+                    </div>
+
+
+                    <ul class="compare-list">
+
+                        <li>
+
+                            <span>✓</span>
+
+                            أجواء رعب مظلمة ومتوترة.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>✓</span>
+
+                            استكشاف وألغاز تضيف تنوعًا للعب.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>✓</span>
+
+                            وجود أكثر من شخصية خطرة يرفع مستوى التحدي.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>✓</span>
+
+                            نظام تخفي يجعل اللاعب يفكر قبل الحركة.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>✓</span>
+
+                            مناسبة لمحبي ألعاب الهروب والرعب.
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="compare-card cons">
+
+                    <div class="compare-title cons-title">
+
+                        <span>!</span>
+
+                        نقاط الضعف
+
+                    </div>
+
+
+                    <ul class="compare-list">
+
+                        <li>
+
+                            <span>!</span>
+
+                            الأجواء المخيفة قد لا تناسب جميع اللاعبين.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>!</span>
+
+                            بعض الألغاز تحتاج إلى صبر وملاحظة.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>!</span>
+
+                            الإعلانات قد تظهر في النسخة المجانية.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>!</span>
+
+                            تحتاج إلى جهاز متوافق لتجربة أفضل.
+
+                        </li>
+
+
+                        <li>
+
+                            <span>!</span>
+
+                            تكرار المحاولات قد يصبح مطلوبًا لفهم المنزل.
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EXPERIENCE
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="experience">
+
+                <h2>
+                    🩸 هل أنت مستعد لليلة أخرى؟
+                </h2>
+
+                <p>
+
+                    إذا كانت ألعاب الرعب بالنسبة لك مجرد مشاهدة
+                    للمخلوقات المخيفة، فهذه التجربة مختلفة قليلًا.
+                    الخوف هنا يأتي من عدم معرفتك لما يوجد خلف الباب
+                    التالي، ومن ضرورة اتخاذ القرار الصحيح بينما
+                    تحاول ألا يسمعك أحد.
+
+                </p>
+
+
+                <p class="quote">
+
+                    "في هذا المنزل، الهدوء ليس راحة... الهدوء هو
+                    فرصتك الوحيدة للبقاء."
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             IMAGE SHOWCASE
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    صورة من عالم اللعبة
+                </h2>
+
+                <span class="section-number">
+                    05 / VISUAL
+                </span>
+
+            </div>
+
+
+            <div class="showcase">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLTPVZt5L-VBKuKr6XLWnHbIQ6PUx4iVy-dhxuV2JFkA&s=10"
+                    alt="صورة لعبة Granny Chapter Two"
+                    loading="lazy"
+                >
+
+
+                <div class="image-caption">
+
+                    👻
+                    أجواء الرعب والاستكشاف في Granny: Chapter Two
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FINAL VERDICT
+        ===================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <h2 class="section-title">
+                    الحكم النهائي
+                </h2>
+
+                <span class="section-number">
+                    06 / FINAL WORD
+                </span>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p>
+
+                    <span class="highlight">
+                        Granny: Chapter Two
+                    </span>
+
+                    خيار قوي لمحبي ألعاب الرعب التي تعتمد على
+                    الاستكشاف والتخفي وحل الألغاز.
+
+                    <br><br>
+
+                    اللعبة لا تعتمد على المؤثرات وحدها لصناعة
+                    التوتر، بل تجعل اللاعب نفسه جزءًا من الخوف:
+                    أين تذهب؟ ماذا تأخذ؟ هل تصدر صوتًا؟ وهل الطريق
+                    الذي اخترته آمن فعلًا؟
+
+                    <br><br>
+
+                    إذا كنت تبحث عن تجربة رعب خفيفة نسبيًا،
+                    سهلة الفهم وصعبة الإتقان، فهذه اللعبة تستحق
+                    مكانًا في قائمة ألعاب الرعب لديك.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ===================================================== -->
+
+        <section
+            class="section"
+            id="download"
+        >
+
+            <div class="download-box">
+
+                <div class="download-header">
+
+                    <h2>
+                        جاهز للهروب؟
+                    </h2>
+
+                    <p>
+                        حمّل اللعبة من المتاجر الرسمية فقط.
+                    </p>
+
+                </div>
+
+
+                <div class="store-grid">
+
+
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.dvloper.grannychaptertwo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-button"
+                    >
+
+                        <span class="store-icon">
+                            🤖
+                        </span>
+
+                        <span class="store-text">
+
+                            <small>
+                                متوفر رسميًا على
+                            </small>
+
+                            <strong>
+                                Google Play
+                            </strong>
+
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="https://apps.apple.com/qa/app/granny-chapter-two/id1479175321"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-button"
+                    >
+
+                        <span class="store-icon">
+                            🍏
+                        </span>
+
+                        <span class="store-text">
+
+                            <small>
+                                متوفر رسميًا على
+                            </small>
+
+                            <strong>
+                                App Store
+                            </strong>
+
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             NAVIGATION BUTTONS
+        ===================================================== -->
+
+        <div class="navigation-area">
+
+
+            <!-- العودة إلى عالم الألعاب -->
+
+            <a
+                href="index.html"
+                class="world-button"
+            >
+
+                <span>
+                    🎮
+                </span>
+
+                <span>
+                    العودة إلى عالم الألعاب
+                </span>
+
+                <span>
+                    ←
+                </span>
+
+            </a>
+
+
+            <!-- العودة إلى أعلى الصفحة -->
+
+            <a
+                href="#top"
+                class="world-button"
+            >
+
+                <span>
+                    ↑
+                </span>
+
+                <span>
+                    العودة إلى أعلى الصفحة
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FLOATING BACK TO TOP
+    ========================================================= -->
+
+    <button
+        class="top-button"
+        id="topButton"
+        aria-label="العودة إلى أعلى الصفحة"
+        title="العودة إلى الأعلى"
+    >
+
+        ↑
+
+    </button>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <p>
+
+            <strong>عالم الألعاب</strong>
+
+            —
+            تجربة ألعاب بتصميم مختلف.
+
+        </p>
+
+        <p>
+
+            جميع أسماء الألعاب والعلامات التجارية تعود إلى
+            أصحابها.
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        const topButton =
+            document.getElementById("topButton");
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (window.scrollY > 450) {
+
+                    topButton.classList.add(
+                        "visible"
+                    );
+
+                } else {
+
+                    topButton.classList.remove(
+                        "visible"
+                    );
+
+                }
+
+            }
+        );
+
+
+        topButton.addEventListener(
+            "click",
+            function () {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+
+        const heroImage =
+            document.querySelector(".hero-image");
+
+
+        if (heroImage) {
+
+            heroImage.addEventListener(
+                "error",
+                function () {
+
+                    this.style.display = "none";
+
+                }
+            );
+
+        }
+
+
+        document.querySelectorAll(
+            'a[href^="#"]'
+        ).forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        const target =
+                            document.querySelector(
+                                this.getAttribute("href")
+                            );
+
+
+                        if (target) {
+
+                            event.preventDefault();
+
+
+                            target.scrollIntoView({
+
+                                behavior: "smooth",
+
+                                block: "start"
+
+                            });
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

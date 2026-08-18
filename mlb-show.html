@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="MLB The Show Mobile - تجربة بيسبول احترافية على الهاتف">
+
+    <meta name="theme-color"
+          content="#07111f">
+
+    <title>
+        MLB The Show Mobile | عالم الألعاب
+    </title>
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+
+            --bg-main: #050a12;
+            --bg-secondary: #091321;
+            --bg-card: #0d1929;
+            --bg-card-2: #111f31;
+
+            --blue: #1687ff;
+            --blue-light: #45a8ff;
+            --blue-dark: #0754a8;
+
+            --red: #e63946;
+            --red-dark: #a91624;
+
+            --gold: #f5c451;
+            --white: #ffffff;
+            --text: #eaf2ff;
+            --muted: #9eafc4;
+
+            --border: rgba(255,255,255,0.08);
+
+            --shadow:
+                0 20px 60px rgba(0,0,0,0.45);
+
+            --radius: 22px;
+
+            --transition:
+                0.3s ease;
+
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(22,135,255,0.18),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    180deg,
+                    #050a12 0%,
+                    #07111f 45%,
+                    #040810 100%
+                );
+
+            color: var(--text);
+
+            line-height: 1.9;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+        }
+
+        a {
+
+            text-decoration: none;
+
+            color: inherit;
+
+        }
+
+        button {
+
+            font-family: inherit;
+
+        }
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .topbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(5,10,18,0.88);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.25);
+
+        }
+
+        .topbar-inner {
+
+            width: min(1200px, 92%);
+
+            margin: auto;
+
+            min-height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: .4px;
+
+        }
+
+        .brand-icon {
+
+            width: 43px;
+
+            height: 43px;
+
+            border-radius: 13px;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--blue),
+                    var(--blue-dark)
+                );
+
+            box-shadow:
+                0 8px 25px rgba(22,135,255,.35);
+
+            font-size: 21px;
+
+        }
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.2;
+
+        }
+
+        .brand-text strong {
+
+            font-size: 15px;
+
+        }
+
+        .brand-text span {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        .home-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.09),
+                    rgba(255,255,255,.03)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            transition:
+                transform var(--transition),
+                background var(--transition),
+                border var(--transition);
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+        }
+
+        .home-button:hover {
+
+            transform: translateY(-2px);
+
+            background:
+                rgba(22,135,255,.16);
+
+            border-color:
+                rgba(22,135,255,.55);
+
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            position: relative;
+
+            width: min(1200px, 92%);
+
+            min-height: 540px;
+
+            margin: 35px auto 0;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.55);
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            background:
+
+                radial-gradient(
+                    circle at 75% 25%,
+                    rgba(22,135,255,.25),
+                    transparent 32%
+                ),
+
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(230,57,70,.16),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #07111f,
+                    #0b1c31 55%,
+                    #08101c
+                );
+
+        }
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.025),
+                    transparent
+                );
+
+            transform:
+                translateX(-100%);
+
+            animation:
+                heroShine 7s infinite;
+
+        }
+
+        @keyframes heroShine {
+
+            0% {
+
+                transform:
+                    translateX(-100%);
+
+            }
+
+            35%,
+            100% {
+
+                transform:
+                    translateX(100%);
+
+            }
+
+        }
+
+        .stadium-lines {
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 500px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(22,135,255,.13);
+
+            left: -180px;
+
+            bottom: -250px;
+
+            box-shadow:
+
+                0 0 0 60px rgba(22,135,255,.025),
+
+                0 0 0 120px rgba(22,135,255,.018);
+
+        }
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 70px;
+
+        }
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 7px 13px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(22,135,255,.10);
+
+            border:
+                1px solid rgba(22,135,255,.25);
+
+            color:
+                #73beff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+
+        }
+
+        .live-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            background:
+                #37e37b;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 12px #37e37b;
+
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(42px, 7vw, 78px);
+
+            line-height: 1.05;
+
+            font-weight: 1000;
+
+            letter-spacing: -2px;
+
+            max-width: 850px;
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #ffffff,
+                    #cfe7ff 48%,
+                    #5eaeff
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+
+        }
+
+        .hero-subtitle {
+
+            color: #b9c9dc;
+
+            font-size: 18px;
+
+            max-width: 720px;
+
+            line-height: 2;
+
+            margin-bottom: 35px;
+
+        }
+
+        .hero-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+        }
+
+        .hero-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 14px 23px;
+
+            border-radius: 14px;
+
+            font-weight: 800;
+
+            transition:
+                transform var(--transition),
+                box-shadow var(--transition);
+
+        }
+
+        .hero-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+        }
+
+        .hero-btn.primary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1687ff,
+                    #0754a8
+                );
+
+            color: white;
+
+            box-shadow:
+                0 12px 30px
+                rgba(22,135,255,.3);
+
+        }
+
+        .hero-btn.secondary {
+
+            background:
+                rgba(255,255,255,.06);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            color: white;
+
+        }
+
+        /* =========================================================
+           SCOREBOARD
+        ========================================================= */
+
+        .scoreboard {
+
+            width: min(1200px, 92%);
+
+            margin: 24px auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b1625,
+                    #0a1422
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+        .score {
+
+            padding: 22px;
+
+            text-align: center;
+
+            position: relative;
+
+        }
+
+        .score:not(:last-child)::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 20%;
+
+            bottom: 20%;
+
+            left: 0;
+
+            width: 1px;
+
+            background:
+                var(--border);
+
+        }
+
+        .score-number {
+
+            display: block;
+
+            color:
+                var(--gold);
+
+            font-size: 28px;
+
+            font-weight: 950;
+
+            line-height: 1.2;
+
+        }
+
+        .score-label {
+
+            color:
+                var(--muted);
+
+            font-size: 12px;
+
+        }
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        .container {
+
+            width: min(1100px, 90%);
+
+            margin: 70px auto;
+
+        }
+
+        .section {
+
+            margin-bottom: 70px;
+
+            scroll-margin-top: 100px;
+
+        }
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 28px;
+
+        }
+
+        .section-title {
+
+            font-size:
+                clamp(27px, 4vw, 39px);
+
+            line-height: 1.25;
+
+            font-weight: 950;
+
+        }
+
+        .section-title span {
+
+            color:
+                var(--blue-light);
+
+        }
+
+        .section-line {
+
+            height: 3px;
+
+            width: 70px;
+
+            margin-top: 12px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--blue),
+                    transparent
+                );
+
+        }
+
+        .intro {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.018)
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding: 35px;
+
+            color:
+                #c7d4e5;
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,.18);
+
+        }
+
+        .intro::first-letter {
+
+            color:
+                var(--blue-light);
+
+        }
+
+        /* =========================================================
+           FEATURE GRID
+        ========================================================= */
+
+        .feature-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+        .feature-card {
+
+            position: relative;
+
+            padding: 28px;
+
+            border-radius:
+                var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,31,49,.95),
+                    rgba(9,19,32,.95)
+                );
+
+            border:
+                1px solid var(--border);
+
+            overflow: hidden;
+
+            transition:
+                transform var(--transition),
+                border-color var(--transition),
+                box-shadow var(--transition);
+
+        }
+
+        .feature-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(22,135,255,.08);
+
+            top: -70px;
+
+            left: -50px;
+
+        }
+
+        .feature-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(22,135,255,.35);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,.35);
+
+        }
+
+        .feature-number {
+
+            color:
+                rgba(255,255,255,.15);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+        }
+
+        .feature-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 15px;
+
+            margin:
+                12px 0 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(22,135,255,.18),
+                    rgba(22,135,255,.05)
+                );
+
+            border:
+                1px solid
+                rgba(22,135,255,.25);
+
+            font-size: 24px;
+
+        }
+
+        .feature-card h3 {
+
+            font-size: 19px;
+
+            margin-bottom: 9px;
+
+            color: white;
+
+        }
+
+        .feature-card p {
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+
+        }
+
+        /* =========================================================
+           PROS / CONS
+        ========================================================= */
+
+        .pros-cons {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+        .pc-card {
+
+            padding: 30px;
+
+            border-radius:
+                var(--radius);
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,.025);
+
+        }
+
+        .pc-card.pro {
+
+            border-top:
+                3px solid #29d978;
+
+        }
+
+        .pc-card.con {
+
+            border-top:
+                3px solid var(--red);
+
+        }
+
+        .pc-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .pc-icon {
+
+            width: 44px;
+
+            height: 44px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.06);
+
+        }
+
+        .pc-header h3 {
+
+            font-size: 20px;
+
+        }
+
+        .pc-list {
+
+            list-style: none;
+
+            display: grid;
+
+            gap: 13px;
+
+        }
+
+        .pc-list li {
+
+            color:
+                #b7c7d9;
+
+            font-size: 14px;
+
+            padding-right: 22px;
+
+            position: relative;
+
+        }
+
+        .pc-list li::before {
+
+            position: absolute;
+
+            right: 0;
+
+            top: 2px;
+
+            font-weight: 900;
+
+        }
+
+        .pro .pc-list li::before {
+
+            content: "✓";
+
+            color: #29d978;
+
+        }
+
+        .con .pc-list li::before {
+
+            content: "×";
+
+            color: var(--red);
+
+        }
+
+        /* =========================================================
+           INFORMATION PANEL
+        ========================================================= */
+
+        .info-panel {
+
+            position: relative;
+
+            padding: 35px;
+
+            border-radius:
+                25px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #0b1e34,
+                    #08101c
+                );
+
+            border:
+                1px solid
+                rgba(22,135,255,.2);
+
+        }
+
+        .info-panel::after {
+
+            content: "⚾";
+
+            position: absolute;
+
+            left: 30px;
+
+            bottom: -40px;
+
+            font-size: 150px;
+
+            opacity: .035;
+
+            transform:
+                rotate(-20deg);
+
+        }
+
+        .info-panel h2 {
+
+            margin-bottom: 14px;
+
+            color:
+                #fff;
+
+        }
+
+        .info-panel p {
+
+            color:
+                #b4c5d9;
+
+        }
+
+        /* =========================================================
+           CONCLUSION
+        ========================================================= */
+
+        .conclusion {
+
+            text-align: center;
+
+            padding: 55px 35px;
+
+            border-radius:
+                30px;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    rgba(22,135,255,.15),
+                    transparent 60%
+                ),
+
+                #0a1422;
+
+            border:
+                1px solid var(--border);
+
+        }
+
+        .conclusion h2 {
+
+            font-size:
+                clamp(28px, 5vw, 42px);
+
+            margin-bottom: 17px;
+
+        }
+
+        .conclusion p {
+
+            max-width: 760px;
+
+            margin: auto;
+
+            color:
+                var(--muted);
+
+        }
+
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download-box {
+
+            margin-top: 30px;
+
+            padding: 35px;
+
+            border-radius:
+                25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c1d31,
+                    #08111d
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            text-align: center;
+
+        }
+
+        .download-box h2 {
+
+            margin-bottom: 10px;
+
+        }
+
+        .download-box > p {
+
+            color:
+                var(--muted);
+
+            margin-bottom: 25px;
+
+        }
+
+        .download-buttons {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            flex-wrap: wrap;
+
+            gap: 14px;
+
+        }
+
+        .store-button {
+
+            min-width: 230px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            padding: 15px 20px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            font-weight: 850;
+
+            border:
+                1px solid rgba(255,255,255,.10);
+
+            transition:
+                transform var(--transition),
+                box-shadow var(--transition);
+
+        }
+
+        .store-button:hover {
+
+            transform:
+                translateY(-4px);
+
+        }
+
+        .android {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #23a455,
+                    #126b37
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(35,164,85,.18);
+
+        }
+
+        .ios {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #30343b,
+                    #15181c
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,.25);
+
+        }
+
+        /* =========================================================
+           IMAGE
+        ========================================================= */
+
+        .game-image-section {
+
+            margin-top: 65px;
+
+            text-align: center;
+
+        }
+
+        .game-image-frame {
+
+            position: relative;
+
+            display: inline-block;
+
+            max-width: 100%;
+
+            padding: 7px;
+
+            border-radius:
+                25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(22,135,255,.65),
+                    rgba(245,196,81,.45),
+                    rgba(230,57,70,.5)
+                );
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.5);
+
+        }
+
+        .game-image-frame img {
+
+            display: block;
+
+            max-width: 100%;
+
+            width: 850px;
+
+            height: auto;
+
+            border-radius:
+                19px;
+
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            margin-top: 90px;
+
+            padding:
+                35px 20px;
+
+            border-top:
+                1px solid var(--border);
+
+            background:
+                #04080e;
+
+            text-align: center;
+
+        }
+
+        .footer-brand {
+
+            font-weight: 950;
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+
+        }
+
+        footer p {
+
+            color:
+                #718299;
+
+            font-size: 12px;
+
+        }
+
+        /* =========================================================
+           SCROLL BUTTON
+        ========================================================= */
+
+        .back-top {
+
+            position: fixed;
+
+            left: 22px;
+
+            bottom: 22px;
+
+            width: 46px;
+
+            height: 46px;
+
+            border-radius: 14px;
+
+            display: grid;
+
+            place-items: center;
+
+            color: white;
+
+            background:
+                rgba(12,29,49,.9);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform:
+                translateY(10px);
+
+            transition:
+                .3s ease;
+
+            z-index: 999;
+
+        }
+
+        .back-top.show {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                translateY(0);
+
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .hero-content {
+
+                padding: 45px 30px;
+
+            }
+
+            .hero {
+
+                min-height: 500px;
+
+            }
+
+            .scoreboard {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            .score:nth-child(2)::after {
+
+                display: none;
+
+            }
+
+            .score:nth-child(-n+2) {
+
+                border-bottom:
+                    1px solid var(--border);
+
+            }
+
+            .feature-grid,
+            .pros-cons {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar-inner {
+
+                min-height: 68px;
+
+            }
+
+            .brand-text span {
+
+                display: none;
+
+            }
+
+            .home-button {
+
+                padding:
+                    9px 12px;
+
+                font-size: 12px;
+
+            }
+
+            .hero {
+
+                margin-top: 20px;
+
+                border-radius: 22px;
+
+            }
+
+            .hero-content {
+
+                padding: 40px 22px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 43px;
+
+                letter-spacing:
+                    -1px;
+
+            }
+
+            .hero-subtitle {
+
+                font-size: 15px;
+
+            }
+
+            .hero-actions {
+
+                flex-direction: column;
+
+            }
+
+            .hero-btn {
+
+                width: 100%;
+
+            }
+
+            .score {
+
+                padding: 17px 8px;
+
+            }
+
+            .score-number {
+
+                font-size: 22px;
+
+            }
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 50px;
+
+            }
+
+            .intro,
+            .feature-card,
+            .pc-card,
+            .info-panel,
+            .download-box {
+
+                padding: 23px;
+
+            }
+
+            .download-buttons {
+
+                flex-direction: column;
+
+            }
+
+            .store-button {
+
+                width: 100%;
+
+                min-width: 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================= -->
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <a href="index.html"
+               class="brand">
+
+                <div class="brand-icon">
+                    🎮
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>
+                        عالم الألعاب
+                    </strong>
+
+                    <span>
+                        Gaming Universe
+                    </span>
+
+                </div>
+
+            </a>
+
+            <a href="index.html"
+               class="home-button">
+
+                <span>←</span>
+
+                العودة إلى عالم الألعاب
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero">
+
+        <div class="stadium-lines"></div>
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span class="live-dot"></span>
+
+                تجربة البيسبول الاحترافية
+
+            </div>
+
+            <h1>
+                MLB The Show Mobile
+            </h1>
+
+            <p class="hero-subtitle">
+
+                ادخل إلى الملعب.
+                ابنِ فريقك.
+                واجه المنافسين.
+                واكتب اسمك في لوحة النتائج.
+                تجربة بيسبول مصممة لعشاق الرياضة
+                والتحدي والمنافسة على الهواتف الذكية.
+
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="#download"
+                   class="hero-btn primary">
+
+                    ⚾ ابدأ رحلتك
+
+                </a>
+
+                <a href="#features"
+                   class="hero-btn secondary">
+
+                    اكتشف اللعبة ↓
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         لوحة الإحصائيات
+    ========================================================= -->
+
+    <section class="scoreboard">
+
+        <div class="score">
+
+            <span class="score-number">
+                +900
+            </span>
+
+            <span class="score-label">
+                بطاقة لاعب
+            </span>
+
+        </div>
+
+        <div class="score">
+
+            <span class="score-number">
+                30
+            </span>
+
+            <span class="score-label">
+                ملعب MLB
+            </span>
+
+        </div>
+
+        <div class="score">
+
+            <span class="score-number">
+                3D
+            </span>
+
+            <span class="score-label">
+                تجربة لعب
+            </span>
+
+        </div>
+
+        <div class="score">
+
+            <span class="score-number">
+                LIVE
+            </span>
+
+            <span class="score-label">
+                منافسات تنافسية
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <!-- =====================================================
+             المقدمة
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        المباراة تبدأ <span>من هنا</span>
+                    </h2>
+
+                    <div class="section-line"></div>
+
+                </div>
+
+            </div>
+
+            <div class="intro">
+
+                MLB The Show Mobile هي لعبة بيسبول مخصصة للهواتف
+                الذكية، طورتها San Diego Studio ونشرتها Sony
+                Interactive Entertainment.
+
+                <br><br>
+
+                تقدم اللعبة تجربة بيسبول واقعية على الهاتف،
+                وتجمع بين اللعب داخل الملعب وبناء فريقك باستخدام
+                بطاقات اللاعبين.
+
+                <br><br>
+
+                تحتوي اللعبة على فرق ولاعبين مرخصين رسميًا من
+                MLB وMLB Players Association، بالإضافة إلى
+                الملاعب الثلاثين الخاصة بدوري MLB.
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             المميزات
+        ====================================================== -->
+
+        <section class="section"
+                 id="features">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        لماذا تستحق <span>التجربة؟</span>
+                    </h2>
+
+                    <div class="section-line"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        01 / ROSTER
+                    </span>
+
+                    <div class="feature-icon">
+                        🃏
+                    </div>
+
+                    <h3>
+                        أكثر من 900 بطاقة لاعب
+                    </h3>
+
+                    <p>
+                        يمكنك جمع أكثر من 900 بطاقة للاعبين،
+                        تشمل نجومًا حاليين وأساطير من تاريخ
+                        لعبة البيسبول، ثم بناء تشكيلة خاصة
+                        بك وتطويرها.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        02 / STADIUM
+                    </span>
+
+                    <div class="feature-icon">
+                        🏟️
+                    </div>
+
+                    <h3>
+                        ملاعب MLB الرسمية
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على الملاعب الثلاثين
+                        الرسمية الخاصة بفرق MLB، مما يمنح
+                        المباريات أجواء قريبة من مباريات
+                        البيسبول الحقيقية.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        03 / SKILL
+                    </span>
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        أسلوب لعب يعتمد على المهارة
+                    </h3>
+
+                    <p>
+                        يمكنك التحكم في الضرب والرمي والجري
+                        بين القواعد والدفاع باستخدام أدوات
+                        تحكم باللمس مصممة للهواتف.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        04 / MODES
+                    </span>
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        أوضاع لعب متعددة
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على أوضاع لعب فردية
+                        وجماعية، ومنها Seasons للتقدم الفردي،
+                        بالإضافة إلى مباريات تنافسية مباشرة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        05 / BUILD
+                    </span>
+
+                    <div class="feature-icon">
+                        🧩
+                    </div>
+
+                    <h3>
+                        بناء وتطوير فريقك
+                    </h3>
+
+                    <p>
+                        اجمع اللاعبين وطوّر بطاقاتك وابنِ
+                        تشكيلة خاصة بك، ثم استخدم فريقك في
+                        مختلف أوضاع اللعب.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <span class="feature-number">
+                        06 / COMPETE
+                    </span>
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        المنافسة والتحدي
+                    </h3>
+
+                    <p>
+                        كل مباراة تمنحك فرصة لاختبار قراراتك
+                        ومهارتك أمام خصوم يمتلكون تشكيلات
+                        واستراتيجيات مختلفة.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             المميزات والعيوب
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        الصورة <span>الكاملة</span>
+                    </h2>
+
+                    <div class="section-line"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="pros-cons">
+
+
+                <article class="pc-card pro">
+
+                    <div class="pc-header">
+
+                        <div class="pc-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            نقاط القوة
+                        </h3>
+
+                    </div>
+
+                    <ul class="pc-list">
+
+                        <li>
+                            مجموعة ضخمة من بطاقات اللاعبين.
+                        </li>
+
+                        <li>
+                            ملاعب MLB الرسمية.
+                        </li>
+
+                        <li>
+                            أسلوب لعب يعتمد على المهارة.
+                        </li>
+
+                        <li>
+                            أوضاع لعب فردية وتنافسية.
+                        </li>
+
+                        <li>
+                            إمكانية بناء وتطوير فريقك.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <article class="pc-card con">
+
+                    <div class="pc-header">
+
+                        <div class="pc-icon">
+                            !
+                        </div>
+
+                        <h3>
+                            نقاط يجب معرفتها
+                        </h3>
+
+                    </div>
+
+                    <ul class="pc-list">
+
+                        <li>
+                            تحتاج إلى مساحة تخزين مناسبة.
+                        </li>
+
+                        <li>
+                            تحتوي على مشتريات اختيارية داخل اللعبة.
+                        </li>
+
+                        <li>
+                            تحتاج إلى جهاز متوافق.
+                        </li>
+
+                        <li>
+                            المنافسة تصبح أصعب مع التقدم.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             تحليل احترافي
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="info-panel">
+
+                <h2>
+                    ⚾ لمن تناسب هذه اللعبة؟
+                </h2>
+
+                <p>
+
+                    MLB The Show Mobile مناسبة للاعب الذي لا يريد
+                    مجرد مباراة سريعة، بل يريد بناء تشكيلة وتطوير
+                    لاعبيه وتحسين قراراته داخل الملعب.
+
+                    <br><br>
+
+                    إذا كنت تستمتع بالألعاب الرياضية التي تجمع بين
+                    المهارة والإدارة والتنافس، فستجد في اللعبة
+                    مساحة كبيرة لتطوير أسلوبك واختبار قدراتك.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             الخلاصة
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="conclusion">
+
+                <h2>
+                    الخلاصة ⚾
+                </h2>
+
+                <p>
+
+                    MLB The Show Mobile هي لعبة مناسبة لمحبي
+                    البيسبول الذين يريدون تجربة هذه الرياضة
+                    على الهاتف الذكي.
+
+                    تتميز بأكثر من 900 بطاقة لاعب، وملاعب MLB
+                    الرسمية، وأوضاع لعب فردية وجماعية، بالإضافة
+                    إلى إمكانية بناء فريقك الخاص وتطويره.
+
+                    <br><br>
+
+                    إذا كنت تبحث عن لعبة بيسبول حديثة تجمع بين
+                    المنافسة وبناء الفريق والمهارة، فإن
+                    MLB The Show Mobile تستحق التجربة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             التحميل
+        ====================================================== -->
+
+        <section class="section"
+                 id="download">
+
+            <div class="download-box">
+
+                <h2>
+                    جاهز لدخول الملعب؟
+                </h2>
+
+                <p>
+                    حمّل MLB The Show Mobile من المتاجر الرسمية.
+                </p>
+
+
+                <div class="download-buttons">
+
+
+                    <a class="store-button android"
+                       href="https://play.google.com/store/apps/details?id=com.playstation.mlbtheshowmobile"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        <span>
+                            🤖
+                        </span>
+
+                        <span>
+                            تحميل للأندرويد
+                            <small>
+                                Google Play
+                            </small>
+                        </span>
+
+                    </a>
+
+
+                    <a class="store-button ios"
+                       href="https://apps.apple.com/us/app/mlb-the-show-mobile-baseball/id6474043167"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        <span>
+                            🍏
+                        </span>
+
+                        <span>
+                            تحميل للآيفون
+                            <small>
+                                App Store
+                            </small>
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             الصورة الأصلية - مرة واحدة فقط
+        ====================================================== -->
+
+        <section class="game-image-section">
+
+            <div class="game-image-frame">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS03W0T0A_x5ezO9DUolHgT-0BsJvH-fL4nJKkx72UoCA&s=10"
+                    alt="MLB The Show Mobile">
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-brand">
+            🎮 عالم الألعاب
+        </div>
+
+        <p>
+            MLB The Show Mobile — صفحة مخصصة لعشاق الألعاب الرياضية.
+        </p>
+
+        <p>
+            جميع العلامات والأسماء التجارية تعود إلى أصحابها.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================= -->
+
+    <button
+        class="back-top"
+        id="backTop"
+        aria-label="العودة إلى الأعلى">
+
+        ↑
+
+    </button>
+
+
+    <script>
+
+        /* =========================================================
+           زر العودة للأعلى
+        ========================================================= */
+
+        const backTop =
+            document.getElementById("backTop");
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (window.scrollY > 500) {
+
+                    backTop.classList.add("show");
+
+                } else {
+
+                    backTop.classList.remove("show");
+
+                }
+
+            }
+        );
+
+
+        backTop.addEventListener(
+            "click",
+            function () {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+
+        /* =========================================================
+           حركة بسيطة للبطاقات
+        ========================================================= */
+
+        const cards =
+            document.querySelectorAll(
+                ".feature-card"
+            );
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.style.opacity = "1";
+
+                                entry.target.style.transform =
+                                    "translateY(0)";
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        cards.forEach(
+            card => {
+
+                card.style.opacity = "0";
+
+                card.style.transform =
+                    "translateY(25px)";
+
+                card.style.transition =
+                    "opacity .6s ease, transform .6s ease";
+
+                observer.observe(card);
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

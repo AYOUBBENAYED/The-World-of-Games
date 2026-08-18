@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="صفحة eFootball - مراجعة شاملة لمميزات وعيوب لعبة كرة القدم الشهيرة">
+
+    <meta name="theme-color"
+          content="#07111f">
+
+    <title>eFootball | عالم الألعاب</title>
+
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(0, 119, 255, 0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(0, 255, 200, 0.08),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020711 0%,
+                    #06101d 45%,
+                    #02050c 100%
+                );
+
+            color: #eef6ff;
+
+            min-height: 100vh;
+
+            line-height: 1.9;
+
+            overflow-x: hidden;
+        }
+
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.08) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            opacity: 0.18;
+
+            animation:
+                starsMove 25s linear infinite;
+
+            z-index: -2;
+        }
+
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 174, 255, 0.12),
+                    transparent 70%
+                );
+
+            top: 10%;
+            left: -180px;
+
+            pointer-events: none;
+
+            animation:
+                floatingLight 8s ease-in-out infinite alternate;
+
+            z-index: -1;
+        }
+
+
+        @keyframes starsMove {
+
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(25px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+
+        }
+
+
+        @keyframes floatingLight {
+
+            from {
+                transform:
+                    translate3d(0, 0, 0)
+                    scale(1);
+            }
+
+            to {
+                transform:
+                    translate3d(100px, 80px, 0)
+                    scale(1.2);
+            }
+
+        }
+
+
+        ::selection {
+            background: #00c8ff;
+            color: #00101b;
+        }
+
+
+        /* =========================================================
+           SCROLL PROGRESS
+        ========================================================= */
+
+        .scroll-progress {
+
+            position: fixed;
+
+            top: 0;
+            right: 0;
+
+            width: 0%;
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00e5ff,
+                    #0077ff,
+                    #6c5ce7
+                );
+
+            box-shadow:
+                0 0 15px #00c8ff;
+
+            z-index: 9999;
+        }
+
+
+        /* =========================================================
+           TOP NAVIGATION
+        ========================================================= */
+
+        .topbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(3, 10, 20, 0.82);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(0, 208, 255, 0.18);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,0.35);
+        }
+
+
+        .nav {
+
+            width: min(1200px, 92%);
+
+            margin: auto;
+
+            min-height: 74px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: 900;
+
+            font-size: 1.15rem;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .brand-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00d9ff,
+                    #006eff
+                );
+
+            box-shadow:
+                0 0 25px
+                rgba(0, 190, 255, 0.38);
+
+            font-size: 1.3rem;
+        }
+
+
+        .brand span {
+            color: #9ceeff;
+        }
+
+
+        .home-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding:
+                10px 18px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 174, 255, 0.20),
+                    rgba(0, 100, 255, 0.08)
+                );
+
+            border:
+                1px solid
+                rgba(0, 213, 255, 0.35);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .home-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00bfff,
+                    #006eff
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 157, 255, 0.35);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            width: min(1200px, 92%);
+
+            margin:
+                70px auto 45px;
+
+            position: relative;
+
+            padding:
+                65px 55px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(11, 31, 55, 0.92),
+                    rgba(4, 12, 25, 0.94)
+                );
+
+            border:
+                1px solid
+                rgba(0, 214, 255, 0.22);
+
+            box-shadow:
+                0 30px 90px
+                rgba(0,0,0,0.45);
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 380px;
+            height: 380px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 217, 255, 0.20),
+                    transparent 70%
+                );
+
+            top: -180px;
+            left: -100px;
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 97, 255, 0.16),
+                    transparent 70%
+                );
+
+            bottom: -160px;
+            right: -100px;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                7px 14px;
+
+            border-radius: 999px;
+
+            color: #9eefff;
+
+            background:
+                rgba(0, 190, 255, 0.09);
+
+            border:
+                1px solid
+                rgba(0, 212, 255, 0.25);
+
+            font-size: 0.88rem;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+        }
+
+
+        .badge-dot {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #00e5ff;
+
+            box-shadow:
+                0 0 12px
+                #00e5ff;
+
+            animation:
+                pulse 1.8s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0%,100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.65);
+            }
+
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(2.4rem, 6vw, 5rem);
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+
+            font-weight: 950;
+
+            letter-spacing: -2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8eefff,
+                    #5a9cff
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero-subtitle {
+
+            color: #b8c9dc;
+
+            font-size:
+                clamp(1rem, 2vw, 1.2rem);
+
+            max-width: 760px;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+
+            width: min(1100px, 90%);
+
+            margin:
+                -5px auto 60px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .stat {
+
+            padding:
+                20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .stat:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(0,210,255,0.35);
+
+            background:
+                rgba(0,155,255,0.07);
+        }
+
+
+        .stat strong {
+
+            display: block;
+
+            font-size: 1.4rem;
+
+            color: #6eeaff;
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat span {
+
+            color: #91a4b8;
+
+            font-size: 0.88rem;
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .container {
+
+            width: min(1100px, 90%);
+
+            margin: auto;
+
+            padding-bottom: 80px;
+        }
+
+
+        .section {
+
+            margin-bottom: 38px;
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 22px;
+
+            font-size:
+                clamp(1.5rem, 3vw, 2rem);
+
+            font-weight: 900;
+        }
+
+
+        .section-title::before {
+
+            content: "";
+
+            width: 5px;
+
+            height: 34px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    #00e5ff,
+                    #006eff
+                );
+
+            box-shadow:
+                0 0 15px
+                rgba(0,200,255,0.5);
+        }
+
+
+        .intro-card {
+
+            padding:
+                30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13, 34, 58, 0.75),
+                    rgba(7, 15, 27, 0.82)
+                );
+
+            border:
+                1px solid
+                rgba(105,180,255,0.12);
+
+            box-shadow:
+                0 18px 45px
+                rgba(0,0,0,0.22);
+        }
+
+
+        .intro-card p {
+
+            color: #c7d5e4;
+
+            font-size:
+                clamp(1rem, 2vw, 1.08rem);
+
+            line-height: 2.15;
+        }
+
+
+        /* =========================================================
+           FEATURE GRID
+        ========================================================= */
+
+        .feature-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .feature-card {
+
+            position: relative;
+
+            padding:
+                26px;
+
+            min-height: 190px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13, 32, 53, 0.88),
+                    rgba(5, 12, 23, 0.9)
+                );
+
+            border:
+                1px solid
+                rgba(110,180,255,0.12);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+
+        .feature-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0,210,255,0.12),
+                    transparent 70%
+                );
+
+            left: -50px;
+            top: -50px;
+
+            transition:
+                0.4s ease;
+        }
+
+
+        .feature-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(0,213,255,0.35);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,120,255,0.14);
+        }
+
+
+        .feature-card:hover::before {
+
+            transform:
+                scale(1.5);
+        }
+
+
+        .feature-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,222,255,0.18),
+                    rgba(0,91,255,0.12)
+                );
+
+            border:
+                1px solid
+                rgba(0,210,255,0.22);
+
+            color: #71eaff;
+
+            font-weight: 900;
+
+            margin-bottom: 14px;
+        }
+
+
+        .feature-card h3 {
+
+            color: #ffffff;
+
+            font-size: 1.2rem;
+
+            margin-bottom: 10px;
+
+            position: relative;
+        }
+
+
+        .feature-card p {
+
+            color: #aebfd0;
+
+            line-height: 2;
+
+            position: relative;
+        }
+
+
+        /* =========================================================
+           CONS
+        ========================================================= */
+
+        .negative-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .negative-card {
+
+            padding:
+                25px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(44, 19, 28, 0.55),
+                    rgba(13, 9, 16, 0.72)
+                );
+
+            border:
+                1px solid
+                rgba(255,80,110,0.13);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .negative-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(255,90,120,0.35);
+
+            box-shadow:
+                0 18px 40px
+                rgba(255,50,90,0.08);
+        }
+
+
+        .negative-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,70,100,0.10);
+
+            border:
+                1px solid
+                rgba(255,90,120,0.2);
+
+            margin-bottom: 12px;
+        }
+
+
+        .negative-card h3 {
+
+            margin-bottom: 8px;
+
+            color: #ffe8ed;
+        }
+
+
+        .negative-card p {
+
+            color: #c4aeb5;
+
+            line-height: 2;
+        }
+
+
+        /* =========================================================
+           VERDICT
+        ========================================================= */
+
+        .verdict {
+
+            position: relative;
+
+            padding:
+                35px;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,110,190,0.16),
+                    rgba(18,30,58,0.72)
+                );
+
+            border:
+                1px solid
+                rgba(0,208,255,0.22);
+
+            box-shadow:
+                0 20px 55px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .verdict::after {
+
+            content: "eFOOTBALL";
+
+            position: absolute;
+
+            left: -30px;
+            bottom: -40px;
+
+            font-size: 5rem;
+
+            font-weight: 1000;
+
+            color:
+                rgba(255,255,255,0.025);
+
+            transform:
+                rotate(-8deg);
+
+            pointer-events: none;
+        }
+
+
+        .verdict p {
+
+            color: #c7d7e7;
+
+            font-size: 1.08rem;
+
+            line-height: 2.15;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================================
+           DOWNLOAD AREA
+        ========================================================= */
+
+        .download-box {
+
+            margin-top: 35px;
+
+            padding:
+                35px;
+
+            border-radius: 28px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(7,27,49,0.96),
+                    rgba(5,13,25,0.98)
+                );
+
+            border:
+                1px solid
+                rgba(0,215,255,0.24);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,0.35);
+        }
+
+
+        .download-box h2 {
+
+            font-size:
+                clamp(1.5rem, 4vw, 2.3rem);
+
+            margin-bottom: 10px;
+
+            color: white;
+        }
+
+
+        .download-box > p {
+
+            color: #9fb3c7;
+
+            margin-bottom: 25px;
+        }
+
+
+        .download-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .download-button {
+
+            min-width: 240px;
+
+            padding:
+                15px 22px;
+
+            border-radius: 15px;
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: 900;
+
+            display: inline-flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087dff,
+                    #0052d4
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,100,255,0.22);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .download-button.apple {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #252a31,
+                    #11151b
+                );
+        }
+
+
+        .download-button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.02);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,175,255,0.28);
+        }
+
+
+        /* =========================================================
+           IMAGE
+        ========================================================= */
+
+        .game-image-wrapper {
+
+            margin:
+                50px auto 0;
+
+            text-align: center;
+
+            padding:
+                15px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.04),
+                    rgba(255,255,255,0.015)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            max-width: 900px;
+        }
+
+
+        .game-image {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 850px;
+
+            height: auto;
+
+            margin: auto;
+
+            border-radius: 18px;
+
+            object-fit: cover;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.45);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            background:
+                rgba(0,0,0,0.22);
+
+            padding:
+                30px 20px;
+
+            text-align: center;
+        }
+
+
+        footer p {
+
+            color: #72869b;
+
+            font-size: 0.9rem;
+        }
+
+
+        footer strong {
+
+            color: #8eefff;
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        .back-top {
+
+            position: fixed;
+
+            left: 22px;
+            bottom: 22px;
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 15px;
+
+            border:
+                1px solid
+                rgba(0,214,255,0.25);
+
+            background:
+                rgba(5,17,30,0.88);
+
+            color: #6feaff;
+
+            cursor: pointer;
+
+            font-size: 1.2rem;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                0.3s ease;
+
+            z-index: 900;
+        }
+
+
+        .back-top.visible {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .back-top:hover {
+
+            background:
+                #007cff;
+
+            color: white;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,130,255,0.3);
+        }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform:
+                translateY(25px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+
+        .reveal.active {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .feature-grid,
+            .negative-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .hero {
+
+                padding:
+                    45px 28px;
+
+                margin-top:
+                    40px;
+            }
+
+
+            .nav {
+
+                min-height: 68px;
+            }
+
+
+            .brand {
+
+                font-size: 0.95rem;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .nav {
+
+                width: 94%;
+            }
+
+
+            .brand-icon {
+
+                width: 38px;
+                height: 38px;
+            }
+
+
+            .home-button {
+
+                padding:
+                    9px 12px;
+
+                font-size:
+                    0.85rem;
+            }
+
+
+            .hero {
+
+                border-radius: 22px;
+
+                padding:
+                    35px 20px;
+            }
+
+
+            .hero h1 {
+
+                letter-spacing:
+                    -1px;
+            }
+
+
+            .container {
+
+                width: 94%;
+            }
+
+
+            .stats {
+
+                width: 94%;
+
+                gap: 10px;
+            }
+
+
+            .stat {
+
+                padding:
+                    15px 8px;
+            }
+
+
+            .intro-card,
+            .feature-card,
+            .negative-card,
+            .verdict,
+            .download-box {
+
+                padding:
+                    22px;
+            }
+
+
+            .download-button {
+
+                width: 100%;
+
+                min-width: 0;
+            }
+
+
+            .game-image-wrapper {
+
+                padding: 8px;
+
+                border-radius: 18px;
+            }
+
+        }
+
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
+        a:focus-visible,
+        button:focus-visible {
+
+            outline:
+                3px solid
+                #00d9ff;
+
+            outline-offset:
+                3px;
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                scroll-behavior:
+                    auto !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         شريط تقدم الصفحة
+    ========================================================== -->
+
+    <div
+        class="scroll-progress"
+        id="scrollProgress">
+    </div>
+
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <nav class="nav">
+
+            <a
+                href="index.html"
+                class="brand">
+
+                <span class="brand-icon">
+                    🎮
+                </span>
+
+                <span>
+                    عالم الألعاب
+                </span>
+
+            </a>
+
+
+            <a
+                href="index.html"
+                class="home-button">
+
+                🏠
+                العودة إلى عالم الألعاب
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="hero reveal">
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                <span class="badge-dot"></span>
+
+                مراجعة احترافية
+
+            </div>
+
+
+            <h1>
+                eFootball
+            </h1>
+
+
+            <p class="hero-subtitle">
+
+                تجربة كرة قدم تنافسية تجمع بين بناء الفريق،
+                المباريات الإلكترونية، التطوير المستمر،
+                والمنافسة ضد لاعبين من مختلف أنحاء العالم.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         الإحصائيات
+    ========================================================== -->
+
+    <section class="stats reveal">
+
+        <div class="stat">
+
+            <strong>
+                ⚽
+            </strong>
+
+            <span>
+                كرة قدم تنافسية
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>
+                🌍
+            </strong>
+
+            <span>
+                منافسة عالمية
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>
+                🎮
+            </strong>
+
+            <span>
+                بناء وتطوير الفريق
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>
+                🔄
+            </strong>
+
+            <span>
+                تحديثات وفعاليات
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- =====================================================
+             المقدمة
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <h2 class="section-title">
+                مقدمة
+            </h2>
+
+
+            <div class="intro-card">
+
+                <p>
+
+                    eFootball هي لعبة كرة قدم مخصصة للهواتف الذكية،
+                    طورتها شركة KONAMI، وهي امتداد لسلسلة PES الشهيرة.
+                    تقدم اللعبة تجربة كرة قدم تنافسية، حيث يمكنك بناء
+                    فريقك الخاص واختيار اللاعبين والمدربين، ثم خوض
+                    المباريات والمنافسات ضد لاعبين من مختلف أنحاء العالم.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             المميزات
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <h2 class="section-title">
+
+                🌟
+                إيجابيات ومميزات لعبة eFootball
+
+            </h2>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        01
+                    </div>
+
+                    <h3>
+                        تجربة كرة قدم واقعية
+                    </h3>
+
+                    <p>
+
+                        تقدم اللعبة أسلوب لعب يركز على التمرير والتحرك
+                        والتسديد والدفاع، مع نظام تحكم مناسب للهواتف
+                        الذكية.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <h3>
+                        بناء فريقك الخاص
+                    </h3>
+
+                    <p>
+
+                        يمكنك التعاقد مع اللاعبين والمدربين وتكوين فريقك
+                        الخاص، ثم تطوير تشكيلتك واختيار أسلوب اللعب
+                        المناسب لك.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <h3>
+                        المنافسة عبر الإنترنت
+                    </h3>
+
+                    <p>
+
+                        يمكنك اللعب ضد مستخدمين من مختلف أنحاء العالم
+                        والمشاركة في مباريات ومنافسات عبر الإنترنت.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        04
+                    </div>
+
+                    <h3>
+                        تحديثات وفعاليات مستمرة
+                    </h3>
+
+                    <p>
+
+                        تحصل اللعبة على تحديثات وفعاليات جديدة بشكل مستمر،
+                        مع إضافة محتوى وتحسينات مختلفة إلى أسلوب اللعب.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        05
+                    </div>
+
+                    <h3>
+                        سهولة التحكم
+                    </h3>
+
+                    <p>
+
+                        تحتوي اللعبة على إعدادات تحكم مناسبة للهواتف،
+                        كما يوجد نظام Smart Assist لمساعدة اللاعبين
+                        الجدد على تعلم طريقة اللعب.
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             العيوب
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <h2 class="section-title">
+
+                ⚠️
+                سلبيات وعيوب لعبة eFootball
+
+            </h2>
+
+
+            <div class="negative-grid">
+
+
+                <article class="negative-card">
+
+                    <div class="negative-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        الحاجة إلى الإنترنت
+                    </h3>
+
+                    <p>
+
+                        تحتاج اللعبة إلى اتصال بالإنترنت للعب،
+                        لذلك قد تواجه صعوبة في اللعب إذا كان
+                        الاتصال ضعيفًا.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="negative-card">
+
+                    <div class="negative-icon">
+                        💾
+                    </div>
+
+                    <h3>
+                        حجم اللعبة
+                    </h3>
+
+                    <p>
+
+                        تحتاج اللعبة إلى مساحة تخزين كبيرة نسبيًا،
+                        وقد تحتاج إلى مساحة إضافية عند تنزيل
+                        التحديثات.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="negative-card">
+
+                    <div class="negative-icon">
+                        💳
+                    </div>
+
+                    <h3>
+                        المشتريات داخل اللعبة
+                    </h3>
+
+                    <p>
+
+                        تحتوي اللعبة على مشتريات اختيارية داخل التطبيق،
+                        ويمكن للاعب الاستمتاع باللعبة دون الحاجة إلى
+                        شراء هذه العناصر.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="negative-card">
+
+                    <div class="negative-icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        تحتاج إلى جهاز مناسب
+                    </h3>
+
+                    <p>
+
+                        للحصول على تجربة أفضل، يجب أن يكون الهاتف قادرًا
+                        على تشغيل اللعبة بالمواصفات المطلوبة.
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الخلاصة
+        ====================================================== -->
+
+        <section class="section reveal">
+
+            <h2 class="section-title">
+                🏆 الخلاصة
+            </h2>
+
+
+            <div class="verdict">
+
+                <p>
+
+                    eFootball هي لعبة مناسبة لمحبي كرة القدم الذين
+                    يريدون تجربة مباريات كرة القدم على الهاتف الذكي.
+                    تتميز بإمكانية بناء فريق خاص والمنافسة عبر الإنترنت
+                    والحصول على تحديثات وفعاليات مستمرة.
+
+                    وإذا كنت من محبي ألعاب كرة القدم وتبحث عن لعبة
+                    مجانية للهواتف، فإن eFootball تعد من الخيارات
+                    المناسبة للتجربة.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             التحميل
+        ====================================================== -->
+
+        <section class="download-box reveal">
+
+            <h2>
+                جاهز لدخول الملعب؟
+            </h2>
+
+
+            <p>
+
+                حمّل eFootball من المتجر المناسب لجهازك.
+
+            </p>
+
+
+            <div class="download-buttons">
+
+
+                <a
+                    href="https://play.google.com/store/apps/details?id=jp.konami.pesam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-button">
+
+                    🤖
+                    تحميل للأندرويد
+
+                </a>
+
+
+
+                <a
+                    href="https://apps.apple.com/us/app/efootball/id1117270703"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="download-button apple">
+
+                    🍏
+                    تحميل للآيفون والآيباد
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الصورة — الرابط محفوظ كما أرسلته
+        ====================================================== -->
+
+        <div class="game-image-wrapper reveal">
+
+            <img
+                class="game-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGM2J0mdf4xh21xKDlt9Qeu7bV7WqwuhZ4y-VN-vEpCQ&s=10"
+                alt="صورة لعبة eFootball"
+                loading="lazy">
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <p>
+
+            © 2026
+            <strong>
+                عالم الألعاب
+            </strong>
+
+            — جميع الحقوق محفوظة
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================== -->
+
+    <button
+        class="back-top"
+        id="backTop"
+        aria-label="العودة إلى أعلى الصفحة">
+
+        ↑
+
+    </button>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           شريط تقدم القراءة
+        ===================================================== */
+
+        const scrollProgress =
+            document.getElementById(
+                "scrollProgress"
+            );
+
+
+        function updateScrollProgress() {
+
+            const scrollTop =
+                window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight
+                -
+                window.innerHeight;
+
+            const percentage =
+                documentHeight > 0
+                    ? (scrollTop / documentHeight) * 100
+                    : 0;
+
+            scrollProgress.style.width =
+                percentage + "%";
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateScrollProgress,
+            { passive: true }
+        );
+
+
+        /* =====================================================
+           زر العودة للأعلى
+        ===================================================== */
+
+        const backTop =
+            document.getElementById(
+                "backTop"
+            );
+
+
+        function updateBackTop() {
+
+            if (window.scrollY > 500) {
+
+                backTop.classList.add(
+                    "visible"
+                );
+
+            } else {
+
+                backTop.classList.remove(
+                    "visible"
+                );
+
+            }
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateBackTop,
+            { passive: true }
+        );
+
+
+        backTop.addEventListener(
+            "click",
+            function () {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           ظهور العناصر أثناء النزول
+        ===================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "active"
+                                );
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(
+            function (element) {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           تأثير بسيط على الشريط العلوي
+        ===================================================== */
+
+        const topbar =
+            document.querySelector(
+                ".topbar"
+            );
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (window.scrollY > 30) {
+
+                    topbar.style.background =
+                        "rgba(2, 8, 17, 0.94)";
+
+                } else {
+
+                    topbar.style.background =
+                        "rgba(3, 10, 20, 0.82)";
+
+                }
+
+            },
+            { passive: true }
+        );
+
+
+        /* =====================================================
+           تشغيل أولي
+        ===================================================== */
+
+        updateScrollProgress();
+
+        updateBackTop();
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="صفحة Asphalt 9 Legends - تعرف على مميزات وعيوب اللعبة واستكشف عالم السباقات والسرعة.">
+    <meta name="theme-color" content="#080b16">
+
+    <title>Asphalt 9: Legends | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           1. الإعدادات العامة
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(255, 45, 85, 0.12),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(0, 217, 255, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #05060b 0%,
+                    #0a0d18 45%,
+                    #06070d 100%
+                );
+
+            color: #f5f7ff;
+            min-height: 100vh;
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.35) 1px,
+                    transparent 1px
+                );
+
+            background-size: 90px 90px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -2;
+
+            animation: starsMove 35s linear infinite;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 30, 80, 0.08),
+                    transparent 65%
+                );
+
+            top: 20%;
+            left: -200px;
+
+            filter: blur(20px);
+            pointer-events: none;
+            z-index: -1;
+
+            animation: floatingGlow 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(90px);
+            }
+        }
+
+        @keyframes floatingGlow {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(250px, 120px) scale(1.25);
+            }
+        }
+
+        ::selection {
+            background: #ff2457;
+            color: white;
+        }
+
+
+        /* =========================================================
+           2. الشريط العلوي
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(5, 7, 15, 0.82);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .topbar-inner {
+            width: min(1180px, 92%);
+            margin: auto;
+
+            min-height: 78px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-weight: 900;
+            font-size: 1.15rem;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff174f,
+                    #ff5c35
+                );
+
+            box-shadow:
+                0 0 25px rgba(255, 23, 79, 0.35);
+
+            font-size: 1.3rem;
+        }
+
+        .brand-text span {
+            color: #ff315f;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #bfc5d7;
+            text-decoration: none;
+
+            padding: 10px 15px;
+            border-radius: 10px;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            transform: translateY(-2px);
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            color: white !important;
+            text-decoration: none;
+
+            padding: 11px 18px !important;
+
+            border-radius: 12px !important;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff174f,
+                    #ff4c2f
+                );
+
+            box-shadow:
+                0 8px 25px rgba(255, 23, 79, 0.25);
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px) !important;
+
+            box-shadow:
+                0 12px 30px rgba(255, 23, 79, 0.4);
+        }
+
+
+        /* =========================================================
+           3. الحاوية الرئيسية
+        ========================================================= */
+
+        .container {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           4. Hero
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            min-height: 620px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 90px 0 70px;
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            right: -300px;
+            top: -250px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 29, 74, 0.22),
+                    transparent 68%
+                );
+
+            filter: blur(10px);
+
+            animation:
+                heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 31, 80, 0.10);
+
+            border:
+                1px solid rgba(255, 31, 80, 0.25);
+
+            color: #ff5275;
+
+            font-weight: 700;
+            font-size: 0.9rem;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(3rem, 8vw, 6.5rem);
+
+            line-height: 1;
+
+            font-weight: 1000;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 10%,
+                    #ff3b68 55%,
+                    #ff7a45 100%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            text-shadow:
+                0 10px 50px rgba(255, 32, 80, 0.18);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+
+            color: #aeb5c9;
+
+            max-width: 750px;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            padding: 14px 23px;
+
+            border-radius: 14px;
+
+            font-weight: 800;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .primary-btn {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff174f,
+                    #ff4b32
+                );
+
+            box-shadow:
+                0 15px 35px rgba(255, 23, 79, 0.25);
+        }
+
+        .secondary-btn {
+            color: white;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .primary-btn:hover {
+            box-shadow:
+                0 20px 45px rgba(255, 23, 79, 0.4);
+        }
+
+        .secondary-btn:hover {
+            background:
+                rgba(255,255,255,0.10);
+        }
+
+
+        /* =========================================================
+           5. شريط الإحصائيات
+        ========================================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: -25px;
+
+            position: relative;
+            z-index: 5;
+        }
+
+        .stat-card {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.08),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.18);
+
+            text-align: center;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255, 54, 91, 0.35);
+        }
+
+        .stat-icon {
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            display: block;
+
+            font-size: 1.25rem;
+
+            font-weight: 900;
+
+            color: white;
+        }
+
+        .stat-label {
+            color: #8f97ad;
+            font-size: 0.85rem;
+        }
+
+
+        /* =========================================================
+           6. الأقسام
+        ========================================================= */
+
+        section {
+            padding: 90px 0 0;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+        }
+
+        .section-kicker {
+            color: #ff426c;
+
+            font-size: 0.85rem;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size:
+                clamp(2rem, 4vw, 3.2rem);
+
+            line-height: 1.2;
+
+            margin-bottom: 12px;
+
+            color: white;
+        }
+
+        .section-heading p {
+            color: #9da5ba;
+
+            max-width: 760px;
+        }
+
+
+        /* =========================================================
+           7. المقدمة
+        ========================================================= */
+
+        .intro-box {
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.2);
+
+            overflow: hidden;
+        }
+
+        .intro-box::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+
+            width: 5px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    #ff174f,
+                    #ff713d
+                );
+        }
+
+        .intro-box p {
+            color: #c2c8d7;
+
+            font-size: 1.08rem;
+        }
+
+
+        /* =========================================================
+           8. بطاقات المميزات
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .feature-card {
+            position: relative;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .feature-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            left: -80px;
+            bottom: -90px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 33, 79, 0.12);
+
+            filter: blur(20px);
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(255, 45, 90, 0.3);
+
+            box-shadow:
+                0 25px 55px rgba(0,0,0,0.25);
+        }
+
+        .feature-card:hover::after {
+            transform: scale(2);
+        }
+
+        .feature-number {
+            color: #ff315e;
+
+            font-size: 0.8rem;
+
+            font-weight: 900;
+
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+
+            color: white;
+
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #969fb4;
+
+            font-size: 0.98rem;
+        }
+
+
+        /* =========================================================
+           9. قسم العيوب
+        ========================================================= */
+
+        .negative-section {
+            margin-top: 10px;
+        }
+
+        .negative-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .negative-card {
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 59, 75, 0.07),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255, 75, 90, 0.12);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .negative-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255, 75, 90, 0.35);
+        }
+
+        .negative-card h3 {
+            color: #ff647c;
+
+            margin-bottom: 10px;
+
+            font-size: 1.15rem;
+        }
+
+        .negative-card p {
+            color: #9da4b7;
+        }
+
+
+        /* =========================================================
+           10. الخلاصة
+        ========================================================= */
+
+        .conclusion {
+            position: relative;
+
+            padding: 50px;
+
+            border-radius: 28px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(255, 35, 80, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    145deg,
+                    #101321,
+                    #090b13
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            overflow: hidden;
+        }
+
+        .conclusion::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            left: -100px;
+            bottom: -150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 35, 80, 0.12);
+
+            filter: blur(30px);
+        }
+
+        .conclusion h2 {
+            font-size: 2rem;
+
+            margin-bottom: 18px;
+
+            color: white;
+        }
+
+        .conclusion p {
+            position: relative;
+
+            color: #b9c0d0;
+
+            font-size: 1.08rem;
+
+            max-width: 900px;
+        }
+
+
+        /* =========================================================
+           11. قسم التحميل
+        ========================================================= */
+
+        .download-section {
+            padding-bottom: 90px;
+        }
+
+        .download-panel {
+            position: relative;
+
+            padding: 45px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 23, 79, 0.15),
+                    rgba(0, 0, 0, 0.25)
+                );
+
+            border:
+                1px solid rgba(255, 62, 100, 0.25);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.3);
+
+            overflow: hidden;
+        }
+
+        .download-panel::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 20%,
+                    rgba(255,255,255,0.05) 50%,
+                    transparent 80%
+                );
+
+            transform:
+                translateX(-100%);
+
+            animation:
+                shine 7s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            30%,
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .download-content h2 {
+            font-size:
+                clamp(2rem, 5vw, 3.4rem);
+
+            margin-bottom: 12px;
+        }
+
+        .download-content p {
+            color: #aeb5c7;
+
+            max-width: 700px;
+
+            margin: 0 auto 30px;
+        }
+
+        .download-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 14px;
+        }
+
+        .store-button {
+            min-width: 210px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 15px 22px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid rgba(255,255,255,0.13);
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .store-button:hover {
+            transform: translateY(-5px);
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border-color:
+                rgba(255,255,255,0.25);
+        }
+
+
+        /* =========================================================
+           12. صورة اللعبة
+        ========================================================= */
+
+        .game-image-wrapper {
+            margin-top: 55px;
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+        .game-image-frame {
+            position: relative;
+
+            width: min(850px, 100%);
+
+            padding: 8px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff174f,
+                    #ff6b3d,
+                    #131827
+                );
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .game-image-frame::before {
+            content: "";
+
+            position: absolute;
+
+            inset: -2px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.2),
+                    transparent
+                );
+
+            opacity: 0.35;
+
+            z-index: -1;
+        }
+
+        .game-image {
+            display: block;
+
+            width: 100%;
+
+            max-height: 500px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            background: #080a12;
+        }
+
+
+        /* =========================================================
+           13. الفوتر
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+
+            background:
+                rgba(0,0,0,0.2);
+
+            padding: 35px 0;
+        }
+
+        .footer-inner {
+            width: min(1120px, 92%);
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-weight: 900;
+            color: white;
+        }
+
+        .footer-brand span {
+            color: #ff315e;
+        }
+
+        .copyright {
+            color: #727b91;
+            font-size: 0.9rem;
+        }
+
+        .back-top {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .back-top:hover {
+            background:
+                #ff2457;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================================
+           14. شريط التقدم
+        ========================================================= */
+
+        .progress-bar {
+            position: fixed;
+
+            top: 0;
+            right: 0;
+
+            height: 3px;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff174f,
+                    #ff773d
+                );
+
+            z-index: 2000;
+
+            box-shadow:
+                0 0 15px rgba(255, 23, 79, 0.7);
+        }
+
+
+        /* =========================================================
+           15. زر العودة للأعلى
+        ========================================================= */
+
+        .floating-top {
+            position: fixed;
+
+            left: 25px;
+            bottom: 25px;
+
+            width: 48px;
+            height: 48px;
+
+            border: 0;
+
+            border-radius: 15px;
+
+            color: white;
+
+            background:
+                rgba(12,15,25,0.85);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            backdrop-filter: blur(10px);
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(20px);
+
+            transition:
+                all 0.3s ease;
+
+            z-index: 900;
+        }
+
+        .floating-top.show {
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+        .floating-top:hover {
+            background:
+                #ff2457;
+        }
+
+
+        /* =========================================================
+           16. ظهور العناصر
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           17. Responsive
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links a:not(.home-button) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 560px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .feature-grid,
+            .negative-grid {
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .topbar-inner {
+                min-height: 68px;
+            }
+
+            .brand-text {
+                font-size: 0.95rem;
+            }
+
+            .brand-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .home-button {
+                padding:
+                    9px 13px !important;
+            }
+
+            .hero {
+                padding:
+                    65px 0 55px;
+
+                min-height:
+                    auto;
+            }
+
+            .hero h1 {
+                letter-spacing:
+                    -1.5px;
+            }
+
+            .hero-subtitle {
+                font-size:
+                    1rem;
+            }
+
+            .hero-actions {
+                flex-direction:
+                    column;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 17px 10px;
+            }
+
+            section {
+                padding-top:
+                    65px;
+            }
+
+            .intro-box,
+            .feature-card,
+            .negative-card,
+            .conclusion,
+            .download-panel {
+                padding:
+                    25px 20px;
+            }
+
+            .download-buttons {
+                flex-direction:
+                    column;
+            }
+
+            .store-button {
+                width: 100%;
+            }
+
+            .footer-inner {
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+            }
+        }
+
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- =========================================================
+         شريط تقدم الصفحة
+    ========================================================== -->
+
+    <div class="progress-bar" id="progressBar"></div>
+
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon">🎮</span>
+
+                <span class="brand-text">
+                    عالم <span>الألعاب</span>
+                </span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#intro">
+                    عن اللعبة
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#negatives">
+                    العيوب
+                </a>
+
+                <a href="#download">
+                    التحميل
+                </a>
+
+                <!-- زر العودة إلى الصفحة الرئيسية -->
+
+                <a href="index.html" class="home-button">
+                    🏠 العودة إلى عالم الألعاب
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         Hero
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content reveal">
+
+                    <div class="eyebrow">
+                        🏎️ تجربة السرعة والأساطير
+                    </div>
+
+                    <h1>
+                        ASPHALT 9
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        ادخل عالم السرعة المطلقة، حيث السيارات الخارقة،
+                        والنيترو، والقفزات المجنونة، والحلبات العالمية
+                        تجتمع لصناعة واحدة من أكثر تجارب السباقات إثارة.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a href="#download" class="primary-btn">
+                            ⚡ ابدأ رحلتك الآن
+                        </a>
+
+                        <a href="#features" class="secondary-btn">
+                            🔥 اكتشف المميزات
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             الإحصائيات
+        ====================================================== -->
+
+        <div class="container">
+
+            <div class="stats">
+
+                <div class="stat-card reveal">
+
+                    <div class="stat-icon">
+                        🏎️
+                    </div>
+
+                    <span class="stat-value">
+                        سباقات سريعة
+                    </span>
+
+                    <span class="stat-label">
+                        تجربة مليئة بالأدرينالين
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card reveal">
+
+                    <div class="stat-icon">
+                        🌍
+                    </div>
+
+                    <span class="stat-value">
+                        عالمية
+                    </span>
+
+                    <span class="stat-label">
+                        حلبات ومدن متنوعة
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card reveal">
+
+                    <div class="stat-icon">
+                        🚀
+                    </div>
+
+                    <span class="stat-value">
+                        Nitro
+                    </span>
+
+                    <span class="stat-label">
+                        سرعة تتحدى الجاذبية
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card reveal">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <span class="stat-value">
+                        Multiplayer
+                    </span>
+
+                    <span class="stat-label">
+                        منافسة ضد لاعبين
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             المقدمة
+        ====================================================== -->
+
+        <section id="intro">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        01 — نظرة عامة
+                    </div>
+
+                    <h2>
+                        مقدمة عن Asphalt 9
+                    </h2>
+
+                    <p>
+                        كل ما تحتاج معرفته عن واحدة من أشهر ألعاب
+                        سباقات السيارات.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-box reveal">
+
+                    <p>
+                        إذا كنت من عشاق المحركات الهادرة، والسرعات التي
+                        تتحدى الجاذبية، فإن لعبة Asphalt 9: Legends هي
+                        خيارك الأمثل لتدخل عالم السباقات الأكثر إثارة.
+                        تُعد هذه اللعبة التحفة الفنية لشركة "جيم لوفت"،
+                        حيث تمكنت من نقل ألعاب سباقات الهواتف إلى مستوى
+                        جديد تماماً يقارع أجهزة الكونسول. تأخذك اللعبة
+                        في جولة عالمية عبر حلبات مذهلة مستوحاة من مدن
+                        حقيقية، خلف مقود أفخم السيارات الرياضية الخارقة،
+                        لتخوض تحديات ومطاردات تحبس الأنفاس ولا تعترف
+                        بحدود السرعة.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             المميزات
+        ====================================================== -->
+
+        <section id="features">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        02 — نقاط القوة
+                    </div>
+
+                    <h2>
+                        لماذا Asphalt 9؟
+                    </h2>
+
+                    <p>
+                        امتلكت اللعبة بريقاً خاصاً بفضل نقاط قوتها
+                        البصرية والميكانيكية.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 01
+                        </div>
+
+                        <h3>
+                            🎨 رسوميات خارقة تضاهي الكونسول
+                        </h3>
+
+                        <p>
+                            تقدم اللعبة جودة بصرية مذهلة، ومؤثرات
+                            بصرية مثل انعكاس الضوء على هيكل السيارات،
+                            وتطاير الشظايا، وتأثيرات النيترو التي تجعل
+                            السباق سينمائياً.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 02
+                        </div>
+
+                        <h3>
+                            🏎️ أسطول سيارات مرخص وعالمي
+                        </h3>
+
+                        <p>
+                            تحتوي اللعبة على تشكيلة ضخمة من أشهر
+                            السيارات الحقيقية من شركات عملاقة مثل
+                            فيراري، لامبورغيني، وبورش، مع إمكانية
+                            تعديل مظهرها وأدائها بالكامل.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 03
+                        </div>
+
+                        <h3>
+                            🎮 نظام التحكم الذكي TouchDrive
+                        </h3>
+
+                        <p>
+                            يتيح هذا النظام المبتكر للمبتدئين الاستمتاع
+                            باللعبة عبر التوجيه التلقائي والتركيز على
+                            التوقيت المناسب لاستخدام النيترو أو
+                            الانجراف، مع إمكانية التحويل للتحكم اليدوي
+                            الكامل للمحترفين.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 04
+                        </div>
+
+                        <h3>
+                            🌍 حلبات سباق ديناميكية ومثيرة
+                        </h3>
+
+                        <p>
+                            التسابق في مواقع ساحرة ومصممة بدقة مثل
+                            شوارع شنغهاي، جبال الهيمالايا، أو وسط
+                            القاهرة، مع وجود مسارات سرية وقفزات هوائية
+                            ممتعة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 05
+                        </div>
+
+                        <h3>
+                            🌐 اللعب الجماعي التنافسي
+                        </h3>
+
+                        <p>
+                            خوض سباقات حية ضد لاعبين آخرين من مختلف
+                            أنحاء العالم لتسلق الترتيب العالمي وإثبات
+                            مهاراتك في السباقات.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-number">
+                            FEATURE 06
+                        </div>
+
+                        <h3>
+                            🔄 تحديثات مستمرة
+                        </h3>
+
+                        <p>
+                            تحصل اللعبة على مواسم وسيارات جديدة بانتظام،
+                            مما يمنح اللاعبين محتوى متجدداً ويحافظ على
+                            حيوية التجربة لفترات طويلة.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             العيوب
+        ====================================================== -->
+
+        <section id="negatives" class="negative-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        03 — نقاط يجب معرفتها
+                    </div>
+
+                    <h2>
+                        سلبيات وعيوب Asphalt 9
+                    </h2>
+
+                    <p>
+                        لا توجد لعبة مثالية، وهذه أبرز النقاط التي
+                        ينبغي على اللاعب معرفتها.
+                    </p>
+
+                </div>
+
+
+                <div class="negative-grid">
+
+
+                    <article class="negative-card reveal">
+
+                        <h3>
+                            💳 الاعتماد الكبير على الشحن
+                        </h3>
+
+                        <p>
+                            لفتح السيارات النادرة ورفع مستواها سريعاً،
+                            تضغط اللعبة على اللاعب لشراء الحزم والبطاقات
+                            بالمال الحقيقي، مما قد يخلق فجوة في طور
+                            الأونلاين ضد بعض اللاعبين.
+                        </p>
+
+                    </article>
+
+
+                    <article class="negative-card reveal">
+
+                        <h3>
+                            ⛽ نظام الطاقة
+                        </h3>
+
+                        <p>
+                            لكل سيارة عدد محدد من السباقات قبل أن ينفد
+                            وقودها، مما قد يجبر اللاعب على الانتظار حتى
+                            يتجدد الوقود أو استخدام وسائل التسريع المتاحة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="negative-card reveal">
+
+                        <h3>
+                            🌐 الحاجة إلى الاتصال بالإنترنت
+                        </h3>
+
+                        <p>
+                            تعتمد اللعبة على الاتصال بالإنترنت في العديد
+                            من وظائفها وأطوارها، لذلك فإن الاتصال المستقر
+                            مهم للحصول على تجربة أفضل.
+                        </p>
+
+                    </article>
+
+
+                    <article class="negative-card reveal">
+
+                        <h3>
+                            📱 متطلبات تشغيل مرتفعة
+                        </h3>
+
+                        <p>
+                            للحصول على أفضل جودة رسومية ومعدل إطارات
+                            سلس، تحتاج اللعبة إلى جهاز حديث أو متوسط
+                            المواصفات على الأقل.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             الخاتمة
+        ====================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="conclusion reveal">
+
+                    <h2>
+                        🏁 الخلاصة
+                    </h2>
+
+                    <p>
+                        في النهاية، تظل لعبة أسفلت 9 الخيار الأفضل لمن
+                        يبحث عن جرافيكس أسطوري وسرعة خيالية وقفزات
+                        بهلوانية بالسيارات على الهواتف أو الأجهزة
+                        المنزلية. أما إذا كنت تبحث عن محاكاة قيادة
+                        واقعية تماماً وفيزيائية حقيقية لتعديل المحركات،
+                        فقد تفضل ألعاباً أخرى أكثر واقعية.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             التحميل
+        ====================================================== -->
+
+        <section id="download" class="download-section">
+
+            <div class="container">
+
+                <div class="download-panel reveal">
+
+                    <div class="download-content">
+
+                        <div class="section-kicker">
+                            04 — ابدأ السباق
+                        </div>
+
+                        <h2>
+                            جاهز للانطلاق؟
+                        </h2>
+
+                        <p>
+                            حمل لعبة Asphalt 9 الآن واستعد لخوض
+                            سباقات مليئة بالسرعة والنيترو والسيارات
+                            الخارقة.
+                        </p>
+
+
+                        <div class="download-buttons">
+
+                            <!-- Android -->
+
+                            <a
+                                href="https://google.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="store-button"
+                            >
+                                🤖
+                                تحميل للأندرويد
+                            </a>
+
+
+                            <!-- iPhone -->
+
+                            <a
+                                href="https://apple.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="store-button"
+                            >
+                                🍏
+                                تحميل للآيفون
+                            </a>
+
+
+                            <!-- PC -->
+
+                            <a
+                                href="https://microsoft.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="store-button"
+                            >
+                                💻
+                                تحميل للكمبيوتر
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     الصورة — مرة واحدة فقط في الأسفل
+                ================================================== -->
+
+                <div class="game-image-wrapper reveal">
+
+                    <div class="game-image-frame">
+
+                        <img
+                            class="game-image"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv5ZUe8bN0A2VJkg9KA6B08MEKJ0_GJoyVatmc6uYcTg&s"
+                            alt="صورة لعبة Asphalt 9 Legends"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         الفوتر
+    ========================================================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                عالم <span>الألعاب</span>
+            </div>
+
+            <div class="copyright">
+                © 2026 — جميع الحقوق محفوظة
+            </div>
+
+            <a href="#top" class="back-top">
+                ↑
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================== -->
+
+    <button
+        class="floating-top"
+        id="floatingTop"
+        aria-label="العودة إلى الأعلى"
+    >
+        ↑
+    </button>
+
+
+    <!-- =========================================================
+         JavaScript
+    ========================================================== -->
+
+    <script>
+
+        /* =========================================================
+           شريط تقدم القراءة
+        ========================================================= */
+
+        const progressBar =
+            document.getElementById("progressBar");
+
+        function updateProgress() {
+
+            const scrollTop =
+                window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight
+                - window.innerHeight;
+
+            const progress =
+                documentHeight > 0
+                    ? (scrollTop / documentHeight) * 100
+                    : 0;
+
+            progressBar.style.width =
+                progress + "%";
+        }
+
+        window.addEventListener(
+            "scroll",
+            updateProgress
+        );
+
+
+        /* =========================================================
+           زر العودة للأعلى
+        ========================================================== */
+
+        const floatingTop =
+            document.getElementById("floatingTop");
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 500) {
+
+                    floatingTop.classList.add(
+                        "show"
+                    );
+
+                } else {
+
+                    floatingTop.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+        floatingTop.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* =========================================================
+           ظهور العناصر أثناء النزول
+        ========================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
+
+        /* =========================================================
+           إغلاق القفزات غير المرغوبة للروابط الداخلية
+        ========================================================== */
+
+        document
+            .querySelectorAll(
+                'a[href^="#"]'
+            )
+            .forEach(
+                (link) => {
+
+                    link.addEventListener(
+                        "click",
+                        function(event) {
+
+                            const targetId =
+                                this.getAttribute(
+                                    "href"
+                                );
+
+                            if (
+                                targetId === "#"
+                            ) {
+                                return;
+                            }
+
+                            const target =
+                                document.querySelector(
+                                    targetId
+                                );
+
+                            if (target) {
+
+                                event.preventDefault();
+
+                                target.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =========================================================
+           تأثير بسيط على حركة الماوس في سطح الصفحة
+        ========================================================== */
+
+        const cards =
+            document.querySelectorAll(
+                ".feature-card, .negative-card, .stat-card"
+            );
+
+        cards.forEach(
+            (card) => {
+
+                card.addEventListener(
+                    "mousemove",
+                    (event) => {
+
+                        const rect =
+                            card.getBoundingClientRect();
+
+                        const x =
+                            event.clientX
+                            - rect.left;
+
+                        const y =
+                            event.clientY
+                            - rect.top;
+
+                        const rotateY =
+                            ((x / rect.width) - 0.5)
+                            * 2;
+
+                        const rotateX =
+                            ((y / rect.height) - 0.5)
+                            * -2;
+
+                        card.style.transform =
+                            `translateY(-6px)
+                             perspective(700px)
+                             rotateX(${rotateX}deg)
+                             rotateY(${rotateY}deg)`;
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "mouseleave",
+                    () => {
+
+                        card.style.transform =
+                            "";
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =========================================================
+           منع مشاكل بعض الأجهزة عند تحميل الصفحة
+        ========================================================== */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                updateProgress();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

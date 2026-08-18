@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Make Up & Hair Salon Makeover | عالم الألعاب</title>
+
+    <meta name="description"
+        content="اكتشفي عالم Make Up & Hair Salon Makeover — المكياج، تصفيف الشعر، الألوان، السبا، الأزياء والمزيد.">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Tajawal",
+                "Cairo",
+                Arial,
+                sans-serif;
+
+            color: #fff;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 12% 10%,
+                    rgba(255, 45, 168, .22),
+                    transparent 27%
+                ),
+                radial-gradient(
+                    circle at 90% 15%,
+                    rgba(132, 71, 255, .22),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 90%,
+                    rgba(255, 125, 42, .12),
+                    transparent 35%
+                ),
+                #08050e;
+
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 0%,
+                    rgba(255,255,255,.025) 50%,
+                    transparent 100%
+                );
+
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           AMBIENT LIGHTS
+        ========================================================= */
+
+        .light {
+            position: fixed;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            filter: blur(90px);
+
+            opacity: .22;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+            animation: floatLight 12s ease-in-out infinite;
+        }
+
+        .light.one {
+            background: #ff1b9b;
+            top: 10%;
+            right: -100px;
+        }
+
+        .light.two {
+            background: #733cff;
+            bottom: 10%;
+            left: -120px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatLight {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, -40px);
+            }
+        }
+
+
+        /* =========================================================
+           TOP NAVIGATION
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            padding: 16px 5%;
+
+            background:
+                rgba(8, 5, 14, .72);
+
+            backdrop-filter: blur(22px);
+
+            border-bottom:
+                1px solid rgba(255,255,255,.08);
+        }
+
+        .nav {
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: .5px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 14px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff299f,
+                    #7a3cff
+                );
+
+            box-shadow:
+                0 0 30px rgba(255,41,159,.35);
+
+            font-size: 21px;
+        }
+
+        .brand span {
+            color: #fff;
+        }
+
+        .brand b {
+            color: #ff5ab8;
+        }
+
+
+        /* زر روح الموقع */
+
+        .world-link {
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 10px 17px 10px 13px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.055);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            color: #fff;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            transition: .35s;
+        }
+
+        .world-link::before {
+            content: "";
+
+            width: 31px;
+            height: 31px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff2fa7,
+                    #753dff
+                );
+
+            box-shadow:
+                0 0 20px rgba(255,47,167,.35);
+        }
+
+        .world-link::after {
+            content: "✦";
+
+            position: absolute;
+
+            right: 22px;
+
+            font-size: 13px;
+        }
+
+        .world-link:hover {
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(255,77,181,.5);
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,.25),
+                0 0 30px rgba(255,47,167,.12);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 70px 5% 40px;
+
+            display: grid;
+
+            grid-template-columns:
+                .9fr 1.1fr;
+
+            gap: 50px;
+
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: heroIn .8s ease both;
+        }
+
+        @keyframes heroIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 55, 171, .09);
+
+            border:
+                1px solid rgba(255, 87, 185, .2);
+
+            color: #ff82c9;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .eyebrow i {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #ff4cb1;
+
+            box-shadow:
+                0 0 14px #ff4cb1;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 78px);
+
+            line-height: .98;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ff72c2 45%,
+                    #a77aff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            color: #bdb6c8;
+
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            max-width: 650px;
+
+            margin-bottom: 25px;
+        }
+
+        .rating-line {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 28px;
+        }
+
+        .stars {
+            color: #ffd34d;
+
+            letter-spacing: 2px;
+
+            font-size: 19px;
+        }
+
+        .rating-number {
+            font-size: 15px;
+
+            font-weight: 900;
+        }
+
+        .rating-muted {
+            color: #8f8998;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           HERO BUTTONS
+        ========================================================= */
+
+        .hero-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            min-height: 54px;
+
+            padding: 0 22px;
+
+            border-radius: 17px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            font-weight: 900;
+
+            transition: .35s;
+
+            cursor: pointer;
+        }
+
+        .primary-btn {
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff269f,
+                    #8a43ff
+                );
+
+            box-shadow:
+                0 15px 45px rgba(255,38,159,.22);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+
+            box-shadow:
+                0 20px 55px rgba(255,38,159,.35);
+        }
+
+        .secondary-btn {
+            color: #eee;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+        }
+
+        .secondary-btn:hover {
+            background:
+                rgba(255,255,255,.09);
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================================
+           HERO IMAGE
+        ========================================================= */
+
+        .hero-visual {
+            position: relative;
+
+            min-height: 570px;
+
+            display: grid;
+
+            place-items: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+
+            width: 78%;
+
+            aspect-ratio: 1;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,39,166,.4),
+                    rgba(123,54,255,.18) 45%,
+                    transparent 70%
+                );
+
+            filter: blur(25px);
+        }
+
+        .poster {
+            position: relative;
+
+            width: min(470px, 90%);
+
+            aspect-ratio: 1 / 1.12;
+
+            border-radius: 38px;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(255,255,255,.2);
+
+            background: #160b20;
+
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.55),
+                0 0 80px rgba(255,30,165,.15);
+
+            transform:
+                rotate(2deg);
+
+            transition: .5s;
+        }
+
+        .poster:hover {
+            transform:
+                rotate(0deg)
+                translateY(-8px);
+        }
+
+        .poster img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            filter:
+                saturate(1.12)
+                contrast(1.04);
+        }
+
+        .poster::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 40%,
+                    rgba(5,2,9,.8)
+                );
+        }
+
+        .poster-info {
+            position: absolute;
+
+            z-index: 2;
+
+            bottom: 22px;
+
+            right: 22px;
+            left: 22px;
+        }
+
+        .poster-info small {
+            color: #d9ccdf;
+        }
+
+        .poster-info h3 {
+            font-size: 25px;
+
+            margin-top: 5px;
+        }
+
+
+        /* Floating beauty cards */
+
+        .float-card {
+            position: absolute;
+
+            z-index: 5;
+
+            padding: 13px 16px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(16,10,23,.78);
+
+            backdrop-filter: blur(16px);
+
+            border:
+                1px solid rgba(255,255,255,.13);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.3);
+
+            animation:
+                floatCard 5s ease-in-out infinite;
+        }
+
+        .float-card.one {
+            top: 13%;
+            right: 0;
+        }
+
+        .float-card.two {
+            bottom: 18%;
+            left: 0;
+
+            animation-delay: -2s;
+        }
+
+        .float-card strong {
+            display: block;
+
+            font-size: 14px;
+        }
+
+        .float-card span {
+            color: #9d94a7;
+
+            font-size: 11px;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            max-width: 1150px;
+
+            margin: 10px auto 80px;
+
+            padding: 0 5%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 22px;
+
+            border-radius: 23px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.07),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            text-align: center;
+
+            transition: .35s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(255,74,177,.3);
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 25px;
+
+            margin-bottom: 5px;
+
+            color: #fff;
+        }
+
+        .stat span {
+            color: #96909e;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        .container {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 0 5% 90px;
+        }
+
+        .section {
+            margin-bottom: 75px;
+        }
+
+        .section-heading {
+            margin-bottom: 28px;
+        }
+
+        .section-heading .mini {
+            color: #ff64b8;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(27px, 4vw, 40px);
+
+            letter-spacing: -1px;
+        }
+
+        .section-heading p {
+            color: #938b9d;
+
+            margin-top: 8px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           INTRO CARD
+        ========================================================= */
+
+        .intro {
+            display: grid;
+
+            grid-template-columns:
+                1.4fr .6fr;
+
+            gap: 20px;
+        }
+
+        .glass-card {
+            border-radius: 28px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.065),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.09);
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,.04),
+                0 25px 70px rgba(0,0,0,.18);
+        }
+
+        .intro-text {
+            color: #c4bdcb;
+
+            line-height: 2;
+
+            font-size: 16px;
+        }
+
+        .creator {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .creator-badge {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 19px;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff2b9f,
+                    #783dff
+                );
+
+            box-shadow:
+                0 15px 35px rgba(255,43,159,.2);
+        }
+
+        .creator h3 {
+            margin-top: 20px;
+
+            font-size: 19px;
+        }
+
+        .creator p {
+            color: #928b9b;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           FEATURE GRID
+        ========================================================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+        }
+
+        .feature {
+            position: relative;
+
+            padding: 25px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            overflow: hidden;
+
+            transition: .35s;
+        }
+
+        .feature::before {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            background: #ff2b9f;
+
+            border-radius: 50%;
+
+            filter: blur(70px);
+
+            opacity: 0;
+
+            top: -60px;
+            right: -60px;
+
+            transition: .4s;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(255,68,174,.3);
+        }
+
+        .feature:hover::before {
+            opacity: .18;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,58,172,.1);
+
+            border:
+                1px solid rgba(255,58,172,.17);
+
+            font-size: 22px;
+
+            margin-bottom: 18px;
+        }
+
+        .feature h3 {
+            font-size: 17px;
+
+            margin-bottom: 9px;
+        }
+
+        .feature p {
+            color: #96909f;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           EXPERIENCE TIMELINE
+        ========================================================= */
+
+        .timeline {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 10px;
+        }
+
+        .step {
+            position: relative;
+
+            padding: 20px 16px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,.06),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.08);
+        }
+
+        .step-number {
+            color: #ff5eb7;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .step p {
+            color: #8f8899;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           PROS / CONS
+        ========================================================= */
+
+        .pros-cons {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .pc-card {
+            padding: 27px;
+
+            border-radius: 26px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            background:
+                rgba(255,255,255,.035);
+        }
+
+        .pc-card.good {
+            border-color:
+                rgba(54, 211, 153, .15);
+        }
+
+        .pc-card.bad {
+            border-color:
+                rgba(255, 85, 115, .15);
+        }
+
+        .pc-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .pc-title span {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 12px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                rgba(54,211,153,.1);
+
+            color: #49e0a5;
+        }
+
+        .bad .pc-title span {
+            background:
+                rgba(255,85,115,.1);
+
+            color: #ff6d87;
+        }
+
+        .pc-list {
+            list-style: none;
+        }
+
+        .pc-list li {
+            color: #aaa3b1;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.055);
+        }
+
+        .pc-list li:last-child {
+            border-bottom: 0;
+        }
+
+
+        /* =========================================================
+           RATING
+        ========================================================= */
+
+        .rating-section {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 35px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,35,159,.12),
+                    rgba(113,59,255,.1)
+                );
+
+            border:
+                1px solid rgba(255,255,255,.1);
+        }
+
+        .rating-section::after {
+            content: "✦";
+
+            position: absolute;
+
+            font-size: 150px;
+
+            color: rgba(255,255,255,.025);
+
+            left: 30px;
+
+            bottom: -50px;
+        }
+
+        .rating-layout {
+            display: grid;
+
+            grid-template-columns:
+                .45fr 1fr;
+
+            gap: 40px;
+
+            align-items: center;
+        }
+
+        .big-rating {
+            text-align: center;
+        }
+
+        .big-rating strong {
+            display: block;
+
+            font-size: 64px;
+
+            line-height: 1;
+        }
+
+        .big-rating .stars {
+            margin: 12px 0 6px;
+        }
+
+        .big-rating small {
+            color: #8e8796;
+        }
+
+        .rating-bars {
+            display: grid;
+
+            gap: 11px;
+        }
+
+        .bar-row {
+            display: grid;
+
+            grid-template-columns:
+                30px 1fr 40px;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #9b94a3;
+
+            font-size: 11px;
+        }
+
+        .bar {
+            height: 7px;
+
+            background:
+                rgba(255,255,255,.07);
+
+            border-radius: 99px;
+
+            overflow: hidden;
+        }
+
+        .bar i {
+            display: block;
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff319f,
+                    #8b4cff
+                );
+        }
+
+
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download {
+            position: relative;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            padding: 60px 25px;
+
+            border-radius: 35px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(255,54,171,.2),
+                    transparent 50%
+                ),
+                #110917;
+
+            border:
+                1px solid rgba(255,255,255,.1);
+
+            box-shadow:
+                0 35px 90px rgba(0,0,0,.3);
+        }
+
+        .download::before,
+        .download::after {
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+            height: 200px;
+
+            border-radius: 50%;
+
+            filter: blur(80px);
+
+            opacity: .2;
+        }
+
+        .download::before {
+            background: #ff269f;
+
+            right: -100px;
+            top: -100px;
+        }
+
+        .download::after {
+            background: #713dff;
+
+            left: -100px;
+            bottom: -100px;
+        }
+
+        .download > * {
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .download h2 {
+            font-size: clamp(28px, 5vw, 45px);
+
+            margin-bottom: 12px;
+        }
+
+        .download p {
+            color: #9c95a4;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+        .store-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 14px 22px;
+
+            min-width: 250px;
+
+            text-align: right;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid rgba(255,255,255,.13);
+
+            transition: .35s;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-5px);
+
+            background:
+                rgba(255,255,255,.13);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.3);
+        }
+
+        .apple {
+            font-size: 29px;
+        }
+
+        .store-btn small {
+            display: block;
+
+            color: #8e8796;
+
+            font-size: 10px;
+        }
+
+        .store-btn strong {
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 30px 5% 45px;
+
+            border-top:
+                1px solid rgba(255,255,255,.07);
+
+            text-align: center;
+
+            color: #706a78;
+
+            font-size: 12px;
+        }
+
+        footer strong {
+            color: #b8afbd;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                padding-top: 45px;
+            }
+
+            .hero-description {
+                margin-inline: auto;
+            }
+
+            .rating-line,
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 500px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .timeline {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .rating-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                padding: 12px 4%;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .world-link {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding-inline: 4%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-visual {
+                min-height: 430px;
+            }
+
+            .poster {
+                width: 90%;
+            }
+
+            .float-card {
+                transform: scale(.85);
+            }
+
+            .float-card.one {
+                right: -8px;
+            }
+
+            .float-card.two {
+                left: -8px;
+            }
+
+            .stats {
+                padding-inline: 4%;
+            }
+
+            .container {
+                padding-inline: 4%;
+            }
+
+            .features,
+            .pros-cons,
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .glass-card {
+                padding: 23px;
+            }
+
+            .rating-section {
+                padding: 25px 18px;
+            }
+
+            .big-rating strong {
+                font-size: 55px;
+            }
+
+            .store-btn {
+                width: 100%;
+
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- إضاءة الخلفية -->
+
+    <div class="light one"></div>
+    <div class="light two"></div>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <nav class="nav">
+
+            <a href="../index.html" class="brand">
+
+                <div class="brand-icon">
+                    🎮
+                </div>
+
+                <span>
+                    <b>عالم</b> الألعاب
+                </span>
+
+            </a>
+
+
+            <!-- هذا ليس زر عودة عادي -->
+            <!-- بل رابط هوية الموقع -->
+
+            <a href="../index.html" class="world-link">
+                بوابة عالم الألعاب
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <i></i>
+                    تجربة جمال وإبداع
+                </div>
+
+
+                <h1>
+                    اصنعي
+                    <span>إطلالتك الخاصة.</span>
+                </h1>
+
+
+                <p class="hero-description">
+
+                    ادخلي عالم
+                    <strong>Make Up & Hair Salon Makeover</strong>
+                    واختبري عشرات أفكار المكياج وتسريحات الشعر
+                    والألوان والسبا والأزياء في تجربة مليئة
+                    بالألوان والإبداع.
+
+                </p>
+
+
+                <div class="rating-line">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <strong class="rating-number">
+                        4.3 / 5
+                    </strong>
+
+                    <span class="rating-muted">
+                        تقييمات App Store
+                    </span>
+
+                </div>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="https://apps.apple.com/us/app/make-up-hair-salon-makeover/id1221060089"
+                        target="_blank"
+                        class="primary-btn">
+
+                        
+                        حمل اللعبة
+
+                    </a>
+
+
+                    <a href="#experience" class="secondary-btn">
+
+                        اكتشف اللعبة
+                        ↓
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- الصورة الرئيسية -->
+
+            <div class="hero-visual">
+
+                <div class="hero-glow"></div>
+
+
+                <div class="float-card one">
+
+                    <strong>💄 Makeup Studio</strong>
+
+                    <span>
+                        ألوان وإطلالات متنوعة
+                    </span>
+
+                </div>
+
+
+                <div class="float-card two">
+
+                    <strong>💇‍♀️ Hair Makeover</strong>
+
+                    <span>
+                        اصنعي تسريحتك الخاصة
+                    </span>
+
+                </div>
+
+
+                <div class="poster">
+
+                    <img
+                        src="https://fastly.mwm-storage.mwmcdn.com/raw_files/435a7fd6-e085-4dac-98c7-5021c039cb3e"
+                        alt="Make Up & Hair Salon Makeover">
+
+                    <div class="poster-info">
+
+                        <small>
+                            Ninjafish Studios
+                        </small>
+
+                        <h3>
+                            Make Up & Hair Salon Makeover
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        <section class="stats">
+
+            <div class="stat">
+
+                <strong>4.3 ★</strong>
+
+                <span>
+                    تقييم المتجر الأمريكي
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>20</strong>
+
+                <span>
+                    مستوى/نشاط مذكور في وصف اللعبة
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>4+</strong>
+
+                <span>
+                    التصنيف العمري
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>125 MB</strong>
+
+                <span>
+                    الحجم الظاهر في App Store
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section class="section" id="experience">
+
+                <div class="section-heading">
+
+                    <div class="mini">
+                        THE EXPERIENCE
+                    </div>
+
+                    <h2>
+                        ليست مجرد لعبة مكياج.
+                    </h2>
+
+                    <p>
+                        إنها مساحة صغيرة للتجربة واللون والستايل.
+                    </p>
+
+                </div>
+
+
+                <div class="intro">
+
+                    <article class="glass-card">
+
+                        <p class="intro-text">
+
+                            تمنحك اللعبة تجربة صالون تجميل افتراضي
+                            تجمع بين المكياج وتصفيف الشعر وتلوينه
+                            والسبا والأزياء والرسم على الوجه.
+                            يمكنك الانتقال بين إطلالات مختلفة،
+                            من المكياج بألوان قوس قزح إلى الأميرة
+                            والجلسات الخاصة والـ Red Carpet
+                            وحفلات الزفاف.
+
+                        </p>
+
+                    </article>
+
+
+                    <article class="glass-card creator">
+
+                        <div class="creator-badge">
+                            ✨
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                من تطوير
+                            </h3>
+
+                            <p>
+                                Ninjafish Studios
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FEATURES
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div class="mini">
+                        WHAT'S INSIDE
+                    </div>
+
+                    <h2>
+                        عالم كامل من الإطلالات
+                    </h2>
+
+                    <p>
+                        كل مساحة مصممة لتمنحك نوعًا مختلفًا من الإبداع.
+                    </p>
+
+                </div>
+
+
+                <div class="features">
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🌈
+                        </div>
+
+                        <h3>
+                            Rainbow Makeover
+                        </h3>
+
+                        <p>
+                            اصنعي إطلالات ملونة ومكياجًا
+                            مستوحى من ألوان قوس قزح.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            👑
+                        </div>
+
+                        <h3>
+                            Princess Salon
+                        </h3>
+
+                        <p>
+                            حولي الشخصية إلى أميرة
+                            بإطلالة ملكية وتسريحة مميزة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🍭
+                        </div>
+
+                        <h3>
+                            Candy Hair
+                        </h3>
+
+                        <p>
+                            ألوان وتسريحات مستوحاة من
+                            عالم الحلوى والخيال.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            🎨
+                        </div>
+
+                        <h3>
+                            Face Painting
+                        </h3>
+
+                        <p>
+                            أضيفي رسومات وألوانًا للوجه
+                            لإطلالات غير تقليدية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            💆
+                        </div>
+
+                        <h3>
+                            Spa
+                        </h3>
+
+                        <p>
+                            جلسات سبا وتنظيف وعناية
+                            قبل الوصول إلى الإطلالة النهائية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature">
+
+                        <div class="feature-icon">
+                            📸
+                        </div>
+
+                        <h3>
+                            Red Carpet
+                        </h3>
+
+                        <p>
+                            جهزي الشخصية لجلسة تصوير
+                            على السجادة الحمراء.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 JOURNEY
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div class="mini">
+                        YOUR STYLE JOURNEY
+                    </div>
+
+                    <h2>
+                        من البداية إلى الإطلالة النهائية
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <h3>
+                            اختاري الشخصية
+                        </h3>
+
+                        <p>
+                            ابدئي بتحديد الشخصية والإطلالة
+                            التي تريدين تصميمها.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <h3>
+                            المكياج
+                        </h3>
+
+                        <p>
+                            اختاري الألوان ومستحضرات
+                            التجميل المناسبة.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <h3>
+                            الشعر
+                        </h3>
+
+                        <p>
+                            اختاري تسريحة ولون شعر
+                            مختلفًا لإكمال الشخصية.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <h3>
+                            اللمسات
+                        </h3>
+
+                        <p>
+                            أضيفي الإكسسوارات والرسومات
+                            والتفاصيل النهائية.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            05
+                        </div>
+
+                        <h3>
+                            الصورة النهائية
+                        </h3>
+
+                        <p>
+                            استعدي للحفلة أو السجادة
+                            الحمراء بإطلالتك الجديدة.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROS / CONS
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div class="mini">
+                        VERDICT
+                    </div>
+
+                    <h2>
+                        الصورة الكاملة
+                    </h2>
+
+                </div>
+
+
+                <div class="pros-cons">
+
+
+                    <article class="pc-card good">
+
+                        <div class="pc-title">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <h3>
+                                نقاط القوة
+                            </h3>
+
+                        </div>
+
+
+                        <ul class="pc-list">
+
+                            <li>
+                                ✦ تنوع كبير في أنشطة المكياج والشعر.
+                            </li>
+
+                            <li>
+                                ✦ ألوان وتسريحات خيالية وقوس قزح.
+                            </li>
+
+                            <li>
+                                ✦ سبا ورسم على الوجه وإكسسوارات.
+                            </li>
+
+                            <li>
+                                ✦ أنشطة Princess وWedding وRed Carpet.
+                            </li>
+
+                            <li>
+                                ✦ مناسبة لمحبي ألعاب التصميم والإبداع.
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+
+
+                    <article class="pc-card bad">
+
+                        <div class="pc-title">
+
+                            <span>
+                                !
+                            </span>
+
+                            <h3>
+                                أشياء يجب معرفتها
+                            </h3>
+
+                        </div>
+
+
+                        <ul class="pc-list">
+
+                            <li>
+                                • اللعبة مجانية مع مشتريات داخل التطبيق.
+                            </li>
+
+                            <li>
+                                • إزالة الإعلانات وبعض المحتويات مرتبطة
+                                بعمليات شراء.
+                            </li>
+
+                            <li>
+                                • المستويات 11–20 مذكورة كأجزاء قابلة للشراء.
+                            </li>
+
+                            <li>
+                                • اللغة الظاهرة في صفحة المتجر الإنجليزية.
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RATING
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="rating-section">
+
+                    <div class="rating-layout">
+
+
+                        <div class="big-rating">
+
+                            <strong>
+                                4.3
+                            </strong>
+
+                            <div class="stars">
+                                ★★★★★
+                            </div>
+
+                            <small>
+                                من 5 — App Store
+                            </small>
+
+                        </div>
+
+
+                        <div class="rating-bars">
+
+
+                            <div class="bar-row">
+
+                                <span>5★</span>
+
+                                <div class="bar">
+                                    <i style="width:68%"></i>
+                                </div>
+
+                                <span>68%</span>
+
+                            </div>
+
+
+                            <div class="bar-row">
+
+                                <span>4★</span>
+
+                                <div class="bar">
+                                    <i style="width:14%"></i>
+                                </div>
+
+                                <span>14%</span>
+
+                            </div>
+
+
+                            <div class="bar-row">
+
+                                <span>3★</span>
+
+                                <div class="bar">
+                                    <i style="width:7%"></i>
+                                </div>
+
+                                <span>7%</span>
+
+                            </div>
+
+
+                            <div class="bar-row">
+
+                                <span>2★</span>
+
+                                <div class="bar">
+                                    <i style="width:4%"></i>
+                                </div>
+
+                                <span>4%</span>
+
+                            </div>
+
+
+                            <div class="bar-row">
+
+                                <span>1★</span>
+
+                                <div class="bar">
+                                    <i style="width:7%"></i>
+                                </div>
+
+                                <span>7%</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DOWNLOAD
+            ================================================== -->
+
+            <section class="section">
+
+                <div class="download">
+
+                    <h2>
+                        مستعدة لصناعة الإطلالة؟ ✨
+                    </h2>
+
+                    <p>
+                        حملي النسخة الرسمية وابدئي رحلة
+                        المكياج وتصفيف الشعر.
+                    </p>
+
+
+                    <a
+                        href="https://apps.apple.com/us/app/make-up-hair-salon-makeover/id1221060089"
+                        target="_blank"
+                        class="store-btn">
+
+                        <div class="apple">
+                            
+                        </div>
+
+                        <div>
+
+                            <small>
+                                DOWNLOAD ON THE
+                            </small>
+
+                            <strong>
+                                App Store
+                            </strong>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <p>
+            <strong>عالم الألعاب</strong>
+            — صفحة
+            Make Up & Hair Salon Makeover
+        </p>
+
+        <br>
+
+        <p>
+            المعلومات المتعلقة باللعبة مأخوذة من صفحة المتجر
+            الرسمية، وقد تتغير مع تحديثات التطبيق.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* تأثير بسيط عند تحريك المؤشر فوق الصورة */
+
+        const poster = document.querySelector(".poster");
+
+        if (poster && window.innerWidth > 800) {
+
+            poster.addEventListener("mousemove", function (e) {
+
+                const rect = poster.getBoundingClientRect();
+
+                const x =
+                    (e.clientX - rect.left) /
+                    rect.width;
+
+                const y =
+                    (e.clientY - rect.top) /
+                    rect.height;
+
+                const rotateY =
+                    (x - .5) * 8;
+
+                const rotateX =
+                    (y - .5) * -8;
+
+                poster.style.transform =
+                    `perspective(900px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     scale(1.015)`;
+
+            });
+
+
+            poster.addEventListener("mouseleave", function () {
+
+                poster.style.transform =
+                    "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+
+            });
+
+        }
+
+
+        /* ظهور العناصر أثناء النزول */
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.style.opacity = "1";
+
+                            entry.target.style.transform =
+                                "translateY(0)";
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".feature, .step, .pc-card, .stat"
+            )
+            .forEach(el => {
+
+                el.style.opacity = "0";
+
+                el.style.transform =
+                    "translateY(20px)";
+
+                el.style.transition =
+                    "opacity .6s ease, transform .6s ease";
+
+                observer.observe(el);
+
+            });
+
+    </script>
+
+</body>
+
+</html>

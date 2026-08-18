@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EA SPORTS FC Mobile | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           المتغيرات الأساسية
+        ========================================================= */
+
+        :root {
+            --green: #19e68c;
+            --green-dark: #0aa866;
+            --green-light: #6fffc0;
+
+            --blue: #20a4ff;
+            --purple: #8b5cf6;
+
+            --dark: #05080d;
+            --dark-2: #080d14;
+            --dark-3: #0d141e;
+
+            --card: rgba(15, 23, 34, 0.78);
+            --card-hover: rgba(20, 32, 46, 0.92);
+
+            --white: #ffffff;
+            --text: #e9f1f7;
+            --muted: #9eacb9;
+
+            --danger: #ff5c6c;
+
+            --border: rgba(255,255,255,0.09);
+
+            --shadow:
+                0 20px 60px rgba(0,0,0,0.45);
+
+            --radius: 24px;
+        }
+
+
+        /* =========================================================
+           إعادة ضبط
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(25,230,140,0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 30%,
+                    rgba(32,164,255,0.08),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    #030507,
+                    #071019,
+                    #030609
+                );
+
+            color: var(--text);
+
+            min-height: 100vh;
+
+            line-height: 1.9;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================================
+           خلفية النقاط المتحركة
+        ========================================================= */
+
+        body::before,
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            opacity: 0.12;
+
+            pointer-events: none;
+
+            z-index: -2;
+        }
+
+        body::before {
+            background: var(--green);
+
+            top: -180px;
+            right: -180px;
+
+            animation: floatingGreen 10s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            background: var(--blue);
+
+            bottom: -200px;
+            left: -200px;
+
+            animation: floatingBlue 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatingGreen {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-80px, 90px);
+            }
+        }
+
+        @keyframes floatingBlue {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(100px, -70px);
+            }
+        }
+
+
+        /* =========================================================
+           شبكة الخلفية
+        ========================================================= */
+
+        .background-grid {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+            opacity: 0.18;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 90%
+                );
+        }
+
+
+        /* =========================================================
+           الشريط العلوي
+        ========================================================= */
+
+        header {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(3,7,11,0.82);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 10px 40px
+                rgba(0,0,0,0.35);
+        }
+
+        .nav {
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            min-height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        /* =========================================================
+           شعار الموقع
+        ========================================================= */
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: 900;
+
+            font-size: 19px;
+
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--blue)
+                );
+
+            color: #03100a;
+
+            box-shadow:
+                0 0 25px
+                rgba(25,230,140,0.3);
+        }
+
+
+        /* =========================================================
+           روابط التنقل
+        ========================================================= */
+
+        .nav-links {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd6df;
+
+            text-decoration: none;
+
+            padding:
+                9px 14px;
+
+            border-radius: 12px;
+
+            transition:
+                0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+
+            background:
+                rgba(255,255,255,0.06);
+        }
+
+
+        /* =========================================================
+           زر العودة
+        ========================================================= */
+
+        .home-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                11px 18px;
+
+            border-radius: 14px;
+
+            color: #04130c;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    #38f5a7
+                );
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 8px 25px
+                rgba(25,230,140,0.18);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .home-btn:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 14px 35px
+                rgba(25,230,140,0.30);
+        }
+
+
+        /* =========================================================
+           الحاوية الرئيسية
+        ========================================================= */
+
+        .container {
+            width: min(1180px, 92%);
+
+            margin:
+                0 auto;
+        }
+
+
+        /* =========================================================
+           Hero
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            margin-top: 45px;
+
+            padding:
+                70px 55px;
+
+            min-height: 430px;
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius:
+                32px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(13,23,32,0.96),
+                    rgba(7,13,20,0.88)
+                );
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            left: -220px;
+            top: -230px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(25,230,140,0.25),
+                    transparent 65%
+                );
+        }
+
+        .hero::after {
+            content: "FC";
+
+            position: absolute;
+
+            left: 45px;
+            bottom: -85px;
+
+            font-size: 260px;
+
+            font-weight: 1000;
+
+            color:
+                rgba(255,255,255,0.025);
+
+            letter-spacing:
+                -20px;
+
+            pointer-events: none;
+        }
+
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 760px;
+        }
+
+
+        .badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                7px 14px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(25,230,140,0.10);
+
+            border:
+                1px solid
+                rgba(25,230,140,0.25);
+
+            color:
+                var(--green-light);
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+        }
+
+        .badge span {
+            width: 8px;
+            height: 8px;
+
+            background:
+                var(--green);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 12px
+                var(--green);
+        }
+
+
+        .hero h1 {
+            font-size:
+                clamp(40px, 6vw, 76px);
+
+            line-height: 1.05;
+
+            margin-bottom: 22px;
+
+            font-weight: 1000;
+
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    #ffffff,
+                    var(--blue)
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero-description {
+            color:
+                var(--muted);
+
+            font-size: 18px;
+
+            max-width: 720px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .hero-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            min-height: 50px;
+
+            padding:
+                0 22px;
+
+            border-radius: 15px;
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            transition:
+                0.25s ease;
+        }
+
+        .primary-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    #37f4a5
+                );
+
+            color: #03110a;
+
+            box-shadow:
+                0 10px 30px
+                rgba(25,230,140,0.18);
+        }
+
+        .primary-btn:hover {
+            transform:
+                translateY(-3px);
+        }
+
+        .secondary-btn {
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            background:
+                rgba(255,255,255,0.045);
+        }
+
+        .secondary-btn:hover {
+            background:
+                rgba(255,255,255,0.09);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* =========================================================
+           إحصائيات
+        ========================================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+            margin-top: 18px;
+        }
+
+        .stat {
+            padding:
+                22px;
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(12,19,28,0.72);
+
+            border:
+                1px solid
+                var(--border);
+
+            text-align: center;
+
+            transition:
+                0.3s ease;
+        }
+
+        .stat:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(25,230,140,0.25);
+        }
+
+        .stat-number {
+            display: block;
+
+            font-size: 27px;
+
+            font-weight: 1000;
+
+            color:
+                var(--green);
+        }
+
+        .stat-label {
+            color:
+                var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           الأقسام
+        ========================================================= */
+
+        section {
+            margin-top: 65px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size:
+                clamp(27px, 4vw, 38px);
+
+            font-weight: 1000;
+
+            color: white;
+        }
+
+        .section-title span {
+            color:
+                var(--green);
+        }
+
+        .section-subtitle {
+            color:
+                var(--muted);
+
+            max-width: 550px;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           بطاقة المقدمة
+        ========================================================= */
+
+        .intro-card {
+            padding:
+                32px;
+
+            border-radius:
+                var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17,28,40,0.86),
+                    rgba(9,15,22,0.82)
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                var(--shadow);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+
+            width: 5px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    var(--green),
+                    var(--blue)
+                );
+        }
+
+        .intro-card p {
+            color:
+                #cbd5df;
+
+            font-size: 17px;
+
+            line-height: 2.2;
+        }
+
+
+        /* =========================================================
+           شبكة البطاقات
+        ========================================================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .card {
+            position: relative;
+
+            padding:
+                28px;
+
+            min-height: 220px;
+
+            border-radius:
+                22px;
+
+            background:
+                var(--card);
+
+            border:
+                1px solid
+                var(--border);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+
+            box-shadow:
+                0 12px 40px
+                rgba(0,0,0,0.18);
+        }
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            left: -80px;
+            bottom: -80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(25,230,140,0.07);
+
+            transition:
+                0.3s ease;
+        }
+
+        .card:hover {
+            transform:
+                translateY(-7px);
+
+            background:
+                var(--card-hover);
+
+            border-color:
+                rgba(25,230,140,0.25);
+        }
+
+        .card:hover::after {
+            transform:
+                scale(1.7);
+        }
+
+        .card-number {
+            width: 44px;
+            height: 44px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 13px;
+
+            margin-bottom: 17px;
+
+            background:
+                rgba(25,230,140,0.10);
+
+            color:
+                var(--green);
+
+            border:
+                1px solid
+                rgba(25,230,140,0.18);
+
+            font-weight: 1000;
+        }
+
+        .card h3 {
+            color:
+                white;
+
+            font-size: 21px;
+
+            margin-bottom: 10px;
+
+            font-weight: 900;
+        }
+
+        .card p {
+            color:
+                var(--muted);
+
+            line-height: 2;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           بطاقات العيوب
+        ========================================================= */
+
+        .negative-card {
+            border-color:
+                rgba(255,92,108,0.10);
+        }
+
+        .negative-card:hover {
+            border-color:
+                rgba(255,92,108,0.30);
+        }
+
+        .negative-card .card-number {
+            color:
+                var(--danger);
+
+            background:
+                rgba(255,92,108,0.08);
+
+            border-color:
+                rgba(255,92,108,0.18);
+        }
+
+
+        /* =========================================================
+           شريط التقييم
+        ========================================================= */
+
+        .rating-panel {
+            margin-top: 18px;
+
+            padding:
+                28px;
+
+            border-radius:
+                24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(25,230,140,0.09),
+                    rgba(32,164,255,0.05)
+                );
+
+            border:
+                1px solid
+                rgba(25,230,140,0.14);
+        }
+
+        .rating-row {
+            display: grid;
+
+            grid-template-columns:
+                150px 1fr 60px;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 17px;
+        }
+
+        .rating-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .rating-name {
+            color:
+                #dce7ee;
+
+            font-weight: 700;
+        }
+
+        .rating-bar {
+            height: 9px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            overflow: hidden;
+        }
+
+        .rating-fill {
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    var(--blue)
+                );
+
+            box-shadow:
+                0 0 15px
+                rgba(25,230,140,0.25);
+        }
+
+        .rating-value {
+            color:
+                var(--green);
+
+            font-weight: 1000;
+
+            text-align: left;
+        }
+
+
+        /* =========================================================
+           الخلاصة
+        ========================================================= */
+
+        .conclusion {
+            position: relative;
+
+            padding:
+                42px;
+
+            border-radius:
+                28px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c1c18,
+                    #08131d
+                );
+
+            border:
+                1px solid
+                rgba(25,230,140,0.15);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .conclusion::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            left: -130px;
+            top: -130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(25,230,140,0.12);
+
+            filter:
+                blur(30px);
+        }
+
+        .conclusion h2 {
+            position: relative;
+
+            color:
+                white;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+        .conclusion p {
+            position: relative;
+
+            color:
+                #c1ced8;
+
+            font-size: 17px;
+
+            line-height: 2.2;
+        }
+
+
+        /* =========================================================
+           منطقة التحميل
+        ========================================================= */
+
+        .download-section {
+            margin-top: 65px;
+
+            padding:
+                45px 30px;
+
+            text-align: center;
+
+            border-radius:
+                30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(25,230,140,0.09),
+                    rgba(32,164,255,0.07)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .download-section h2 {
+            font-size:
+                clamp(28px, 5vw, 42px);
+
+            color:
+                white;
+
+            margin-bottom: 12px;
+
+            font-weight: 1000;
+        }
+
+        .download-section > p {
+            color:
+                var(--muted);
+
+            margin-bottom: 28px;
+        }
+
+        .download-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .store-btn {
+            min-width: 230px;
+
+            min-height: 62px;
+
+            padding:
+                0 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 11px;
+
+            border-radius:
+                17px;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                rgba(4,9,14,0.78);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            font-weight: 900;
+
+            transition:
+                0.25s ease;
+        }
+
+        .store-btn:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(25,230,140,0.35);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0,0,0,0.35);
+        }
+
+        .store-icon {
+            font-size: 25px;
+        }
+
+
+        /* =========================================================
+           الصورة النهائية
+        ========================================================= */
+
+        .game-image-wrapper {
+            margin-top: 45px;
+
+            display: flex;
+
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .game-image-wrapper::before {
+            content: "";
+
+            position: absolute;
+
+            width: 70%;
+
+            height: 100%;
+
+            background:
+                rgba(25,230,140,0.10);
+
+            filter:
+                blur(60px);
+
+            z-index: -1;
+        }
+
+        .game-image {
+            display: block;
+
+            max-width: 100%;
+
+            width: auto;
+
+            height: auto;
+
+            max-height: 500px;
+
+            object-fit: contain;
+
+            border-radius:
+                24px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,0.55);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .game-image:hover {
+            transform:
+                scale(1.015);
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,0.65);
+        }
+
+
+        /* =========================================================
+           الفوتر
+        ========================================================= */
+
+        footer {
+            margin-top: 80px;
+
+            padding:
+                35px 0;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            color:
+                #7f8c98;
+
+            text-align: center;
+        }
+
+        footer strong {
+            color:
+                var(--green);
+        }
+
+
+        /* =========================================================
+           زر العودة للأعلى
+        ========================================================= */
+
+        .top-button {
+            position: fixed;
+
+            left: 22px;
+
+            bottom: 22px;
+
+            width: 46px;
+            height: 46px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(10,18,27,0.86);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            color:
+                var(--green);
+
+            text-decoration: none;
+
+            font-size: 20px;
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.35);
+
+            transition:
+                0.25s ease;
+        }
+
+        .top-button:hover {
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(25,230,140,0.10);
+        }
+
+
+        /* =========================================================
+           الحركة عند تحميل العناصر
+        ========================================================= */
+
+        .reveal {
+            animation:
+                reveal 0.8s ease both;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* =========================================================
+           الاستجابة للشاشات المتوسطة
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding:
+                    55px 35px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+
+        /* =========================================================
+           الاستجابة للهواتف
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            .nav {
+                min-height: 68px;
+            }
+
+            .brand {
+                font-size: 15px;
+            }
+
+            .brand-icon {
+                width: 37px;
+                height: 37px;
+            }
+
+            .home-btn {
+                padding:
+                    9px 12px;
+
+                font-size: 13px;
+            }
+
+            .hero {
+                margin-top: 25px;
+
+                padding:
+                    42px 23px;
+
+                border-radius:
+                    24px;
+            }
+
+            .hero h1 {
+                font-size:
+                    42px;
+            }
+
+            .hero-description {
+                font-size:
+                    15px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 9px;
+            }
+
+            .stat {
+                padding:
+                    17px 10px;
+            }
+
+            .stat-number {
+                font-size:
+                    23px;
+            }
+
+            .section-title {
+                font-size:
+                    28px;
+            }
+
+            .intro-card,
+            .card,
+            .conclusion {
+                padding:
+                    23px;
+            }
+
+            .rating-row {
+                grid-template-columns:
+                    100px 1fr 45px;
+
+                gap: 8px;
+            }
+
+            .rating-name {
+                font-size:
+                    13px;
+            }
+
+            .download-section {
+                padding:
+                    35px 18px;
+            }
+
+            .store-btn {
+                width: 100%;
+
+                min-width: 0;
+            }
+        }
+
+
+        /* =========================================================
+           تقليل الحركة لمن يفضل ذلك
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="background-grid"></div>
+
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================== -->
+
+    <header>
+
+        <nav class="nav">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon">🎮</span>
+
+                <span>
+                    عالم الألعاب
+                </span>
+
+            </a>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#intro">
+                        المقدمة
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#features">
+                        المميزات
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#disadvantages">
+                        العيوب
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#download">
+                        التحميل
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <!-- زر العودة إلى الصفحة الرئيسية -->
+
+            <a href="index.html" class="home-btn">
+                🏠 العودة إلى عالم الألعاب
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <main class="container">
+
+
+        <!-- =====================================================
+             الواجهة الرئيسية
+        ====================================================== -->
+
+        <section class="hero reveal">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    <span></span>
+                    تجربة كرة القدم على الهاتف
+                </div>
+
+
+                <h1>
+                    EA SPORTS
+                    <span>FC Mobile</span>
+                </h1>
+
+
+                <p class="hero-description">
+                    عِش أجواء كرة القدم العالمية على هاتفك،
+                    وابنِ فريقك الخاص، وطوّر نجومك، ونافس
+                    لاعبين من مختلف أنحاء العالم في تجربة
+                    مليئة بالتحدي والإثارة.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#download"
+                        class="primary-btn"
+                    >
+                        ⚽ ابدأ رحلتك
+                    </a>
+
+                    <a
+                        href="#features"
+                        class="secondary-btn"
+                    >
+                        اكتشف اللعبة ↓
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             إحصائيات سريعة
+        ====================================================== -->
+
+        <div class="stats reveal">
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    19K+
+                </span>
+
+                <span class="stat-label">
+                    لاعب حقيقي
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    690
+                </span>
+
+                <span class="stat-label">
+                    فريق
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    35
+                </span>
+
+                <span class="stat-label">
+                    دوريًا
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    50+
+                </span>
+
+                <span class="stat-label">
+                    منتخبًا
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             المقدمة
+        ====================================================== -->
+
+        <section id="intro">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        <span>01.</span>
+                        مقدمة اللعبة
+                    </h2>
+
+                </div>
+
+                <p class="section-subtitle">
+                    كل ما تحتاج معرفته قبل الدخول إلى عالم
+                    EA SPORTS FC Mobile.
+                </p>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p>
+                    لعبة كرة القدم الشهيرة على الهواتف الذكية.
+                    إذا كنت تبحث عن لعبة كرة قدم تجمع بين
+                    المنافسة والإثارة وبناء فريقك الخاص على
+                    هاتفك المحمول، فإن EA SPORTS FC Mobile
+                    تقدم تجربة ممتعة لعشاق كرة القدم.
+                    طورتها شركة Electronic Arts، وتحتوي اللعبة
+                    على آلاف اللاعبين والأندية والدوريات
+                    المرخصة من مختلف أنحاء العالم، بالإضافة
+                    إلى مباريات تنافسية عبر الإنترنت وفعاليات
+                    متجددة.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             المميزات
+        ====================================================== -->
+
+        <section id="features">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        <span>02.</span>
+                        نقاط القوة
+                    </h2>
+
+                </div>
+
+                <p class="section-subtitle">
+                    أبرز العناصر التي تجعل اللعبة واحدة من
+                    التجارب الكروية المعروفة على الهواتف.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <article class="card">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <h3>
+                        عدد ضخم من اللاعبين والأندية
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على أكثر من 19,000 لاعب
+                        حقيقي من 690 فريقاً عبر 35 دوريًا،
+                        مما يمنح اللاعب مجموعة كبيرة من
+                        الخيارات لبناء فريقه المفضل.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <h3>
+                        طور Ultimate Team
+                    </h3>
+
+                    <p>
+                        يتيح لك طور Ultimate Team بناء فريقك
+                        الخاص واختيار اللاعبين وتطويرهم
+                        وتحسين التشكيلة للمنافسة في مختلف
+                        المباريات والفعاليات.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <h3>
+                        اللعب الجماعي عبر الإنترنت
+                    </h3>
+
+                    <p>
+                        يمكنك خوض مباريات تنافسية ضد لاعبين
+                        آخرين حول العالم في الوقت الحقيقي،
+                        ومن أنماط اللعب المتاحة مباريات
+                        Head-to-Head وVS Attack وغيرها.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card">
+
+                    <div class="card-number">
+                        04
+                    </div>
+
+                    <h3>
+                        بطولة The World's Game
+                    </h3>
+
+                    <p>
+                        تقدم اللعبة بطولة The World's Game
+                        التي تسمح لك باختيار منتخب وطني
+                        والمنافسة في بطولة كرة قدم، مع وجود
+                        أكثر من 50 منتخبًا وطنيًا للاختيار
+                        من بينها.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card">
+
+                    <div class="card-number">
+                        05
+                    </div>
+
+                    <h3>
+                        رسوميات وتحكم مناسب للهواتف
+                    </h3>
+
+                    <p>
+                        تقدم اللعبة تحكمًا سريعًا باللمس
+                        وتمريرات وحركات ومهارات للاعبين،
+                        بالإضافة إلى تكتيكات وتشكيلات مختلفة
+                        تساعدك على التحكم في أسلوب لعب فريقك.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             التقييم
+        ====================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        <span>03.</span>
+                        تقييم التجربة
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="rating-panel">
+
+
+                <div class="rating-row">
+
+                    <span class="rating-name">
+                        تنوع المحتوى
+                    </span>
+
+                    <div class="rating-bar">
+                        <div
+                            class="rating-fill"
+                            style="width: 94%;">
+                        </div>
+                    </div>
+
+                    <span class="rating-value">
+                        9.4
+                    </span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span class="rating-name">
+                        المنافسة
+                    </span>
+
+                    <div class="rating-bar">
+                        <div
+                            class="rating-fill"
+                            style="width: 92%;">
+                        </div>
+                    </div>
+
+                    <span class="rating-value">
+                        9.2
+                    </span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span class="rating-name">
+                        التحكم
+                    </span>
+
+                    <div class="rating-bar">
+                        <div
+                            class="rating-fill"
+                            style="width: 89%;">
+                        </div>
+                    </div>
+
+                    <span class="rating-value">
+                        8.9
+                    </span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span class="rating-name">
+                        الرسوميات
+                    </span>
+
+                    <div class="rating-bar">
+                        <div
+                            class="rating-fill"
+                            style="width: 88%;">
+                        </div>
+                    </div>
+
+                    <span class="rating-value">
+                        8.8
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             العيوب
+        ====================================================== -->
+
+        <section id="disadvantages">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        <span>04.</span>
+                        نقاط يجب معرفتها
+                    </h2>
+
+                </div>
+
+                <p class="section-subtitle">
+                    لا توجد لعبة مثالية؛ وهذه أبرز النقاط التي
+                    ينبغي وضعها في الحسبان.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+
+                <article class="card negative-card">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <h3>
+                        المشتريات داخل اللعبة
+                    </h3>
+
+                    <p>
+                        تحتوي اللعبة على مشتريات اختيارية
+                        داخل التطبيق، ويمكن استخدام العملات
+                        الافتراضية للحصول على عناصر ومحتوى
+                        داخل اللعبة.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card negative-card">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <h3>
+                        الحاجة إلى اتصال بالإنترنت
+                    </h3>
+
+                    <p>
+                        تحتاج اللعبة إلى اتصال بالإنترنت
+                        للاستفادة من العديد من مميزاتها،
+                        وخاصة أنماط اللعب الجماعية والمنافسات
+                        عبر الإنترنت.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card negative-card">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <h3>
+                        استهلاك مساحة التخزين
+                    </h3>
+
+                    <p>
+                        تحتاج اللعبة إلى مساحة تخزين على
+                        الهاتف، وقد تحتاج إلى مساحة إضافية
+                        مع تحديثات اللعبة والمحتوى الجديد.
+                    </p>
+
+                </article>
+
+
+
+                <article class="card negative-card">
+
+                    <div class="card-number">
+                        04
+                    </div>
+
+                    <h3>
+                        المنافسة قد تكون صعبة
+                    </h3>
+
+                    <p>
+                        قد تصبح المنافسة أكثر تحديًا مع تقدم
+                        اللاعب، وخاصة عند مواجهة لاعبين
+                        يمتلكون فرقًا قوية وخبرة أكبر في
+                        أنماط اللعب الجماعية.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الخلاصة
+        ====================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 class="section-title">
+                        <span>05.</span>
+                        الخلاصة
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="conclusion">
+
+                <h2>
+                    هل تستحق التجربة؟
+                </h2>
+
+                <p>
+                    تظل EA SPORTS FC Mobile من الألعاب المناسبة
+                    لعشاق كرة القدم الذين يريدون الاستمتاع
+                    بالمباريات وبناء فريقهم الخاص على الهاتف
+                    الذكي. تتميز اللعبة بعدد كبير من اللاعبين
+                    والأندية والدوريات، بالإضافة إلى Ultimate
+                    Team والمباريات التنافسية عبر الإنترنت
+                    والفعاليات المتجددة. إذا كنت تبحث عن تجربة
+                    كرة قدم مليئة بالمنافسة والتحديات على هاتفك،
+                    فإن EA SPORTS FC Mobile تستحق التجربة.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             التحميل
+        ====================================================== -->
+
+        <section id="download">
+
+            <div class="download-section">
+
+                <h2>
+                    جاهز لدخول الملعب؟
+                </h2>
+
+                <p>
+                    حمّل EA SPORTS FC Mobile من المتاجر الرسمية
+                    وابدأ بناء فريقك.
+                </p>
+
+
+                <div class="download-buttons">
+
+
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-btn"
+                    >
+
+                        <span class="store-icon">
+                            🤖
+                        </span>
+
+                        <span>
+                            تحميل للأندرويد
+                            <small>
+                                Google Play
+                            </small>
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="https://apps.apple.com/us/app/ea-sports-fc-soccer-mobile-26/id1094930513"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="store-btn"
+                    >
+
+                        <span class="store-icon">
+                            🍏
+                        </span>
+
+                        <span>
+                            تحميل للآيفون
+                            <small>
+                                App Store
+                            </small>
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الصورة الأصلية التي قدمها المستخدم
+        ====================================================== -->
+
+        <div class="game-image-wrapper">
+
+            <img
+                class="game-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMtAFLR4vVEXx7Bw9TvsnbrMmhg52hwlA_2mvrlq1cIQ&s=10"
+                alt="EA SPORTS FC Mobile"
+            >
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         الفوتر
+    ========================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026
+                <strong>عالم الألعاب</strong>
+                — EA SPORTS FC Mobile
+            </p>
+
+            <p>
+                تجربة مصممة لعشاق الألعاب والرياضة
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================== -->
+
+    <a
+        href="#"
+        class="top-button"
+        aria-label="العودة إلى الأعلى"
+    >
+        ↑
+    </a>
+
+
+</body>
+</html>

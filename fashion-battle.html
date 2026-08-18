@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Fashion Battle - Dress up game | تجربة أزياء وتحديات على منصة العرض. اختر إطلالتك، نافس، واربح.">
+
+    <title>Fashion Battle — عالم الأناقة</title>
+
+    <!-- =========================
+         FONTS
+    ========================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+            --pink: #ff2f92;
+            --pink-light: #ff6db7;
+            --purple: #8c4dff;
+            --violet: #5e35d6;
+
+            --black: #09070d;
+            --dark: #100c17;
+            --dark-2: #171020;
+
+            --white: #ffffff;
+            --muted: #bdb5c8;
+
+            --glass: rgba(255, 255, 255, 0.065);
+            --glass-border: rgba(255, 255, 255, 0.11);
+
+            --shadow:
+                0 25px 80px rgba(0, 0, 0, .55);
+
+            --radius: 28px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Cairo", sans-serif;
+
+            color: var(--white);
+
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(255, 47, 146, .20),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 10% 50%,
+                    rgba(140, 77, 255, .16),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #07060b,
+                    #100a17 48%,
+                    #08070c
+                );
+
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           AMBIENT BACKGROUND
+        ===================================================== */
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: -2;
+        }
+
+        .orb {
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            filter: blur(90px);
+
+            opacity: .22;
+
+            animation: float 14s ease-in-out infinite alternate;
+        }
+
+        .orb.one {
+            background: var(--pink);
+            top: -180px;
+            right: -120px;
+        }
+
+        .orb.two {
+            background: var(--purple);
+            bottom: -220px;
+            left: -150px;
+
+            animation-delay: -4s;
+        }
+
+        .orb.three {
+            width: 250px;
+            height: 250px;
+
+            background: #ffb2d9;
+
+            top: 42%;
+            right: 40%;
+
+            opacity: .08;
+
+            animation-delay: -8s;
+        }
+
+        @keyframes float {
+
+            from {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            to {
+                transform: translate3d(40px, -35px, 0) scale(1.12);
+            }
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .nav {
+            position: sticky;
+            top: 18px;
+
+            z-index: 100;
+
+            width: min(1180px, calc(100% - 32px));
+
+            margin: 18px auto 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 13px 16px 13px 22px;
+
+            border: 1px solid var(--glass-border);
+
+            border-radius: 22px;
+
+            background: rgba(10, 8, 14, .72);
+
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,.25);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-weight: 900;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink),
+                    var(--purple)
+                );
+
+            box-shadow:
+                0 8px 30px rgba(255,47,146,.28);
+
+            font-size: 20px;
+        }
+
+        .brand span {
+            font-size: 14px;
+            letter-spacing: .5px;
+        }
+
+        .back-world {
+            position: relative;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 11px 17px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            background: rgba(255,255,255,.055);
+
+            border: 1px solid rgba(255,255,255,.10);
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transition: .35s ease;
+        }
+
+        .back-world::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,47,146,.16),
+                    transparent
+                );
+
+            transform: translateX(-100%);
+            transition: .55s ease;
+        }
+
+        .back-world:hover {
+            transform: translateY(-3px);
+
+            border-color: rgba(255,47,146,.4);
+
+            box-shadow:
+                0 10px 35px rgba(255,47,146,.15);
+        }
+
+        .back-world:hover::before {
+            transform: translateX(100%);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            width: min(1180px, calc(100% - 32px));
+
+            margin: 55px auto 0;
+
+            min-height: 610px;
+
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns: .95fr 1.05fr;
+
+            align-items: center;
+
+            gap: 40px;
+
+            padding: 70px;
+
+            overflow: hidden;
+
+            border-radius: 42px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,255,255,.065),
+                    rgba(255,255,255,.025)
+                );
+
+            box-shadow: var(--shadow);
+
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,47,146,.15),
+                    transparent 40%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 24px;
+
+            padding: 8px 13px;
+
+            border-radius: 100px;
+
+            background: rgba(255,47,146,.09);
+
+            border: 1px solid rgba(255,47,146,.25);
+
+            color: #ff8cc7;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .eyebrow i {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #ff4ca4;
+
+            box-shadow: 0 0 15px #ff4ca4;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(54px, 7vw, 92px);
+
+            line-height: .95;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ff65ae,
+                    #a979ff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 570px;
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            line-height: 2;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            min-height: 54px;
+
+            padding: 0 22px;
+
+            border-radius: 16px;
+
+            font-size: 13px;
+            font-weight: 900;
+
+            transition: .35s ease;
+        }
+
+        .primary-btn {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff268d,
+                    #a54dff
+                );
+
+            box-shadow:
+                0 12px 35px rgba(255,47,146,.28);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px) scale(1.015);
+
+            box-shadow:
+                0 18px 45px rgba(255,47,146,.38);
+        }
+
+        .secondary-btn {
+            background: rgba(255,255,255,.055);
+
+            border: 1px solid rgba(255,255,255,.11);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-4px);
+
+            background: rgba(255,255,255,.09);
+        }
+
+
+        /* =====================================================
+           HERO VISUAL
+        ===================================================== */
+
+        .hero-visual {
+            position: relative;
+
+            height: 480px;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-image-wrap {
+            position: relative;
+
+            width: min(360px, 80%);
+
+            transform: rotate(3deg);
+
+            transition: .6s cubic-bezier(.2,.8,.2,1);
+
+            filter:
+                drop-shadow(
+                    0 35px 45px rgba(0,0,0,.5)
+                );
+        }
+
+        .hero:hover .hero-image-wrap {
+            transform:
+                rotate(0deg)
+                translateY(-8px)
+                scale(1.025);
+        }
+
+        .hero-image-wrap::before {
+            content: "";
+
+            position: absolute;
+
+            inset: -25px;
+
+            border-radius: 45px;
+
+            background:
+                conic-gradient(
+                    from 120deg,
+                    #ff2f92,
+                    #8d4cff,
+                    transparent,
+                    #ff2f92
+                );
+
+            filter: blur(30px);
+
+            opacity: .35;
+
+            z-index: -1;
+        }
+
+        .hero-image {
+            width: 100%;
+
+            display: block;
+
+            border-radius: 34px;
+
+            border: 1px solid rgba(255,255,255,.2);
+
+            box-shadow:
+                0 0 0 8px rgba(255,255,255,.025),
+                0 35px 80px rgba(0,0,0,.55);
+        }
+
+        .floating-badge {
+            position: absolute;
+
+            bottom: 25px;
+            left: -25px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 17px;
+
+            border-radius: 18px;
+
+            background: rgba(15,11,22,.85);
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            backdrop-filter: blur(18px);
+
+            box-shadow: 0 18px 45px rgba(0,0,0,.35);
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff2f92,
+                    #8e4eff
+                );
+        }
+
+        .floating-badge small {
+            display: block;
+
+            color: #a9a0b3;
+
+            font-size: 9px;
+        }
+
+        .floating-badge strong {
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats {
+            width: min(1100px, calc(100% - 50px));
+
+            margin: -35px auto 0;
+
+            position: relative;
+            z-index: 10;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            padding: 12px;
+
+            border-radius: 25px;
+
+            background: rgba(16,12,23,.8);
+
+            border: 1px solid rgba(255,255,255,.09);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 25px 60px rgba(0,0,0,.35);
+        }
+
+        .stat {
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 17px;
+
+            background: rgba(255,255,255,.035);
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 22px;
+
+            font-weight: 900;
+        }
+
+        .stat span {
+            display: block;
+
+            color: #a69dac;
+
+            font-size: 10px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+            width: min(1100px, calc(100% - 32px));
+
+            margin: 100px auto;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .section-heading div {
+            max-width: 650px;
+        }
+
+        .section-label {
+            color: #ff5baa;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(32px, 5vw, 48px);
+
+            line-height: 1.1;
+        }
+
+        .section-heading p {
+            color: #9f96aa;
+
+            font-size: 13px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =====================================================
+           INTRO CARD
+        ===================================================== */
+
+        .intro-card {
+
+            display: grid;
+
+            grid-template-columns: 1.2fr .8fr;
+
+            gap: 20px;
+
+            padding: 28px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.07),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            box-shadow: 0 25px 70px rgba(0,0,0,.25);
+        }
+
+        .intro-text {
+            color: #c5bdcd;
+
+            font-size: 14px;
+
+            line-height: 2.1;
+        }
+
+        .quote {
+            padding: 28px;
+
+            display: flex;
+            align-items: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,47,146,.12),
+                    rgba(140,77,255,.08)
+                );
+
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .quote p {
+            font-family: "Playfair Display", serif;
+
+            font-size: 24px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .feature {
+            position: relative;
+
+            padding: 26px;
+
+            min-height: 205px;
+
+            overflow: hidden;
+
+            border-radius: 23px;
+
+            background: rgba(255,255,255,.045);
+
+            border: 1px solid rgba(255,255,255,.09);
+
+            transition:
+                transform .4s ease,
+                border-color .4s ease,
+                background .4s ease;
+        }
+
+        .feature::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            background: var(--pink);
+
+            filter: blur(60px);
+
+            opacity: 0;
+
+            right: -40px;
+            bottom: -40px;
+
+            transition: .4s;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(255,47,146,.28);
+
+            background: rgba(255,255,255,.065);
+        }
+
+        .feature:hover::after {
+            opacity: .22;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,47,146,.22),
+                    rgba(140,77,255,.22)
+                );
+
+            font-size: 22px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #9e96a8;
+
+            font-size: 12px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =====================================================
+           REVIEW / RATING
+        ===================================================== */
+
+        .rating-section {
+
+            margin-top: 100px;
+
+            display: grid;
+
+            grid-template-columns: .8fr 1.2fr;
+
+            gap: 20px;
+        }
+
+        .rating-main,
+        .rating-breakdown {
+
+            padding: 30px;
+
+            border-radius: 27px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.065),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(255,255,255,.09);
+        }
+
+        .rating-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .rating-number {
+            font-family: "Playfair Display", serif;
+
+            font-size: 75px;
+
+            line-height: 1;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff,
+                    #ff62ad
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stars {
+            color: #ffc04d;
+
+            font-size: 20px;
+
+            letter-spacing: 4px;
+
+            margin: 12px 0;
+        }
+
+        .rating-main p {
+            color: #9d94a7;
+
+            font-size: 11px;
+        }
+
+        .rating-row {
+            display: grid;
+
+            grid-template-columns: 30px 1fr 40px;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 13px 0;
+
+            font-size: 11px;
+        }
+
+        .bar {
+            height: 7px;
+
+            border-radius: 99px;
+
+            background: rgba(255,255,255,.07);
+
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff2f92,
+                    #a14fff
+                );
+        }
+
+
+        /* =====================================================
+           PROS / CONS
+        ===================================================== */
+
+        .pros-cons {
+
+            margin-top: 20px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .list-card {
+
+            padding: 27px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.04);
+
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .list-card h3 {
+            margin-bottom: 20px;
+
+            font-size: 17px;
+        }
+
+        .list {
+
+            display: grid;
+
+            gap: 13px;
+        }
+
+        .list-item {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 11px;
+
+            color: #aaa2b2;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+        .check,
+        .cross {
+            flex: 0 0 auto;
+
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+        }
+
+        .check {
+            color: #6dffbd;
+
+            background: rgba(45,255,157,.09);
+        }
+
+        .cross {
+            color: #ff668e;
+
+            background: rgba(255,75,120,.09);
+        }
+
+
+        /* =====================================================
+           GALLERY
+        ===================================================== */
+
+        .gallery {
+
+            margin-top: 100px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.3fr .7fr;
+
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 300px;
+
+            object-fit: cover;
+
+            display: block;
+
+            border-radius: 25px;
+
+            border: 1px solid rgba(255,255,255,.09);
+
+            filter: saturate(1.08);
+
+            transition: .5s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.015);
+
+            filter:
+                saturate(1.2)
+                brightness(1.05);
+        }
+
+        .gallery-side {
+            display: grid;
+
+            gap: 15px;
+        }
+
+        .gallery-side img {
+            min-height: 145px;
+        }
+
+
+        /* =====================================================
+           DOWNLOAD
+        ===================================================== */
+
+        .download {
+
+            position: relative;
+
+            margin-top: 100px;
+
+            padding: 60px 50px;
+
+            overflow: hidden;
+
+            border-radius: 35px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(255,47,146,.3),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #211028,
+                    #110c19
+                );
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.35);
+        }
+
+        .download::before {
+            content: "FASHION";
+
+            position: absolute;
+
+            left: -20px;
+            bottom: -70px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 170px;
+
+            font-weight: 900;
+
+            color: rgba(255,255,255,.025);
+
+            pointer-events: none;
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 680px;
+        }
+
+        .download h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(35px, 5vw, 55px);
+
+            margin-bottom: 15px;
+        }
+
+        .download p {
+            color: #b7aebe;
+
+            font-size: 13px;
+
+            line-height: 2;
+
+            margin-bottom: 25px;
+        }
+
+        .store-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .store {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-width: 205px;
+
+            padding: 14px 18px;
+
+            border-radius: 17px;
+
+            background: rgba(255,255,255,.08);
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            transition: .35s;
+        }
+
+        .store:hover {
+            transform: translateY(-5px);
+
+            background: rgba(255,255,255,.13);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.25);
+        }
+
+        .store-icon {
+            font-size: 25px;
+        }
+
+        .store small {
+            display: block;
+
+            color: #9d94a7;
+
+            font-size: 9px;
+        }
+
+        .store strong {
+            display: block;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            width: min(1100px, calc(100% - 32px));
+
+            margin: 50px auto 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(255,255,255,.08);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            color: #716979;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                padding: 45px 30px;
+
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-inline: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 390px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .intro-card,
+            .rating-section,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .gallery-side {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .nav {
+                top: 10px;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 30px;
+
+                border-radius: 30px;
+
+                padding: 38px 20px;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+
+                letter-spacing: -2px;
+            }
+
+            .hero-visual {
+                height: 340px;
+            }
+
+            .hero-image-wrap {
+                width: 270px;
+            }
+
+            .floating-badge {
+                left: 0;
+                bottom: 10px;
+            }
+
+            .stats {
+                width: calc(100% - 32px);
+            }
+
+            .stat {
+                padding: 15px 8px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-side {
+                grid-template-columns: 1fr;
+            }
+
+            .download {
+                padding: 40px 24px;
+            }
+
+            .store {
+                width: 100%;
+            }
+
+            footer {
+                flex-direction: column;
+
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         AMBIENT EFFECTS
+    ====================================================== -->
+
+    <div class="ambient">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+        <div class="orb three"></div>
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="nav">
+
+        <a href="../index.html" class="brand">
+
+            <div class="brand-mark">
+                ✦
+            </div>
+
+            <span>
+                عــالــم الألعاب
+            </span>
+
+        </a>
+
+
+        <a href="../index.html" class="back-world">
+
+            <span>←</span>
+
+            العودة إلى عالم الألعاب
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <i></i>
+
+                FASHION • STYLE • RUNWAY
+
+            </div>
+
+
+            <h1>
+
+                Fashion
+
+                <span>Battle.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                ادخلي عالم الأزياء، اصنعي إطلالتك الخاصة،
+                واجعلي منصّة العرض مساحتك للتألق.
+                اختاري الملابس والإكسسوارات، نسّقي المظهر،
+                ثم شاهدي نتيجتك في معركة الأناقة.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="https://play.google.com/store/apps/details?id=tr.com.apps.fashion.battle"
+                    target="_blank"
+                    rel="noopener"
+                    class="primary-btn">
+
+                    ✦ ابدئي معركة الأناقة
+
+                </a>
+
+
+                <a
+                    href="#review"
+                    class="secondary-btn">
+
+                    اكتشفي التقييم ↓
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-image-wrap">
+
+                <img
+                    class="hero-image"
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/42/7f/47/427f4738-7443-c330-1e5f-505789f08256/SS03_2048x2732.png/576x768bb.png"
+                    alt="لقطة من لعبة Fashion Battle">
+
+            </div>
+
+
+            <div class="floating-badge">
+
+                <div class="badge-icon">
+                    ★
+                </div>
+
+                <div>
+
+                    <small>تقييم المتجر</small>
+
+                    <strong>4.4 / 5</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         QUICK STATS
+    ====================================================== -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <strong>50M+</strong>
+            <span>تنزيل على Google Play</span>
+        </div>
+
+        <div class="stat">
+            <strong>4.4★</strong>
+            <span>تقييم Google Play</span>
+        </div>
+
+        <div class="stat">
+            <strong>4.5★</strong>
+            <span>تقييم App Store</span>
+        </div>
+
+        <div class="stat">
+            <strong>12+</strong>
+            <span>تصنيف عمري على App Store</span>
+        </div>
+
+    </section>
+
+
+
+    <main>
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-label">
+                        THE RUNWAY
+                    </div>
+
+                    <h2>
+                        هنا لا يكفي أن تكوني أنيقة.
+                    </h2>
+
+                </div>
+
+                <p>
+                    المطلوب أن تكون إطلالتك أفضل من منافستك.
+                </p>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p class="intro-text">
+
+                    Fashion Battle - Dress up game هي لعبة
+                    أزياء تعتمد على تنسيق الإطلالات والمنافسة
+                    على منصّة العرض. تختارين الملابس وتنسقين
+                    المظهر وفق موضوع الجولة، ثم تدخلين معركة
+                    الأزياء وتحاولين الحصول على أفضل تقييم.
+                    اللعبة تتضمن أزياء متنوعة، مكياجًا،
+                    تسريحات وإطلالات مختلفة، إضافة إلى
+                    تحديات ومنصات عرض متجددة.
+
+                </p>
+
+
+                <div class="quote">
+
+                    <p>
+                        «اصنعي الإطلالة...
+                        واتركي المنصّة تتحدث.»
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================== -->
+
+        <section style="margin-top:100px;">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-label">
+                        STYLE SYSTEM
+                    </div>
+
+                    <h2>
+                        كل جولة لها شخصية.
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="features">
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        👗
+                    </div>
+
+                    <h3>
+                        تنسيق الإطلالة
+                    </h3>
+
+                    <p>
+                        امزجي الملابس والقطع المختلفة
+                        لصناعة مظهر يناسب موضوع التحدي
+                        ويمنحك حضورًا قويًا على المنصة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        💄
+                    </div>
+
+                    <h3>
+                        مكياج وتغيير المظهر
+                    </h3>
+
+                    <p>
+                        لا تتوقفي عند الملابس؛ اللعبة
+                        تتضمن عناصر مرتبطة بالمكياج
+                        وتغيير مظهر الشخصية.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        💇‍♀️
+                    </div>
+
+                    <h3>
+                        الشعر والستايل
+                    </h3>
+
+                    <p>
+                        غيّري تسريحة الشخصية وأضيفي
+                        لمستك الخاصة حتى يصبح المظهر
+                        متكاملًا.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        معارك الأزياء
+                    </h3>
+
+                    <p>
+                        ادخلي تحديات الـ Catwalk وحاولي
+                        الحصول على نتيجة أعلى من المنافسة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        فتح عناصر جديدة
+                    </h3>
+
+                    <p>
+                        التقدم في تحديات الأزياء يساعد
+                        على الحصول على مزيد من الملابس
+                        والمحتوى.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        حرية الإبداع
+                    </h3>
+
+                    <p>
+                        جرّبي تركيبات مختلفة من الألوان
+                        والقطع وابني أسلوبك الخاص.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RATING
+        ================================================== -->
+
+        <section id="review" class="rating-section">
+
+            <div class="rating-main">
+
+                <div class="rating-number">
+                    4.4
+                </div>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    تقييم Google Play
+                </p>
+
+                <p style="margin-top:8px;">
+                    أكثر من 210 ألف مراجعة
+                </p>
+
+            </div>
+
+
+            <div class="rating-breakdown">
+
+                <div class="rating-row">
+
+                    <span>5</span>
+
+                    <div class="bar">
+                        <span style="width:82%"></span>
+                    </div>
+
+                    <span>82%</span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span>4</span>
+
+                    <div class="bar">
+                        <span style="width:9%"></span>
+                    </div>
+
+                    <span>9%</span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span>3</span>
+
+                    <div class="bar">
+                        <span style="width:4%"></span>
+                    </div>
+
+                    <span>4%</span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span>2</span>
+
+                    <div class="bar">
+                        <span style="width:2%"></span>
+                    </div>
+
+                    <span>2%</span>
+
+                </div>
+
+
+                <div class="rating-row">
+
+                    <span>1</span>
+
+                    <div class="bar">
+                        <span style="width:3%"></span>
+                    </div>
+
+                    <span>3%</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROS & CONS
+        ================================================== -->
+
+        <section class="pros-cons">
+
+
+            <div class="list-card">
+
+                <h3>
+                    ✦ لماذا قد تعجبك؟
+                </h3>
+
+                <div class="list">
+
+                    <div class="list-item">
+
+                        <span class="check">✓</span>
+
+                        <span>
+                            تجربة تركّز على الأزياء وتنسيق
+                            الإطلالات ومنصات العرض.
+                        </span>
+
+                    </div>
+
+
+                    <div class="list-item">
+
+                        <span class="check">✓</span>
+
+                        <span>
+                            تنوع في الملابس والستايلات
+                            والمظاهر.
+                        </span>
+
+                    </div>
+
+
+                    <div class="list-item">
+
+                        <span class="check">✓</span>
+
+                        <span>
+                            لعبة مجانية للتحميل.
+                        </span>
+
+                    </div>
+
+
+                    <div class="list-item">
+
+                        <span class="check">✓</span>
+
+                        <span>
+                            يمكن لعبها دون اتصال بالإنترنت
+                            وفق بيانات Google Play.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="list-card">
+
+                <h3>
+                    ◇ قبل أن تبدأي
+                </h3>
+
+                <div class="list">
+
+                    <div class="list-item">
+
+                        <span class="cross">×</span>
+
+                        <span>
+                            تحتوي اللعبة على إعلانات.
+                        </span>
+
+                    </div>
+
+
+                    <div class="list-item">
+
+                        <span class="cross">×</span>
+
+                        <span>
+                            توجد مشتريات اختيارية داخل التطبيق.
+                        </span>
+
+                    </div>
+
+
+                    <div class="list-item">
+
+                        <span class="cross">×</span>
+
+                        <span>
+                            بعض المراجعات تشير إلى تكرار بعض
+                            الجولات أو مشاكل مرتبطة بالإعلانات.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GALLERY
+        ================================================== -->
+
+        <section class="gallery">
+
+            <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/42/7f/47/427f4738-7443-c330-1e5f-505789f08256/SS03_2048x2732.png/576x768bb.png"
+                alt="Fashion Battle - لقطة من منصة العرض">
+
+
+            <div class="gallery-side">
+
+                <img
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/ad/c2/f4/adc2f4fd-aaec-d68e-09be-8c1336ab1ada/c19a17b0-003b-47a4-9694-2c2eca6d1ab3_4.png/392x696bb.png"
+                    alt="Fashion Battle - تحدي أزياء">
+
+                <img
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/42/7f/47/427f4738-7443-c330-1e5f-505789f08256/SS03_2048x2732.png/576x768bb.png"
+                    alt="Fashion Battle - إطلالة على المنصة">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DOWNLOAD
+        ================================================== -->
+
+        <section class="download">
+
+            <div class="download-content">
+
+                <div class="section-label">
+                    YOUR RUNWAY AWAITS
+                </div>
+
+                <h2>
+                    مستعدة للظهور؟
+                </h2>
+
+                <p>
+                    حمّلي Fashion Battle من المتجر الرسمي،
+                    واختبري قدرتك على صناعة الإطلالة التي
+                    تستحق أن تتصدر المنصة.
+                </p>
+
+
+                <div class="store-buttons">
+
+
+                    <a
+                        class="store"
+                        href="https://play.google.com/store/apps/details?id=tr.com.apps.fashion.battle"
+                        target="_blank"
+                        rel="noopener">
+
+                        <span class="store-icon">
+                            🤖
+                        </span>
+
+                        <span>
+
+                            <small>
+                                متوفر على
+                            </small>
+
+                            <strong>
+                                Google Play
+                            </strong>
+
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        class="store"
+                        href="https://apps.apple.com/us/app/fashion-battle-dress-up-game/id1560663843"
+                        target="_blank"
+                        rel="noopener">
+
+                        <span class="store-icon">
+                            
+                        </span>
+
+                        <span>
+
+                            <small>
+                                متوفر على
+                            </small>
+
+                            <strong>
+                                App Store
+                            </strong>
+
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <span>
+            © 2026 — عالم الألعاب
+        </span>
+
+        <span>
+            Fashion Battle • Style • Runway
+        </span>
+
+    </footer>
+
+
+</body>
+</html>

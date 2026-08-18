@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>8 Ball Pool | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           المتغيرات الأساسية
+        ========================================================= */
+
+        :root {
+            --bg-main: #07110f;
+            --bg-secondary: #0b1916;
+            --green-dark: #08251c;
+            --green: #0d6b4f;
+            --green-light: #18c58a;
+            --gold: #e8c56a;
+            --gold-light: #ffe7a1;
+            --white: #f4f7f5;
+            --text: #c9d5d1;
+            --muted: #879791;
+            --card: rgba(15, 31, 27, 0.82);
+            --border: rgba(232, 197, 106, 0.18);
+            --shadow: rgba(0, 0, 0, 0.45);
+        }
+
+
+        /* =========================================================
+           الإعدادات العامة
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(19, 116, 85, 0.22),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    180deg,
+                    #06100e 0%,
+                    #081613 45%,
+                    #050b09 100%
+                );
+
+            color: var(--white);
+            line-height: 1.9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================================
+           خلفية زخرفية
+        ========================================================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            pointer-events: none;
+            z-index: -5;
+        }
+
+
+        /* =========================================================
+           الكرات المتحركة في الخلفية
+        ========================================================= */
+
+        .floating-balls {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .ball {
+            position: absolute;
+
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+            font-weight: bold;
+
+            color: #111;
+
+            box-shadow:
+                inset -5px -6px 12px rgba(0,0,0,0.55),
+                inset 4px 4px 8px rgba(255,255,255,0.3),
+                0 8px 25px rgba(0,0,0,0.25);
+
+            opacity: 0.18;
+
+            animation:
+                floatingBall 18s infinite ease-in-out;
+        }
+
+        .ball::after {
+            content: "";
+            width: 13px;
+            height: 13px;
+
+            background: white;
+            border-radius: 50%;
+
+            position: absolute;
+        }
+
+        .ball span {
+            position: relative;
+            z-index: 2;
+            font-size: 7px;
+        }
+
+        .ball-1 {
+            top: 12%;
+            left: 8%;
+            background: #ffffff;
+            animation-duration: 21s;
+        }
+
+        .ball-2 {
+            top: 31%;
+            right: 7%;
+            background: #e8c56a;
+            animation-duration: 17s;
+            animation-delay: -4s;
+        }
+
+        .ball-3 {
+            top: 58%;
+            left: 4%;
+            background: #d83c32;
+            animation-duration: 23s;
+            animation-delay: -8s;
+        }
+
+        .ball-4 {
+            top: 75%;
+            right: 10%;
+            background: #1f72c7;
+            animation-duration: 19s;
+            animation-delay: -6s;
+        }
+
+        .ball-5 {
+            top: 88%;
+            left: 42%;
+            background: #111;
+            animation-duration: 25s;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatingBall {
+
+            0%,
+            100% {
+                transform:
+                    translate3d(0, 0, 0)
+                    rotate(0deg);
+            }
+
+            25% {
+                transform:
+                    translate3d(40px, -35px, 0)
+                    rotate(100deg);
+            }
+
+            50% {
+                transform:
+                    translate3d(-25px, -70px, 0)
+                    rotate(210deg);
+            }
+
+            75% {
+                transform:
+                    translate3d(55px, -30px, 0)
+                    rotate(300deg);
+            }
+        }
+
+
+        /* =========================================================
+           الشريط العلوي
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            background:
+                rgba(4, 14, 12, 0.86);
+
+            border-bottom:
+                1px solid
+                rgba(232, 197, 106, 0.14);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-ball {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #555,
+                    #111 60%,
+                    #000
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(255,255,255,0.3);
+
+            box-shadow:
+                0 0 20px rgba(0,0,0,0.6),
+                inset 4px 4px 8px rgba(255,255,255,0.18);
+        }
+
+        .brand-ball span {
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #111;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-text strong {
+            font-size: 15px;
+        }
+
+        .brand-text small {
+            color: var(--gold);
+            font-size: 10px;
+        }
+
+        .home-link {
+            text-decoration: none;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 18px;
+
+            border-radius: 999px;
+
+            color: var(--gold-light);
+
+            border:
+                1px solid
+                rgba(232,197,106,0.35);
+
+            background:
+                rgba(232,197,106,0.06);
+
+            transition: 0.3s ease;
+        }
+
+        .home-link:hover {
+            background: var(--gold);
+            color: #111;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px rgba(232,197,106,0.2);
+        }
+
+
+        /* =========================================================
+           القسم الرئيسي
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            min-height: 720px;
+
+            display: flex;
+            align-items: center;
+
+            padding:
+                80px 7%
+                100px;
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(24,197,138,0.14),
+                    transparent 65%
+                );
+
+            top: -180px;
+            left: -180px;
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            width: min(850px, 100%);
+            position: relative;
+            z-index: 3;
+        }
+
+        .category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 15px;
+
+            border-radius: 999px;
+
+            border:
+                1px solid
+                rgba(24,197,138,0.3);
+
+            background:
+                rgba(24,197,138,0.07);
+
+            color: #65e7ba;
+
+            font-size: 12px;
+
+            margin-bottom: 24px;
+        }
+
+        .category::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            background: var(--green-light);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 12px var(--green-light);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 92px);
+
+            line-height: 1.05;
+
+            margin-bottom: 25px;
+
+            letter-spacing: -2px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #ffffff 20%,
+                    #d5eee5 55%,
+                    #dcb961 90%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .hero h1 span {
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 0.36em;
+
+            letter-spacing: 5px;
+
+            margin-top: 15px;
+        }
+
+        .hero-description {
+            max-width: 720px;
+
+            color: var(--text);
+
+            font-size: 18px;
+
+            line-height: 2;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================================================
+           الإحصائيات
+        ========================================================= */
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin-bottom: 35px;
+        }
+
+        .stat {
+            min-width: 125px;
+
+            padding: 13px 18px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            border-radius: 14px;
+
+            transition: 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(232,197,106,0.35);
+
+            background:
+                rgba(232,197,106,0.06);
+        }
+
+        .stat strong {
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 17px;
+        }
+
+        .stat span {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           أزرار البطل
+        ========================================================= */
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 190px;
+
+            padding: 14px 24px;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s,
+                background 0.3s;
+        }
+
+        .primary-btn {
+            color: #06100e;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffe29a,
+                    #d3aa4d
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(232,197,106,0.17);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 18px 45px
+                rgba(232,197,106,0.28);
+        }
+
+        .secondary-btn {
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            background:
+                rgba(255,255,255,0.045);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(24,197,138,0.4);
+
+            background:
+                rgba(24,197,138,0.08);
+        }
+
+
+        /* =========================================================
+           زخرفة الطاولة
+        ========================================================= */
+
+        .pool-table-art {
+            position: absolute;
+
+            left: -110px;
+            bottom: 20px;
+
+            width: 500px;
+            height: 310px;
+
+            transform:
+                perspective(900px)
+                rotateX(58deg)
+                rotateZ(-8deg);
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #154b3a,
+                    #08271e
+                );
+
+            border:
+                18px solid #3b2414;
+
+            box-shadow:
+                0 40px 70px rgba(0,0,0,0.6),
+                inset 0 0 0 3px rgba(232,197,106,0.12);
+
+            opacity: 0.8;
+        }
+
+        .pool-table-art::before {
+            content: "";
+
+            position: absolute;
+            inset: 15px;
+
+            border:
+                3px solid
+                rgba(232,197,106,0.15);
+
+            border-radius: 15px;
+        }
+
+        .pocket {
+            position: absolute;
+
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: #020605;
+
+            box-shadow:
+                inset 0 3px 8px rgba(255,255,255,0.05);
+        }
+
+        .pocket.one {
+            top: -5px;
+            right: -5px;
+        }
+
+        .pocket.two {
+            top: -5px;
+            left: -5px;
+        }
+
+        .pocket.three {
+            bottom: -5px;
+            right: -5px;
+        }
+
+        .pocket.four {
+            bottom: -5px;
+            left: -5px;
+        }
+
+        .pocket.five {
+            top: 50%;
+            right: -18px;
+            transform: translateY(-50%);
+        }
+
+        .pocket.six {
+            top: 50%;
+            left: -18px;
+            transform: translateY(-50%);
+        }
+
+
+        /* =========================================================
+           المحتوى الرئيسي
+        ========================================================= */
+
+        main {
+            width: min(1180px, 90%);
+
+            margin:
+                0 auto
+                100px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            align-items: end;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 35px;
+        }
+
+        .section-heading div {
+            max-width: 720px;
+        }
+
+        .section-kicker {
+            color: var(--green-light);
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 42px);
+
+            line-height: 1.3;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================================================
+           المقدمة
+        ========================================================= */
+
+        .intro-card {
+            position: relative;
+
+            padding: 42px;
+
+            border-radius: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(15,43,34,0.86),
+                    rgba(8,20,17,0.92)
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                0 30px 70px
+                rgba(0,0,0,0.28);
+
+            overflow: hidden;
+
+            margin-bottom: 90px;
+        }
+
+        .intro-card::after {
+            content: "8";
+
+            position: absolute;
+
+            left: 30px;
+            bottom: -80px;
+
+            font-size: 260px;
+
+            font-weight: bold;
+
+            color:
+                rgba(255,255,255,0.018);
+
+            pointer-events: none;
+        }
+
+        .intro-card p {
+            position: relative;
+            z-index: 2;
+
+            color: var(--text);
+
+            font-size: 18px;
+
+            line-height: 2.15;
+        }
+
+
+        /* =========================================================
+           بطاقات المميزات
+        ========================================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 100px;
+        }
+
+        .feature-card {
+            position: relative;
+
+            min-height: 245px;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20,42,35,0.88),
+                    rgba(8,19,16,0.95)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s,
+                border-color 0.35s,
+                box-shadow 0.35s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(24,197,138,0.32);
+
+            box-shadow:
+                0 25px 55px
+                rgba(0,0,0,0.35);
+        }
+
+        .feature-number {
+            position: absolute;
+
+            top: 18px;
+            left: 22px;
+
+            font-size: 12px;
+
+            color:
+                rgba(255,255,255,0.22);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                rgba(24,197,138,0.08);
+
+            border:
+                1px solid
+                rgba(24,197,138,0.18);
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 10px;
+
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================================================
+           قسم العيوب
+        ========================================================= */
+
+        .cons-section {
+            margin-bottom: 100px;
+        }
+
+        .cons-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+        .cons-card {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 25px;
+
+            background:
+                rgba(35,21,18,0.48);
+
+            border:
+                1px solid
+                rgba(221,98,69,0.13);
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .cons-card:hover {
+            transform: translateX(-5px);
+
+            border-color:
+                rgba(221,98,69,0.3);
+        }
+
+        .warning-icon {
+            flex-shrink: 0;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(221,98,69,0.09);
+
+            color: #ff9178;
+        }
+
+        .cons-card h3 {
+            margin-bottom: 5px;
+
+            font-size: 17px;
+        }
+
+        .cons-card p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================================================
+           الخلاصة
+        ========================================================= */
+
+        .verdict {
+            position: relative;
+
+            padding: 55px;
+
+            margin-bottom: 80px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(24,197,138,0.16),
+                    transparent 65%
+                ),
+                linear-gradient(
+                    145deg,
+                    #0c2720,
+                    #07120f
+                );
+
+            border:
+                1px solid
+                rgba(24,197,138,0.2);
+
+            overflow: hidden;
+        }
+
+        .verdict::before {
+            content: "8 BALL POOL";
+
+            position: absolute;
+
+            width: 100%;
+
+            top: 18px;
+            left: 0;
+
+            color:
+                rgba(255,255,255,0.025);
+
+            font-size: 60px;
+
+            font-weight: bold;
+
+            letter-spacing: 8px;
+        }
+
+        .verdict h2 {
+            position: relative;
+
+            font-size: 35px;
+
+            margin-bottom: 18px;
+        }
+
+        .verdict p {
+            position: relative;
+
+            max-width: 800px;
+
+            margin: auto;
+
+            color: var(--text);
+
+            font-size: 16px;
+
+            line-height: 2.1;
+        }
+
+
+        /* =========================================================
+           التحميل
+        ========================================================= */
+
+        .download-box {
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(232,197,106,0.08),
+                    rgba(24,197,138,0.05)
+                );
+
+            border:
+                1px solid
+                rgba(232,197,106,0.18);
+
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+        .download-box h2 {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .download-box p {
+            color: var(--muted);
+
+            margin-bottom: 28px;
+        }
+
+        .download-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 14px;
+        }
+
+        .store-button {
+            min-width: 220px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 15px 22px;
+
+            border-radius: 14px;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                #101b18;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            transition: 0.3s;
+        }
+
+        .store-button:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(232,197,106,0.4);
+
+            background:
+                #172a24;
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.3);
+        }
+
+        .store-icon {
+            font-size: 23px;
+        }
+
+
+        /* =========================================================
+           الصورة النهائية
+        ========================================================= */
+
+        .game-image-wrapper {
+            position: relative;
+
+            width: 100%;
+
+            padding: 12px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(232,197,106,0.35),
+                    rgba(24,197,138,0.15),
+                    transparent
+                );
+
+            margin-bottom: 60px;
+        }
+
+        .game-image {
+            display: block;
+
+            width: 100%;
+
+            max-height: 650px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 35px 80px
+                rgba(0,0,0,0.5);
+        }
+
+
+        /* =========================================================
+           الفوتر
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            padding:
+                35px 7%;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            background:
+                rgba(0,0,0,0.18);
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           زر العودة للأعلى
+        ========================================================= */
+
+        .back-top {
+            position: fixed;
+
+            bottom: 25px;
+            left: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(232,197,106,0.25);
+
+            background:
+                rgba(6,17,14,0.8);
+
+            color: var(--gold);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            opacity: 0;
+
+            transform: translateY(15px);
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+            backdrop-filter: blur(10px);
+
+            z-index: 500;
+        }
+
+        .back-top.show {
+            opacity: 1;
+
+            transform: translateY(0);
+
+            pointer-events: auto;
+        }
+
+        .back-top:hover {
+            background: var(--gold);
+
+            color: #111;
+        }
+
+
+        /* =========================================================
+           الاستجابة للهواتف
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .pool-table-art {
+                opacity: 0.18;
+
+                left: -180px;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                height: 68px;
+
+                padding:
+                    0 5%;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .home-link {
+                padding:
+                    8px 13px;
+
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding:
+                    70px 6%
+                    90px;
+            }
+
+            .hero h1 {
+                font-size:
+                    clamp(43px, 14vw, 68px);
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .stats {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .stat {
+                min-width: 0;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+
+            .pool-table-art {
+                display: none;
+            }
+
+            main {
+                width: 90%;
+            }
+
+            .intro-card {
+                padding: 27px;
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .cons-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .verdict {
+                padding: 35px 25px;
+            }
+
+            .download-box {
+                padding: 30px 20px;
+            }
+
+            .store-button {
+                width: 100%;
+            }
+
+            .game-image-wrapper {
+                padding: 7px;
+            }
+        }
+
+
+        /* =========================================================
+           تقليل الحركة لمن يفضل ذلك
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body id="top">
+
+
+    <!-- =========================================================
+         الكرات الخلفية
+    ========================================================= -->
+
+    <div class="floating-balls">
+
+        <div class="ball ball-1">
+            <span>1</span>
+        </div>
+
+        <div class="ball ball-2">
+            <span>9</span>
+        </div>
+
+        <div class="ball ball-3">
+            <span>3</span>
+        </div>
+
+        <div class="ball ball-4">
+            <span>2</span>
+        </div>
+
+        <div class="ball ball-5">
+            <span>8</span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         الشريط العلوي
+    ========================================================= -->
+
+    <header class="topbar">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-ball">
+                <span>8</span>
+            </div>
+
+            <div class="brand-text">
+
+                <strong>عالم الألعاب</strong>
+
+                <small>GAME UNIVERSE</small>
+
+            </div>
+
+        </a>
+
+
+        <a href="index.html" class="home-link">
+
+            <span>←</span>
+
+            العودة إلى عالم الألعاب
+
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         الواجهة الرئيسية
+    ========================================================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="category">
+                لعبة رياضية • بلياردو • منافسة أونلاين
+            </div>
+
+
+            <h1>
+
+                8 بول 🎱
+
+                <span>
+                    8 BALL POOL
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                عندما تتحول كل ضربة إلى قرار،
+                وكل زاوية إلى فرصة،
+                تبدأ المتعة الحقيقية.
+                8 Ball Pool تقدم تجربة بلياردو تنافسية
+                تجمع بين دقة التصويب وسرعة التفكير
+                والمنافسة ضد لاعبين من مختلف أنحاء العالم.
+
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>🎱</strong>
+                    <span>بلياردو تنافسي</span>
+                </div>
+
+                <div class="stat">
+                    <strong>🌍</strong>
+                    <span>لاعبون حول العالم</span>
+                </div>
+
+                <div class="stat">
+                    <strong>🏆</strong>
+                    <span>بطولات ومنافسات</span>
+                </div>
+
+                <div class="stat">
+                    <strong>👥</strong>
+                    <span>اللعب مع الأصدقاء</span>
+                </div>
+
+            </div>
+
+
+            <div class="hero-actions">
+
+                <a href="#download" class="primary-btn">
+                    🎱 ابدأ رحلتك الآن
+                </a>
+
+                <a href="#features" class="secondary-btn">
+                    اكتشف اللعبة ↓
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- رسم طاولة بلياردو زخرفي -->
+
+        <div class="pool-table-art">
+
+            <div class="pocket one"></div>
+            <div class="pocket two"></div>
+            <div class="pocket three"></div>
+            <div class="pocket four"></div>
+            <div class="pocket five"></div>
+            <div class="pocket six"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         المحتوى
+    ========================================================= -->
+
+    <main>
+
+
+        <!-- المقدمة -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        THE EXPERIENCE
+                    </div>
+
+                    <h2>
+                        أكثر من مجرد ضربة على الطاولة
+                    </h2>
+
+                    <p>
+                        الدقة والتركيز والقرار الصحيح في اللحظة المناسبة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="intro-card">
+
+                <p>
+
+                    8 Ball Pool هي لعبة بلياردو ثلاثية الأبعاد
+                    مخصصة للهواتف الذكية، طورتها شركة Miniclip.
+                    تتيح لك اللعبة خوض مباريات البلياردو ضد لاعبين
+                    آخرين عبر الإنترنت، بالإضافة إلى إمكانية اللعب
+                    مع الأصدقاء والمشاركة في بطولات ومنافسات مختلفة.
+                    كما يمكنك تطوير مهاراتك في التصويب واستخدام
+                    العصا بطريقة دقيقة لإدخال الكرات في الجيوب.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             المميزات
+        ===================================================== -->
+
+        <section id="features">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        WHY 8 BALL POOL
+                    </div>
+
+                    <h2>
+                        لماذا تستحق التجربة؟
+                    </h2>
+
+                    <p>
+                        مجموعة من العناصر التي تجعل كل مباراة مختلفة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        01
+                    </div>
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        منافسة لاعب ضد لاعب
+                    </h3>
+
+                    <p>
+                        خض مباريات مباشرة وتنافس مع لاعبين
+                        من مختلف أنحاء العالم، واجعل كل ضربة
+                        اختبارًا حقيقيًا لدقة تصويبك.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        02
+                    </div>
+
+                    <div class="feature-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        تحدَّ أصدقاءك
+                    </h3>
+
+                    <p>
+                        لا تكتفِ بالمنافسة العشوائية؛ يمكنك
+                        تحدي أصدقائك والدخول معهم في مواجهات
+                        مباشرة مليئة بالحماس.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        03
+                    </div>
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    <h3>
+                        بطولات ومنافسات
+                    </h3>
+
+                    <p>
+                        تقدم اللعبة منافسات وبطولات متعددة
+                        اللاعبين، مما يمنحك هدفًا مستمرًا
+                        لتحسين مستواك وترتيبك.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        04
+                    </div>
+
+                    <div class="feature-icon">
+                        🪄
+                    </div>
+
+                    <h3>
+                        تخصيص العصا والطاولة
+                    </h3>
+
+                    <p>
+                        يمكنك تخصيص عناصر مختلفة من تجربة
+                        اللعب واستخدام عصي وطاولات متنوعة
+                        لإضفاء طابعك الخاص.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        05
+                    </div>
+
+                    <div class="feature-icon">
+                        🎱
+                    </div>
+
+                    <h3>
+                        تجربة ثلاثية الأبعاد
+                    </h3>
+
+                    <p>
+                        نظام تصويب بصري يساعدك على قراءة
+                        اتجاه الكرة والتخطيط للضربة قبل
+                        تنفيذها.
+                    </p>
+
+                </article>
+
+
+
+                <article class="feature-card">
+
+                    <div class="feature-number">
+                        06
+                    </div>
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        مباريات سريعة
+                    </h3>
+
+                    <p>
+                        يمكنك الدخول إلى مباراة والبدء
+                        بالمنافسة دون الحاجة إلى جلسات لعب
+                        طويلة أو مراحل معقدة.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             العيوب
+        ===================================================== -->
+
+        <section class="cons-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="section-kicker">
+                        BEFORE YOU PLAY
+                    </div>
+
+                    <h2>
+                        الجانب الآخر من الطاولة
+                    </h2>
+
+                    <p>
+                        لأن التقييم الاحترافي لا يذكر المميزات فقط.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cons-grid">
+
+
+                <article class="cons-card">
+
+                    <div class="warning-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            الحاجة إلى الإنترنت
+                        </h3>
+
+                        <p>
+                            تحتاج اللعبة إلى اتصال بالإنترنت
+                            للعب المباريات عبر الإنترنت والاستفادة
+                            من العديد من مميزاتها.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="cons-card">
+
+                    <div class="warning-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            المشتريات داخل اللعبة
+                        </h3>
+
+                        <p>
+                            تحتوي اللعبة على مشتريات اختيارية
+                            داخل التطبيق، ويمكن للاعب استخدام
+                            اللعبة دون الحاجة إلى شراء هذه العناصر.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="cons-card">
+
+                    <div class="warning-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            الإعلانات
+                        </h3>
+
+                        <p>
+                            تحتوي اللعبة على إعلانات قد تظهر
+                            أثناء استخدام اللعبة، وهو أمر قد
+                            يزعج بعض اللاعبين.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="cons-card">
+
+                    <div class="warning-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            ارتفاع مستوى المنافسة
+                        </h3>
+
+                        <p>
+                            مع تقدم اللاعب تصبح المباريات
+                            أكثر تحديًا، خصوصًا عند مواجهة
+                            لاعبين يمتلكون خبرة أكبر.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الحكم النهائي
+        ===================================================== -->
+
+        <section class="verdict">
+
+            <h2>
+                الحكم النهائي 🎱
+            </h2>
+
+            <p>
+
+                8 Ball Pool ليست مجرد لعبة لإدخال الكرات في الجيوب؛
+                قوتها الحقيقية تكمن في بساطة فكرتها وعمق المنافسة
+                التي تنتج عنها. إنها مناسبة لمن يريد مباراة سريعة،
+                أو تحديًا مع صديق، أو رحلة طويلة لتحسين مهارة
+                التصويب والوصول إلى مستويات أعلى.
+
+                وإذا كنت تبحث عن لعبة بلياردو للموبايل تجمع
+                بين سهولة البداية وإمكانية تطوير المهارة
+                والمنافسة عبر الإنترنت، فإن 8 Ball Pool
+                تستحق مكانًا في مكتبة ألعابك.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             التحميل
+        ===================================================== -->
+
+        <section id="download" class="download-box">
+
+            <h2>
+                جاهز لضربة البداية؟
+            </h2>
+
+            <p>
+                حمّل 8 Ball Pool من المتاجر الرسمية وابدأ المنافسة.
+            </p>
+
+
+            <div class="download-buttons">
+
+
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.miniclip.eightballpool"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="store-button"
+                >
+
+                    <span class="store-icon">
+                        🤖
+                    </span>
+
+                    تحميل للأندرويد
+
+                </a>
+
+
+
+                <a
+                    href="https://apps.apple.com/us/app/8-ball-pool/id543186831"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="store-button"
+                >
+
+                    <span class="store-icon">
+                        🍏
+                    </span>
+
+                    تحميل للآيفون والآيباد
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             الصورة الأصلية — مرة واحدة فقط
+        ===================================================== -->
+
+        <div class="game-image-wrapper">
+
+            <img
+                class="game-image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQzrZk85GaVvUYsyv_cY2jqBcx8tGbl8zGLEUrDiY0Zg&s=10"
+                alt="صورة لعبة 8 Ball Pool"
+                loading="lazy"
+            >
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         الفوتر
+    ========================================================= -->
+
+    <footer>
+
+        <p>
+
+            <strong>8 Ball Pool</strong>
+            — صفحة اللعبة في عالم الألعاب
+
+        </p>
+
+        <p>
+            استمتع باللعب، وطوّر مهارتك، واجعل كل ضربة محسوبة.
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         زر العودة للأعلى
+    ========================================================= -->
+
+    <a
+        href="#top"
+        class="back-top"
+        id="backTop"
+        aria-label="العودة إلى الأعلى"
+    >
+        ↑
+    </a>
+
+
+
+    <!-- =========================================================
+         JavaScript بسيط للتفاعل
+    ========================================================= -->
+
+    <script>
+
+        const backTop =
+            document.getElementById("backTop");
+
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 500) {
+
+                backTop.classList.add("show");
+
+            } else {
+
+                backTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        const cards =
+            document.querySelectorAll(
+                ".feature-card, .cons-card"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.style.opacity = "1";
+
+                                entry.target.style.transform =
+                                    "translateY(0)";
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        cards.forEach(function (card) {
+
+            card.style.opacity = "0";
+
+            card.style.transform =
+                "translateY(25px)";
+
+            card.style.transition =
+                "opacity 0.7s ease, transform 0.7s ease";
+
+            observer.observe(card);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

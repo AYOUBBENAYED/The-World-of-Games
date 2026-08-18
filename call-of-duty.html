@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="صفحة احترافية عن لعبة Call of Duty - المميزات والعيوب وأسلوب اللعب وروابط التحميل.">
+    <meta name="keywords" content="Call of Duty, كول أوف ديوتي, ألعاب, أكشن, FPS, ألعاب حرب">
+    <meta name="author" content="عالم الألعاب">
+
+    <title>Call of Duty | عالم الألعاب</title>
+
+    <style>
+
+        /* =========================================================
+           01 - ROOT
+        ========================================================= */
+
+        :root {
+            --bg-main: #05070b;
+            --bg-secondary: #090d13;
+            --bg-card: rgba(15, 20, 29, 0.82);
+            --bg-card-light: rgba(255, 255, 255, 0.045);
+
+            --white: #ffffff;
+            --text: #e8edf5;
+            --muted: #9aa5b5;
+
+            --red: #ff3030;
+            --red-dark: #b90909;
+            --red-light: #ff5c5c;
+
+            --gold: #ffbd45;
+            --green: #43e18b;
+
+            --border: rgba(255,255,255,0.09);
+
+            --shadow:
+                0 25px 70px rgba(0,0,0,0.45);
+
+            --shadow-red:
+                0 0 35px rgba(255,48,48,0.22);
+
+            --radius: 22px;
+
+            --transition: 0.35s ease;
+        }
+
+
+        /* =========================================================
+           02 - RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Tahoma,
+                Arial,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(255, 40, 40, 0.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 40%,
+                    rgba(255, 170, 40, 0.05),
+                    transparent 25%
+                ),
+                var(--bg-main);
+
+            color: var(--text);
+            line-height: 1.9;
+            overflow-x: hidden;
+        }
+
+        body::selection {
+            background: var(--red);
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           03 - BACKGROUND EFFECT
+        ========================================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.015),
+                    transparent 50%
+                );
+        }
+
+        .background::before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            right: -250px;
+            top: 120px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 35, 35, 0.10),
+                    transparent 65%
+                );
+
+            filter: blur(15px);
+            animation: floatingGlow 9s ease-in-out infinite alternate;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            left: -250px;
+            bottom: 50px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 130, 20, 0.055),
+                    transparent 65%
+                );
+
+            animation: floatingGlow2 11s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatingGlow {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(-80px, 60px) scale(1.15);
+            }
+        }
+
+        @keyframes floatingGlow2 {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(90px, -70px);
+            }
+        }
+
+
+        /* =========================================================
+           04 - PARTICLES
+        ========================================================= */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.55);
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            animation: particleMove linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            right: 5%;
+            top: 20%;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(2) {
+            right: 15%;
+            top: 65%;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(3) {
+            right: 27%;
+            top: 35%;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(4) {
+            right: 40%;
+            top: 80%;
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(5) {
+            right: 55%;
+            top: 15%;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(6) {
+            right: 68%;
+            top: 55%;
+            animation-duration: 17s;
+        }
+
+        .particle:nth-child(7) {
+            right: 80%;
+            top: 30%;
+            animation-duration: 13s;
+        }
+
+        .particle:nth-child(8) {
+            right: 90%;
+            top: 75%;
+            animation-duration: 21s;
+        }
+
+        .particle:nth-child(9) {
+            right: 48%;
+            top: 45%;
+            animation-duration: 16s;
+        }
+
+        .particle:nth-child(10) {
+            right: 72%;
+            top: 85%;
+            animation-duration: 19s;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(30px);
+                opacity: 0.15;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           05 - TOP BAR
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            background:
+                rgba(4, 6, 10, 0.86);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .nav {
+            width: min(1250px, 92%);
+            margin: auto;
+
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    var(--red-dark)
+                );
+
+            box-shadow:
+                0 0 25px rgba(255,48,48,0.25);
+        }
+
+        .brand span {
+            color: var(--red-light);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: #b8c0cd;
+            padding: 9px 13px;
+            border-radius: 10px;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b2029,
+                    #10141b
+                );
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            transition: var(--transition);
+
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,48,48,0.55);
+            box-shadow: var(--shadow-red);
+        }
+
+
+        /* =========================================================
+           06 - HERO
+        ========================================================= */
+
+        .hero {
+            width: min(1250px, 92%);
+            min-height: 620px;
+            margin: 35px auto 0;
+
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+
+            gap: 45px;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.015)
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,48,48,0.06),
+                    transparent 55%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            padding: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 14px;
+
+            margin-bottom: 20px;
+
+            border-radius: 100px;
+
+            color: #ffb1b1;
+
+            background:
+                rgba(255,48,48,0.09);
+
+            border:
+                1px solid rgba(255,48,48,0.2);
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 12px var(--red);
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(46px, 7vw, 88px);
+
+            line-height: 1;
+
+            margin-bottom: 22px;
+
+            letter-spacing: -3px;
+
+            font-weight: 1000;
+
+            color: white;
+
+            text-shadow:
+                0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .hero h1 strong {
+            color: var(--red);
+            display: block;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: #aeb8c7;
+
+            font-size: 17px;
+
+            line-height: 2;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 50px;
+
+            padding: 0 23px;
+
+            border-radius: 13px;
+
+            font-weight: 900;
+
+            transition: var(--transition);
+        }
+
+        .primary-button {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff3b3b,
+                    #a70707
+                );
+
+            box-shadow:
+                0 10px 35px rgba(255,48,48,0.2);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 15px 45px rgba(255,48,48,0.35);
+        }
+
+        .secondary-button {
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color: #e9edf3;
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-4px);
+            background:
+                rgba(255,255,255,0.08);
+        }
+
+
+        /* =========================================================
+           07 - HERO VISUAL
+        ========================================================= */
+
+        .hero-visual {
+            min-height: 540px;
+
+            display: grid;
+            place-items: center;
+
+            position: relative;
+        }
+
+        .visual-ring {
+            position: absolute;
+
+            width: 380px;
+            height: 380px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(255,48,48,0.25);
+
+            box-shadow:
+                0 0 80px rgba(255,48,48,0.08);
+
+            animation: ringPulse 5s ease-in-out infinite;
+        }
+
+        .visual-ring::before {
+            content: "";
+
+            position: absolute;
+            inset: 35px;
+
+            border:
+                1px dashed rgba(255,255,255,0.12);
+
+            border-radius: 50%;
+
+            animation: rotateRing 18s linear infinite;
+        }
+
+        .visual-ring::after {
+            content: "";
+
+            position: absolute;
+            inset: 80px;
+
+            border:
+                1px solid rgba(255,48,48,0.18);
+
+            border-radius: 50%;
+        }
+
+        @keyframes ringPulse {
+            0%,100% {
+                transform: scale(0.98);
+                opacity: 0.65;
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .visual-card {
+            position: relative;
+            z-index: 2;
+
+            width: 310px;
+            min-height: 390px;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171c25,
+                    #090c11
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            box-shadow:
+                0 35px 80px rgba(0,0,0,0.55);
+
+            transform:
+                rotate(3deg);
+
+            transition: 0.5s ease;
+        }
+
+        .visual-card:hover {
+            transform:
+                rotate(0deg)
+                translateY(-10px);
+        }
+
+        .visual-top {
+            height: 180px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,48,48,0.35),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    145deg,
+                    #252b36,
+                    #0b0e13
+                );
+        }
+
+        .visual-symbol {
+            font-size: 90px;
+
+            filter:
+                drop-shadow(
+                    0 0 30px rgba(255,48,48,0.4)
+                );
+        }
+
+        .visual-info {
+            padding: 28px;
+        }
+
+        .visual-info h3 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .visual-info p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .visual-tag {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 7px 12px;
+
+            border-radius: 8px;
+
+            color: #ffb6b6;
+
+            background:
+                rgba(255,48,48,0.1);
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           08 - GENERAL SECTION
+        ========================================================= */
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        section {
+            padding: 95px 0 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-kicker {
+            color: var(--red);
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size:
+                clamp(30px, 5vw, 48px);
+
+            line-height: 1.2;
+
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 720px;
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           09 - INTRO
+        ========================================================= */
+
+        .intro-box {
+            padding: 42px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.02)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow: var(--shadow);
+        }
+
+        .intro-box p {
+            color: #bdc6d3;
+            font-size: 17px;
+            line-height: 2.1;
+        }
+
+        .intro-box p + p {
+            margin-top: 18px;
+        }
+
+        .highlight {
+            color: white;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           10 - STATS
+        ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .stat {
+            padding: 25px 18px;
+
+            text-align: center;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            transition: var(--transition);
+        }
+
+        .stat:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255,48,48,0.35);
+
+            background:
+                rgba(255,48,48,0.055);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stat strong {
+            display: block;
+            color: white;
+            font-size: 18px;
+        }
+
+        .stat span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+
+        /* =========================================================
+           11 - FEATURE CARDS
+        ========================================================= */
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .feature {
+            position: relative;
+
+            padding: 30px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.055),
+                    rgba(255,255,255,0.018)
+                );
+
+            border:
+                1px solid var(--border);
+
+            overflow: hidden;
+
+            transition: var(--transition);
+        }
+
+        .feature::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            top: -70px;
+            left: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,48,48,0.08);
+
+            filter: blur(20px);
+
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(255,48,48,0.3);
+
+            box-shadow:
+                0 20px 55px rgba(0,0,0,0.3);
+        }
+
+        .feature:hover::before {
+            transform: scale(1.5);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+
+            margin-bottom: 18px;
+
+            font-size: 25px;
+
+            background:
+                rgba(255,48,48,0.1);
+
+            border:
+                1px solid rgba(255,48,48,0.15);
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.95;
+        }
+
+
+        /* =========================================================
+           12 - NEGATIVE SECTION
+        ========================================================= */
+
+        .negative-area {
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,40,40,0.055),
+                    rgba(255,255,255,0.02)
+                );
+
+            border:
+                1px solid rgba(255,48,48,0.12);
+        }
+
+        .negative-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+        .negative {
+            padding: 25px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(0,0,0,0.2);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            transition: var(--transition);
+        }
+
+        .negative:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(255,48,48,0.25);
+        }
+
+        .negative-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 8px;
+        }
+
+        .warning {
+            color: #ff6464;
+            font-size: 20px;
+        }
+
+        .negative h3 {
+            font-size: 18px;
+        }
+
+        .negative p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           13 - EXPERIENCE
+        ========================================================= */
+
+        .experience {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .experience-card {
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid var(--border);
+
+            text-align: center;
+
+            transition: var(--transition);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.055);
+        }
+
+        .experience-card .number {
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    #8c0505
+                );
+
+            font-weight: 1000;
+        }
+
+        .experience-card h3 {
+            margin-bottom: 9px;
+        }
+
+        .experience-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           14 - VERDICT
+        ========================================================= */
+
+        .verdict {
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,48,48,0.12),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,48,48,0.2);
+
+            box-shadow:
+                0 20px 70px rgba(0,0,0,0.3);
+        }
+
+        .verdict h2 {
+            font-size: 30px;
+            margin-bottom: 18px;
+        }
+
+        .verdict p {
+            color: #c1c9d5;
+            line-height: 2.1;
+            font-size: 16px;
+        }
+
+        .verdict strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           15 - DOWNLOAD
+        ========================================================= */
+
+        .download-section {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 55px 40px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #131821,
+                    #090c11
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            box-shadow: var(--shadow);
+        }
+
+        .download-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            left: -100px;
+            top: -130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,48,48,0.12);
+
+            filter: blur(30px);
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .download-content h2 {
+            font-size:
+                clamp(30px, 5vw, 45px);
+
+            margin-bottom: 10px;
+        }
+
+        .download-content p {
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .download-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 14px;
+        }
+
+        .store-button {
+            min-width: 230px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 13px;
+
+            padding: 15px 22px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.065);
+
+            border:
+                1px solid rgba(255,255,255,0.11);
+
+            color: white;
+
+            transition: var(--transition);
+        }
+
+        .store-button:hover {
+            transform: translateY(-5px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red),
+                    #9c0808
+                );
+
+            border-color: transparent;
+
+            box-shadow:
+                0 15px 40px rgba(255,48,48,0.22);
+        }
+
+        .store-icon {
+            font-size: 27px;
+        }
+
+        .store-text {
+            text-align: right;
+        }
+
+        .store-text small {
+            display: block;
+            color: #aab3c0;
+            font-size: 11px;
+        }
+
+        .store-button:hover .store-text small {
+            color: #ffdede;
+        }
+
+        .store-text strong {
+            display: block;
+            font-size: 15px;
+        }
+
+
+        /* =========================================================
+           16 - IMAGE
+        ========================================================= */
+
+        .game-image-section {
+            text-align: center;
+        }
+
+        .image-frame {
+            position: relative;
+
+            display: inline-block;
+
+            max-width: 100%;
+
+            padding: 10px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,48,48,0.3),
+                    rgba(255,255,255,0.06)
+                );
+
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.5);
+        }
+
+        .image-frame img {
+            display: block;
+
+            max-width: 100%;
+
+            height: auto;
+
+            border-radius: 18px;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+        }
+
+        .image-caption {
+            margin-top: 14px;
+            color: #737d8b;
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           17 - FOOTER
+        ========================================================= */
+
+        footer {
+            margin-top: 100px;
+
+            padding:
+                45px 20px
+                30px;
+
+            background:
+                rgba(2,4,7,0.8);
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-inner {
+            width: min(1100px, 90%);
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-weight: 1000;
+            font-size: 18px;
+        }
+
+        .footer-brand span {
+            color: var(--red);
+        }
+
+        .footer-text {
+            color: #707987;
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           18 - SCROLL BUTTON
+        ========================================================= */
+
+        .scroll-top {
+            position: fixed;
+
+            left: 22px;
+            bottom: 22px;
+
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                rgba(18,22,30,0.88);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            color: white;
+
+            cursor: pointer;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(15px);
+
+            transition: var(--transition);
+
+            z-index: 500;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--red);
+        }
+
+
+        /* =========================================================
+           19 - REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           20 - RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 55px 35px 25px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 450px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .experience {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav {
+                min-height: 68px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .home-button {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                width: 94%;
+                margin-top: 18px;
+                border-radius: 22px;
+            }
+
+            .hero-content {
+                padding:
+                    45px 22px
+                    20px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-visual {
+                min-height: 380px;
+            }
+
+            .visual-ring {
+                width: 280px;
+                height: 280px;
+            }
+
+            .visual-card {
+                width: 240px;
+                min-height: 330px;
+            }
+
+            .visual-top {
+                height: 145px;
+            }
+
+            .visual-symbol {
+                font-size: 65px;
+            }
+
+            .visual-info {
+                padding: 22px;
+            }
+
+            section {
+                padding-top: 70px;
+            }
+
+            .intro-box {
+                padding: 25px;
+            }
+
+            .intro-box p {
+                font-size: 14px;
+            }
+
+            .features-grid,
+            .negative-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .negative-area {
+                padding: 20px;
+            }
+
+            .verdict {
+                padding: 28px 22px;
+            }
+
+            .download-section {
+                padding:
+                    40px 20px;
+            }
+
+            .store-button {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 430px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .primary-button,
+            .secondary-button {
+                width: 100%;
+            }
+
+            .section-heading h2 {
+                font-size: 30px;
+            }
+        }
+
+
+        /* =========================================================
+           21 - REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
+
+    <div class="background"></div>
+
+    <div class="particles">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+    </div>
+
+
+    <!-- =========================================================
+         TOP NAVIGATION
+    ========================================================= -->
+
+    <header class="topbar">
+
+        <nav class="nav">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon">🎮</span>
+                <span>عالم الألعاب</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="#about">
+                    المقدمة
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#disadvantages">
+                    العيوب
+                </a>
+
+                <a href="#download">
+                    التحميل
+                </a>
+
+            </div>
+
+            <a href="index.html" class="home-button">
+                🏠
+                العودة إلى عالم الألعاب
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    لعبة أكشن وتصويب أسطورية
+                </div>
+
+                <h1>
+                    CALL OF
+                    <strong>DUTY</strong>
+                </h1>
+
+                <p class="hero-description">
+                    إذا كنت تبحث عن الأدرينالين الخالص وتجربة قتالية
+                    سريعة تضعك في قلب المعارك، فإن Call of Duty تقدم
+                    واحدة من أشهر تجارب التصويب في عالم الألعاب،
+                    مع أسلحة متنوعة وحركة سريعة وأطوار لعب متعددة.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#download" class="primary-button">
+                        🎮 اكتشف اللعبة
+                    </a>
+
+                    <a href="#about" class="secondary-button">
+                        ↓ اقرأ التفاصيل
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="visual-ring"></div>
+
+                <div class="visual-card">
+
+                    <div class="visual-top">
+                        <div class="visual-symbol">
+                            🎖️
+                        </div>
+                    </div>
+
+                    <div class="visual-info">
+
+                        <h3>
+                            Call of Duty
+                        </h3>
+
+                        <p>
+                            السرعة، التكتيك، الدقة
+                            والمعارك الحماسية.
+                        </p>
+
+                        <span class="visual-tag">
+                            ACTION • FPS
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        ABOUT THE GAME
+                    </div>
+
+                    <h2>
+                        عندما تصبح المعركة
+                        <span style="color:#ff3030;">
+                            تجربة كاملة
+                        </span>
+                    </h2>
+
+                    <p>
+                        تعرف على طبيعة اللعبة وما الذي يجعلها
+                        مختلفة عن الكثير من ألعاب التصويب.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-box reveal">
+
+                    <p>
+                        إذا كنت تبحث عن
+                        <span class="highlight">
+                            الأدرينالين الخالص
+                        </span>
+                        وتجربة قتالية تضعك في قلب المعارك
+                        الحماسية، فإن سلسلة
+                        <span class="highlight">
+                            Call of Duty
+                        </span>
+                        استطاعت على مدار سنوات طويلة أن تصبح
+                        اسماً بارزاً في عالم ألعاب التصويب من
+                        منظور الشخص الأول.
+                    </p>
+
+                    <p>
+                        تعتمد التجربة على سرعة رد الفعل،
+                        دقة التصويب، الحركة السريعة، اختيار
+                        المعدات المناسبة، والتعامل الذكي مع
+                        كل موقف أثناء المعركة.
+                    </p>
+
+                    <p>
+                        وتقدم اللعبة مجموعة من الأطوار المختلفة،
+                        لذلك يمكن للاعب الانتقال بين المواجهات
+                        السريعة والمعارك الأكبر وفقاً لأسلوب
+                        اللعب الذي يفضله.
+                    </p>
+
+                </div>
+
+
+                <div class="stats reveal">
+
+                    <div class="stat">
+                        <div class="stat-icon">🎯</div>
+                        <strong>FPS</strong>
+                        <span>تصويب من منظور الشخص الأول</span>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-icon">⚡</div>
+                        <strong>سريع</strong>
+                        <span>حركة ومواجهات حماسية</span>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-icon">🗺️</div>
+                        <strong>متنوع</strong>
+                        <span>أطوار وخرائط متعددة</span>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-icon">🎮</div>
+                        <strong>متعدد</strong>
+                        <span>تجارب لعب جماعية</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section id="features">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        WHY PLAY IT?
+                    </div>
+
+                    <h2>
+                        أبرز المميزات
+                    </h2>
+
+                    <p>
+                        مجموعة من العناصر التي صنعت هوية
+                        Call of Duty وجعلتها محبوبة لدى
+                        عشاق ألعاب التصويب.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            🎨
+                        </div>
+
+                        <h3>
+                            رسوميات ومؤثرات قوية
+                        </h3>
+
+                        <p>
+                            تقدم اللعبة تفاصيل بصرية ومؤثرات
+                            صوتية تساعد على جعل المعارك أكثر
+                            حيوية، مع تصميمات متنوعة للأسلحة
+                            والبيئات والعناصر القتالية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            حركة سريعة وسلسة
+                        </h3>
+
+                        <p>
+                            تعتمد المواجهات على سرعة الحركة
+                            واتخاذ القرار، مما يجعل الاشتباكات
+                            أكثر ديناميكية ويمنح اللاعب مساحة
+                            كبيرة لتطوير مهاراته.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            🔫
+                        </div>
+
+                        <h3>
+                            ترسانة متنوعة
+                        </h3>
+
+                        <p>
+                            توفر اللعبة مجموعة واسعة من الأسلحة
+                            والمعدات التي تسمح للاعب بتكوين
+                            أسلوب لعب يناسبه واختيار الأدوات
+                            المناسبة للمواجهة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            🧩
+                        </div>
+
+                        <h3>
+                            تخصيص أسلوب اللعب
+                        </h3>
+
+                        <p>
+                            يستطيع اللاعب بناء تجهيزاته وتعديل
+                            اختياراته وفقاً للمواجهة، مما يضيف
+                            جانباً استراتيجياً إلى جانب مهارة
+                            التصويب.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            🏆
+                        </div>
+
+                        <h3>
+                            أطوار لعب متعددة
+                        </h3>
+
+                        <p>
+                            لا تقتصر التجربة على نمط واحد،
+                            بل يمكن الاستمتاع بأنماط مختلفة
+                            تناسب المواجهات الفردية والجماعية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature reveal">
+
+                        <div class="feature-icon">
+                            🔄
+                        </div>
+
+                        <h3>
+                            محتوى متجدد
+                        </h3>
+
+                        <p>
+                            تساعد المواسم والمحتويات الجديدة
+                            والتغييرات المستمرة في إبقاء تجربة
+                            اللعب متجددة لفترات طويلة.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DISADVANTAGES
+        ====================================================== -->
+
+        <section id="disadvantages">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        BEFORE YOU PLAY
+                    </div>
+
+                    <h2>
+                        نقاط يجب أن تعرفها
+                    </h2>
+
+                    <p>
+                        لا توجد لعبة مثالية، وهذه بعض الجوانب
+                        التي قد لا تناسب جميع اللاعبين.
+                    </p>
+
+                </div>
+
+
+                <div class="negative-area">
+
+                    <div class="negative-grid">
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    مساحة تخزين كبيرة
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                بعض إصدارات اللعبة ومحتوياتها
+                                قد تحتاج إلى مساحة تخزين كبيرة،
+                                خصوصاً مع وجود تحديثات ومحتويات
+                                إضافية.
+                            </p>
+
+                        </article>
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    تحتاج إلى جهاز مناسب
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                للحصول على تجربة سلسة وجودة
+                                رسومية جيدة، قد تحتاج إلى جهاز
+                                قادر على تشغيل اللعبة بالمستوى
+                                المطلوب.
+                            </p>
+
+                        </article>
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    البداية قد تكون صعبة
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                سرعة المواجهات وكثرة التفاصيل
+                                قد تجعل اللعبة صعبة نسبياً
+                                بالنسبة للاعب الجديد في البداية.
+                            </p>
+
+                        </article>
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    مشتريات داخل اللعبة
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                تحتوي اللعبة على عناصر ومحتويات
+                                اختيارية يمكن الحصول عليها من
+                                خلال المشتريات داخل اللعبة.
+                            </p>
+
+                        </article>
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    المنافسة قوية
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                اللاعبون الجدد قد يواجهون منافسة
+                                قوية، خصوصاً عندما يبدأون في
+                                اللعب ضد أشخاص يمتلكون خبرة كبيرة.
+                            </p>
+
+                        </article>
+
+
+                        <article class="negative reveal">
+
+                            <div class="negative-title">
+
+                                <span class="warning">
+                                    ⚠
+                                </span>
+
+                                <h3>
+                                    التحديثات المستمرة
+                                </h3>
+
+                            </div>
+
+                            <p>
+                                قد تحتاج اللعبة إلى تنزيل تحديثات
+                                دورية، وهو أمر قد يكون مزعجاً لمن
+                                يملك اتصالاً محدوداً بالإنترنت.
+                            </p>
+
+                        </article>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPERIENCE
+        ====================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        THE EXPERIENCE
+                    </div>
+
+                    <h2>
+                        كيف تبدو تجربة اللعب؟
+                    </h2>
+
+                </div>
+
+
+                <div class="experience">
+
+
+                    <article class="experience-card reveal">
+
+                        <div class="number">
+                            01
+                        </div>
+
+                        <h3>
+                            اختر تجهيزك
+                        </h3>
+
+                        <p>
+                            جهز أسلحتك ومعداتك بالطريقة التي
+                            تتناسب مع أسلوبك في اللعب.
+                        </p>
+
+                    </article>
+
+
+                    <article class="experience-card reveal">
+
+                        <div class="number">
+                            02
+                        </div>
+
+                        <h3>
+                            ادخل المواجهة
+                        </h3>
+
+                        <p>
+                            استخدم الحركة والتصويب والتمركز
+                            الذكي للتفوق على خصومك.
+                        </p>
+
+                    </article>
+
+
+                    <article class="experience-card reveal">
+
+                        <div class="number">
+                            03
+                        </div>
+
+                        <h3>
+                            طور مهاراتك
+                        </h3>
+
+                        <p>
+                            كل مباراة تمنحك فرصة لفهم أسلوبك
+                            وتحسين قراراتك ومهاراتك.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERDICT
+        ====================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="verdict reveal">
+
+                    <h2>
+                        💡 خلاصة وتوجيه للزوار
+                    </h2>
+
+                    <p>
+                        إذا كنت من عشاق ألعاب التصويب السريعة
+                        وتحب المنافسة والحركة المستمرة، فإن
+                        <strong>
+                            Call of Duty
+                        </strong>
+                        تستحق أن تكون ضمن قائمة الألعاب التي
+                        تجربها.
+                    </p>
+
+                    <p style="margin-top:15px;">
+
+                        أما إذا كنت تفضل الألعاب الهادئة أو لا
+                        تملك جهازاً مناسباً لتشغيل الألعاب
+                        الحديثة، فقد تحتاج إلى البحث عن تجربة
+                        أخف وأكثر ملاءمة لجهازك.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DOWNLOAD
+        ====================================================== -->
+
+        <section id="download">
+
+            <div class="container">
+
+                <div class="download-section reveal">
+
+                    <div class="download-content">
+
+                        <h2>
+                            جاهز لدخول المعركة؟
+                        </h2>
+
+                        <p>
+                            اختر منصتك وابدأ تجربة Call of Duty.
+                        </p>
+
+
+                        <div class="download-buttons">
+
+                            <!-- Android -->
+
+                            <a
+                                href="https://google.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="store-button"
+                            >
+
+                                <span class="store-icon">
+                                    🤖
+                                </span>
+
+                                <span class="store-text">
+
+                                    <small>
+                                        متوفر على
+                                    </small>
+
+                                    <strong>
+                                        Google Play - Android
+                                    </strong>
+
+                                </span>
+
+                            </a>
+
+
+                            <!-- iPhone -->
+
+                            <a
+                                href="https://apple.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="store-button"
+                            >
+
+                                <span class="store-icon">
+                                    🍏
+                                </span>
+
+                                <span class="store-text">
+
+                                    <small>
+                                        متوفر على
+                                    </small>
+
+                                    <strong>
+                                        App Store - iOS
+                                    </strong>
+
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             GAME IMAGE
+             الرابط محفوظ كما أرسلته أنت
+        ====================================================== -->
+
+        <section class="game-image-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="section-kicker">
+                        GAME VISUAL
+                    </div>
+
+                    <h2>
+                        Call of Duty
+                    </h2>
+
+                    <p>
+                        صورة اللعبة في نهاية الصفحة.
+                    </p>
+
+                </div>
+
+
+                <div class="image-frame reveal">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuE6tc7LG_TImeAJrNxVXfHceLCQshB6UHUp9kWEE_MQ&s=10"
+                        alt="Call of Duty"
+                    >
+
+                </div>
+
+                <div class="image-caption">
+                    Call of Duty — عالم الألعاب
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                🎮 <span>عالم الألعاب</span>
+            </div>
+
+            <div class="footer-text">
+                © 2026 جميع الحقوق محفوظة — صفحة Call of Duty
+            </div>
+
+            <a
+                href="index.html"
+                class="home-button"
+            >
+                🏠 الصفحة الرئيسية
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCROLL TOP
+    ========================================================= -->
+
+    <button
+        class="scroll-top"
+        id="scrollTop"
+        aria-label="العودة إلى أعلى الصفحة"
+    >
+        ↑
+    </button>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           01 - REVEAL ON SCROLL
+        ===================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                function(entries) {
+
+                    entries.forEach(
+                        function(entry) {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.classList.add(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            function(element) {
+
+                revealObserver.observe(element);
+
+            }
+        );
+
+
+        /* =====================================================
+           02 - SCROLL TO TOP
+        ===================================================== */
+
+        const scrollTop =
+            document.getElementById("scrollTop");
+
+
+        window.addEventListener(
+            "scroll",
+            function() {
+
+                if (window.scrollY > 500) {
+
+                    scrollTop.classList.add("show");
+
+                } else {
+
+                    scrollTop.classList.remove("show");
+
+                }
+
+            }
+        );
+
+
+        scrollTop.addEventListener(
+            "click",
+            function() {
+
+                window.scrollTo(
+                    {
+                        top: 0,
+                        behavior: "smooth"
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           03 - SMOOTH INTERNAL LINKS
+        ===================================================== */
+
+        document.querySelectorAll(
+            'a[href^="#"]'
+        ).forEach(
+            function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function(event) {
+
+                        const targetId =
+                            this.getAttribute("href");
+
+                        if (
+                            targetId === "#"
+                            ||
+                            !document.querySelector(targetId)
+                        ) {
+                            return;
+                        }
+
+                        event.preventDefault();
+
+                        document
+                            .querySelector(targetId)
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           04 - SIMPLE POINTER EFFECT
+        ===================================================== */
+
+        const visualCard =
+            document.querySelector(".visual-card");
+
+
+        if (visualCard) {
+
+            visualCard.addEventListener(
+                "mousemove",
+                function(event) {
+
+                    if (window.innerWidth < 900) {
+                        return;
+                    }
+
+                    const rect =
+                        visualCard.getBoundingClientRect();
+
+                    const x =
+                        event.clientX - rect.left;
+
+                    const y =
+                        event.clientY - rect.top;
+
+                    const rotateY =
+                        ((x / rect.width) - 0.5) * 8;
+
+                    const rotateX =
+                        ((y / rect.height) - 0.5) * -8;
+
+                    visualCard.style.transform =
+                        `
+                        perspective(800px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-5px)
+                        `;
+
+                }
+            );
+
+
+            visualCard.addEventListener(
+                "mouseleave",
+                function() {
+
+                    visualCard.style.transform =
+                        "rotate(3deg)";
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           05 - YEAR
+        ===================================================== */
+
+        const year =
+            new Date().getFullYear();
+
+        const footerText =
+            document.querySelector(".footer-text");
+
+        if (footerText) {
+
+            footerText.textContent =
+                "© " +
+                year +
+                " جميع الحقوق محفوظة — صفحة Call of Duty";
+
+        }
+
+    </script>
+
+</body>
+</html>

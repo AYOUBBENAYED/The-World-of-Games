@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Eyes: Horror Game | عالم الألعاب</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #241313 0%, #090909 38%, #020202 100%);
+            color: #eeeeee;
+            line-height: 1.9;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.015) 50%,
+                    transparent 50%
+                );
+            background-size: 100% 4px;
+            opacity: 0.25;
+            z-index: 10;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .hero {
+            min-height: 650px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid #5e1919;
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,0.15),
+                    rgba(0,0,0,0.96)
+                ),
+                radial-gradient(
+                    circle at center,
+                    #401919 0%,
+                    #120606 45%,
+                    #000 100%
+                );
+        }
+
+        .hero::before {
+            content: "👁";
+            position: absolute;
+            font-size: 420px;
+            color: #7d1111;
+            opacity: 0.08;
+            filter: blur(3px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(900px, 92%);
+        }
+
+        .warning {
+            display: inline-block;
+            color: #ff4d4d;
+            border: 1px solid #8b2020;
+            background: rgba(80, 0, 0, 0.35);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 9vw, 95px);
+            color: #ffffff;
+            text-shadow:
+                0 0 10px #8f0000,
+                0 0 35px rgba(180, 0, 0, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #b40000;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #cfcfcf;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            padding: 13px 28px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            border: 1px solid #861c1c;
+            background: linear-gradient(135deg, #8e1717, #390909);
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(100, 0, 0, 0.25);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(135deg, #bd2020, #550b0b);
+            box-shadow: 0 12px 35px rgba(170, 0, 0, 0.4);
+        }
+
+        .hero-button.dark {
+            background: rgba(255,255,255,0.04);
+            border-color: #444;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        .game-image-box {
+            margin: -90px auto 60px;
+            position: relative;
+            z-index: 5;
+            width: min(850px, 100%);
+            padding: 10px;
+            background: linear-gradient(135deg, #8d1c1c, #111, #5c1111);
+            border-radius: 20px;
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.8),
+                0 0 35px rgba(120,0,0,0.2);
+        }
+
+        .game-image-box img {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            object-fit: cover;
+            display: block;
+            border-radius: 13px;
+            background: #080808;
+        }
+
+        .section {
+            margin-bottom: 55px;
+        }
+
+        .section-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            color: #fff;
+            font-size: 30px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(to left, transparent, #8e1717);
+        }
+
+        .intro {
+            background:
+                linear-gradient(135deg, rgba(80,10,10,0.28), rgba(15,15,15,0.75));
+            border: 1px solid #321515;
+            border-right: 4px solid #9c1717;
+            border-radius: 16px;
+            padding: 28px;
+            color: #d8d8d8;
+            font-size: 17px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid #292929;
+            border-radius: 16px;
+            padding: 24px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #8d0000;
+            filter: blur(70px);
+            opacity: 0.08;
+            top: -40px;
+            right: -40px;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #702020;
+            background: rgba(100,0,0,0.08);
+        }
+
+        .feature h3 {
+            color: #e43b3b;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .feature p {
+            color: #bdbdbd;
+        }
+
+        .negative {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .negative .feature {
+            border-color: #292929;
+        }
+
+        .negative .feature h3 {
+            color: #ff6969;
+        }
+
+        .score-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .score-card {
+            padding: 25px;
+            border-radius: 18px;
+            background: #0d0d0d;
+            border: 1px solid #292929;
+        }
+
+        .score-card h3 {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .bar {
+            height: 9px;
+            background: #222;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #5d0808, #e32828);
+        }
+
+        .score-number {
+            float: left;
+            color: #e63939;
+            font-weight: bold;
+        }
+
+        .download {
+            margin-top: 70px;
+            padding: 45px 25px;
+            text-align: center;
+            border-radius: 25px;
+            border: 1px solid #581515;
+            background:
+                radial-gradient(circle at center, #310b0b, #0b0b0b 65%);
+            box-shadow: 0 20px 70px rgba(0,0,0,0.5);
+        }
+
+        .download h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .download p {
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .store {
+            min-width: 220px;
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            background: #151515;
+            border: 1px solid #444;
+            transition: 0.3s;
+        }
+
+        .store:hover {
+            transform: scale(1.04);
+            border-color: #b62020;
+            background: #260909;
+        }
+
+        .conclusion {
+            margin-top: 55px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                rgba(130,0,0,0.18),
+                rgba(255,255,255,0.02)
+            );
+            border: 1px solid #321515;
+        }
+
+        .conclusion h2 {
+            color: #e52c2c;
+            margin-bottom: 12px;
+        }
+
+        .conclusion p {
+            color: #ccc;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+            text-align: center;
+            border-top: 1px solid #241010;
+            color: #777;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .nav-button {
+            color: #ddd;
+            background: #111;
+            border: 1px solid #333;
+            padding: 10px 18px;
+            border-radius: 9px;
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            color: white;
+            border-color: #9d2020;
+            background: #260909;
+        }
+
+        .top-button {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #8e1515;
+            color: white;
+            border: 1px solid #c33;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            z-index: 20;
+            transition: 0.3s;
+        }
+
+        .top-button:hover {
+            transform: translateY(-5px);
+            background: #c21d1d;
+        }
+
+        @media (max-width: 750px) {
+
+            .hero {
+                min-height: 560px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .features,
+            .negative,
+            .score-area {
+                grid-template-columns: 1fr;
+            }
+
+            .game-image-box {
+                margin-top: -55px;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body id="top">
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="warning">
+                👁️ لا تنظر خلفك...
+            </div>
+
+            <h1>
+                EYES <span>👁</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Horror Game — عندما يتحول الظلام إلى عدو
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#game-info" class="hero-button">
+                    اكتشف اللعبة
+                </a>
+
+                <a href="index.html" class="hero-button dark">
+                    🎮 عالم الألعاب
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container" id="game-info">
+
+
+        <!-- صورة اللعبة -->
+
+        <div class="game-image-box">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQpkjt6MQ0HtJj281F_9GYLUNoY0J3Xbc6hP3pQXUaJA&s=10"
+                alt="Eyes Horror Game">
+
+        </div>
+
+
+        <!-- المقدمة -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                👁️ ما هي Eyes؟
+            </h2>
+
+            <div class="intro">
+
+                <p>
+                    Eyes: Horror Game ليست مجرد لعبة رعب عادية،
+                    بل تجربة تعتمد على الخوف الناتج عن الاستكشاف
+                    والقلق المستمر من المجهول.
+                    تدخل إلى أماكن مظلمة مليئة بالأسرار، وتبدأ
+                    رحلة البحث عن الأشياء التي تحتاجها للهروب،
+                    بينما يوجد شيء آخر يراقب تحركاتك.
+                </p>
+
+                <br>
+
+                <p>
+                    تعتمد التجربة على الأجواء الصوتية والظلام
+                    والمطاردات المفاجئة، مما يجعل كل ممر وكل
+                    غرفة احتمالاً جديداً للخطر.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- المميزات -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                🩸 لماذا تستحق التجربة؟
+            </h2>
+
+            <div class="features">
+
+                <article class="feature">
+
+                    <h3>👁️ رعب نفسي مستمر</h3>
+
+                    <p>
+                        لا يعتمد الخوف فقط على ظهور الوحوش،
+                        بل على انتظار اللحظة التي قد يحدث فيها
+                        شيء غير متوقع.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>🔦 الاستكشاف والبحث</h3>
+
+                    <p>
+                        استكشف الأماكن المظلمة وابحث عن العناصر
+                        اللازمة للتقدم والهروب قبل أن تصل إليك
+                        الأخطار.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>🏚️ أماكن متعددة</h3>
+
+                    <p>
+                        خرائط وأماكن مختلفة تمنحك تحديات جديدة
+                        وتغيّر طريقة تعاملك مع الخطر في كل تجربة.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>🎧 مؤثرات صوتية مرعبة</h3>
+
+                    <p>
+                        الأصوات المحيطة والخطوات والمفاجآت
+                        الصوتية تلعب دوراً أساسياً في بناء
+                        أجواء الرعب.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>🤝 تجربة جماعية</h3>
+
+                    <p>
+                        توفر اللعبة خيارات للعب الجماعي في
+                        بعض إصداراتها، مما يسمح بمشاركة أجواء
+                        الرعب مع الأصدقاء.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>📱 مصممة للموبايل</h3>
+
+                    <p>
+                        نظام تحكم مناسب لشاشات اللمس مع تجربة
+                        مصممة لتعمل على الهواتف والأجهزة اللوحية
+                        المتوافقة.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- العيوب -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                ⚠️ الجانب المظلم
+            </h2>
+
+            <div class="negative">
+
+                <article class="feature">
+
+                    <h3>📢 الإعلانات</h3>
+
+                    <p>
+                        قد تظهر الإعلانات في النسخة المجانية،
+                        وهو أمر قد يؤثر على انسيابية التجربة
+                        لدى بعض اللاعبين.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>💳 مشتريات داخل اللعبة</h3>
+
+                    <p>
+                        تتضمن اللعبة مشتريات اختيارية داخل
+                        التطبيق للحصول على بعض العناصر أو
+                        المزايا.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>😨 ليست للجميع</h3>
+
+                    <p>
+                        الأجواء المظلمة والمطاردات والمفاجآت
+                        قد تكون مزعجة للاعبين الذين لا يفضلون
+                        ألعاب الرعب.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <h3>📱 توافق الأجهزة</h3>
+
+                    <p>
+                        تختلف تجربة اللعب حسب مواصفات الهاتف،
+                        لذلك من الأفضل التأكد من توافق الجهاز
+                        قبل التثبيت.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- التقييم -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                📊 تقييم التجربة
+            </h2>
+
+            <div class="score-area">
+
+                <div class="score-card">
+
+                    <h3>
+                        أجواء الرعب
+                        <span class="score-number">9.2/10</span>
+                    </h3>
+
+                    <div class="bar">
+                        <span style="width: 92%;"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <h3>
+                        الاستكشاف
+                        <span class="score-number">8.7/10</span>
+                    </h3>
+
+                    <div class="bar">
+                        <span style="width: 87%;"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <h3>
+                        المؤثرات
+                        <span class="score-number">9/10</span>
+                    </h3>
+
+                    <div class="bar">
+                        <span style="width: 90%;"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <h3>
+                        المتعة
+                        <span class="score-number">8.8/10</span>
+                    </h3>
+
+                    <div class="bar">
+                        <span style="width: 88%;"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- الخلاصة -->
+
+        <section class="conclusion">
+
+            <h2>🩸 الخلاصة</h2>
+
+            <p>
+                Eyes: Horror Game تقدم تجربة مناسبة لعشاق
+                الرعب والاستكشاف الذين يبحثون عن أجواء مظلمة
+                ومطاردات وتوتر مستمر.
+                قوتها الحقيقية ليست في القتال، وإنما في جعلك
+                تشعر بأنك مراقب طوال الوقت.
+                إذا كنت تملك الشجاعة الكافية لدخول الظلام...
+                فالباب مفتوح.
+            </p>
+
+        </section>
+
+
+        <!-- التحميل -->
+
+        <section class="download">
+
+            <h2>🎮 ادخل عالم Eyes</h2>
+
+            <p>
+                حمّل اللعبة من المتاجر الرسمية واستعد
+                لمواجهة ما ينتظرك في الظلام.
+            </p>
+
+            <div class="store-buttons">
+
+                <a
+                    class="store"
+                    href="https://play.google.com/store/apps/details?id=com.eyesthegame.eyes"
+                    target="_blank">
+
+                    🤖 Google Play
+                    <br>
+                    تحميل للأندرويد
+
+                </a>
+
+
+                <a
+                    class="store"
+                    href="https://apps.apple.com/ae/app/eyes-horror-coop-multiplayer/id631771776"
+                    target="_blank">
+
+                    🍏 App Store
+                    <br>
+                    تحميل للآيفون والآيباد
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            👁️ Eyes: Horror Game — هل تملك الشجاعة؟
+        </p>
+
+        <div class="bottom-nav">
+
+            <!-- زر العودة إلى عالم الألعاب -->
+
+            <a
+                href="index.html"
+                class="nav-button">
+
+                🎮 العودة إلى عالم الألعاب
+
+            </a>
+
+
+            <!-- زر العودة إلى الأعلى -->
+
+            <a
+                href="#top"
+                class="nav-button">
+
+                ⬆️ العودة إلى الأعلى
+
+            </a>
+
+        </div>
+
+        <br>
+
+        <small>
+            صفحة لعبة — تصميم احترافي لمسابقة عالمية
+        </small>
+
+    </footer>
+
+
+    <!-- زر عائم للعودة إلى الأعلى -->
+
+    <a
+        href="#top"
+        class="top-button"
+        aria-label="العودة إلى الأعلى">
+
+        ↑
+
+    </a>
+
+</body>
+
+</html>
